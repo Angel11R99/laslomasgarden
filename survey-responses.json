@@ -1,0 +1,135 @@
+[
+    {
+        "own_home": "Yes",
+        "amenities": [
+            "Assigned parking"
+        ],
+        "other_amenities": "",
+        "floor": "3rd Floor",
+        "bedrooms": "Three bedrooms",
+        "furnished": "Unfurnished",
+        "current_status": "Own",
+        "budget": "75000",
+        "financing": "Yes",
+        "down_payment": "10000",
+        "monthly_payment": "600",
+        "prefer_own_rent": "Rent",
+        "preferred_list": "Yes",
+        "contact_permission": "Yes",
+        "name": "BRYAN MARC SOSA MORAN",
+        "contact": "8294946176",
+        "timestamp": "2025-12-30 14:14:45",
+        "ip": "24.152.50.218"
+    },
+    {
+        "own_home": "Yes",
+        "amenities": [
+            [
+                "24\/7 Security"
+            ],
+            [
+                "Pool"
+            ],
+            [
+                "Mini-market"
+            ],
+            [
+                "Air-conditioning"
+            ],
+            [
+                "Assigned parking"
+            ],
+            [
+                "Elevator"
+            ]
+        ],
+        "other_amenities": "No",
+        "floor": "3rd Floor",
+        "bedrooms": "Three bedrooms",
+        "furnished": "Furnished",
+        "current_status": "Own",
+        "budget": "105000",
+        "financing": "Yes",
+        "down_payment": "20000",
+        "monthly_payment": "1000",
+        "prefer_own_rent": "Own",
+        "preferred_list": "Yes",
+        "contact_permission": "Yes",
+        "name": "Ron ",
+        "contact": "ronaldcnorton@email.com",
+        "timestamp": "2026-01-02 09:49:53",
+        "ip": "24.152.50.218"
+    },
+    {
+        "own_home": "Yes",
+        "amenities": [
+            [
+                "24\/7 Security"
+            ],
+            [
+                "Gym"
+            ],
+            [
+                "Children's playground"
+            ],
+            [
+                "Assigned parking"
+            ],
+            [
+                "Elevator"
+            ]
+        ],
+        "other_amenities": "",
+        "floor": "3rd Floor",
+        "bedrooms": "Two bedrooms",
+        "furnished": "Unfurnished",
+        "current_status": "Rent",
+        "budget": "105000",
+        "financing": "Yes",
+        "down_payment": "20000",
+        "monthly_payment": "600",
+        "prefer_own_rent": "Own",
+        "preferred_list": "No",
+        "contact_permission": "No",
+        "name": "Xavier Saladin ",
+        "contact": "xavierforcadells@gmail.com",
+        "timestamp": "2026-01-02 12:03:58",
+        "ip": "94.134.178.118"
+    },
+    {
+        "own_home": "Yes",
+        "amenities": [
+            [
+                "24\/7 Security"
+            ],
+            [
+                "Pool"
+            ],
+            [
+                "Gym"
+            ],
+            [
+                "Basketball court"
+            ],
+            [
+                "Assigned parking"
+            ]
+        ],
+        "other_amenities": "",
+        "floor": "2nd Floor",
+        "bedrooms": "Three bedrooms",
+        "furnished": "Unfurnished",
+        "current_status": "Rent",
+        "budget": "90000",
+        "financing": "Yes",
+        "down_payment": "10000",
+        "monthly_payment": "750",
+        "prefer_own_rent": "Own",
+        "preferred_list": "Yes",
+        "contact_permission": "Yes",
+        "name": "Gabriel Castillo ",
+        "contact": "Gabriel291501@gmail.com",
+        "timestamp": "2026-01-07 11:21:48",
+        "ip": "172.56.196.99"
+    }
+]

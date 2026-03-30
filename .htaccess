@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# ----------------------------------------
+# 1. Redirigir la raíz "/" a index.php
+#    SIN mostrar index.php en la URL
+# ----------------------------------------
+RewriteRule ^$ index.php [L]
+
+# ----------------------------------------
+# 2. Quitar .php o .html de la URL
+# ----------------------------------------
+
+# Si el archivo solicitado NO existe físicamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Si existe el archivo .php correspondiente
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# Si existe el archivo .html correspondiente
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# ----------------------------------------
+# 3. Evitar acceso directo a archivos .php o .html
+# ----------------------------------------
+RewriteCond %{THE_REQUEST} \s/+(.*)\.php[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+(.*)\.html[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
