@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - master
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -14,25 +16,51 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup SSH
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/codeguard_sftp
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/codeguard_sftp
           chmod 600 ~/.ssh/codeguard_sftp
 
-      - name: Deploy to server
+      - name: Deploy files to server
+        shell: bash
         run: |
+          set -euo pipefail
+
+          BASE_PATH="${{ secrets.SSH_PATH }}"
+          if [[ "${BASE_PATH%/}" == */website_1c007ff1 ]]; then
+            DEPLOY_PATH="${BASE_PATH%/}"
+          else
+            DEPLOY_PATH="${BASE_PATH%/}/website_1c007ff1"
+          fi
+
+          echo "Deploy target: $DEPLOY_PATH"
+
           ssh \
-            -i ~/.ssh/codeguard_sftp\
+            -i ~/.ssh/codeguard_sftp \
             -o IdentitiesOnly=yes \
             -o PreferredAuthentications=publickey \
             -o PubkeyAuthentication=yes \
             -o PasswordAuthentication=no \
             -o KbdInteractiveAuthentication=no \
             -o StrictHostKeyChecking=no \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-          cd ${{ secrets.SSH_PATH }}
-          pwd
-          git fetch --all
-          git clean -f -e .env
-          git reset --hard origin/master
-          EOF
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "mkdir -p \"$DEPLOY_PATH\""
+
+          rsync -avz --delete \
+            --exclude ".git/" \
+            --exclude ".github/" \
+            --exclude ".gitignore" \
+            -e "ssh -i ~/.ssh/codeguard_sftp -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PubkeyAuthentication=yes -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o StrictHostKeyChecking=no" \
+            ./ \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$DEPLOY_PATH/"
+
+          ssh \
+            -i ~/.ssh/codeguard_sftp \
+            -o IdentitiesOnly=yes \
+            -o PreferredAuthentications=publickey \
+            -o PubkeyAuthentication=yes \
+            -o PasswordAuthentication=no \
+            -o KbdInteractiveAuthentication=no \
+            -o StrictHostKeyChecking=no \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo 'Deploy OK en: $DEPLOY_PATH'; date > \"$DEPLOY_PATH/.deploy-check.txt\"; ls -la \"$DEPLOY_PATH\" | head -n 40"
