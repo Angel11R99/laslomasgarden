@@ -865,6 +865,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['survey_submit'])) {
       font-size: 0.82rem;
     }
 
+    .a-enter-ar-button:active,
+    .a-enter-ar-button:hover,
+    .a-enter-vr-button:active,
+    .a-enter-vr-button:hover {
+      background-color: #0f4f40 !important;
+    }
 
     @media (max-width: 960px) {
       .split,
