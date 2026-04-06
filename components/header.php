@@ -1,187 +1,238 @@
 <style>
-    /* ===== HEADER & NAVIGATION ===== */
-    
+  :root {
+    --lls-header-overlay: 122px;
+  }
 
-    .nav-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0.5rem 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-    }
+  .lls-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
 
-    .logo-container img {
-        height: 60px;
-        transition: var(--transition-normal);
-    }
+  .lls-header-inner {
+    --lls-side-column: 520px;
+    width: min(1280px, calc(100% - 2.4rem));
+    margin: 0 auto;
+    min-height: 122px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    background: transparent;
+  }
 
-    .nav-menu {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-    }
+  .lls-header-spacer,
+  .lls-header-right {
+    width: var(--lls-side-column);
+    flex: 0 0 var(--lls-side-column);
+  }
 
-    .nav-menu a {
-        font-weight: 700;
-      
-        position: relative;
-        font-size: 1rem;
-    }
+  .lls-header-spacer {
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-    .nav-menu a::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-       
-    
-    }
-.btn-contact.desktop-only {
-    margin-left: auto;
+  .lls-header-center {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .lls-header-logo {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .lls-header-logo img {
+    width: clamp(230px, 20vw, 320px);
+    height: auto;
+    display: block;
+  }
+
+  .lls-header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 22px;
+    padding-top: 18px;
+    text-align: right;
     white-space: nowrap;
-}
+  }
 
-    .nav-menu a:hover::after {
-        width: 100%;
+  .lls-nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .lls-nav-list a {
+    color: #ffffff;
+    font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    font-size: 1.94vh;
+    font-size: clamp(1rem, 1.02vw, 1.1rem);
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .lls-nav-list a:hover,
+  .lls-nav-list a:focus-visible,
+  .lls-lang-btn:hover,
+  .lls-lang-btn:focus-visible {
+    opacity: 0.82;
+  }
+
+  .lls-nav-item-complex a::after {
+    content: "\25BE";
+    margin-left: 6px;
+    font-size: 0.68em;
+    vertical-align: middle;
+  }
+
+  .lls-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #ffffff;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: transparent;
+    color: #ffffff;
+    font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(0.96rem, 0.96vw, 1.04rem);
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .lls-flag-es {
+    width: 17px;
+    height: 12px;
+    border-radius: 1px;
+    background: linear-gradient(to bottom, #c60b1e 0 25%, #ffc400 25% 75%, #c60b1e 75% 100%);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 1260px) {
+    :root {
+      --lls-header-overlay: 112px;
     }
 
-    .btn-contact {
-        background: var(--color-primary);
-        color: white !important;
-        padding: 1.5rem 2.25rem;
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: var(--transition-normal);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        z-index: 2;
-        display: none;
-       
+    .lls-header-inner {
+      --lls-side-column: 480px;
+      min-height: 112px;
     }
 
-    .btn-contact:hover {
-        
-        transform: translateY(-1px);
+    .lls-header-right {
+      padding-top: 16px;
+    }
+  }
+
+  @media (max-width: 1120px) {
+    :root {
+      --lls-header-overlay: 98px;
     }
 
-    .nav-menu .btn-contact::after {
-        display: none;
+    .lls-header-inner {
+      --lls-side-column: 430px;
+      min-height: 98px;
+      padding-top: 6px;
     }
 
-    .mobile-menu-toggle {
-        display: none;
-        background: none;
-        font-size: 1.5rem;
-        color: var(--color-primary);
-        z-index: 1001;
-        border: none;
+    .lls-header-logo img {
+      width: clamp(200px, 22vw, 280px);
     }
 
-    .mobile-only {
-        display: none;
+    .lls-header-right {
+      padding-top: 14px;
+      gap: 16px;
     }
 
-    /* ===== RESPONSIVE HEADER ===== */
-    @media (max-width: 1024px) {
-        .logo-container img {
-            height: 90px;
-        }
-
-        .nav-menu {
-            gap: 1.5rem;
-        }
+    .lls-nav-list {
+      gap: 18px;
     }
 
-    @media (max-width: 768px) {
-        .nav-container {
-            padding: 0.5rem 1.5rem;
-        }
-
-        .logo-container img {
-            height: 80px;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-           
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-           
-            transition: var(--transition-normal);
-            transform: none;
-            z-index: 1002;
-        }
-
-        .nav-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu-toggle {
-            display: block;
-        }
-
-        .desktop-only {
-            display: none;
-        }
-
-        .mobile-only {
-            display: flex;
-        }
-
-        .nav-menu li {
-            width: 100%;
-            text-align: center;
-        }
-
-        .nav-menu a {
-            font-size: 1rem;
-            display: block;
-            padding: 1rem 0;
-        }
-
-        .nav-menu .btn-contact {
-            margin-top: 1rem;
-            width: 100%;
-        }
+    .lls-nav-list a,
+    .lls-lang-btn {
+      font-size: 0.92rem;
     }
+  }
+
+  @media (max-width: 960px) {
+    :root {
+      --lls-header-overlay: 78px;
+    }
+
+    .lls-header-inner {
+      --lls-side-column: 0px;
+      width: calc(100% - 1.4rem);
+      min-height: 78px;
+      padding-top: 6px;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0.7rem;
+    }
+
+    .lls-header-spacer {
+      display: none;
+    }
+
+    .lls-header-right {
+      width: auto;
+      flex: 0 1 auto;
+      justify-content: center;
+      padding-top: 0;
+      gap: 14px;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .lls-nav-list {
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
 </style>
 
-    <nav class="nav-container">
-       
-        
+<header class="lls-header" id="site-header">
+  <div class="lls-header-inner">
+    <div class="lls-header-spacer" aria-hidden="true"></div>
 
-        <ul class="nav-menu" id="navMenu">
-            <li>
-                <a href="#" class="js-open-tour">360 Tour</a>
-            </li>
-         
-            <li class="mobile-only">
-                <a href="#" class="btn-contact js-open-tour" style="margin-bottom: 0.75rem;">Open 360 Tour</a>
-            </li>
-            <li class="mobile-only">
-                <a href="#contact" class="btn-contact">Contact Us</a>
-            </li>
+    <div class="lls-header-center">
+      <a class="lls-header-logo" href="/index.php" aria-label="Las Lomas Serenas Home">
+        <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+      </a>
+    </div>
+
+    <div class="lls-header-right">
+      <nav class="lls-nav" aria-label="Main navigation">
+        <ul class="lls-nav-list">
+          <li><a href="/index.php">Home</a></li>
+          <li class="lls-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
+          <li><a href="/index.php#contact">Contact Us</a></li>
+          <li><a href="/index.php#about">About Us</a></li>
         </ul>
+      </nav>
 
-        <a href="#" class="btn-contact desktop-only js-open-tour" style="margin-right: 0.75rem; display: inline-flex;">360 Tour</a>
-        <a href="#contact" class="btn-contact desktop-only">Contact Us</a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
-    </nav>
+      <a class="lls-lang-btn" href="/index.php" aria-label="Selected language Spanish">
+        <span class="lls-flag-es" aria-hidden="true"></span>
+        <span>Spanish</span>
+      </a>
+    </div>
+  </div>
+</header>
