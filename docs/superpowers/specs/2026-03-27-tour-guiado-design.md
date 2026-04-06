@@ -15,7 +15,7 @@ El tour deja de ser una galería 360° navegable y se convierte en una **experie
 ## Flujo de experiencia
 
 1. **Botón "Explorar el proyecto"** en el hero → abre el modal del tour
-2. **Pantalla de mapa** (estado inicial del modal) — imagen `Master Plan & Ocean (1).webp` con 3 puntos superpuestos:
+2. **Pantalla de mapa** (estado inicial del modal) — imagen `Master Plan & Ocean.webp` con 3 puntos superpuestos:
    - Dorado: Apartamento → activa el tour 360°
    - Azul (Piscina) y Blanco (Lobby): deshabilitados en v1, preparados para v2
 3. **Transición zoom-in** al hacer clic en el punto dorado:
@@ -44,7 +44,7 @@ El tour deja de ser una galería 360° navegable y se convierte en una **experie
 - **GSAP** vía CDN (`https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js`) — solo para la transición zoom-in
 
 ### Activos existentes usados
-- `Master Plan & Ocean (1).webp` — imagen del mapa de entrada
+- `Master Plan & Ocean.webp` — imagen del mapa de entrada
 - `img/apartament360.png` y demás panoramas 360° — sin cambios
 
 ---
