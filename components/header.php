@@ -215,7 +215,7 @@
 
     <div class="lls-header-center">
       <a class="lls-header-logo" href="/index.php" aria-label="Las Lomas Serenas Home">
-        <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+        <img src="img/logo.svg" alt="Las Lomas Serenas logo">
       </a>
     </div>
 
@@ -236,3 +236,5 @@
     </div>
   </div>
 </header>
+
+

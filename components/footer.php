@@ -133,7 +133,7 @@
   <div class="lls-footer-inner">
     <div>
       <h2 class="lls-footer-logo">
-        <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+        <img src="img/logo.svg" alt="Las Lomas Serenas logo">
       </h2>
     </div>
 
@@ -171,3 +171,5 @@
     </section>
   </div>
 </footer>
+
+

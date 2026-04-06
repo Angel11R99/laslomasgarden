@@ -738,7 +738,7 @@
 
       <div class="lls-header-center">
         <a class="lls-header-logo" href="/index.php" aria-label="Las Lomas Serenas Home">
-          <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+          <img src="img/logo.svg" alt="Las Lomas Serenas logo">
         </a>
       </div>
 
@@ -885,7 +885,7 @@
 
   <section class="lls-brand lls-container">
     <h2 class="lls-brand-mark">
-      <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+      <img src="img/logo.svg" alt="Las Lomas Serenas logo">
     </h2>
     <h4>Own the lifestyle people travel to find.</h4>
     <figure class="lls-brand-image">
@@ -1031,7 +1031,7 @@
     <div class="lls-footer-inner">
       <div>
         <h2 class="lls-footer-logo">
-          <img src="/paginas/Logo%20Las%20Lomas%20Serenas.svg" alt="Las Lomas Serenas logo">
+          <img src="img/logo.svg" alt="Las Lomas Serenas logo">
         </h2>
       </div>
 
@@ -1090,6 +1090,8 @@
 </body>
 
 </html>
+
+
 
 
 
