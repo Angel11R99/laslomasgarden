@@ -24,7 +24,7 @@
     align-items: flex-start;
     gap: 0;
     background: transparent;
-    transition: min-height 0.28s ease, padding-top 0.28s ease;
+    transition: none;
   }
 
   .lls-header-spacer,
@@ -43,7 +43,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    transition: align-items 0.28s ease;
   }
 
   .lls-header-logo {
@@ -73,11 +72,11 @@
     white-space: nowrap;
     min-height: 72px;
     transform: translateX(1rem);
-    transition: padding-top 0.28s ease, min-height 0.28s ease;
+    transition: none;
   }
 
   .lls-header.is-compact .lls-header-inner {
-    min-height: 68px;
+    min-height: 90px;
     padding-top: 0;
     align-items: center;
   }
@@ -93,8 +92,9 @@
   }
 
   .lls-header.is-compact .lls-header-right {
-    padding-top: 0;
-    min-height: 68px;
+    padding-top: 6px;
+    padding-bottom: 0;
+    min-height: 64px;
     align-items: center;
     transform: translateX(1rem);
   }
