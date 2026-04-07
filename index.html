@@ -773,23 +773,26 @@
     }
 
     .lls-header.is-compact .lls-header-inner {
-      min-height: 78px;
-      padding-top: 6px;
+      min-height: 62px;
+      padding-top: 0;
+      gap: 0;
+      align-items: center;
     }
 
     .lls-header.is-compact .lls-header-logo {
-      max-width: 240px;
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
+      max-width: 0;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
     }
 
     .lls-header.is-compact .lls-header-logo img {
-      width: clamp(170px, 20vw, 230px);
+      width: 0;
     }
 
     .lls-header.is-compact .lls-header-right {
-      min-height: auto;
+      min-height: 62px;
+      align-items: center;
     }
   }
 </style>
@@ -841,7 +844,8 @@
     function updateHeaderGlass() {
       var isScrolled = window.scrollY > 12;
       var isMobile = window.matchMedia('(max-width: 960px)').matches;
-      var isCompact = window.scrollY > 70 && !isMobile;
+      var compactThreshold = isMobile ? 36 : 70;
+      var isCompact = window.scrollY > compactThreshold;
 
       header.classList.toggle('is-scrolled', isScrolled);
       header.classList.toggle('is-compact', isCompact);
