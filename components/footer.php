@@ -140,8 +140,9 @@
     <section aria-label="Company links">
       <h3 class="lls-footer-title">Company</h3>
       <ul class="lls-footer-links">
-        <li><a href="/index.php">Home</a></li>
-        <li><a href="/index.php#about">About Us</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tourguiado">Tour</a></li>
+        <li><a href="/about-us">About Us</a></li>
         <li><a href="/index.php#complex">Complex</a></li>
         <li><a href="/index.php#contact">Contact</a></li>
       </ul>
