@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    padding-top: 10px;
   }
 
   .lls-header-logo {
@@ -90,6 +91,7 @@
 
   .lls-header.is-compact .lls-header-center {
     align-items: center;
+    padding-top: 0;
   }
 
   .lls-header.is-compact .lls-header-logo {
