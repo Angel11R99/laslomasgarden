@@ -24,6 +24,7 @@
     align-items: flex-start;
     gap: 0;
     background: transparent;
+    transition: min-height 0.28s ease, padding-top 0.28s ease;
   }
 
   .lls-header-spacer,
@@ -42,17 +43,24 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    transition: align-items 0.28s ease;
   }
 
   .lls-header-logo {
     display: inline-block;
     text-decoration: none;
+    max-width: 340px;
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+    transition: max-width 0.28s ease, opacity 0.22s ease, transform 0.28s ease;
   }
 
   .lls-header-logo img {
     width: clamp(230px, 20vw, 320px);
     height: auto;
     display: block;
+    transition: width 0.28s ease;
   }
 
   .lls-header-right {
@@ -63,6 +71,35 @@
     padding-top: 18px;
     text-align: right;
     white-space: nowrap;
+    min-height: 72px;
+    transition: padding-top 0.28s ease, min-height 0.28s ease;
+  }
+
+  .lls-header.is-compact .lls-header-inner {
+    min-height: 68px;
+    padding-top: 0;
+    align-items: center;
+  }
+
+  .lls-header.is-compact .lls-header-center {
+    align-items: center;
+  }
+
+  .lls-header.is-compact .lls-header-logo {
+    max-width: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  .lls-header.is-compact .lls-header-logo img {
+    width: 0;
+  }
+
+  .lls-header.is-compact .lls-header-right {
+    padding-top: 0;
+    min-height: 68px;
+    align-items: center;
   }
 
   .lls-nav-list {
@@ -205,6 +242,26 @@
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
+    }
+
+    .lls-header.is-compact .lls-header-inner {
+      min-height: 78px;
+      padding-top: 6px;
+    }
+
+    .lls-header.is-compact .lls-header-logo {
+      max-width: 280px;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .lls-header.is-compact .lls-header-logo img {
+      width: clamp(200px, 22vw, 280px);
+    }
+
+    .lls-header.is-compact .lls-header-right {
+      min-height: auto;
     }
   }
 </style>
