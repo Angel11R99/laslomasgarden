@@ -133,7 +133,7 @@
   <div class="lls-footer-inner">
     <div>
       <h2 class="lls-footer-logo">
-        <img src="img/logo.svg" alt="Las Lomas Serenas logo">
+        <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </h2>
     </div>
 

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
     :root {
       --lls-bg: #ffffff;
@@ -795,7 +796,7 @@
 
       <div class="lls-header-center">
         <a class="lls-header-logo" href="/index.php" aria-label="Las Lomas Serenas Home">
-          <img src="img/logo.svg" alt="Las Lomas Serenas logo">
+          <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
         </a>
       </div>
 
@@ -853,7 +854,7 @@
   <section class="lls-amenities" id="complex">
     <div class="lls-amenities-shell">
       <figure class="lls-image-main">
-        <img src="Familia en la terraza 2.webp" alt="Residents enjoying terrace amenities at Las Lomas Serenas">
+        <img src="Familia en la terraza 2.webp" alt="Residents enjoying terrace amenities at Las Lomas Serenas" loading="lazy" decoding="async">
       </figure>
 
       <article class="lls-copy">
@@ -927,7 +928,7 @@
       </article>
 
       <figure class="lls-layout-image">
-        <img src="casa3d.png" alt="3D apartment layouts with 2 and 3 bedroom options">
+        <img src="casa3d.webp" alt="3D apartment layouts with 2 and 3 bedroom options" loading="lazy" decoding="async">
       </figure>
     </div>
   </section>
@@ -937,18 +938,18 @@
     <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
       rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
     <div class="lls-lifestyle-grid">
-      <img src="Amenities2.webp" alt="Lifestyle amenities and sports spaces">
-      <img src="pool family.webp" alt="Family pool and relaxation lifestyle">
+      <img src="Amenities2.webp" alt="Lifestyle amenities and sports spaces" loading="lazy" decoding="async">
+      <img src="pool family.webp" alt="Family pool and relaxation lifestyle" loading="lazy" decoding="async">
     </div>
   </section>
 
   <section class="lls-brand lls-container">
     <h2 class="lls-brand-mark">
-      <img src="img/logo.svg" alt="Las Lomas Serenas logo">
+      <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
     </h2>
     <h4>Own the lifestyle people travel to find.</h4>
     <figure class="lls-brand-image">
-      <img src="paginas/Front Green.webp" alt="Las Lomas Serenas main entrance">
+      <img src="paginas/Front Green.webp" alt="Las Lomas Serenas main entrance" loading="lazy" decoding="async">
     </figure>
     <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed
       around climate, beauty, comfort, and long-term possibility.</p>
@@ -1090,7 +1091,7 @@
     <div class="lls-footer-inner">
       <div>
         <h2 class="lls-footer-logo">
-          <img src="img/logo.svg" alt="Las Lomas Serenas logo">
+          <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
         </h2>
       </div>
 
