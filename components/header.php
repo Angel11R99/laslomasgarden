@@ -283,7 +283,7 @@
     <div class="lls-header-spacer" aria-hidden="true"></div>
 
     <div class="lls-header-center">
-      <a class="lls-header-logo" href="/index.php" aria-label="Las Lomas Serenas Home">
+      <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
         <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </a>
     </div>
@@ -291,7 +291,7 @@
     <div class="lls-header-right">
       <nav class="lls-nav" aria-label="Main navigation">
         <ul class="lls-nav-list">
-          <li><a href="/index.php">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/tourguiado">Tour</a></li>
           <li class="lls-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
           <li><a href="/index.php#contact">Contact Us</a></li>
