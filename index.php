@@ -22,6 +22,8 @@
       --lls-hero-line: #5ccc81;
       --lls-gold-100: #f6e9c9;
       --lls-green-background: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
+      --lls-hero-title-top-desktop: clamp(20px, 24vh, 24px);
+      --lls-hero-title-top-mobile: clamp(24px, 20vh, 46px);
       --lls-shell: 1240px;
       --lls-content: 1120px;
     }
@@ -84,7 +86,12 @@
     }
 
     .lls-hero h1 {
-      margin: clamp(1.68rem, 2.64vw, 2.28rem) 0 0;
+      position: absolute;
+      top: var(--lls-hero-title-top-desktop);
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      width: calc(100% - 2rem);
       text-align: center;
       color: #0b4f44;
       font-size: clamp(1rem, 3.95vw, 2.86rem);
@@ -484,9 +491,9 @@
       }
 
       .lls-hero h1 {
-        margin-top: clamp(5.2rem, 12vw, 6.5rem);
+        top: var(--lls-hero-title-top-mobile);
         letter-spacing: 0.17em;
-        font-size: clamp(0.88rem, 4vw, 1.22rem);
+        font-size: clamp(0.78rem, 4.2vw, 4.05rem);
       }
 
       .lls-intro {
@@ -733,7 +740,7 @@
 
     @media (max-width: 960px) {
       :root {
-        --lls-header-overlay: 78px;
+        --lls-header-overlay: 132px;
       }
 
       .lls-header-inner {
@@ -821,6 +828,17 @@
     (function () {
       var header = document.getElementById('site-header');
       if (!header) return;
+      var headerInner = header.querySelector('.lls-header-inner');
+
+      function syncHeaderOverlay() {
+        document.documentElement.style.setProperty('--lls-header-overlay', header.offsetHeight + 'px');
+      }
+
+      function scheduleOverlaySync() {
+        syncHeaderOverlay();
+        requestAnimationFrame(syncHeaderOverlay);
+        setTimeout(syncHeaderOverlay, 320);
+      }
 
       function updateHeaderGlass() {
         var isScrolled = window.scrollY > 12;
@@ -829,11 +847,19 @@
 
         header.classList.toggle('is-scrolled', isScrolled);
         header.classList.toggle('is-compact', isCompact);
+        scheduleOverlaySync();
       }
 
       updateHeaderGlass();
       window.addEventListener('scroll', updateHeaderGlass, { passive: true });
       window.addEventListener('resize', updateHeaderGlass);
+      window.addEventListener('load', updateHeaderGlass);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(updateHeaderGlass);
+      }
+      if (headerInner) {
+        headerInner.addEventListener('transitionend', syncHeaderOverlay);
+      }
     })();
   </script>
 

@@ -210,7 +210,7 @@
 
   @media (max-width: 960px) {
     :root {
-      --lls-header-overlay: 78px;
+      --lls-header-overlay: 132px;
     }
 
     .lls-header-inner {
