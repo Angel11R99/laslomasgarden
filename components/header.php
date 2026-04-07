@@ -161,6 +161,11 @@
     color: #00895d;
   }
 
+  body.page-about .lls-header:not(.is-scrolled) .lls-lang-btn {
+    color: #00895d;
+    border-color: #00895d;
+  }
+
   .lls-flag-es {
     width: 17px;
     height: 12px;
