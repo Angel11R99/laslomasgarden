@@ -625,7 +625,7 @@
       rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
     <div class="lls-lifestyle-grid">
       <img src="Amenities2.webp" alt="Lifestyle amenities and sports spaces" loading="lazy" decoding="async">
-      <img src="pool family.webp" alt="Family pool and relaxation lifestyle" loading="lazy" decoding="async">
+      <img src="img/pool-family.webp" alt="Family pool and relaxation lifestyle" loading="lazy" decoding="async">
     </div>
   </section>
 
