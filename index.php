@@ -807,7 +807,7 @@
       <div class="lls-header-right">
         <nav class="lls-nav" aria-label="Main navigation">
           <ul class="lls-nav-list">
-            <li><a href="/index.php">Home</a></li>
+            <li><a href="/index">Home</a></li>
             <li><a href="/tourguiado">Tour</a></li>
             <li class="lls-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
             <li><a href="/index.php#contact">Contact Us</a></li>
