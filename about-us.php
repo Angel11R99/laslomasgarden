@@ -240,7 +240,7 @@
       <div class="about-shell">
         <div class="about-grid">
           <figure class="about-card">
-            <img src="pool%20family.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy" decoding="async">
+            <img src="img/pool-family.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy" decoding="async">
           </figure>
           <figure class="about-card">
             <img src="img/Mapa.webp" alt="Map of the Caribbean showing the Dominican Republic location" loading="lazy" decoding="async">
@@ -270,7 +270,7 @@
           </div>
 
           <figure class="about-company-image">
-            <img src="paginas/Building.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
+            <img src="img/building.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
