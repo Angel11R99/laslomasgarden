@@ -580,18 +580,18 @@
     .lls-header-logo {
       display: inline-block;
       text-decoration: none;
-      max-width: 240px;
+      width: clamp(164px, 14.5vw, 228px);
       opacity: 1;
       transform: translateY(0);
-      overflow: hidden;
-      transition: max-width 0.28s ease, opacity 0.22s ease, transform 0.28s ease;
+      transform-origin: center top;
+      will-change: transform, opacity;
+      transition: opacity 0.22s ease, transform 0.28s ease;
     }
 
     .lls-header-logo img {
-      width: clamp(164px, 14.5vw, 228px);
+      width: 100%;
       height: auto;
       display: block;
-      transition: width 0.28s ease;
     }
 
     .lls-header-right {
@@ -618,14 +618,9 @@
     }
 
     .lls-header.is-compact .lls-header-logo {
-      max-width: 0;
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-8px) scale(0.94);
       pointer-events: none;
-    }
-
-    .lls-header.is-compact .lls-header-logo img {
-      width: 0;
     }
 
     .lls-header.is-compact .lls-header-right {
@@ -723,7 +718,7 @@
       }
 
       .lls-header-logo img {
-        width: clamp(170px, 20vw, 230px);
+        width: 100%;
       }
 
       .lls-header-right {
@@ -787,14 +782,9 @@
       }
 
       .lls-header.is-compact .lls-header-logo {
-        max-width: 0;
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px) scale(0.94);
         pointer-events: none;
-      }
-
-      .lls-header.is-compact .lls-header-logo img {
-        width: 0;
       }
 
       .lls-header.is-compact .lls-header-right {
@@ -837,34 +827,57 @@
       var header = document.getElementById('site-header');
       if (!header) return;
       var headerInner = header.querySelector('.lls-header-inner');
+      var overlayRaf = null;
+      var overlayTimer = null;
+      var previousScrolled = null;
+      var previousCompact = null;
 
       function syncHeaderOverlay() {
-        document.documentElement.style.setProperty('--lls-header-overlay', header.offsetHeight + 'px');
+        var headerHeight = Math.ceil(header.getBoundingClientRect().height) + 1;
+        document.documentElement.style.setProperty('--lls-header-overlay', headerHeight + 'px');
       }
 
       function scheduleOverlaySync() {
+        if (overlayRaf !== null) {
+          cancelAnimationFrame(overlayRaf);
+        }
+        if (overlayTimer !== null) {
+          clearTimeout(overlayTimer);
+        }
         syncHeaderOverlay();
-        requestAnimationFrame(syncHeaderOverlay);
-        setTimeout(syncHeaderOverlay, 320);
+        overlayRaf = requestAnimationFrame(syncHeaderOverlay);
+        overlayTimer = setTimeout(syncHeaderOverlay, 320);
       }
 
-      function updateHeaderGlass() {
+      function updateHeaderGlass(forceSync) {
         var isScrolled = window.scrollY > 12;
         var isMobile = window.matchMedia('(max-width: 960px)').matches;
-        var compactThreshold = isMobile ? 36 : 70;
-        var isCompact = window.scrollY > compactThreshold;
+        var compactThreshold = 70;
+        var isCompact = !isMobile && window.scrollY > compactThreshold;
 
-        header.classList.toggle('is-scrolled', isScrolled);
-        header.classList.toggle('is-compact', isCompact);
-        scheduleOverlaySync();
+        if (previousScrolled !== isScrolled) {
+          header.classList.toggle('is-scrolled', isScrolled);
+          previousScrolled = isScrolled;
+        }
+
+        if (previousCompact !== isCompact) {
+          header.classList.toggle('is-compact', isCompact);
+          previousCompact = isCompact;
+          scheduleOverlaySync();
+          return;
+        }
+
+        if (forceSync) {
+          scheduleOverlaySync();
+        }
       }
 
-      updateHeaderGlass();
-      window.addEventListener('scroll', updateHeaderGlass, { passive: true });
-      window.addEventListener('resize', updateHeaderGlass);
-      window.addEventListener('load', updateHeaderGlass);
+      updateHeaderGlass(true);
+      window.addEventListener('scroll', function () { updateHeaderGlass(false); }, { passive: true });
+      window.addEventListener('resize', function () { updateHeaderGlass(true); });
+      window.addEventListener('load', function () { updateHeaderGlass(true); });
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(updateHeaderGlass);
+        document.fonts.ready.then(function () { updateHeaderGlass(true); });
       }
       if (headerInner) {
         headerInner.addEventListener('transitionend', syncHeaderOverlay);

@@ -49,18 +49,18 @@
   .lls-header-logo {
     display: inline-block;
     text-decoration: none;
-    max-width: 340px;
+    width: clamp(230px, 20vw, 320px);
     opacity: 1;
     transform: translateY(0);
-    overflow: hidden;
-    transition: max-width 0.28s ease, opacity 0.22s ease, transform 0.28s ease;
+    transform-origin: center top;
+    will-change: transform, opacity;
+    transition: opacity 0.22s ease, transform 0.28s ease;
   }
 
   .lls-header-logo img {
-    width: clamp(230px, 20vw, 320px);
+    width: 100%;
     height: auto;
     display: block;
-    transition: width 0.28s ease;
   }
 
   .lls-header-right {
@@ -87,14 +87,9 @@
   }
 
   .lls-header.is-compact .lls-header-logo {
-    max-width: 0;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.94);
     pointer-events: none;
-  }
-
-  .lls-header.is-compact .lls-header-logo img {
-    width: 0;
   }
 
   .lls-header.is-compact .lls-header-right {
@@ -193,7 +188,7 @@
     }
 
     .lls-header-logo img {
-      width: clamp(200px, 22vw, 280px);
+      width: 100%;
     }
 
     .lls-header-right {
@@ -259,10 +254,6 @@
       opacity: 1;
       transform: none;
       pointer-events: auto;
-    }
-
-    .lls-header.is-compact .lls-header-logo img {
-      width: clamp(200px, 22vw, 280px);
     }
 
     .lls-header.is-compact .lls-header-right {
