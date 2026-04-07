@@ -1,6 +1,6 @@
 <style>
   .lls-footer {
-    background: linear-gradient(135deg, #18bf97 0%, #0f8f6f 52%, #0a6f58 100%);
+    background: var(--lls-green-background);
     color: #ffffff;
     padding: clamp(3rem, 6vw, 4.8rem) 0;
   }

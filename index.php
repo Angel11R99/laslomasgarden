@@ -21,6 +21,7 @@
       --lls-emerald-600: #19a950;
       --lls-hero-line: #5ccc81;
       --lls-gold-100: #f6e9c9;
+      --lls-green-background: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
       --lls-shell: 1240px;
       --lls-content: 1120px;
     }
@@ -80,7 +81,6 @@
       z-index: 2;
       width: min(var(--lls-shell), calc(100% - 2.4rem));
       margin: 0 auto;
-      padding-top: 0.6rem;
     }
 
     .lls-hero h1 {
@@ -95,7 +95,7 @@
     }
 
     .lls-intro {
-      background: linear-gradient(180deg, #18a386 0%, #0f8f76 100%);
+      background: var(--lls-green-background);
       color: #f0fffb;
       text-align: center;
       padding: 4.25rem 1.2rem 4.35rem;
@@ -215,7 +215,7 @@
     }
 
     .lls-layouts {
-      background: linear-gradient(127deg, #08ad82 0%, #099978 46%, #0a896c 100%);
+      background: var(--lls-green-background);
       color: #f6fffc;
       padding: 1.1rem 0 0.9rem;
       overflow: hidden;
@@ -317,7 +317,7 @@
 
     .lls-lifestyle h3 {
       margin: 0;
-      color: #28958c;
+      color: #006847;
       font-size: clamp(1.5rem, 2.4vw, 3rem);
       line-height: 1.08;
       font-weight: 500;
@@ -365,7 +365,7 @@
 
     .lls-brand h4 {
       margin: 1.05rem 0 1rem;
-      color: #2e8c83;
+      color: #006847;
       font-size: clamp(1.7rem, 2.35vw, 2.7rem);
       font-weight: 500;
     }
@@ -393,9 +393,8 @@
       min-height: 48px;
       padding: 0 1.4rem;
       border-radius: 3px;
-      border: 1px solid rgba(246, 233, 201, 0.74);
-      background: linear-gradient(180deg, #1aa68b 0%, #0d7d69 100%);
-      color: #f9f0d9;
+      background: var(--lls-green-background);
+      color: #ffffff;
       text-decoration: none;
       text-transform: uppercase;
       font-size: clamp(0.95rem, 1.02vw, 1.1rem);
@@ -958,7 +957,7 @@
 
   <style>
     .lls-footer {
-      background: linear-gradient(135deg, #18bf97 0%, #0f8f6f 52%, #0a6f58 100%);
+      background: var(--lls-green-background);
       color: #ffffff;
       padding: clamp(3rem, 6vw, 4.8rem) 0;
     }
