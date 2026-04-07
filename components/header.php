@@ -72,6 +72,7 @@
     text-align: right;
     white-space: nowrap;
     min-height: 72px;
+    transform: translateX(1rem);
     transition: padding-top 0.28s ease, min-height 0.28s ease;
   }
 
@@ -100,6 +101,7 @@
     padding-top: 0;
     min-height: 68px;
     align-items: center;
+    transform: translateX(1rem);
   }
 
   .lls-nav-list {
@@ -175,6 +177,7 @@
 
     .lls-header-right {
       padding-top: 16px;
+      transform: translateX(0.7rem);
     }
   }
 
@@ -196,6 +199,7 @@
     .lls-header-right {
       padding-top: 14px;
       gap: 16px;
+      transform: translateX(0.45rem);
     }
 
     .lls-nav-list {
@@ -236,6 +240,7 @@
       gap: 14px;
       text-align: center;
       flex-wrap: wrap;
+      transform: none;
     }
 
     .lls-nav-list {
