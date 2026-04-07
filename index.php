@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --lls-bg: #e9ecec;
+      --lls-bg: #ffffff;
       --lls-white: #ffffff;
       --lls-ink: #335f62;
       --lls-copy: #6f8688;
