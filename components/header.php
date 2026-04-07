@@ -294,6 +294,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/tourguiado">Tour</a></li>
           <li class="lls-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
+          <li><a href="/rooms">Rooms</a></li>
           <li><a href="/index.php#contact">Contact Us</a></li>
           <li><a href="/about-us">About Us</a></li>
         </ul>

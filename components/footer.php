@@ -142,6 +142,7 @@
       <ul class="lls-footer-links">
         <li><a href="/">Home</a></li>
         <li><a href="/tourguiado">Tour</a></li>
+        <li><a href="/rooms">Rooms</a></li>
         <li><a href="/about-us">About Us</a></li>
         <li><a href="/index.php#complex">Complex</a></li>
         <li><a href="/index.php#contact">Contact</a></li>
