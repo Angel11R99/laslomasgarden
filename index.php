@@ -555,7 +555,7 @@
       align-items: flex-start;
       gap: 0;
       background: transparent;
-      transition: min-height 0.28s ease, padding-top 0.28s ease;
+      transition: none;
     }
 
     .lls-header-spacer,
@@ -574,7 +574,6 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      transition: align-items 0.28s ease;
     }
 
     .lls-header-logo {
@@ -604,11 +603,11 @@
       white-space: nowrap;
       min-height: 64px;
       transform: translateX(1rem);
-      transition: padding-top 0.28s ease, min-height 0.28s ease;
+      transition: none;
     }
 
     .lls-header.is-compact .lls-header-inner {
-      min-height: 64px;
+      min-height: 78px;
       padding-top: 0;
       align-items: center;
     }
@@ -625,6 +624,7 @@
 
     .lls-header.is-compact .lls-header-right {
       padding-top: 0;
+      padding-bottom: 0;
       min-height: 64px;
       align-items: center;
       transform: translateX(1rem);
@@ -775,10 +775,10 @@
       }
 
       .lls-header.is-compact .lls-header-inner {
-        min-height: 62px;
-        padding-top: 0;
-        gap: 0;
-        align-items: center;
+        min-height: 78px;
+        padding-top: 6px;
+        gap: 0.7rem;
+        align-items: flex-start;
       }
 
       .lls-header.is-compact .lls-header-logo {
@@ -788,7 +788,7 @@
       }
 
       .lls-header.is-compact .lls-header-right {
-        min-height: 62px;
+        min-height: 64px;
         align-items: center;
       }
     }
@@ -826,9 +826,6 @@
     (function () {
       var header = document.getElementById('site-header');
       if (!header) return;
-      var headerInner = header.querySelector('.lls-header-inner');
-      var overlayRaf = null;
-      var overlayTimer = null;
       var previousScrolled = null;
       var previousCompact = null;
 
@@ -837,23 +834,13 @@
         document.documentElement.style.setProperty('--lls-header-overlay', headerHeight + 'px');
       }
 
-      function scheduleOverlaySync() {
-        if (overlayRaf !== null) {
-          cancelAnimationFrame(overlayRaf);
-        }
-        if (overlayTimer !== null) {
-          clearTimeout(overlayTimer);
-        }
-        syncHeaderOverlay();
-        overlayRaf = requestAnimationFrame(syncHeaderOverlay);
-        overlayTimer = setTimeout(syncHeaderOverlay, 320);
-      }
-
-      function updateHeaderGlass(forceSync) {
+      function updateHeaderGlass() {
         var isScrolled = window.scrollY > 12;
         var isMobile = window.matchMedia('(max-width: 960px)').matches;
-        var compactThreshold = 70;
-        var isCompact = !isMobile && window.scrollY > compactThreshold;
+        var compactEnterThreshold = 82;
+        var compactExitThreshold = 42;
+        var compactBase = previousCompact ? compactExitThreshold : compactEnterThreshold;
+        var isCompact = !isMobile && window.scrollY > compactBase;
 
         if (previousScrolled !== isScrolled) {
           header.classList.toggle('is-scrolled', isScrolled);
@@ -863,24 +850,19 @@
         if (previousCompact !== isCompact) {
           header.classList.toggle('is-compact', isCompact);
           previousCompact = isCompact;
-          scheduleOverlaySync();
-          return;
-        }
-
-        if (forceSync) {
-          scheduleOverlaySync();
         }
       }
 
-      updateHeaderGlass(true);
-      window.addEventListener('scroll', function () { updateHeaderGlass(false); }, { passive: true });
-      window.addEventListener('resize', function () { updateHeaderGlass(true); });
-      window.addEventListener('load', function () { updateHeaderGlass(true); });
+      updateHeaderGlass();
+      syncHeaderOverlay();
+      window.addEventListener('scroll', updateHeaderGlass, { passive: true });
+      window.addEventListener('resize', function () {
+        updateHeaderGlass();
+        syncHeaderOverlay();
+      });
+      window.addEventListener('load', syncHeaderOverlay);
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function () { updateHeaderGlass(true); });
-      }
-      if (headerInner) {
-        headerInner.addEventListener('transitionend', syncHeaderOverlay);
+        document.fonts.ready.then(syncHeaderOverlay);
       }
     })();
   </script>
