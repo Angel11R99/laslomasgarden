@@ -948,7 +948,7 @@
     </h2>
     <h4>Own the lifestyle people travel to find.</h4>
     <figure class="lls-brand-image">
-      <img src="paginas/Front Green.webp" alt="Las Lomas Serenas main entrance" loading="lazy" decoding="async">
+      <img src="img/front-green.webp" alt="Las Lomas Serenas main entrance" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='paginas/Front Green.webp';">
     </figure>
     <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed
       around climate, beauty, comfort, and long-term possibility.</p>
