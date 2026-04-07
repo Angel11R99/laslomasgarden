@@ -79,7 +79,7 @@
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
-    transform: translateX(1rem);
+    transform: translateX(6rem);
     transition: none;
   }
 
@@ -105,7 +105,7 @@
     padding-bottom: 0;
     min-height: 64px;
     align-items: center;
-    transform: translateX(1rem);
+    transform: translateX(6rem);
   }
 
   .lls-nav-list {
@@ -168,6 +168,18 @@
     border-color: #00895d;
   }
 
+  body.page-about .lls-header-logo {
+    width: clamp(148px, 12vw, 190px);
+  }
+
+  body.page-about .lls-header .lls-header-inner {
+    --lls-side-column: 430px;
+  }
+
+  body.page-about .lls-header-right {
+    padding-left: clamp(0.6rem, 1.2vw, 1rem);
+  }
+
   .lls-flag-es {
     width: 17px;
     height: 12px;
@@ -219,6 +231,73 @@
     .lls-lang-btn {
       font-size: 0.84rem;
     }
+
+    body.page-about .lls-header .lls-header-inner {
+      --lls-side-column: 360px;
+    }
+
+    body.page-about .lls-header-right {
+      padding-left: 0.2rem;
+    }
+  }
+
+  @media (max-width: 1180px) {
+    body.page-about {
+      --lls-header-overlay: 132px;
+    }
+
+    body.page-about .lls-header-inner {
+      --lls-side-column: 0px;
+      width: calc(100% - 1.4rem);
+      min-height: 78px;
+      padding-top: 6px;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0.7rem;
+    }
+
+    body.page-about .lls-header-spacer {
+      display: none;
+    }
+
+    body.page-about .lls-header-center {
+      padding-top: 0;
+    }
+
+    body.page-about .lls-header-logo {
+      width: clamp(148px, 26vw, 190px);
+    }
+
+    body.page-about .lls-header-right {
+      width: auto;
+      flex: 0 1 auto;
+      justify-content: center;
+      padding-top: 0;
+      padding-left: 0;
+      gap: 14px;
+      text-align: center;
+      flex-wrap: wrap;
+      transform: none;
+    }
+
+    body.page-about .lls-nav-list {
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    body.page-about .lls-header.is-compact .lls-header-inner {
+      min-height: 78px;
+      padding-top: 6px;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    body.page-about .lls-header.is-compact .lls-header-right {
+      min-height: 64px;
+      align-items: center;
+    }
   }
 
   @media (max-width: 960px) {
@@ -250,6 +329,10 @@
       text-align: center;
       flex-wrap: wrap;
       transform: none;
+    }
+
+    body.page-about .lls-header-right {
+      padding-left: 0;
     }
 
     .lls-nav-list {
