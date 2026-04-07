@@ -21,6 +21,8 @@
       --lls-hero-line: #5ccc81;
       --lls-gold-100: #f6e9c9;
       --lls-green-background: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
+      --lls-hero-title-top-desktop: clamp(20px, 24vh, 24px);
+      --lls-hero-title-top-mobile: clamp(24px, 20vh, 46px);
       --lls-shell: 1240px;
       --lls-content: 1120px;
     }
@@ -83,7 +85,12 @@
     }
 
     .lls-hero h1 {
-      margin: clamp(1.68rem, 2.64vw, 2.28rem) 0 0;
+      position: absolute;
+      top: var(--lls-hero-title-top-desktop);
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      width: calc(100% - 2rem);
       text-align: center;
       color: #0b4f44;
       font-size: clamp(1rem, 3.95vw, 2.86rem);
@@ -483,9 +490,9 @@
       }
 
       .lls-hero h1 {
-        margin-top: clamp(5.2rem, 12vw, 6.5rem);
+        top: var(--lls-hero-title-top-mobile);
         letter-spacing: 0.17em;
-        font-size: clamp(0.88rem, 4vw, 1.22rem);
+        font-size: clamp(0.78rem, 4.2vw, 4.05rem);
       }
 
       .lls-intro {
@@ -571,18 +578,18 @@
   .lls-header-logo {
     display: inline-block;
     text-decoration: none;
-    max-width: 240px;
+    width: clamp(164px, 14.5vw, 228px);
     opacity: 1;
     transform: translateY(0);
-    overflow: hidden;
-    transition: max-width 0.28s ease, opacity 0.22s ease, transform 0.28s ease;
+    transform-origin: center top;
+    will-change: transform, opacity;
+    transition: opacity 0.22s ease, transform 0.28s ease;
   }
 
   .lls-header-logo img {
-    width: clamp(164px, 14.5vw, 228px);
+    width: 100%;
     height: auto;
     display: block;
-    transition: width 0.28s ease;
   }
 
   .lls-header-right {
@@ -594,6 +601,7 @@
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
+    transform: translateX(1rem);
     transition: padding-top 0.28s ease, min-height 0.28s ease;
   }
 
@@ -608,20 +616,16 @@
   }
 
   .lls-header.is-compact .lls-header-logo {
-    max-width: 0;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.94);
     pointer-events: none;
-  }
-
-  .lls-header.is-compact .lls-header-logo img {
-    width: 0;
   }
 
   .lls-header.is-compact .lls-header-right {
     padding-top: 0;
     min-height: 64px;
     align-items: center;
+    transform: translateX(1rem);
   }
 
   .lls-nav-list {
@@ -694,9 +698,10 @@
       min-height: 98px;
     }
 
-    .lls-header-right {
-      padding-top: 12px;
-    }
+      .lls-header-right {
+        padding-top: 12px;
+        transform: translateX(0.7rem);
+      }
   }
 
   @media (max-width: 1120px) {
@@ -711,13 +716,14 @@
     }
 
     .lls-header-logo img {
-      width: clamp(170px, 20vw, 230px);
+      width: 100%;
     }
 
-    .lls-header-right {
-      padding-top: 10px;
-      gap: 12px;
-    }
+      .lls-header-right {
+        padding-top: 10px;
+        gap: 12px;
+        transform: translateX(0.45rem);
+      }
 
     .lls-nav-list {
       gap: 14px;
@@ -731,7 +737,7 @@
 
   @media (max-width: 960px) {
     :root {
-      --lls-header-overlay: 78px;
+      --lls-header-overlay: 132px;
     }
 
     .lls-header-inner {
@@ -757,6 +763,7 @@
       gap: 14px;
       text-align: center;
       flex-wrap: wrap;
+      transform: none;
     }
 
     .lls-nav-list {
@@ -766,23 +773,21 @@
     }
 
     .lls-header.is-compact .lls-header-inner {
-      min-height: 78px;
-      padding-top: 6px;
+      min-height: 62px;
+      padding-top: 0;
+      gap: 0;
+      align-items: center;
     }
 
     .lls-header.is-compact .lls-header-logo {
-      max-width: 240px;
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-    }
-
-    .lls-header.is-compact .lls-header-logo img {
-      width: clamp(170px, 20vw, 230px);
+      opacity: 0;
+      transform: translateY(-8px) scale(0.94);
+      pointer-events: none;
     }
 
     .lls-header.is-compact .lls-header-right {
-      min-height: auto;
+      min-height: 62px;
+      align-items: center;
     }
   }
 </style>
@@ -819,19 +824,62 @@
   (function () {
     var header = document.getElementById('site-header');
     if (!header) return;
+    var headerInner = header.querySelector('.lls-header-inner');
+    var overlayRaf = null;
+    var overlayTimer = null;
+    var previousScrolled = null;
+    var previousCompact = null;
 
-    function updateHeaderGlass() {
-      var isScrolled = window.scrollY > 12;
-      var isMobile = window.matchMedia('(max-width: 960px)').matches;
-      var isCompact = window.scrollY > 70 && !isMobile;
-
-      header.classList.toggle('is-scrolled', isScrolled);
-      header.classList.toggle('is-compact', isCompact);
+    function syncHeaderOverlay() {
+      var headerHeight = Math.ceil(header.getBoundingClientRect().height) + 1;
+      document.documentElement.style.setProperty('--lls-header-overlay', headerHeight + 'px');
     }
 
-    updateHeaderGlass();
-    window.addEventListener('scroll', updateHeaderGlass, { passive: true });
-    window.addEventListener('resize', updateHeaderGlass);
+    function scheduleOverlaySync() {
+      if (overlayRaf !== null) {
+        cancelAnimationFrame(overlayRaf);
+      }
+      if (overlayTimer !== null) {
+        clearTimeout(overlayTimer);
+      }
+      syncHeaderOverlay();
+      overlayRaf = requestAnimationFrame(syncHeaderOverlay);
+      overlayTimer = setTimeout(syncHeaderOverlay, 320);
+    }
+
+    function updateHeaderGlass(forceSync) {
+      var isScrolled = window.scrollY > 12;
+      var isMobile = window.matchMedia('(max-width: 960px)').matches;
+      var compactThreshold = 70;
+      var isCompact = !isMobile && window.scrollY > compactThreshold;
+
+      if (previousScrolled !== isScrolled) {
+        header.classList.toggle('is-scrolled', isScrolled);
+        previousScrolled = isScrolled;
+      }
+
+      if (previousCompact !== isCompact) {
+        header.classList.toggle('is-compact', isCompact);
+        previousCompact = isCompact;
+        scheduleOverlaySync();
+        return;
+      }
+
+      if (forceSync) {
+        scheduleOverlaySync();
+      }
+    }
+
+    updateHeaderGlass(true);
+    window.addEventListener('scroll', function () { updateHeaderGlass(false); }, { passive: true });
+    window.addEventListener('resize', function () { updateHeaderGlass(true); });
+    window.addEventListener('load', function () { updateHeaderGlass(true); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { updateHeaderGlass(true); });
+    }
+    if (headerInner) {
+      headerInner.addEventListener('transitionend', syncHeaderOverlay);
+    }
   })();
 </script>
 
