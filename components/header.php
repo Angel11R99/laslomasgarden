@@ -397,6 +397,14 @@
     if (!header) return;
     var previousScrolled = null;
     var previousCompact = null;
+    var debounceTimer = null;
+
+    function debounce(fn, delay) {
+      return function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(fn, delay);
+      };
+    }
 
     function syncHeaderOverlay() {
       var headerHeight = Math.ceil(header.getBoundingClientRect().height) + 1;
@@ -422,16 +430,41 @@
       }
     }
 
+    // Debounced versions
+    var debouncedUpdateHeaderGlass = debounce(updateHeaderGlass, 10);
+    var debouncedSyncHeaderOverlay = debounce(syncHeaderOverlay, 10);
+
+    // Observa cambios en el tamaño del header
+    if (window.ResizeObserver) {
+      var resizeObserver = new ResizeObserver(function () {
+        syncHeaderOverlay();
+        updateHeaderGlass();
+      });
+      resizeObserver.observe(header);
+    }
+
+    // Sincroniza al hacer scroll, resize, load, y visibilidad
     updateHeaderGlass();
     syncHeaderOverlay();
-    window.addEventListener('scroll', updateHeaderGlass, { passive: true });
+    window.addEventListener('scroll', debouncedUpdateHeaderGlass, { passive: true });
     window.addEventListener('resize', function () {
-      updateHeaderGlass();
-      syncHeaderOverlay();
+      debouncedUpdateHeaderGlass();
+      debouncedSyncHeaderOverlay();
     });
     window.addEventListener('load', syncHeaderOverlay);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) {
+        syncHeaderOverlay();
+        updateHeaderGlass();
+      }
+    });
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(syncHeaderOverlay);
     }
+    // Sincroniza después de saltos bruscos de scroll
+    window.setTimeout(function () {
+      syncHeaderOverlay();
+      updateHeaderGlass();
+    }, 100);
   })();
 </script>
