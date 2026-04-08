@@ -17,7 +17,7 @@
       --lls-copy: #00895d;
       --lls-card-shadow: 0 14px 28px rgba(28, 81, 65, 0.14);
       --lls-card-radius: 8px;
-      --lls-shell: 1032px;
+      --lls-shell: 1350px;
       --lls-green-background: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
     }
 
@@ -240,10 +240,10 @@
       <div class="about-shell">
         <div class="about-grid">
           <figure class="about-card">
-            <img src="img/pool-family.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy" decoding="async">
+            <img src="img/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy" decoding="async">
           </figure>
           <figure class="about-card">
-            <img src="img/Mapa.webp" alt="Map of the Caribbean showing the Dominican Republic location" loading="lazy" decoding="async">
+            <img src="img/mapa_recurso.webp" alt="Map of the Caribbean showing the Dominican Republic location" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
