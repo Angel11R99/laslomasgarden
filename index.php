@@ -26,6 +26,8 @@
       --lls-hero-title-top-mobile: clamp(24px, 20vh, 46px);
       --lls-shell: 1240px;
       --lls-content: 1120px;
+      --lls-lifestyle-content: 86%;
+      --lls-font-sizes: clamp(1.7rem, 2.72vw, 3.4rem);
     }
 
     * {
@@ -50,7 +52,7 @@
     }
 
     .lls-container {
-      width: min(var(--lls-content), calc(100% - 2.6rem));
+      width: min(var(--lls-lifestyle-content), calc(100% - 2.6rem));
       margin-inline: auto;
     }
 
@@ -58,7 +60,7 @@
       position: relative;
       margin-top: calc(-1 * var(--lls-header-overlay, 122px));
       padding-top: var(--lls-header-overlay, 122px);
-      min-height: 650px;
+      min-height: 1150px;
       background-image: url("img/Master_Plan.webp");
       background-size: cover;
       background-position: center 28%;
@@ -124,7 +126,7 @@
     }
 
     .lls-amenities {
-      padding: 2.9rem 0 2.5rem;
+      padding: 4.9rem 0 5.5rem;
       width: 100%;
     }
 
@@ -161,7 +163,7 @@
     .lls-copy h3 {
       margin: 0 0 1.2rem;
       color: #006847;
-      font-size: clamp(2rem, 3.2vw, 4rem);
+      font-size: var(--lls-font-sizes);
       line-height: 1.08;
       font-weight: 500;
       letter-spacing: 0.005em;
@@ -248,11 +250,11 @@
     .lls-layouts h3 {
       margin: 0 0 0.85rem;
       color: #ffffff;
-      font-size: clamp(2rem, 3.2vw, 4rem);
+      font-size: var(--lls-font-sizes);
       line-height: 1.08;
       font-weight: 500;
       letter-spacing: 0.01em;
-      max-width: 20.6ch;
+      max-width: 25.6ch;
     }
 
     .lls-layouts p {
@@ -328,6 +330,8 @@
       font-size: clamp(1.5rem, 2.4vw, 3rem);
       line-height: 1.08;
       font-weight: 500;
+      margin-top: 7rem;
+      margin-bottom: 5rem;
     }
 
     .lls-lifestyle p {
@@ -341,7 +345,7 @@
     .lls-lifestyle-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.84rem;
+      gap: 3rem;
     }
 
     .lls-lifestyle-grid img {
@@ -349,11 +353,12 @@
       border-radius: 6px;
       box-shadow: 0 13px 24px rgba(23, 50, 52, 0.16);
       object-fit: cover;
-      height: clamp(240px, 26vw, 360px);
+      height: clamp(340px, 32vw, 460px);
     }
 
     .lls-brand {
       text-align: center;
+      margin-top: 5rem;
       padding: 0.65rem 0 2.65rem;
     }
 
@@ -374,11 +379,11 @@
       margin: 1.05rem 0 1rem;
       color: #006847;
       font-size: clamp(1.7rem, 2.35vw, 2.7rem);
-      font-weight: 500;
+      font-weight: lighter;
     }
 
     .lls-brand-image {
-      width: min(760px, 100%);
+      width: min(900px, 100%);
       margin: 0 auto;
       border-radius: 8px;
       overflow: hidden;
