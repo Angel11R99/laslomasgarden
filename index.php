@@ -486,6 +486,329 @@
       }
     }
 
+    /* ── Mortgage Calculator ── */
+    .lls-mortgage {
+      padding: 5rem 0 5.5rem;
+      background: #f2faf5;
+    }
+
+    .lls-mortgage-inner {
+      width: min(1260px, calc(100% - 3rem));
+      margin-inline: auto;
+    }
+
+    .lls-mortgage-title {
+      font-size: clamp(1.1rem, 1.55vw, 1.5rem);
+      font-weight: 600;
+      color: #1a3a28;
+      margin: 0 0 1rem;
+      white-space: nowrap;
+    }
+
+    .lls-mortgage-price-field {
+      display: flex;
+      align-items: center;
+      border: 2px solid #19a950;
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      background: #fff;
+      margin-bottom: 0;
+      gap: 0.5rem;
+    }
+
+    .lls-mortgage-price-field span {
+      color: #19a950;
+      font-weight: 700;
+      font-size: 1.15rem;
+      white-space: nowrap;
+    }
+
+    .lls-mortgage-price-field input {
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 1.15rem;
+      color: #1a3a28;
+      background: transparent;
+      width: 100%;
+    }
+
+    .lls-mortgage-body {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .lls-mortgage-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .lls-mortgage-field label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d4a39;
+      margin-bottom: 0.55rem;
+    }
+
+    .lls-mortgage-field select {
+      width: 100%;
+      padding: 0.8rem 2.6rem 0.8rem 1rem;
+      border: 2px solid #b5d9c4;
+      border-radius: 8px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2319a950' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") right 1rem center no-repeat;
+      appearance: none;
+      font-family: inherit;
+      font-size: 1.05rem;
+      color: #1a3a28;
+      cursor: pointer;
+    }
+
+    .lls-mortgage-field select:focus {
+      outline: none;
+      border-color: #19a950;
+    }
+
+    .lls-downpayment-value {
+      color: #19a950;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .lls-mortgage-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 7px;
+      border-radius: 4px;
+      background: #b5d9c4;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lls-mortgage-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #19a950;
+      box-shadow: 0 3px 8px rgba(25,169,80,0.3);
+      cursor: pointer;
+    }
+
+    .lls-mortgage-slider::-moz-range-thumb {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #19a950;
+      box-shadow: 0 3px 8px rgba(25,169,80,0.3);
+      cursor: pointer;
+    }
+
+    .lls-mortgage-results {
+      background: #fff;
+      border: 2px solid #c2e0cc;
+      border-radius: 14px;
+      padding: 2.8rem 2.8rem 2.2rem;
+      box-shadow: 0 10px 28px rgba(15, 80, 50, 0.09);
+    }
+
+    .lls-mortgage-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .lls-mortgage-split-label {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #4a6a58;
+      margin-bottom: 0.4rem;
+    }
+
+    .lls-mortgage-split-value {
+      font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .lls-mortgage-split-value.green { color: #0d8f53; }
+    .lls-mortgage-split-value.dark  { color: #1a3a28; }
+
+    .lls-mortgage-bar {
+      height: 10px;
+      border-radius: 5px;
+      background: #c8ddd0;
+      margin-bottom: 1.8rem;
+      overflow: hidden;
+    }
+
+    .lls-mortgage-bar-fill {
+      height: 100%;
+      background: #19a950;
+      border-radius: 5px;
+      transition: width 0.3s ease;
+    }
+
+    .lls-mortgage-monthly-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4a6a58;
+      margin-bottom: 0.5rem;
+    }
+
+    .lls-mortgage-monthly-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .lls-mortgage-monthly-amount {
+      font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+      font-weight: 700;
+      color: #0d8f53;
+      letter-spacing: -0.01em;
+    }
+
+    .lls-mortgage-precalify {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.9rem;
+      border-radius: 50px;
+      background: var(--lls-green-background);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(13,105,88,0.3);
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .lls-mortgage-precalify:hover { opacity: 0.88; }
+
+    .lls-mortgage-disclaimer {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #8aab98;
+    }
+
+    .lls-mortgage-extra-header {
+      background: #0d8f53;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.1rem;
+      border-radius: 8px;
+      margin-top: 0.4rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .lls-mortgage-extra-header::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+
+    .lls-mortgage-extra-header.open::after {
+      transform: rotate(45deg);
+    }
+
+    .lls-mortgage-extra-body {
+      display: none;
+      flex-direction: column;
+      gap: 1.8rem;
+      overflow: hidden;
+    }
+
+    .lls-mortgage-extra-body.open {
+      display: flex;
+    }
+
+    .lls-mortgage-extra-summary {
+      border: 2px solid #c2e0cc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .lls-mes-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.1rem;
+      font-size: 1rem;
+      color: #2d4a39;
+      border-bottom: 1px solid #e0f0e8;
+    }
+
+    .lls-mes-row:last-child { border-bottom: none; }
+
+    .lls-mes-row span:last-child {
+      font-weight: 700;
+      color: #0d8f53;
+    }
+
+    .lls-mortgage-with-extra { margin-top: 1.4rem; }
+
+    .lls-mwe-divider {
+      height: 2px;
+      background: #c2e0cc;
+      margin-bottom: 1.1rem;
+    }
+
+    .lls-mwe-amount {
+      font-size: clamp(1.7rem, 2.7vw, 2.4rem) !important;
+      color: #0d8f53 !important;
+      margin-bottom: 0.5rem;
+    }
+
+    .lls-mwe-savings {
+      font-size: 1.1rem;
+      color: #0d8f53;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .lls-mwe-interest-saved {
+      font-size: 1.35rem;
+      color: #0b6e40;
+      font-weight: 700;
+      margin-top: 0.6rem;
+      padding: 0.85rem 1.1rem;
+      background: #e8f8ee;
+      border-left: 4px solid #19a950;
+      border-radius: 0 6px 6px 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 760px) {
+      .lls-mortgage-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
       .lls-hero-content {
         width: calc(100% - 1.4rem);
@@ -633,6 +956,264 @@
       <img src="img/pool-family.webp" alt="Family pool and relaxation lifestyle" loading="lazy" decoding="async">
     </div>
   </section>
+
+  <!-- Mortgage Calculator -->
+  <section class="lls-mortgage" id="calculator">
+    <div class="lls-mortgage-inner">
+      <div class="lls-mortgage-body">
+        <div class="lls-mortgage-controls">
+          <p class="lls-mortgage-title">What is the price of the property you want to buy?</p>
+
+          <div class="lls-mortgage-price-field">
+            <span>US$</span>
+            <input type="text" id="mc-price" value="" inputmode="numeric" placeholder="100,000" autocomplete="off" aria-label="Property price">
+          </div>
+          <div class="lls-mortgage-field">
+            <label for="mc-bank">Select bank</label>
+            <select id="mc-bank">
+              <option value="12.95">Asociación Cibao (12.95% Annual)</option>
+              <option value="12.00">Banreservas (12.00% Annual)</option>
+              <option value="13.00">BHD León (13.00% Annual)</option>
+              <option value="13.50">Banco Popular (13.50% Annual)</option>
+              <option value="11.50">Scotiabank (11.50% Annual)</option>
+            </select>
+          </div>
+
+          <div class="lls-mortgage-field">
+            <label>Down payment</label>
+            <div class="lls-downpayment-value" id="mc-down-label">—</div>
+            <input type="range" class="lls-mortgage-slider" id="mc-down" min="10" max="80" value="30" step="1" aria-label="Down payment percentage">
+          </div>
+
+          <div class="lls-mortgage-field">
+            <label for="mc-term">Loan term</label>
+            <select id="mc-term">
+              <option value="10">10 years</option>
+              <option value="15">15 years</option>
+              <option value="20" selected>20 years</option>
+              <option value="25">25 years</option>
+              <option value="30">30 years</option>
+            </select>
+          </div>
+
+          <!-- Extra Payment -->
+          <div class="lls-mortgage-extra-header" id="mc-extra-toggle">Extra Payment Scenario</div>
+          <div class="lls-mortgage-extra-body" id="mc-extra-body">
+            <div class="lls-mortgage-field">
+              <label for="mc-extra-amount">Extra Payment Amount</label>
+              <div class="lls-mortgage-price-field" style="margin-bottom:0">
+                <span>US$</span>
+                <input type="number" id="mc-extra-amount" value="0" min="0" step="50" aria-label="Extra payment amount">
+              </div>
+            </div>
+            <div class="lls-mortgage-field">
+              <label for="mc-extra-freq">Frequency</label>
+              <select id="mc-extra-freq">
+                <option value="12">Monthly</option>
+                <option value="4">Quarterly</option>
+                <option value="2" selected>Semiannual</option>
+                <option value="1">Annual</option>
+              </select>
+            </div>
+            <div class="lls-mortgage-extra-summary" id="mc-extra-summary">
+              <div class="lls-mes-row"><span>Extra Payments per Year</span><span id="mc-xpy">2</span></div>
+              <div class="lls-mes-row"><span>Annual Extra Amount</span><span id="mc-xannual">US$0</span></div>
+              <div class="lls-mes-row"><span>Monthly Equivalent Extra</span><span id="mc-xmonthly">US$0.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lls-mortgage-results" id="mc-results-panel" style="display:none">
+          <div class="lls-mortgage-split">
+            <div>
+              <div class="lls-mortgage-split-label">Down payment</div>
+              <div class="lls-mortgage-split-value green" id="mc-res-down"></div>
+            </div>
+            <div>
+              <div class="lls-mortgage-split-label">Loan amount</div>
+              <div class="lls-mortgage-split-value dark" id="mc-res-loan"></div>
+            </div>
+          </div>
+
+          <div class="lls-mortgage-bar">
+            <div class="lls-mortgage-bar-fill" id="mc-bar" style="width:0%"></div>
+          </div>
+
+          <div class="lls-mortgage-monthly-label">Your estimated monthly payment:</div>
+          <div class="lls-mortgage-monthly-row">
+            <div class="lls-mortgage-monthly-amount" id="mc-monthly"></div>
+            <a class="lls-mortgage-precalify" href="#contact">Pre-Qualify</a>
+          </div>
+
+          <div class="lls-mortgage-with-extra" id="mc-extra-block" style="display:none">
+            <div class="lls-mwe-divider"></div>
+            <div class="lls-mortgage-monthly-label">With extra payments — effective monthly total:</div>
+            <div class="lls-mortgage-monthly-amount lls-mwe-amount" id="mc-monthly-extra">US$936</div>
+            <div class="lls-mwe-savings" id="mc-savings"></div>
+            <div class="lls-mwe-interest-saved" id="mc-interest-saved"></div>
+          </div>
+
+          <p class="lls-mortgage-disclaimer">* These amounts are estimates and are subject to change without notice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    var priceInput = document.getElementById('mc-price');
+    var price      = { get value() { return priceInput.value.replace(/,/g, ''); } };
+
+    // Format price input with commas as the user types
+    priceInput.addEventListener('input', function() {
+      var raw    = this.value.replace(/[^0-9]/g, '');
+      var cursor = this.selectionStart;
+      var prev   = this.value.length;
+      if (raw === '') { this.value = ''; return; }
+      var num    = parseInt(raw, 10);
+      this.value = num.toLocaleString('en-US');
+      // Adjust cursor position after comma insertion
+      var diff = this.value.length - prev;
+      this.setSelectionRange(cursor + diff, cursor + diff);
+    });
+    var bank       = document.getElementById('mc-bank');
+    var down       = document.getElementById('mc-down');
+    var term       = document.getElementById('mc-term');
+    var extraAmt   = document.getElementById('mc-extra-amount');
+    var extraFreq  = document.getElementById('mc-extra-freq');
+
+    var downLbl    = document.getElementById('mc-down-label');
+    var resDown    = document.getElementById('mc-res-down');
+    var resLoan    = document.getElementById('mc-res-loan');
+    var bar        = document.getElementById('mc-bar');
+    var monthly    = document.getElementById('mc-monthly');
+    var xpy        = document.getElementById('mc-xpy');
+    var xannual    = document.getElementById('mc-xannual');
+    var xmonthly   = document.getElementById('mc-xmonthly');
+    var extraBlock = document.getElementById('mc-extra-block');
+    var monthlyExtra = document.getElementById('mc-monthly-extra');
+    var savings       = document.getElementById('mc-savings');
+    var interestSaved = document.getElementById('mc-interest-saved');
+    var resultsPanel  = document.getElementById('mc-results-panel');
+
+    function fmt(n) {
+      return 'US$' + Math.round(n).toLocaleString('en-US');
+    }
+    function fmt2(n) {
+      return 'US$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    }
+
+    function amortMonths(principal, monthlyRate, months) {
+      if (principal <= 0 || months <= 0) return 0;
+      if (monthlyRate === 0) return months;
+      var bal = principal, m = 0;
+      while (bal > 0.01 && m < months * 2) {
+        bal = bal * (1 + monthlyRate) - (arguments[3] || 0);
+        m++;
+      }
+      return m;
+    }
+
+    function calc() {
+      var p   = parseFloat(price.value) || 0;
+      var dp  = parseFloat(down.value) / 100;
+      var r   = parseFloat(bank.value) / 100 / 12;
+      var n   = parseInt(term.value) * 12;
+      var ea  = parseFloat(extraAmt.value) || 0;
+      var ef  = parseInt(extraFreq.value);
+
+      // Hide everything until the user enters a price
+      if (p <= 0) {
+        resultsPanel.style.display = 'none';
+        downLbl.textContent = '—';
+        return;
+      }
+      resultsPanel.style.display = '';
+
+      var downAmt  = p * dp;
+      var loanAmt  = p - downAmt;
+      var pct      = (dp * 100).toFixed(2);
+      var loanPct  = (100 - dp * 100).toFixed(0);
+
+      downLbl.textContent = fmt(downAmt) + ' | ' + pct + '%';
+      resDown.textContent = fmt(downAmt) + ' | ' + pct + '%';
+      resLoan.textContent = fmt(loanAmt) + ' | ' + loanPct + '%';
+      bar.style.width     = (dp * 100) + '%';
+
+      var m = 0;
+      if (loanAmt > 0 && r > 0 && n > 0) {
+        m = loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      }
+      monthly.textContent = fmt(m);
+
+      // Extra payment summary
+      var annualExtra   = ea * ef;
+      var monthlyEquiv  = annualExtra / 12;
+      xpy.textContent      = ef;
+      xannual.textContent  = fmt(annualExtra);
+      xmonthly.textContent = fmt2(monthlyEquiv);
+
+      if (ea > 0 && m > 0) {
+        extraBlock.style.display = '';
+        var effectiveMonthly = m + monthlyEquiv;
+        monthlyExtra.textContent = fmt2(effectiveMonthly);
+
+        // Simulate standard amortization (total interest without extra)
+        var stdMonths = 0, stdInterest = 0, balStd = loanAmt;
+        while (balStd > 0.01 && stdMonths < n * 2) {
+          var intCharge = balStd * r;
+          stdInterest += intCharge;
+          balStd = balStd + intCharge - m;
+          stdMonths++;
+        }
+
+        // Simulate amortization with extra payments
+        var newMonths = 0, newInterest = 0, balExtra = loanAmt;
+        while (balExtra > 0.01 && newMonths < n * 2) {
+          var intChargeX = balExtra * r;
+          newInterest += intChargeX;
+          balExtra = balExtra + intChargeX - effectiveMonthly;
+          newMonths++;
+        }
+
+        var monthsSaved   = Math.max(0, stdMonths - newMonths);
+        var yearsSaved    = Math.floor(monthsSaved / 12);
+        var remMonths     = monthsSaved % 12;
+        var interestDiff  = Math.max(0, stdInterest - newInterest);
+
+        var savingsTxt = '';
+        if (yearsSaved > 0 || remMonths > 0) {
+          var timeParts = '';
+          if (yearsSaved > 0) timeParts += yearsSaved + ' year' + (yearsSaved > 1 ? 's' : '');
+          if (yearsSaved > 0 && remMonths > 0) timeParts += ' and ';
+          if (remMonths > 0) timeParts += remMonths + ' month' + (remMonths > 1 ? 's' : '');
+          savingsTxt = 'You\'ll own your home ' + timeParts + ' sooner!';
+        }
+        savings.textContent = savingsTxt;
+
+        interestSaved.textContent = interestDiff > 0
+          ? 'You\'re saving ' + fmt(interestDiff) + ' in interest!'
+          : '';
+      } else {
+        extraBlock.style.display = 'none';
+      }
+    }
+
+    [priceInput, extraAmt].forEach(function(el){ el.addEventListener('input', calc); });
+    [bank, term, extraFreq].forEach(function(el){ el.addEventListener('change', calc); });
+    down.addEventListener('input', calc);
+    calc();
+
+    // Toggle extra payment section
+    var toggle = document.getElementById('mc-extra-toggle');
+    var body   = document.getElementById('mc-extra-body');
+    toggle.addEventListener('click', function() {
+      var isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      toggle.classList.toggle('open', !isOpen);
+    });
+  })();
+  </script>
 
   <section class="lls-brand lls-container">
     <h2 class="lls-brand-mark">
