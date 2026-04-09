@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node /tmp/fix2.js)",
+      "Bash(node /tmp/fix_scale2.js)"
+    ]
+  }
+}
