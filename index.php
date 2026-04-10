@@ -636,6 +636,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 0.6rem;
       margin-bottom: 1.2rem;
+      align-items: start;
     }
 
     .lls-mortgage-split-label {
@@ -648,7 +649,9 @@
     .lls-mortgage-split-value {
       font-size: clamp(1.05rem, 1.4vw, 1.35rem);
       font-weight: 700;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .lls-mortgage-split-value.green { color: #0d8f53; }
@@ -681,6 +684,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .lls-mortgage-monthly-amount {
@@ -689,7 +693,11 @@
       color: #0d8f53;
       letter-spacing: -0.01em;
       min-width: 0;
+      max-width: 100%;
+      flex: 1 1 320px;
+      line-height: 1.08;
       overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .lls-mortgage-precalify {
@@ -711,6 +719,8 @@
       box-shadow: 0 6px 16px rgba(13,105,88,0.3);
       transition: opacity 0.2s;
       white-space: nowrap;
+      flex: 0 0 auto;
+      max-width: 100%;
     }
 
     .lls-mortgage-precalify:hover { opacity: 0.88; }
@@ -815,6 +825,8 @@
       border-left: 4px solid #19a950;
       border-radius: 0 6px 6px 0;
       line-height: 1.5;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     @media (max-width: 760px) {
