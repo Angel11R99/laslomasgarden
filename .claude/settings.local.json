@@ -3,7 +3,8 @@
     "allow": [
       "Bash(node /tmp/fix2.js)",
       "Bash(node /tmp/fix_scale2.js)",
-      "Bash(du -h \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Exteriores/\"* \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Interiores/\"*)"
+      "Bash(du -h \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Exteriores/\"* \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Interiores/\"*)",
+      "Bash(awk NR==1226{print length}:*)"
     ]
   }
 }
