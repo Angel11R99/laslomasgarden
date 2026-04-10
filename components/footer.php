@@ -45,6 +45,55 @@
     gap: 0.72rem;
   }
 
+  .lls-footer-submenu {
+    margin: 0.45rem 0 0;
+    padding: 0 0 0 1.1rem;
+    list-style: none;
+    gap: 0.45rem;
+    display: none;
+  }
+
+  .lls-footer-has-submenu.is-open > .lls-footer-submenu {
+    display: grid;
+  }
+
+  .lls-footer-submenu-toggle {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #ffffff;
+    font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(1.02rem, 1.15vw, 1.45rem);
+    line-height: 1.25;
+    font-weight: 400;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+  }
+
+  .lls-footer-submenu-toggle::after {
+    content: "\25BE";
+    margin-left: 0.42rem;
+    font-size: 0.72em;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+  }
+
+  .lls-footer-has-submenu.is-open > .lls-footer-submenu-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  .lls-footer-submenu li {
+    position: relative;
+  }
+
+  .lls-footer-submenu a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: clamp(0.96rem, 1.05vw, 1.22rem);
+    opacity: 0.9;
+  }
+
   .lls-footer-links a,
   .lls-footer-support-link {
     color: #ffffff;
@@ -58,6 +107,8 @@
 
   .lls-footer-links a:hover,
   .lls-footer-links a:focus-visible,
+  .lls-footer-submenu-toggle:hover,
+  .lls-footer-submenu-toggle:focus-visible,
   .lls-footer-support-link:hover,
   .lls-footer-support-link:focus-visible,
   .lls-social-link:hover,
@@ -133,6 +184,12 @@
       justify-items: center;
     }
 
+    .lls-footer-submenu {
+      margin-top: 0.35rem;
+      padding-left: 0;
+      justify-items: center;
+    }
+
     .lls-footer-support-link {
       display: inline-flex;
       justify-content: center;
@@ -157,10 +214,16 @@
       <h3 class="lls-footer-title">Company</h3>
       <ul class="lls-footer-links">
         <li><a href="/">Home</a></li>
-        <li><a href="/tourguiado">Tour</a></li>
-        <li><a href="/rooms">Rooms</a></li>
+        <li class="lls-footer-has-submenu">
+          <button class="lls-footer-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-footer-submenu">
+            Complex
+          </button>
+          <ul class="lls-footer-submenu" id="lls-footer-submenu" hidden>
+            <li><a href="/tourguiado">Tour</a></li>
+            <li><a href="/rooms">Rooms</a></li>
+          </ul>
+        </li>
         <li><a href="/about-us">About Us</a></li>
-        <li><a href="/index.php#complex">Complex</a></li>
         <li><a href="/index.php#contact">Contact</a></li>
       </ul>
     </section>
@@ -189,5 +252,33 @@
     </section>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var footerSubmenuItem = document.querySelector('.lls-footer-has-submenu');
+    if (!footerSubmenuItem) return;
+
+    var footerToggle = footerSubmenuItem.querySelector('.lls-footer-submenu-toggle');
+    var footerSubmenu = footerSubmenuItem.querySelector('.lls-footer-submenu');
+    if (!footerToggle || !footerSubmenu) return;
+
+    function setFooterSubmenuState(isOpen) {
+      footerSubmenuItem.classList.toggle('is-open', isOpen);
+      footerToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        footerSubmenu.removeAttribute('hidden');
+      } else {
+        footerSubmenu.setAttribute('hidden', '');
+      }
+    }
+
+    setFooterSubmenuState(false);
+
+    footerToggle.addEventListener('click', function () {
+      var isOpen = footerSubmenuItem.classList.contains('is-open');
+      setFooterSubmenuState(!isOpen);
+    });
+  })();
+</script>
 
 

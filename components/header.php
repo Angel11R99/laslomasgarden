@@ -135,11 +135,70 @@
     opacity: 0.82;
   }
 
-  .lls-nav-item-complex a::after {
+  .lls-has-submenu {
+    position: relative;
+  }
+
+  .lls-submenu-toggle {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .lls-nav-item-complex > .lls-submenu-toggle {
+    color: #ffffff;
+    font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(0.92rem, 0.95vw, 1rem);
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .lls-nav-item-complex > .lls-submenu-toggle::after {
     content: "\25BE";
     margin-left: 6px;
     font-size: 0.68em;
     vertical-align: middle;
+    transition: transform 0.2s ease;
+  }
+
+  .lls-has-submenu.is-open > .lls-submenu-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  .lls-submenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lls-nav-item-complex > .lls-submenu {
+    position: absolute;
+    top: calc(100% + 0.7rem);
+    left: 50%;
+    min-width: 148px;
+    padding: 0.45rem 0;
+    border-radius: 12px;
+    background: rgba(10, 70, 46, 0.94);
+    box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
+    transform: translateX(-50%);
+    display: none;
+    z-index: 1003;
+  }
+
+  .lls-nav-item-complex.is-open > .lls-submenu {
+    display: block;
+  }
+
+  .lls-nav-item-complex > .lls-submenu a {
+    display: block;
+    padding: 0.55rem 1rem;
+    text-align: left;
   }
 
   .lls-lang-btn {
@@ -160,8 +219,13 @@
   }
 
   body.page-about .lls-header:not(.is-scrolled) .lls-nav-list a,
-  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex a::after {
+  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu-toggle,
+  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu-toggle::after {
     color: #00895d;
+  }
+
+  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu a {
+    color: #ffffff;
   }
 
   body.page-about .lls-header:not(.is-scrolled) .lls-lang-btn {
@@ -556,6 +620,7 @@
     }
 
     .lls-mobile-nav-list a,
+    .lls-mobile-nav-list .lls-submenu-toggle,
     .lls-mobile-lang {
       display: block;
       width: 100%;
@@ -575,11 +640,35 @@
       border-bottom: 0;
     }
 
-    .lls-mobile-nav-item-complex a::after {
+    .lls-mobile-nav-item-complex > .lls-submenu-toggle {
+      text-align: left;
+    }
+
+    .lls-mobile-nav-item-complex > .lls-submenu-toggle::after {
       content: "\25BE";
       margin-left: 0.45rem;
       font-size: 0.72em;
       vertical-align: middle;
+      transition: transform 0.2s ease;
+    }
+
+    .lls-mobile-nav-item-complex.is-open > .lls-submenu-toggle::after {
+      transform: rotate(180deg);
+    }
+
+    .lls-mobile-nav-item-complex > .lls-submenu {
+      display: none;
+      padding-left: 1rem;
+    }
+
+    .lls-mobile-nav-item-complex.is-open > .lls-submenu {
+      display: block;
+    }
+
+    .lls-mobile-nav-item-complex > .lls-submenu a {
+      padding-top: 0.72rem;
+      padding-bottom: 0.72rem;
+      font-size: 0.96rem;
     }
 
     .lls-mobile-lang {
@@ -645,9 +734,15 @@
       <nav class="lls-nav" aria-label="Main navigation">
         <ul class="lls-nav-list">
           <li><a href="/">Home</a></li>
-          <li><a href="/tourguiado">Tour</a></li>
-          <li class="lls-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
-          <li><a href="/rooms">Rooms</a></li>
+          <li class="lls-nav-item-complex lls-has-submenu">
+            <button class="lls-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-desktop-submenu">
+              Complex
+            </button>
+            <ul class="lls-submenu" id="lls-desktop-submenu" hidden>
+              <li><a href="/tourguiado">Tour</a></li>
+              <li><a href="/rooms">Rooms</a></li>
+            </ul>
+          </li>
           <li><a href="/index.php#contact">Contact Us</a></li>
           <li><a href="/about-us">About Us</a></li>
         </ul>
@@ -664,9 +759,15 @@
     <nav class="lls-mobile-nav" aria-label="Mobile navigation">
       <ul class="lls-mobile-nav-list">
         <li><a href="/">Home</a></li>
-        <li><a href="/tourguiado">Tour</a></li>
-        <li class="lls-mobile-nav-item-complex"><a href="/index.php#complex">Complex</a></li>
-        <li><a href="/rooms">Rooms</a></li>
+        <li class="lls-mobile-nav-item-complex lls-has-submenu">
+          <button class="lls-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-mobile-submenu">
+            Complex
+          </button>
+          <ul class="lls-submenu" id="lls-mobile-submenu" hidden>
+            <li><a href="/tourguiado">Tour</a></li>
+            <li><a href="/rooms">Rooms</a></li>
+          </ul>
+        </li>
         <li><a href="/index.php#contact">Contact Us</a></li>
         <li><a href="/about-us">About Us</a></li>
       </ul>
@@ -685,6 +786,7 @@
     if (!header) return;
     var menuToggle = document.getElementById('lls-menu-toggle');
     var mobileMenu = document.getElementById('lls-mobile-menu');
+    var submenuItems = header.querySelectorAll('.lls-has-submenu');
     var previousScrolled = null;
     var previousCompact = null;
     var debounceTimer = null;
@@ -716,6 +818,29 @@
         mobileMenu.setAttribute('hidden', '');
       }
       syncHeaderOverlay();
+    }
+
+    function setSubmenuState(submenuItem, isOpen) {
+      if (!submenuItem) return;
+      var toggle = submenuItem.querySelector('.lls-submenu-toggle');
+      var submenu = submenuItem.querySelector('.lls-submenu');
+      if (!toggle || !submenu) return;
+      submenuItem.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        submenu.removeAttribute('hidden');
+      } else {
+        submenu.setAttribute('hidden', '');
+      }
+      syncHeaderOverlay();
+    }
+
+    function closeSubmenus(exceptItem) {
+      submenuItems.forEach(function (submenuItem) {
+        if (submenuItem !== exceptItem) {
+          setSubmenuState(submenuItem, false);
+        }
+      });
     }
 
     function updateHeaderGlass() {
@@ -778,6 +903,19 @@
       updateHeaderGlass();
     }, 100);
 
+    submenuItems.forEach(function (submenuItem) {
+      var toggle = submenuItem.querySelector('.lls-submenu-toggle');
+      if (!toggle) return;
+      setSubmenuState(submenuItem, false);
+      toggle.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var isOpen = submenuItem.classList.contains('is-open');
+        closeSubmenus(submenuItem);
+        setSubmenuState(submenuItem, !isOpen);
+      });
+    });
+
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', function () {
         if (!isMobileViewport()) return;
@@ -788,11 +926,15 @@
       mobileMenu.addEventListener('click', function (event) {
         var target = event.target;
         if (target && target.closest('a')) {
+          closeSubmenus();
           setMobileMenuState(false);
         }
       });
 
       document.addEventListener('click', function (event) {
+        if (!header.contains(event.target)) {
+          closeSubmenus();
+        }
         if (!isMobileViewport()) return;
         if (!header.contains(event.target)) {
           setMobileMenuState(false);
@@ -801,6 +943,7 @@
 
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
+          closeSubmenus();
           setMobileMenuState(false);
         }
       });
