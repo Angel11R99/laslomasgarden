@@ -40,6 +40,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.52;
+      overflow-x: hidden;
     }
 
     img {
@@ -118,6 +119,7 @@
 
     .hero-inner {
       width: 100%;
+      min-height: 100svh;
       padding-top: 26px;
       position: relative;
       z-index: 1;
@@ -232,10 +234,10 @@
       font-weight: 500;
       text-transform: uppercase;
       text-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-      max-width: none;
+      max-width: min(92vw, 18ch);
       margin: 0 auto;
-      white-space: nowrap;
-      
+      white-space: normal;
+      text-wrap: balance;
     }
 
     .hero-tour-link {
@@ -269,6 +271,17 @@
       transform-origin: center center;
       transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   opacity 0.55s ease;
+    }
+
+    #svgContainer {
+      width: 100%;
+      height: 100%;
+    }
+
+    #svgContainer svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .hero.is-front-view .hero-apartment-map {
@@ -390,6 +403,7 @@
       padding: 10px 22px;
       cursor: pointer;
       transition: background-color 0.22s ease, transform 0.22s ease;
+      text-align: center;
     }
 
     .hero-front-close:hover,
@@ -790,6 +804,8 @@
     .tour-close {
       top: 1rem;
       right: 1rem;
+      top: max(1rem, env(safe-area-inset-top));
+      right: max(1rem, env(safe-area-inset-right));
       z-index: 21;
       width: 2.8rem;
       height: 2.8rem;
@@ -872,7 +888,7 @@
 
     .tour-room-label {
       position: absolute;
-      bottom: 1.6rem;
+      bottom: max(1.6rem, env(safe-area-inset-bottom));
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
@@ -890,6 +906,56 @@
       white-space: nowrap;
       pointer-events: none;
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      max-width: min(88vw, 28rem);
+      text-align: center;
+    }
+
+    .tour-touch-hint {
+      position: absolute;
+      top: calc(max(1rem, env(safe-area-inset-top)) + 3.4rem);
+      left: 50%;
+      z-index: 23;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(8, 18, 14, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.26);
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(-50%, -10px);
+      transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+      max-width: min(92vw, 27rem);
+      text-align: center;
+    }
+
+    .tour-touch-hint.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    .tour-touch-hint strong {
+      color: #dff8ee;
+      font-weight: 700;
+    }
+
+    .tour-touch-hint-divider {
+      width: 0.3rem;
+      height: 0.3rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.42);
+      flex: 0 0 auto;
     }
 
     /* Overlay de transición tipo blend suave entre escenas */
@@ -1057,6 +1123,12 @@
       position: absolute;
       inset: 0;
       background: #000;
+      min-height: 100dvh;
+      touch-action: none;
+    }
+
+    .tour-stage canvas {
+      touch-action: none;
     }
 
     .tour-scene {
@@ -1082,16 +1154,33 @@
       }
 
       .hero {
-        min-height: 78vh;
+        min-height: 100svh;
         background-position: center 30%;
+      }
+
+      .hero-inner {
+        min-height: 100svh;
+        padding-top: 18px;
       }
 
       .hero-copy {
         padding-top: 44px;
+        padding-inline: 20px;
+      }
+
+      .hero-copy h1 {
+        max-width: 14ch;
+      }
+
+      .hero-map-hint {
+        max-width: min(92vw, 30rem);
+        white-space: normal;
+        text-align: center;
       }
 
       .hero-front-controls {
         padding: 12px 14px;
+        flex-wrap: wrap;
       }
 
       .card-image,
@@ -1101,6 +1190,73 @@
 
       .floorplan {
         min-height: 430px;
+      }
+
+      .floorplan img {
+        width: min(110%, 820px);
+      }
+
+      .tour-pos-debug {
+        max-width: calc(100vw - 7rem);
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 100svh;
+      }
+
+      .hero-inner.container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        background:
+          linear-gradient(180deg, rgba(4, 18, 15, 0.18) 0%, rgba(4, 18, 15, 0.08) 28%, rgba(4, 18, 15, 0.48) 100%),
+          linear-gradient(90deg, rgba(3, 11, 10, 0.16) 0%, rgba(3, 11, 10, 0) 42%, rgba(3, 11, 10, 0.12) 100%);
+        pointer-events: none;
+      }
+
+      .hero-apartment-map {
+        background-image: url('img/Master_Plan.webp');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .hero-apartment-map::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 62%, rgba(255,255,255,0.02) 0%, rgba(4, 18, 15, 0.14) 68%, rgba(4, 18, 15, 0.28) 100%);
+        pointer-events: none;
+      }
+
+      #svgContainer,
+      .hero-map-hint {
+        display: none;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 4;
+      }
+
+      .hero-copy h1 {
+        color: #ffffff;
+        text-shadow: 0 14px 36px rgba(0, 0, 0, 0.36);
+      }
+
+      .hero-tour-link {
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 16px 38px rgba(4, 18, 15, 0.22);
       }
     }
 
@@ -1115,6 +1271,7 @@
 
       .hero-inner {
         padding-top: 16px;
+        min-height: 100svh;
       }
 
       .nav {
@@ -1142,10 +1299,19 @@
         letter-spacing: 0.02em;
         font-size: clamp(1.05rem, 5.3vw, 2.25rem);
         line-height: 1.08;
+        max-width: 12ch;
       }
 
       .hero-copy {
         padding-top: 30px;
+        gap: 12px;
+      }
+
+      .hero-tour-link {
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
       }
 
       .hero-front-controls {
@@ -1153,6 +1319,14 @@
         align-items: flex-start;
         gap: 12px;
         padding: 16px 18px 28px;
+      }
+
+      .hero-front-close {
+        width: 100%;
+      }
+
+      .hero-front-title {
+        max-width: 100%;
       }
 
       .feature {
@@ -1172,7 +1346,8 @@
       }
 
       .floorplan img {
-        width: min(132%, 760px);
+        width: 100%;
+        max-width: 100%;
       }
 
       .gallery-item {
@@ -1185,8 +1360,57 @@
 
       .tour-room-label {
         font-size: 0.74rem;
-        padding: 0.45rem 1rem;
-        bottom: 1rem;
+        padding: 0.45rem 0.9rem;
+        bottom: max(0.75rem, env(safe-area-inset-bottom));
+        max-width: calc(100vw - 5.5rem);
+      }
+
+      .tour-touch-hint {
+        top: calc(max(0.85rem, env(safe-area-inset-top)) + 3rem);
+        width: calc(100vw - 1.4rem);
+        border-radius: 18px;
+        padding: 0.7rem 0.8rem;
+        gap: 0.45rem;
+        font-size: 0.7rem;
+        line-height: 1.35;
+        flex-wrap: wrap;
+      }
+
+      .tour-close {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+      }
+
+      .tour-pos-toggle {
+        width: 2.2rem;
+        height: 2.2rem;
+        top: max(0.85rem, env(safe-area-inset-top));
+        left: max(0.85rem, env(safe-area-inset-left));
+      }
+
+      .tour-pos-debug {
+        top: auto;
+        left: 50%;
+        bottom: calc(max(0.75rem, env(safe-area-inset-bottom)) + 3.6rem);
+        transform: translateX(-50%);
+        width: calc(100vw - 1.5rem);
+        max-width: 28rem;
+        padding: 0.7rem 0.8rem;
+        gap: 0.6rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+
+      .tour-pos-debug code {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .tour-pos-copy,
+      .tour-pos-fix {
+        min-height: 2rem;
       }
 
       .tour-stage {
@@ -1195,6 +1419,51 @@
 
       .tour-scene {
         height: 100%;
+      }
+
+      .apt-tooltip {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: min(100% - 14px, var(--container));
+      }
+
+      .hero-copy {
+        padding-inline: 12px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(0.96rem, 6vw, 1.5rem);
+        max-width: 11ch;
+      }
+
+      .section-title {
+        font-size: 1.45rem;
+      }
+
+      .section-text,
+      .content-block p,
+      .cta p {
+        font-size: 0.92rem;
+      }
+
+      .tour-room-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.07em;
+      }
+
+      .tour-touch-hint {
+        font-size: 0.67rem;
+        padding: 0.65rem 0.75rem;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .apt-tooltip {
+        display: none !important;
       }
     }
 
@@ -1252,6 +1521,11 @@
       <div class="tour-room-label">
         <span id="tourSceneTitle">Balcón</span>
       </div>
+      <div class="tour-touch-hint" id="tourTouchHint" aria-hidden="true">
+        <strong>1 dedo</strong> para mover
+        <span class="tour-touch-hint-divider" aria-hidden="true"></span>
+        <strong>2 dedos</strong> para zoom
+      </div>
 
       <!-- Overlay negro para transición de caminar -->
       <div class="tour-transition-overlay" id="tourTransitionOverlay"></div>
@@ -1283,7 +1557,7 @@
             <img id="tourAssetBano2" src="img/Renders%20360/Interiores/Baño%202.webp" alt="Baño 2">
             <img id="tourAssetWC" src="img/Renders%20360/Interiores/WC.webp" alt="WC">
           </a-assets>
-          <a-entity camera look-controls wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
+          <a-entity camera="fov: 80" look-controls="touchEnabled: false; mouseEnabled: true; magicWindowTrackingEnabled: false" wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="objects: .tour-hotspot"></a-entity>
           </a-entity>
           <a-sky id="tourSky" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" rotation="0 -90 0" radius="30"></a-sky>
@@ -1430,13 +1704,16 @@
     // Load SVG externally then init interactions
     document.addEventListener('DOMContentLoaded', () => {
       const svgContainer = document.querySelector('#svgContainer');
-      if (svgContainer) {
+      const shouldUseMobileMasterPlan = window.matchMedia('(max-width: 768px)').matches;
+      if (svgContainer && !shouldUseMobileMasterPlan) {
         fetch('img/plano-interactivo.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
             initSvgApartmentClicks();
           });
+      } else if (svgContainer) {
+        svgContainer.innerHTML = '';
       }
     });
 
@@ -1636,14 +1913,25 @@
     const tourPosDisplay = document.getElementById('tourPosDisplay');
     const tourPosCopyBtn = document.getElementById('tourPosCopyBtn');
     const tourPosFixBtn  = document.getElementById('tourPosFixBtn');
+    const tourTouchHint = document.getElementById('tourTouchHint');
     const openTourButtons = document.querySelectorAll('.js-open-tour');
     const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
+    const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
     let isTransitioning = false;
     const SCENE_BLEND_SWAP_DELAY = 120;
     const SCENE_BLEND_TOTAL_DURATION = 900;
     const SCENE_MOVE_SWAP_DELAY = 320;
     const SCENE_MOVE_CAMERA_RESET_DELAY = 220;
     const SCENE_MOVE_TOTAL_DURATION = 1180;
+    const DEFAULT_TOUR_FOV = 80;
+    const MIN_TOUR_FOV = 45;
+    const MAX_TOUR_FOV = 95;
+    const PINCH_ZOOM_STRENGTH = 0.78;
+    const TOUCH_LOOK_SENSITIVITY = 0.0032;
+    const MAX_TOUR_PITCH = (Math.PI / 2) - 0.08;
+    const TOUCH_HINT_STORAGE_KEY = 'tour-touch-hint-seen';
+    let tourTouchHintTimeout = null;
+    let tourTouchHintShowTimeout = null;
 
     const availableTourIndexes = tourScenes
       .map((scene, index) => scene.locked ? null : index)
@@ -1658,6 +1946,99 @@
 
     function getSceneById(id) {
       return tourScenes.find((scene) => scene.id === id) || null;
+    }
+
+    function getTourThreeCamera() {
+      if (tourCamera && typeof tourCamera.getObject3D === 'function') {
+        return tourCamera.getObject3D('camera');
+      }
+      return tourScene && tourScene.camera ? tourScene.camera : null;
+    }
+
+    function getTourLookControls() {
+      return tourCamera && tourCamera.components ? tourCamera.components['look-controls'] : null;
+    }
+
+    function syncTourCameraRotation() {
+      const lookControls = getTourLookControls();
+      if (!lookControls || !lookControls.pitchObject || !lookControls.yawObject || !tourCamera) return;
+
+      const pitchDeg = lookControls.pitchObject.rotation.x * (180 / Math.PI);
+      const yawDeg = lookControls.yawObject.rotation.y * (180 / Math.PI);
+      tourCamera.setAttribute('rotation', `${pitchDeg} ${yawDeg} 0`);
+    }
+
+    function setTourRotation(pitchDeg, yawDeg) {
+      const lookControls = getTourLookControls();
+      const pitchRad = (Number(pitchDeg) || 0) * (Math.PI / 180);
+      const yawRad = (Number(yawDeg) || 0) * (Math.PI / 180);
+
+      if (lookControls && lookControls.pitchObject && lookControls.yawObject) {
+        lookControls.pitchObject.rotation.x = pitchRad;
+        lookControls.yawObject.rotation.y = yawRad;
+      }
+      if (tourCamera) {
+        tourCamera.setAttribute('rotation', `${Number(pitchDeg) || 0} ${Number(yawDeg) || 0} 0`);
+      }
+    }
+
+    function setTourFov(nextFov) {
+      const camera3D = getTourThreeCamera();
+      const clampedFov = Math.max(MIN_TOUR_FOV, Math.min(MAX_TOUR_FOV, Number(nextFov) || DEFAULT_TOUR_FOV));
+      if (tourCamera) {
+        tourCamera.setAttribute('camera', 'fov', clampedFov);
+      }
+      if (camera3D) {
+        camera3D.fov = clampedFov;
+        camera3D.updateProjectionMatrix();
+      }
+    }
+
+    function resetTourZoom() {
+      setTourFov(DEFAULT_TOUR_FOV);
+    }
+
+    function hideTourTouchHint() {
+      if (tourTouchHintShowTimeout) {
+        window.clearTimeout(tourTouchHintShowTimeout);
+        tourTouchHintShowTimeout = null;
+      }
+      if (tourTouchHintTimeout) {
+        window.clearTimeout(tourTouchHintTimeout);
+        tourTouchHintTimeout = null;
+      }
+      if (!tourTouchHint) return;
+      tourTouchHint.classList.remove('show');
+      tourTouchHint.setAttribute('aria-hidden', 'true');
+    }
+
+    function showTourTouchHint() {
+      if (!tourTouchHint || !isTouchViewport() || posDebugActive) return;
+      try {
+        if (window.sessionStorage && sessionStorage.getItem(TOUCH_HINT_STORAGE_KEY) === '1') return;
+      } catch (error) {
+        // Ignore storage access issues and still show the hint.
+      }
+
+      try {
+        if (window.sessionStorage) sessionStorage.setItem(TOUCH_HINT_STORAGE_KEY, '1');
+      } catch (error) {
+        // Ignore storage access issues.
+      }
+
+      if (tourTouchHintShowTimeout) {
+        window.clearTimeout(tourTouchHintShowTimeout);
+      }
+      if (tourTouchHintTimeout) {
+        window.clearTimeout(tourTouchHintTimeout);
+      }
+
+      tourTouchHintShowTimeout = window.setTimeout(() => {
+        if (!tourTouchHint) return;
+        tourTouchHint.classList.add('show');
+        tourTouchHint.setAttribute('aria-hidden', 'false');
+        tourTouchHintTimeout = window.setTimeout(hideTourTouchHint, 3600);
+      }, 260);
     }
 
     function setControlsDisabled(disabled) {
@@ -1953,8 +2334,9 @@
         crossfade: crossfadeSky,
         fadeDuration: skyFadeDuration
       });
+      resetTourZoom();
       if (tourCamera && !preserveCamera) {
-        tourCamera.setAttribute('rotation', '0 0 0');
+        setTourRotation(0, 0);
       }
       // Esconder pin de posición al cambiar escena
       const clickPin = document.getElementById('tourClickPin');
@@ -2074,6 +2456,8 @@
         tourScene.play();
       }
       window.requestAnimationFrame(refreshSceneViewport);
+      resetTourZoom();
+      showTourTouchHint();
 
       if (tourTransitionOverlay) {
         tourTransitionOverlay.classList.remove('fading', 'releasing');
@@ -2098,6 +2482,7 @@
     function closeTour() {
       if (!tourModal) return;
 
+      hideTourTouchHint();
       tourModal.classList.remove('active');
       tourModal.setAttribute('aria-hidden', 'true');
       pageBody.style.overflow = '';
@@ -2175,6 +2560,91 @@
     const tourStage = document.querySelector('.tour-stage');
     let posDebugActive = false;
 
+    function setupTouchZoom() {
+      let pinchStartDistance = 0;
+      let pinchStartFov = DEFAULT_TOUR_FOV;
+      let touchLookActive = false;
+      let lastTouchX = 0;
+      let lastTouchY = 0;
+
+      const trySetup = () => {
+        const canvas = tourScene && tourScene.canvas;
+        if (!canvas || canvas.dataset.touchZoomReady === 'true') return;
+        canvas.dataset.touchZoomReady = 'true';
+
+        const getTouchDistance = (touches) => {
+          if (!touches || touches.length < 2) return 0;
+          const dx = touches[0].clientX - touches[1].clientX;
+          const dy = touches[0].clientY - touches[1].clientY;
+          return Math.hypot(dx, dy);
+        };
+
+        canvas.addEventListener('touchstart', (event) => {
+          if (event.touches.length === 1) {
+            touchLookActive = true;
+            lastTouchX = event.touches[0].clientX;
+            lastTouchY = event.touches[0].clientY;
+            return;
+          }
+
+          touchLookActive = false;
+          if (event.touches.length !== 2) return;
+          pinchStartDistance = getTouchDistance(event.touches);
+          const camera3D = getTourThreeCamera();
+          pinchStartFov = camera3D && Number.isFinite(camera3D.fov) ? camera3D.fov : DEFAULT_TOUR_FOV;
+        }, { passive: true });
+
+        canvas.addEventListener('touchmove', (event) => {
+          if (event.touches.length === 1 && touchLookActive) {
+            event.preventDefault();
+            hideTourTouchHint();
+
+            const lookControls = getTourLookControls();
+            const currentTouch = event.touches[0];
+            const deltaX = currentTouch.clientX - lastTouchX;
+            const deltaY = currentTouch.clientY - lastTouchY;
+
+            lastTouchX = currentTouch.clientX;
+            lastTouchY = currentTouch.clientY;
+
+            if (lookControls && lookControls.pitchObject && lookControls.yawObject) {
+              lookControls.yawObject.rotation.y -= deltaX * TOUCH_LOOK_SENSITIVITY;
+              lookControls.pitchObject.rotation.x = Math.max(
+                -MAX_TOUR_PITCH,
+                Math.min(MAX_TOUR_PITCH, lookControls.pitchObject.rotation.x - (deltaY * TOUCH_LOOK_SENSITIVITY))
+              );
+              syncTourCameraRotation();
+            }
+            return;
+          }
+
+          if (event.touches.length !== 2 || !pinchStartDistance) return;
+          event.preventDefault();
+          hideTourTouchHint();
+          const currentDistance = getTouchDistance(event.touches);
+          if (!currentDistance) return;
+          const zoomRatio = pinchStartDistance / currentDistance;
+          setTourFov(pinchStartFov * Math.pow(zoomRatio, PINCH_ZOOM_STRENGTH));
+        }, { passive: false });
+
+        const clearPinch = () => {
+          pinchStartDistance = 0;
+          touchLookActive = false;
+        };
+
+        canvas.addEventListener('touchend', clearPinch, { passive: true });
+        canvas.addEventListener('touchcancel', clearPinch, { passive: true });
+      };
+
+      if (tourScene) {
+        if (tourScene.hasLoaded) {
+          trySetup();
+        } else {
+          tourScene.addEventListener('loaded', trySetup, { once: true });
+        }
+      }
+    }
+
     // ── Clic para colocar pin de posición ──
     function setupClickPositionPicker() {
       const trySetup = () => {
@@ -2231,6 +2701,7 @@
     }
 
     setupClickPositionPicker();
+    setupTouchZoom();
 
     if (tourPosToggle) {
       tourPosToggle.addEventListener('click', () => {
