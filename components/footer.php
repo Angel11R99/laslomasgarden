@@ -117,13 +117,29 @@
       width: min(1240px, calc(100% - 1.6rem));
       grid-template-columns: 1fr;
       gap: 1.6rem;
+      justify-items: center;
+      text-align: center;
     }
 
     .lls-footer-follow {
       grid-column: auto;
     }
 
+    .lls-footer-logo {
+      justify-content: center;
+    }
+
+    .lls-footer-links {
+      justify-items: center;
+    }
+
+    .lls-footer-support-link {
+      display: inline-flex;
+      justify-content: center;
+    }
+
     .lls-social-row {
+      justify-content: center;
       gap: 0.78rem;
     }
   }
