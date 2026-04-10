@@ -469,6 +469,47 @@
       background: rgba(255, 255, 255, 0.82);
     }
 
+    body.page-about .lls-header-inner {
+      width: calc(100% - 1rem);
+      min-height: 84px;
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+      padding-inline: 0.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    body.page-about .lls-header-center {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 0;
+      max-width: 132px;
+      overflow: hidden;
+      padding-top: 0;
+    }
+
+    body.page-about .lls-header-logo {
+      width: clamp(104px, 28vw, 128px);
+    }
+
+    body.page-about .lls-header-right {
+      width: auto;
+      min-width: 48px;
+      min-height: 48px;
+      padding-top: 0;
+      padding-left: 0;
+      padding-right: 0;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0;
+      text-align: right;
+      flex-wrap: nowrap;
+      transform: none;
+    }
+
     .lls-header.is-scrolled .lls-header-inner,
     .lls-header.is-compact .lls-header-inner {
       width: calc(100% - 1rem);
@@ -550,6 +591,29 @@
 
     .lls-header.is-scrolled .lls-header-center,
     .lls-header.is-compact .lls-header-center {
+      display: none;
+    }
+
+    body.page-about .lls-header.is-scrolled .lls-header-inner,
+    body.page-about .lls-header.is-compact .lls-header-inner {
+      justify-content: flex-end;
+      min-height: 60px;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      gap: 0;
+    }
+
+    body.page-about .lls-header.is-scrolled .lls-header-right,
+    body.page-about .lls-header.is-compact .lls-header-right {
+      width: auto;
+      min-width: 48px;
+      min-height: 48px;
+      padding-right: 0;
+      justify-content: flex-end;
+    }
+
+    body.page-about .lls-header.is-scrolled .lls-header-center,
+    body.page-about .lls-header.is-compact .lls-header-center {
       display: none;
     }
 
