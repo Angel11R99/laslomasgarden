@@ -34,6 +34,11 @@
       box-sizing: border-box;
     }
 
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -54,6 +59,7 @@
     .lls-container {
       width: min(var(--lls-lifestyle-content), calc(100% - 2.6rem));
       margin-inline: auto;
+      max-width: 100%;
     }
 
     .lls-hero {
@@ -136,6 +142,7 @@
       align-items: stretch;
       gap: 0;
       width: 100%;
+      max-width: 100%;
     }
 
     .lls-image-main {
@@ -232,6 +239,7 @@
 
     .lls-layouts .lls-container {
       width: min(1460px, calc(100% - 2.4rem));
+      max-width: 100%;
     }
 
     .lls-layouts .lls-grid-main {
@@ -312,6 +320,7 @@
       filter: drop-shadow(0 22px 26px rgba(2, 66, 51, 0.35));
       justify-self: end;
       transform: translateX(28px);
+      overflow: hidden;
     }
 
     .lls-layout-image img {
@@ -502,7 +511,8 @@
       font-weight: 600;
       color: #1a3a28;
       margin: 0 0 1rem;
-      white-space: nowrap;
+      white-space: normal;
+      text-wrap: balance;
     }
 
     .lls-mortgage-price-field {
@@ -531,6 +541,7 @@
       color: #1a3a28;
       background: transparent;
       width: 100%;
+      min-width: 0;
     }
 
     .lls-mortgage-body {
@@ -617,6 +628,7 @@
       border-radius: 14px;
       padding: 2.8rem 2.8rem 2.2rem;
       box-shadow: 0 10px 28px rgba(15, 80, 50, 0.09);
+      min-width: 0;
     }
 
     .lls-mortgage-split {
@@ -624,6 +636,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 0.6rem;
       margin-bottom: 1.2rem;
+      align-items: start;
     }
 
     .lls-mortgage-split-label {
@@ -636,7 +649,9 @@
     .lls-mortgage-split-value {
       font-size: clamp(1.05rem, 1.4vw, 1.35rem);
       font-weight: 700;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .lls-mortgage-split-value.green { color: #0d8f53; }
@@ -669,6 +684,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .lls-mortgage-monthly-amount {
@@ -676,6 +692,12 @@
       font-weight: 700;
       color: #0d8f53;
       letter-spacing: -0.01em;
+      min-width: 0;
+      max-width: 100%;
+      flex: 1 1 320px;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .lls-mortgage-precalify {
@@ -697,6 +719,8 @@
       box-shadow: 0 6px 16px rgba(13,105,88,0.3);
       transition: opacity 0.2s;
       white-space: nowrap;
+      flex: 0 0 auto;
+      max-width: 100%;
     }
 
     .lls-mortgage-precalify:hover { opacity: 0.88; }
@@ -801,17 +825,148 @@
       border-left: 4px solid #19a950;
       border-radius: 0 6px 6px 0;
       line-height: 1.5;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     @media (max-width: 760px) {
+      .lls-mortgage {
+        padding: 3.6rem 0 4rem;
+      }
+
+      .lls-mortgage-inner {
+        width: calc(100% - 2rem);
+      }
+
       .lls-mortgage-body {
         grid-template-columns: 1fr;
+        gap: 1.6rem;
+      }
+
+      .lls-mortgage-controls {
+        gap: 1.25rem;
+      }
+
+      .lls-mortgage-results {
+        padding: 1.5rem 1.2rem 1.35rem;
+      }
+
+      .lls-mortgage-split {
+        grid-template-columns: 1fr;
+        gap: 0.95rem;
+      }
+
+      .lls-mortgage-monthly-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .lls-mortgage-precalify {
+        width: 100%;
+        padding: 0.95rem 1.25rem;
+      }
+
+      .lls-mortgage-monthly-amount {
+        font-size: clamp(1.95rem, 9vw, 2.7rem);
+      }
+
+      .lls-mes-row {
+        gap: 0.6rem;
+        align-items: flex-start;
+      }
+
+      .lls-mwe-interest-saved {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --lls-mobile-shell: calc(100% - 2rem);
+      }
+
+      .lls-hero-content,
+      .lls-container,
+      .lls-layouts .lls-container,
+      .lls-amenities-shell,
+      .lls-lifestyle,
+      .lls-mortgage-inner,
+      .lls-amenities-shell,
+      .lls-copy,
+      .lls-layouts article,
+      .lls-layout-image,
+      .lls-lifestyle-grid,
+      .lls-brand-image,
+      .lls-mortgage-controls,
+      .lls-mortgage-results,
+      .lls-mortgage-split > div {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .lls-hero-content,
+      .lls-container,
+      .lls-layouts .lls-container,
+      .lls-amenities-shell,
+      .lls-lifestyle,
+      .lls-mortgage-inner {
+        width: var(--lls-mobile-shell);
+        margin-inline: auto;
+      }
+
+      .lls-amenities {
+        padding: 3.2rem 0 3.6rem;
+      }
+
+      .lls-copy,
+      .lls-layouts article {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+
+      .lls-lifestyle {
+        padding-top: 2.4rem;
+        padding-bottom: 2.4rem;
+      }
+
+      .lls-lifestyle h3 {
+        margin-top: 0;
+        margin-bottom: 1.6rem;
+      }
+
+      .lls-lifestyle p {
+        margin-bottom: 1.4rem;
+      }
+
+      .lls-benefit-item > div,
+      .lls-layout-list li > div {
+        min-width: 0;
+      }
+
+      .lls-intro h2,
+      .lls-copy h3,
+      .lls-layouts h3,
+      .lls-lifestyle h3,
+      .lls-mortgage-title,
+      .lls-mortgage-split-value,
+      .lls-mwe-interest-saved {
+        overflow-wrap: anywhere;
+      }
+
+      .lls-mortgage-split-value {
+        white-space: normal;
       }
     }
 
     @media (max-width: 640px) {
-      .lls-hero-content {
-        width: calc(100% - 1.4rem);
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      body > * {
+        max-width: 100%;
       }
 
       .lls-hero::after {
@@ -844,6 +999,57 @@
 
       .lls-lifestyle-grid img {
         height: clamp(180px, 52vw, 260px);
+      }
+
+      .lls-amenities-shell,
+      .lls-layouts .lls-grid-main,
+      .lls-lifestyle-grid,
+      .lls-mortgage-body {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .lls-layout-image,
+      .lls-image-main,
+      .lls-brand-image {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .lls-mortgage-title {
+        font-size: 1.1rem;
+      }
+
+      .lls-mortgage-price-field {
+        padding: 0.9rem 1.1rem;
+      }
+
+      .lls-mortgage-price-field span,
+      .lls-mortgage-price-field input,
+      .lls-mortgage-field select {
+        font-size: 1rem;
+      }
+
+      .lls-mortgage-field select {
+        padding: 0.9rem 2.8rem 0.9rem 1rem;
+      }
+
+      .lls-mortgage-controls {
+        padding-inline: 0.2rem;
+      }
+
+      .lls-mortgage-extra-header {
+        padding: 0.8rem 0.95rem;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+      }
+
+      .lls-mes-row {
+        flex-direction: column;
+      }
+
+      .lls-mortgage-disclaimer {
+        font-size: 0.8rem;
       }
     }
   </style>
