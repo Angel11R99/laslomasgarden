@@ -1,6 +1,9 @@
 <style>
   .lls-footer {
-    background: var(--lls-green-background);
+    background:
+      radial-gradient(ellipse at 62% 50%, #21c97a 0%, transparent 55%),
+      radial-gradient(ellipse at 30% 60%, #18a362 0%, transparent 50%),
+      #0a7040;
     color: #ffffff;
     padding: clamp(3rem, 6vw, 4.8rem) 0;
   }
