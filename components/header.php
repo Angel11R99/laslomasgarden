@@ -16,7 +16,8 @@
   }
 
   .lls-header.is-scrolled,
-  body.page-about .lls-header {
+  body.page-about .lls-header,
+  body.page-amenities .lls-header {
     background: rgba(10, 94, 56, 0.84);
     backdrop-filter: blur(7px) saturate(135%);
     -webkit-backdrop-filter: blur(7px) saturate(135%);
@@ -221,11 +222,13 @@
   }
 
 
-  body.page-about .lls-header-logo {
+  body.page-about .lls-header-logo,
+  body.page-amenities .lls-header-logo {
     width: clamp(148px, 12vw, 190px);
   }
 
-  body.page-about .lls-header-right {
+  body.page-about .lls-header-right,
+  body.page-amenities .lls-header-right {
     padding-left: clamp(0.6rem, 1.2vw, 1rem);
   }
 
@@ -284,17 +287,20 @@
       font-size: 0.84rem;
     }
 
-    body.page-about .lls-header-right {
+    body.page-about .lls-header-right,
+    body.page-amenities .lls-header-right {
       padding-left: 0.2rem;
     }
   }
 
   @media (max-width: 1180px) {
-    body.page-about {
+    body.page-about,
+    body.page-amenities {
       --lls-header-overlay: 132px;
     }
 
-    body.page-about .lls-header-inner {
+    body.page-about .lls-header-inner,
+    body.page-amenities .lls-header-inner {
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
@@ -304,15 +310,18 @@
       gap: 0.7rem;
     }
 
-    body.page-about .lls-header-center {
+    body.page-about .lls-header-center,
+    body.page-amenities .lls-header-center {
       padding-top: 0;
     }
 
-    body.page-about .lls-header-logo {
+    body.page-about .lls-header-logo,
+    body.page-amenities .lls-header-logo {
       width: clamp(148px, 26vw, 190px);
     }
 
-    body.page-about .lls-header-right {
+    body.page-about .lls-header-right,
+    body.page-amenities .lls-header-right {
       width: auto;
       flex: 0 1 auto;
       justify-content: center;
@@ -324,20 +333,23 @@
       transform: none;
     }
 
-    body.page-about .lls-nav-list {
+    body.page-about .lls-nav-list,
+    body.page-amenities .lls-nav-list {
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
-    body.page-about .lls-header.is-compact .lls-header-inner {
+    body.page-about .lls-header.is-compact .lls-header-inner,
+    body.page-amenities .lls-header.is-compact .lls-header-inner {
       min-height: 78px;
       padding-top: 6px;
       gap: 0.7rem;
       align-items: flex-start;
     }
 
-    body.page-about .lls-header.is-compact .lls-header-right {
+    body.page-about .lls-header.is-compact .lls-header-right,
+    body.page-amenities .lls-header.is-compact .lls-header-right {
       min-height: 64px;
       align-items: center;
     }
@@ -369,7 +381,8 @@
       transform: none;
     }
 
-    body.page-about .lls-header-right {
+    body.page-about .lls-header-right,
+    body.page-amenities .lls-header-right {
       padding-left: 0;
     }
 
@@ -496,7 +509,8 @@
     }
 
 
-    body.page-about .lls-header-inner {
+    body.page-about .lls-header-inner,
+    body.page-amenities .lls-header-inner {
       width: calc(100% - 1rem);
       min-height: 84px;
       padding-top: 0.4rem;
@@ -508,7 +522,8 @@
       gap: 0.75rem;
     }
 
-    body.page-about .lls-header-center {
+    body.page-about .lls-header-center,
+    body.page-amenities .lls-header-center {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -518,11 +533,13 @@
       padding-top: 0;
     }
 
-    body.page-about .lls-header-logo {
+    body.page-about .lls-header-logo,
+    body.page-amenities .lls-header-logo {
       width: clamp(104px, 28vw, 128px);
     }
 
-    body.page-about .lls-header-right {
+    body.page-about .lls-header-right,
+    body.page-amenities .lls-header-right {
       width: auto;
       min-width: 48px;
       min-height: 48px;
@@ -644,7 +661,9 @@
     }
 
     body.page-about .lls-header.is-scrolled .lls-header-inner,
-    body.page-about .lls-header.is-compact .lls-header-inner {
+    body.page-about .lls-header.is-compact .lls-header-inner,
+    body.page-amenities .lls-header.is-scrolled .lls-header-inner,
+    body.page-amenities .lls-header.is-compact .lls-header-inner {
       justify-content: space-between;
       min-height: 60px;
       padding-top: 0.3rem;
@@ -653,7 +672,9 @@
     }
 
     body.page-about .lls-header.is-scrolled .lls-header-right,
-    body.page-about .lls-header.is-compact .lls-header-right {
+    body.page-about .lls-header.is-compact .lls-header-right,
+    body.page-amenities .lls-header.is-scrolled .lls-header-right,
+    body.page-amenities .lls-header.is-compact .lls-header-right {
       width: auto;
       min-width: 48px;
       min-height: 48px;
@@ -698,6 +719,7 @@
               <li><a href="/rooms">Rooms</a></li>
             </ul>
           </li>
+          <li><a href="/amenities">Amenities</a></li>
           <li><a href="/index.php#contact">Contact Us</a></li>
           <li><a href="/about-us">About Us</a></li>
         </ul>
