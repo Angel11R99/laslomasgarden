@@ -110,52 +110,50 @@
       gap: 0;
     }
 
-    /* White sections — text + image side by side with shell */
+    /* White sections — full width, text left, image right flush */
     .rooms-section-white {
-      padding: clamp(3rem, 6vw, 4.5rem) 0;
+      background: #f2f2ee;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: clamp(320px, 38vw, 480px);
     }
 
     .rooms-section-white-inner {
-      width: min(var(--lls-shell), calc(100% - 2.2rem));
-      margin-inline: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 4rem);
-      align-items: center;
+      display: contents;
     }
 
-    .rooms-section-white-inner.is-reverse .rooms-media {
-      order: 2;
-    }
-    .rooms-section-white-inner.is-reverse .rooms-copy {
-      order: 1;
+    .rooms-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 5rem);
     }
 
     .rooms-media {
       margin: 0;
-      border-radius: 8px;
       overflow: hidden;
     }
 
     .rooms-media img {
-      height: clamp(260px, 28vw, 380px);
+      height: 100%;
+      min-height: clamp(320px, 38vw, 480px);
       object-fit: cover;
     }
 
     .rooms-copy h2 {
-      margin: 0 0 0.8rem;
+      margin: 0 0 1.4rem;
       color: var(--lls-title);
-      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      font-size: clamp(1.5rem, 2.3vw, 2.2rem);
       line-height: 1.15;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .rooms-copy p {
       margin: 0;
       font-size: clamp(0.93rem, 1vw, 1.02rem);
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--lls-copy);
-      max-width: 58ch;
+      text-align: justify;
     }
 
     .rooms-actions {
@@ -245,22 +243,88 @@
       border-color: rgba(255, 255, 255, 0.7);
     }
 
+    /* ── Pricing table ── */
+    .pricing-section {
+      padding: clamp(3rem, 6vw, 4.5rem) 1rem;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .pricing-title {
+      margin: 0 0 1.8rem;
+      color: var(--lls-title);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .pricing-wrap {
+      width: min(820px, 100%);
+      margin-inline: auto;
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    }
+
+    .pricing-table thead th {
+      background: var(--lls-title);
+      color: #ffffff;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1rem;
+      text-align: center;
+    }
+
+    .pricing-header-row td {
+      color: var(--lls-title);
+      font-weight: 700;
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      letter-spacing: 0.04em;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #dde8e2;
+    }
+
+    .pricing-table tbody tr:not(.pricing-header-row) td {
+      padding: 0.8rem 1rem;
+      font-size: clamp(0.9rem, 1.05vw, 1rem);
+      color: #444;
+      border-bottom: 1px solid #edf2ef;
+      text-align: center;
+    }
+
+    .pricing-table tbody tr:not(.pricing-header-row):last-child td {
+      border-bottom: none;
+    }
+
+    .pricing-notes {
+      margin-top: 1.8rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .pricing-notes p {
+      margin: 0;
+      font-size: clamp(0.88rem, 1vw, 0.98rem);
+      color: #333;
+      text-align: center;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .rooms-section-white-inner {
-        grid-template-columns: 1fr;
-        width: min(var(--lls-shell), calc(100% - 1.4rem));
-      }
-
-      .rooms-section-white-inner.is-reverse .rooms-media,
-      .rooms-section-white-inner.is-reverse .rooms-copy {
-        order: initial;
-      }
-
+      .rooms-section-white,
       .rooms-section-green {
         grid-template-columns: 1fr;
       }
 
+      .rooms-copy {
+        padding: 2.5rem 1.4rem;
+      }
+
+      .rooms-media img,
       .rooms-section-green .rooms-media img {
         min-height: 260px;
         height: 260px;
@@ -293,6 +357,52 @@
         <h1 id="rooms-intro-title">Own the lifestyle people travel to find</h1>
         <p>2-bedroom residences with contemporary design, efficient layouts, and welcoming environments that adapt to your way of living.</p>
         <a class="rooms-intro-btn" href="/tourguiado">3D TOUR</a>
+      </div>
+    </section>
+
+    <!-- Pricing table -->
+    <section class="pricing-section">
+      <h2 class="pricing-title">2 BEDROOM - 84.3M²</h2>
+      <div class="pricing-wrap">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th colspan="3">PRICES FOR UNFURNISHED CONDOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pricing-header-row">
+              <td>FLOOR</td>
+              <td>AREA</td>
+              <td>PRICE</td>
+            </tr>
+            <tr>
+              <td>1<sup>st</sup> Floor</td>
+              <td>101.3 m2 / 1,090 sq. ft.</td>
+              <td>$188,894</td>
+            </tr>
+            <tr>
+              <td>2<sup>nd</sup> Floor</td>
+              <td>84.3 m2 / 907 sq. ft.</td>
+              <td>$185,460</td>
+            </tr>
+            <tr>
+              <td>3<sup>rd</sup> Floor</td>
+              <td>84.3 m2 / 907 sq. ft.</td>
+              <td>$185,460</td>
+            </tr>
+            <tr>
+              <td>4<sup>th</sup> Floor</td>
+              <td>99.3 m2 / 1069 sq. ft.</td>
+              <td>$189,900</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pricing-notes">
+          <p><strong>All condos on the 1<sup>st</sup> floor include a 17 m2 (183 sq. ft.) front yard patio.</strong></p>
+          <p><strong>All condos on the 4<sup>th</sup> floor include a 15 m2 (161 sq. ft.)</strong></p>
+          <p><strong>All condo purchases include a free parking space.</strong></p>
+        </div>
       </div>
     </section>
 
