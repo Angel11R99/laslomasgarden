@@ -195,20 +195,20 @@
 
         /* Button consistency with index.php */
         .amenities-page .lls-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 22px;
-            padding: 0.6rem 1.8rem;
-            border: 1px solid transparent;
-            border-radius: 1px;
-            background: var(--lls-green-gradient);
-            color: var(--lls-white, #fff);
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 1rem;
+                display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 22px;
+    padding: 1.6rem 3.8rem;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background: var(--lls-green-gradient);
+    color: var(--lls-white, #fff);
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1.2rem;
         }
 
         .amenities-page .lls-button:hover {
@@ -303,7 +303,7 @@
                     <img src="img/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
                 </div>
                 <div class="amenity-block__content">
-                    <h2>Basketball court</h2>
+                    <h2>Basketball Court</h2>
                     <p>
                         Stay active and enjoy the game in our private basketball court. Whether for a friendly match
                         or a solo practice session, this high-quality facility is available for residents who value
@@ -324,7 +324,7 @@
                     <img src="img/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
                 </div>
                 <div class="amenity-block__content">
-                    <h2>Padel court</h2>
+                    <h2>Padel Court</h2>
                     <p>
                         Experience one of the fastest-growing sports in the world in our exclusive padel court.
                         Designed with modern standards and premium surfaces, it provides the perfect setting for fun,
