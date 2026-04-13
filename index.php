@@ -1059,9 +1059,9 @@
   <?php include __DIR__ . '/components/header.php'; ?>
 
   <section class="lls-hero">
-    <div class="lls-hero-content">
+    <!-- <div class="lls-hero-content">
       <h1>Caribbean Living, Every Day.</h1>
-    </div>
+    </div> -->
   </section>
 
   <section class="lls-intro" id="about">
