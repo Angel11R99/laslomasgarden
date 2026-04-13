@@ -1,3 +1,7 @@
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+$is_home = ($current_page == 'index.php' || $current_page == '' || $current_page == 'index');
+?>
 <style>
   :root {
     --lls-header-overlay: 122px;
@@ -9,20 +13,21 @@
     z-index: 1000;
     width: 100%;
     max-width: 100%;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    transition: background-color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
-  }
-
-  .lls-header.is-scrolled,
-  body.page-about .lls-header,
-  body.page-amenities .lls-header {
     background: rgba(10, 94, 56, 0.84);
     backdrop-filter: blur(7px) saturate(135%);
     -webkit-backdrop-filter: blur(7px) saturate(135%);
     box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16);
+    border: 0;
+    transition: background-color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease, box-shadow 0.28s ease;
   }
+
+  .lls-header.is-home:not(.is-scrolled) {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+
 
   .lls-header-inner {
     width: min(1280px, calc(100% - 2.4rem));
@@ -59,13 +64,18 @@
   .lls-header-logo {
     display: inline-block;
     text-decoration: none;
-    width: clamp(164px, 14.5vw, 228px);
+    width: clamp(148px, 12vw, 190px);
     opacity: 1;
     transform: translateY(0);
     transform-origin: center top;
     will-change: transform, opacity;
-    transition: opacity 0.22s ease, transform 0.28s ease;
+    transition: opacity 0.22s ease, transform 0.28s ease, width 0.28s ease;
   }
+
+  .lls-header.is-home .lls-header-logo {
+    width: clamp(164px, 14.5vw, 228px);
+  }
+
 
   .lls-header-logo img {
     width: 100%;
@@ -222,15 +232,21 @@
   }
 
 
-  body.page-about .lls-header-logo,
-  body.page-amenities .lls-header-logo {
-    width: clamp(148px, 12vw, 190px);
+  .lls-header-right {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+    padding-top: 0;
+    padding-left: clamp(0.6rem, 1.2vw, 1rem);
+    text-align: right;
+    white-space: nowrap;
+    min-height: 64px;
+    width: auto;
+    transition: padding-top 0.28s ease, padding-bottom 0.28s ease, min-height 0.28s ease, transform 0.28s ease, opacity 0.22s ease, padding-left 0.28s ease;
   }
 
-  body.page-about .lls-header-right,
-  body.page-amenities .lls-header-right {
-    padding-left: clamp(0.6rem, 1.2vw, 1rem);
-  }
 
   .lls-flag-es {
     width: 17px;
@@ -287,20 +303,19 @@
       font-size: 0.84rem;
     }
 
-    body.page-about .lls-header-right,
-    body.page-amenities .lls-header-right {
+    .lls-header-right {
       padding-left: 0.2rem;
     }
+
   }
 
   @media (max-width: 1180px) {
-    body.page-about,
-    body.page-amenities {
+    :root {
       --lls-header-overlay: 132px;
     }
 
-    body.page-about .lls-header-inner,
-    body.page-amenities .lls-header-inner {
+
+    .lls-header-inner {
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
@@ -310,18 +325,15 @@
       gap: 0.7rem;
     }
 
-    body.page-about .lls-header-center,
-    body.page-amenities .lls-header-center {
+    .lls-header-center {
       padding-top: 0;
     }
 
-    body.page-about .lls-header-logo,
-    body.page-amenities .lls-header-logo {
+    .lls-header-logo {
       width: clamp(148px, 26vw, 190px);
     }
 
-    body.page-about .lls-header-right,
-    body.page-amenities .lls-header-right {
+    .lls-header-right {
       width: auto;
       flex: 0 1 auto;
       justify-content: center;
@@ -333,26 +345,24 @@
       transform: none;
     }
 
-    body.page-about .lls-nav-list,
-    body.page-amenities .lls-nav-list {
+    .lls-nav-list {
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
-    body.page-about .lls-header.is-compact .lls-header-inner,
-    body.page-amenities .lls-header.is-compact .lls-header-inner {
+    .lls-header.is-compact .lls-header-inner {
       min-height: 78px;
       padding-top: 6px;
       gap: 0.7rem;
       align-items: flex-start;
     }
 
-    body.page-about .lls-header.is-compact .lls-header-right,
-    body.page-amenities .lls-header.is-compact .lls-header-right {
+    .lls-header.is-compact .lls-header-right {
       min-height: 64px;
       align-items: center;
     }
+
   }
 
   @media (max-width: 960px) {
@@ -381,10 +391,10 @@
       transform: none;
     }
 
-    body.page-about .lls-header-right,
-    body.page-amenities .lls-header-right {
+    .lls-header-right {
       padding-left: 0;
     }
+
 
     .lls-nav-list {
       gap: 14px;
@@ -509,8 +519,7 @@
     }
 
 
-    body.page-about .lls-header-inner,
-    body.page-amenities .lls-header-inner {
+    .lls-header-inner {
       width: calc(100% - 1rem);
       min-height: 84px;
       padding-top: 0.4rem;
@@ -522,8 +531,7 @@
       gap: 0.75rem;
     }
 
-    body.page-about .lls-header-center,
-    body.page-amenities .lls-header-center {
+    .lls-header-center {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -533,13 +541,11 @@
       padding-top: 0;
     }
 
-    body.page-about .lls-header-logo,
-    body.page-amenities .lls-header-logo {
+    .lls-header-logo {
       width: clamp(104px, 28vw, 128px);
     }
 
-    body.page-about .lls-header-right,
-    body.page-amenities .lls-header-right {
+    .lls-header-right {
       width: auto;
       min-width: 48px;
       min-height: 48px;
@@ -553,6 +559,7 @@
       flex-wrap: nowrap;
       transform: none;
     }
+
 
     .lls-header.is-scrolled .lls-header-inner,
     .lls-header.is-compact .lls-header-inner {
@@ -660,10 +667,8 @@
       padding-bottom: 0;
     }
 
-    body.page-about .lls-header.is-scrolled .lls-header-inner,
-    body.page-about .lls-header.is-compact .lls-header-inner,
-    body.page-amenities .lls-header.is-scrolled .lls-header-inner,
-    body.page-amenities .lls-header.is-compact .lls-header-inner {
+    .lls-header.is-scrolled .lls-header-inner,
+    .lls-header.is-compact .lls-header-inner {
       justify-content: space-between;
       min-height: 60px;
       padding-top: 0.3rem;
@@ -671,16 +676,15 @@
       gap: 0.75rem;
     }
 
-    body.page-about .lls-header.is-scrolled .lls-header-right,
-    body.page-about .lls-header.is-compact .lls-header-right,
-    body.page-amenities .lls-header.is-scrolled .lls-header-right,
-    body.page-amenities .lls-header.is-compact .lls-header-right {
+    .lls-header.is-scrolled .lls-header-right,
+    .lls-header.is-compact .lls-header-right {
       width: auto;
       min-width: 48px;
       min-height: 48px;
       padding-right: 0;
       justify-content: flex-end;
     }
+
 
     .lls-header.is-scrolled .lls-header-logo,
     .lls-header.is-compact .lls-header-logo {
@@ -692,7 +696,7 @@
   }
 </style>
 
-<header class="lls-header" id="site-header">
+<header class="lls-header <?php echo $is_home ? 'is-home' : ''; ?>" id="site-header">
   <div class="lls-header-inner">
     <div class="lls-header-spacer" aria-hidden="true"></div>
 
