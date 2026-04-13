@@ -150,8 +150,8 @@
 
     .rooms-copy p {
       margin: 0;
-      font-size: clamp(0.93rem, 1vw, 1.02rem);
-      line-height: 1.7;
+      font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+      line-height: 1.75;
       color: var(--lls-copy);
       text-align: justify;
     }
@@ -227,8 +227,8 @@
 
     .rooms-green-copy p {
       margin: 0;
-      font-size: clamp(0.93rem, 1vw, 1.02rem);
-      line-height: 1.6;
+      font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+      line-height: 1.75;
       color: rgba(240, 255, 248, 0.92);
       max-width: 52ch;
     }
@@ -272,7 +272,7 @@
     .pricing-table thead th {
       background: var(--lls-title);
       color: #ffffff;
-      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
       font-weight: 700;
       letter-spacing: 0.06em;
       padding: 0.9rem 1rem;
@@ -282,15 +282,15 @@
     .pricing-header-row td {
       color: var(--lls-title);
       font-weight: 700;
-      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
       letter-spacing: 0.04em;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #dde8e2;
     }
 
     .pricing-table tbody tr:not(.pricing-header-row) td {
-      padding: 0.8rem 1rem;
-      font-size: clamp(0.9rem, 1.05vw, 1rem);
+      padding: 0.85rem 1rem;
+      font-size: clamp(1rem, 1.15vw, 1.12rem);
       color: #444;
       border-bottom: 1px solid #edf2ef;
       text-align: center;
@@ -308,7 +308,7 @@
 
     .pricing-notes p {
       margin: 0;
-      font-size: clamp(0.88rem, 1vw, 0.98rem);
+      font-size: clamp(1rem, 1.1vw, 1.1rem);
       color: #333;
       text-align: center;
     }
