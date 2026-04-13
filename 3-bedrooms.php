@@ -108,6 +108,23 @@
       color: var(--lls-green-deep);
     }
 
+    /* ── Pricing Image Section ── */
+    .rooms-pricing-section {
+      padding: var(--lls-section-space) 0;
+      background: #ffffff;
+    }
+
+    .rooms-pricing-img-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+
+    .rooms-pricing-img-wrapper img {
+      width: 100%;
+      height: auto;
+    }
+
     /* ── Sections ── */
     .rooms-sections {
       display: grid;
@@ -322,6 +339,15 @@
         <h1 id="rooms-intro-title">Own the lifestyle people travel to find</h1>
         <p>3-bedroom residences with contemporary design, efficient layouts, and welcoming environments that adapt to your way of living.</p>
         <a class="rooms-intro-btn" href="/tourguiado">3D TOUR</a>
+      </div>
+    </section>
+
+    <!-- Pricing / Table Image -->
+    <section class="rooms-pricing-section">
+      <div class="lls-shell">
+        <div class="rooms-pricing-img-wrapper">
+          <img src="img/3bedrooms-image.png" alt="3 Bedrooms Pricing and Specifications" loading="lazy" decoding="async">
+        </div>
       </div>
     </section>
 
