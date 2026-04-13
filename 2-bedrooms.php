@@ -110,69 +110,64 @@
       gap: 0;
     }
 
-    /* White sections — full width, text left, image right flush */
-    .rooms-section-white {
-      background: #f2f2ee;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: clamp(320px, 38vw, 480px);
+    /* ── Room card: image full-width, text centered below ── */
+    .room-card {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
     }
 
-    .rooms-section-white-inner {
-      display: contents;
-    }
-
-    .rooms-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 5rem);
-    }
-
-    .rooms-media {
+    .room-card-media {
       margin: 0;
+      width: 100%;
       overflow: hidden;
     }
 
-    .rooms-media img {
-      height: 100%;
-      min-height: clamp(320px, 38vw, 480px);
+    .room-card-media img {
+      width: 100%;
+      height: clamp(300px, 42vw, 560px);
       object-fit: cover;
+      display: block;
     }
 
-    .rooms-copy h2 {
-      margin: 0 0 1.4rem;
+    .room-card-copy {
+      text-align: center;
+      padding: clamp(1.8rem, 3.5vw, 2.8rem) clamp(1.2rem, 8vw, 6rem);
+      background: #ffffff;
+    }
+
+    .room-card-copy h2 {
+      margin: 0 0 0.9rem;
       color: var(--lls-title);
       font-size: clamp(1.5rem, 2.3vw, 2.2rem);
-      line-height: 1.15;
+      line-height: 1.2;
       font-weight: 700;
     }
 
-    .rooms-copy p {
-      margin: 0;
-      font-size: clamp(1.05rem, 1.2vw, 1.18rem);
-      line-height: 1.75;
+    .room-card-copy p {
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: clamp(1rem, 1.2vw, 1.12rem);
+      line-height: 1.7;
       color: var(--lls-copy);
-      text-align: justify;
     }
 
     .rooms-actions {
-      margin-top: 1.2rem;
+      margin-top: 1.4rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 0.6rem;
+      gap: 0.7rem;
     }
 
     .rooms-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 38px;
-      padding: 0.45rem 1.2rem;
+      min-height: 40px;
+      padding: 0.5rem 1.4rem;
       text-decoration: none;
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       line-height: 1;
       letter-spacing: 0.02em;
       border: 1px solid var(--lls-green);
@@ -190,57 +185,6 @@
       background: transparent;
       color: var(--lls-green-deep);
       border-color: var(--lls-border);
-    }
-
-    /* Green sections — full width, image + green text panel */
-    .rooms-section-green {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: clamp(300px, 35vw, 460px);
-    }
-
-    .rooms-section-green .rooms-media {
-      border-radius: 0;
-    }
-
-    .rooms-section-green .rooms-media img {
-      height: 100%;
-      min-height: clamp(300px, 35vw, 460px);
-      object-fit: cover;
-    }
-
-    .rooms-green-copy {
-      background: var(--lls-green-strip);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 5rem);
-    }
-
-    .rooms-green-copy h2 {
-      margin: 0 0 1rem;
-      color: #ffffff;
-      font-size: clamp(1.4rem, 2.2vw, 2rem);
-      line-height: 1.2;
-      font-weight: 600;
-    }
-
-    .rooms-green-copy p {
-      margin: 0;
-      font-size: clamp(1.05rem, 1.2vw, 1.18rem);
-      line-height: 1.75;
-      color: rgba(240, 255, 248, 0.92);
-      max-width: 52ch;
-    }
-
-    .rooms-green-copy .rooms-actions {
-      margin-top: 1.4rem;
-    }
-
-    .rooms-button.is-outline-white {
-      background: transparent;
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.7);
     }
 
     /* ── Pricing table ── */
@@ -314,20 +258,13 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .rooms-section-white,
-      .rooms-section-green {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .room-card-media img {
+        height: clamp(220px, 55vw, 360px);
       }
 
-      .rooms-copy {
-        padding: 2.5rem 1.4rem;
-      }
-
-      .rooms-media img,
-      .rooms-section-green .rooms-media img {
-        min-height: 260px;
-        height: 260px;
+      .room-card-copy {
+        padding: 1.6rem 1rem;
       }
     }
 
@@ -379,7 +316,7 @@
             <tr>
               <td>1<sup>st</sup> Floor</td>
               <td>101.3 m2 / 1,090 sq. ft.</td>
-              <td>$188,894</td>
+              <td>$188,860</td>
             </tr>
             <tr>
               <td>2<sup>nd</sup> Floor</td>
@@ -393,14 +330,14 @@
             </tr>
             <tr>
               <td>4<sup>th</sup> Floor</td>
-              <td>99.3 m2 / 1069 sq. ft.</td>
+              <td>107.3 m2 / 1154 sq. ft.</td>
               <td>$189,900</td>
             </tr>
           </tbody>
         </table>
         <div class="pricing-notes">
-          <p><strong>All condos on the 1<sup>st</sup> floor include a 17 m2 (183 sq. ft.) front yard patio.</strong></p>
-          <p><strong>All condos on the 4<sup>th</sup> floor include a 15 m2 (161 sq. ft.)</strong></p>
+          <p><strong>All condos on the 1<sup>st</sup> floor include a 17 m2 (183 sq. ft.) back yard patio.</strong></p>
+          <p><strong>All condos on the 4<sup>th</sup> floor include a 23 m2 (247 sq. ft.)</strong></p>
           <p><strong>All condo purchases include a free parking space.</strong></p>
         </div>
       </div>
@@ -409,84 +346,73 @@
     <!-- Room sections -->
     <div class="rooms-sections">
 
-      <!-- Living — white, image right -->
-      <div class="rooms-section-white">
-        <div class="rooms-section-white-inner">
-          <div class="rooms-copy">
-            <h2>Warm and Relaxing Living Spaces</h2>
-            <p>The living areas at Las Lomas Serenas offer a more spacious and inviting environment, designed for enhanced comfort and everyday living. The open layout is complemented by abundant natural light, creating a bright, airy, and welcoming atmosphere.</p>
-            <div class="rooms-actions">
-              <a class="rooms-button is-solid" href="#contact">Request Information</a>
-              <a class="rooms-button is-outline" href="#contact">Contact US</a>
-            </div>
+      <div class="room-card">
+        <figure class="room-card-media">
+          <img src="img/rooms-living.webp" alt="Warm and relaxing living room" decoding="async">
+        </figure>
+        <div class="room-card-copy">
+          <h2>Warm and Relaxing Living Spaces</h2>
+          <p>The living areas at Las Lomas Serenas offer a more spacious and inviting environment, designed for enhanced comfort and everyday living. The open layout is complemented by abundant natural light, creating a bright, airy, and welcoming atmosphere.</p>
+          <div class="rooms-actions">
+            <a class="rooms-button is-solid" href="#contact">Request Information</a>
+            <a class="rooms-button is-outline" href="#contact">Contact US</a>
           </div>
-          <figure class="rooms-media">
-            <img src="img/rooms-living.webp" alt="Warm and relaxing living room" decoding="async">
-          </figure>
         </div>
       </div>
 
-      <!-- Kitchen — green, image left -->
-      <div class="rooms-section-green">
-        <figure class="rooms-media">
+      <div class="room-card">
+        <figure class="room-card-media">
           <img src="img/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
-        <div class="rooms-green-copy">
+        <div class="room-card-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
-          <p>The kitchens in Las Lomas Serenas Type C executive apartments are designed to combine functionality with elevated design and high-quality materials. Thoughtfully planned layouts and refined finishes make preparing and serving meals both effortless and enjoyable.</p>
+          <p>The kitchens in Las Lomas Serenas are designed to combine functionality with elevated design and high-quality materials. Thoughtfully planned layouts and refined finishes make preparing and serving meals both effortless and enjoyable.</p>
           <div class="rooms-actions">
-            <a class="rooms-button is-outline-white" href="#contact">Request Information</a>
-            <a class="rooms-button is-outline-white" href="#contact">Contact US</a>
+            <a class="rooms-button is-solid" href="#contact">Request Information</a>
+            <a class="rooms-button is-outline" href="#contact">Contact US</a>
           </div>
         </div>
       </div>
 
-      <!-- Bedroom — white, image right -->
-      <div class="rooms-section-white">
-        <div class="rooms-section-white-inner">
-          <div class="rooms-copy">
-            <h2>Comfortable &amp; Modern Bedrooms</h2>
-            <p>The bedrooms in Las Lomas Serenas are designed to provide an elevated atmosphere of relaxation and comfort. Each space features clean lines, premium finishes, and carefully selected high-quality materials that enhance both elegance and tranquility.</p>
-            <div class="rooms-actions">
-              <a class="rooms-button is-solid" href="#contact">Request Information</a>
-              <a class="rooms-button is-outline" href="#contact">Contact US</a>
-            </div>
+      <div class="room-card">
+        <figure class="room-card-media">
+          <img src="img/rooms-bedroom.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
+        </figure>
+        <div class="room-card-copy">
+          <h2>Comfortable &amp; Modern Bedrooms</h2>
+          <p>The bedrooms in Las Lomas Serenas are designed to provide an elevated atmosphere of relaxation and comfort. Each space features clean lines, premium finishes, and carefully selected high-quality materials that enhance both elegance and tranquility.</p>
+          <div class="rooms-actions">
+            <a class="rooms-button is-solid" href="#contact">Request Information</a>
+            <a class="rooms-button is-outline" href="#contact">Contact US</a>
           </div>
-          <figure class="rooms-media">
-            <img src="img/rooms-bedroom.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
-          </figure>
         </div>
       </div>
 
-      <!-- Bathroom — green, image left -->
-      <div class="rooms-section-green">
-        <figure class="rooms-media">
+      <div class="room-card">
+        <figure class="room-card-media">
           <img src="img/rooms-bathroom.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
         </figure>
-        <div class="rooms-green-copy">
+        <div class="room-card-copy">
           <h2>Clean Design Practical Comfort</h2>
           <p>The bathrooms in Las Lomas Serenas reflect a balance of sophistication, functionality, and modern design. Crafted with premium materials and refined finishes, these spaces offer an elevated level of comfort while maintaining practical ease of use.</p>
           <div class="rooms-actions">
-            <a class="rooms-button is-outline-white" href="#contact">Request Information</a>
-            <a class="rooms-button is-outline-white" href="#contact">Contact US</a>
+            <a class="rooms-button is-solid" href="#contact">Request Information</a>
+            <a class="rooms-button is-outline" href="#contact">Contact US</a>
           </div>
         </div>
       </div>
 
-      <!-- Laundry — white, image right -->
-      <div class="rooms-section-white">
-        <div class="rooms-section-white-inner">
-          <div class="rooms-copy">
-            <h2>Every Detail Has a Reason</h2>
-            <p>At Las Lomas Serenas, every space is designed with purpose. Our laundry areas combine clean design, efficiency, and modern comfort to support everyday living. Thoughtfully planned layouts and quality finishes create a practical, organized environment that is easy to maintain and comfortable to use.</p>
-            <div class="rooms-actions">
-              <a class="rooms-button is-solid" href="#contact">Request Information</a>
-              <a class="rooms-button is-outline" href="#contact">Contact US</a>
-            </div>
+      <div class="room-card">
+        <figure class="room-card-media">
+          <img src="img/rooms-laundry.webp" alt="Laundry area" loading="lazy" decoding="async">
+        </figure>
+        <div class="room-card-copy">
+          <h2>Every Detail Has a Reason</h2>
+          <p>At Las Lomas Serenas, every space is designed with purpose. Our laundry areas combine clean design, efficiency, and modern comfort to support everyday living. Thoughtfully planned layouts and quality finishes create a practical, organized environment that is easy to maintain and comfortable to use.</p>
+          <div class="rooms-actions">
+            <a class="rooms-button is-solid" href="#contact">Request Information</a>
+            <a class="rooms-button is-outline" href="#contact">Contact US</a>
           </div>
-          <figure class="rooms-media">
-            <img src="img/rooms-laundry.webp" alt="Laundry area" loading="lazy" decoding="async">
-          </figure>
         </div>
       </div>
 

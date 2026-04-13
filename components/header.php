@@ -716,7 +716,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
           <li><a href="/">Home</a></li>
           <li class="lls-nav-item-complex lls-has-submenu">
             <button class="lls-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-desktop-submenu">
-              Complex
+              Residence
             </button>
             <ul class="lls-submenu" id="lls-desktop-submenu" hidden>
               <li><a href="/tourguiado">Tour</a></li>
@@ -743,7 +743,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
         <li><a href="/">Home</a></li>
         <li class="lls-mobile-nav-item-complex lls-has-submenu">
           <button class="lls-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-mobile-submenu">
-            Complex
+            Residence
           </button>
           <ul class="lls-submenu" id="lls-mobile-submenu" hidden>
             <li><a href="/tourguiado">Tour</a></li>
