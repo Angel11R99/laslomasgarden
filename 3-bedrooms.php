@@ -413,29 +413,29 @@
             </tr>
             <tr>
               <td>1<sup>st</sup> Floor</td>
-              <td>137 m2 / 1474.66 sq. ft.</td>
-              <td>$301,400</td>
+              <td>139 m2 / 1496 sq. ft.</td>
+              <td>$247,800</td>
             </tr>
             <tr>
               <td>2<sup>nd</sup> Floor</td>
-              <td>115 m2 / 1237.85 sq. ft.</td>
-              <td>$253,000</td>
+              <td>110 m2 / 1184 sq. ft.</td>
+              <td>$242,000</td>
             </tr>
             <tr>
               <td>3<sup>rd</sup> Floor</td>
-              <td>115 m2 / 1237.85 sq. ft.</td>
-              <td>$253,000</td>
+              <td>110 m2 / 1184 sq. ft.</td>
+              <td>$242,000</td>
             </tr>
             <tr>
               <td>4<sup>th</sup> Floor</td>
-              <td>147 m2 / 1582.29 sq. ft.</td>
-              <td>$323,400</td>
+              <td>137 m2 / 1475 sq. ft.</td>
+              <td>$247,400</td>
             </tr>
           </tbody>
         </table>
         <div class="pricing-notes">
           <p><strong>All condos on the 1<sup>st</sup> floor include a 29 m2 (312 sq. ft.) front yard patio.</strong></p>
-          <p><strong>All condo on the 4<sup>th</sup> floor have a 20 m2 (215 sq. ft.) terrace.</strong></p>
+          <p><strong>All condos on the 4<sup>th</sup> floor have a 27 m2 (290 sq. ft.) terrace.</strong></p>
           <p><strong>All condo purchases include a free parking space.</strong></p>
         </div>
       </div>
