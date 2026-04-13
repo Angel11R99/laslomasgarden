@@ -145,8 +145,8 @@
 
   .lls-social-link {
     color: #ffffff;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 1.7rem;
+    height: 1.7rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -155,8 +155,8 @@
   }
 
   .lls-social-link svg {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 1.7rem;
+    height: 1.7rem;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.8;
@@ -279,16 +279,16 @@
         <h3 class="lls-footer-title">Follow Us</h3>
         <div class="lls-social-row">
           <a class="lls-social-link" href="https://wa.me/" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7l-3.2 1 1-3.1A8 8 0 1 1 20 12z"/><path d="M9.2 9.4c.3-.7.6-.7.9-.7h.5c.2 0 .4 0 .6.4.2.4.7 1.5.7 1.6.1.1.1.3 0 .4l-.3.5c-.1.1-.2.2-.1.4.1.2.4.7 1 1.1.7.6 1.4.8 1.6.9.2.1.3 0 .4-.1l.5-.5c.1-.1.3-.2.4-.1.2.1 1.2.6 1.4.8.2.1.3.2.3.4 0 .2-.1.9-.6 1.2-.5.4-1.1.4-1.3.3-.2 0-2-.7-3.4-2-1.6-1.5-2.1-3-2.3-3.3-.2-.3-.2-.7 0-1z"/></svg>
+            <img src="img/whatsapp-svgrepo-com.svg" alt="WhatsApp" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
           <a class="lls-social-link" href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
           </a>
           <a class="lls-social-link" href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M13.5 8.5h-1a1.5 1.5 0 0 0-1.5 1.5v2H13l-.4 2.5H11V20" stroke-width="1.6"/></svg>
+            <img src="img/facebook-svgrepo-com.svg" alt="Facebook" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
           <a class="lls-social-link" href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4 4l6.5 8.4L4.6 20H7l4.7-5.4L15.9 20H20l-6.8-8.8L19.5 4h-2.4l-4 4.7L9.6 4H4z"/></svg>
+            <img src="img/x-social-media-logo-icon.svg" alt="X" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
         </div>
       </section>
