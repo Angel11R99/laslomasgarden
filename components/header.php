@@ -16,9 +16,10 @@
   }
 
   .lls-header.is-scrolled {
-    background: rgba(17, 115, 127, 0.28);
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    background: rgba(10, 94, 56, 0.84);
+    backdrop-filter: blur(7px) saturate(135%);
+    -webkit-backdrop-filter: blur(7px) saturate(135%);
+    box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16);
   }
 
   .lls-header-inner {
@@ -184,7 +185,7 @@
     min-width: 148px;
     padding: 0.45rem 0;
     border-radius: 12px;
-    background: rgba(10, 70, 46, 0.94);
+    background: rgba(8, 78, 47, 0.96);
     box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
     transform: translateX(-50%);
     display: none;
@@ -506,7 +507,7 @@
       height: 48px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: 10px;
-      background: rgba(13, 103, 61, 0.22);
+      background: rgba(11, 96, 57, 0.5);
       color: #ffffff;
       font-family: "Outfit", "Segoe UI", Arial, sans-serif;
       font-size: 1.65rem;
@@ -523,7 +524,7 @@
 
     .lls-menu-toggle:hover,
     .lls-menu-toggle:focus-visible {
-      background: rgba(13, 103, 61, 0.34);
+      background: rgba(11, 96, 57, 0.68);
       outline: none;
     }
 
@@ -600,7 +601,9 @@
       margin: 0 auto;
       padding: 0.9rem 1rem 1rem;
       border-radius: 18px;
-      background: rgba(10, 70, 46, 0.94);
+      background: rgba(8, 78, 47, 0.97);
+      backdrop-filter: blur(7px) saturate(132%);
+      -webkit-backdrop-filter: blur(7px) saturate(132%);
       box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
       position: relative;
       z-index: 1001;
@@ -722,7 +725,7 @@
 
     <div class="lls-header-center">
       <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
-        <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+        <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </a>
     </div>
 
