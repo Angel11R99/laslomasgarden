@@ -98,6 +98,7 @@
       border: 1px solid var(--lls-white);
       color: var(--lls-white);
       box-shadow: none;
+      max-width: 300px;
     }
 
     .lls-button--white {
@@ -775,7 +776,7 @@
                 <li>More comfort</li>
                 <li>More indoor space</li>
                 <li>Ideal for families</li>
-                <li>Exclusive rooftop space</li>
+                <li>Perfect for getting away</li>
               </ul>
               <a href="3-bedrooms" class="lls-button">See More</a>
             </div>
@@ -784,12 +785,14 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/3habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy">
+              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
                 <li>Functional</li>
                 <li>Perfect for couples</li>
+                <li>Natural environment</li>
+                <li>Beautiful ocean view</li>
               </ul>
               <a href="2-bedrooms" class="lls-button">See More</a>
             </div>
