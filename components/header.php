@@ -15,7 +15,8 @@
     transition: background-color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
   }
 
-  .lls-header.is-scrolled {
+  .lls-header.is-scrolled,
+  body.page-about .lls-header {
     background: rgba(10, 94, 56, 0.84);
     backdrop-filter: blur(7px) saturate(135%);
     -webkit-backdrop-filter: blur(7px) saturate(135%);
@@ -219,20 +220,6 @@
     white-space: nowrap;
   }
 
-  body.page-about .lls-header:not(.is-scrolled) .lls-nav-list a,
-  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu-toggle,
-  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu-toggle::after {
-    color: #00895d;
-  }
-
-  body.page-about .lls-header:not(.is-scrolled) .lls-nav-item-complex > .lls-submenu a {
-    color: #ffffff;
-  }
-
-  body.page-about .lls-header:not(.is-scrolled) .lls-lang-btn {
-    color: #00895d;
-    border-color: #00895d;
-  }
 
   body.page-about .lls-header-logo {
     width: clamp(148px, 12vw, 190px);
@@ -508,11 +495,6 @@
       outline: none;
     }
 
-    body.page-about .lls-header:not(.is-scrolled) .lls-menu-toggle {
-      color: #00895d;
-      border-color: rgba(0, 137, 93, 0.55);
-      background: rgba(255, 255, 255, 0.82);
-    }
 
     body.page-about .lls-header-inner {
       width: calc(100% - 1rem);
