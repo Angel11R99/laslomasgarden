@@ -13,21 +13,18 @@
     :root {
       --lls-bg: #ffffff;
       --lls-white: #ffffff;
-      --lls-ink: #336243;
-      --lls-copy: #6f887d;
-      --lls-emerald-900: #0b4f33;
-      --lls-emerald-800: #0d673d;
-      --lls-emerald-700: #129247;
-      --lls-emerald-600: #19a950;
-      --lls-hero-line: #5ccc81;
-      --lls-gold-100: #f6e9c9;
-      --lls-green-background: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
-      --lls-hero-title-top-desktop: clamp(20px, 24vh, 24px);
-      --lls-hero-title-top-mobile: clamp(24px, 20vh, 46px);
-      --lls-shell: 1240px;
-      --lls-content: 1120px;
-      --lls-lifestyle-content: 86%;
-      --lls-font-sizes: clamp(1.7rem, 2.72vw, 3.4rem);
+      --lls-ink: #21523a;
+      --lls-copy: #628271;
+      --lls-green-900: #0b4f33;
+      --lls-green-800: #0d673d;
+      --lls-green-700: #129247;
+      --lls-green-600: #19a950;
+      --lls-green-gradient: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
+      --lls-shell: 1220px;
+      --lls-section-space: clamp(4rem, 7vw, 6.5rem);
+      --lls-card-radius: 22px;
+      --lls-shadow-soft: 0 24px 50px rgba(20, 79, 54, 0.12);
+      --lls-shadow-card: 0 18px 36px rgba(22, 79, 55, 0.1);
     }
 
     * {
@@ -48,1009 +45,656 @@
       background: var(--lls-bg);
       color: var(--lls-ink);
       font-family: "Outfit", "Segoe UI", Arial, sans-serif;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
-    .lls-container {
-      width: min(var(--lls-lifestyle-content), calc(100% - 2.6rem));
+    a {
+      color: inherit;
+    }
+
+    .lls-shell {
+      width: min(var(--lls-shell), 100%);
       margin-inline: auto;
-      max-width: 100%;
+      padding-inline: 1rem;
     }
 
-    .lls-hero {
-      position: relative;
-      margin-top: calc(-1 * var(--lls-header-overlay, 122px));
-      padding-top: var(--lls-header-overlay, 122px);
-      min-height: 1150px;
-      background-image: url("img/Master_Plan.webp");
-      background-size: cover;
-      background-position: center 28%;
-      border-bottom: 0;
-      overflow: hidden;
-    }
-
-    .lls-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(9, 95, 127, 0.48) 0%, rgba(7, 88, 118, 0.15) 19%, rgba(7, 88, 118, 0) 58%);
-      pointer-events: none;
-    }
-
-    .lls-hero::after {
-      content: none;
-    }
-
-    .lls-hero-content {
-      position: relative;
-      z-index: 2;
-      width: min(var(--lls-shell), calc(100% - 2.4rem));
-      margin: 0 auto;
-    }
-
-    .lls-hero h1 {
-      position: absolute;
-      top: var(--lls-hero-title-top-desktop);
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
-      width: calc(100% - 2rem);
-      text-align: center;
-      color: #0b4f44;
-      font-size: clamp(1rem, 3.95vw, 2.86rem);
-      font-weight: 600;
-      letter-spacing: clamp(0.23em, 0.65vw, 0.42em);
-      text-transform: uppercase;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
-    }
-
-    .lls-intro {
-      background: var(--lls-green-background);
-      color: #f0fffb;
-      text-align: center;
-      padding: 4.25rem 1.2rem 4.35rem;
-    }
-
-    .lls-intro h2 {
-      margin: 0 0 0.7rem;
-      font-size: clamp(1.7rem, 2.35vw, 2.7rem);
-      line-height: 1.15;
-      font-weight: 600;
-    }
-
-    .lls-intro p {
-      margin: 0 auto;
-      max-width: 940px;
-      font-size: clamp(0.98rem, 1.05vw, 1.15rem);
-      line-height: 1.48;
-      color: rgba(238, 255, 248, 0.88);
-    }
-
-    .lls-amenities {
-      padding: 4.9rem 0 5.5rem;
-      width: 100%;
-    }
-
-    .lls-amenities-shell {
-      display: grid;
-      grid-template-columns: minmax(360px, 47vw) minmax(0, 1fr);
-      align-items: stretch;
-      gap: 0;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .lls-image-main {
-      margin: 0;
-      border-radius: 0 30px 30px 0;
-      overflow: hidden;
-      box-shadow: 0 20px 34px rgba(34, 63, 67, 0.14);
-      height: 100%;
-    }
-
-    .lls-image-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      min-height: 100%;
-    }
-
-    .lls-copy {
-      padding: 0 clamp(2rem, 8vw, 10rem) 0 clamp(2rem, 4vw, 4.2rem);
-      max-width: 980px;
-      align-self: center;
-    }
-
-    .lls-copy h3 {
-      margin: 0 0 1.2rem;
-      color: #006847;
-      font-size: var(--lls-font-sizes);
-      line-height: 1.08;
-      font-weight: 500;
-      letter-spacing: 0.005em;
-    }
-
-    .lls-copy>p {
-      margin: 0 0 2rem;
-      color: #535f61;
-      font-size: clamp(1rem, 1.15vw, 1.25rem);
-      line-height: 1.7;
-      max-width: 62ch;
-    }
-
-    .lls-benefit-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 1.1rem;
-    }
-
-    .lls-benefit-item {
-      display: grid;
-      grid-template-columns: 2.8rem 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    .lls-benefit-number {
-      color: #119273;
-      font-size: clamp(2rem, 2.2vw, 2.8rem);
-      line-height: 0.95;
-      font-weight: 300;
-      letter-spacing: 0.01em;
-    }
-
-    .lls-benefit-title {
-      margin: 0 0 0.2rem;
-      color: #485355;
-      font-size: clamp(1.12rem, 1.35vw, 1.56rem);
-      line-height: 1.25;
-      font-weight: 400;
-    }
-
-    .lls-benefit-copy {
-      margin: 0;
-      color: #576264;
-      font-size: clamp(0.98rem, 1.05vw, 1.15rem);
-      line-height: 1.48;
-      font-weight: 300;
-    }
-
-    .lls-grid-main {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 3.7rem);
-      align-items: center;
-    }
-
-    .lls-layouts {
-      background: var(--lls-green-background);
-      color: #f6fffc;
-      padding: 1.1rem 0 0.9rem;
-      overflow: hidden;
-    }
-
-    .lls-layouts .lls-container {
-      width: min(1460px, calc(100% - 2.4rem));
-      max-width: 100%;
-    }
-
-    .lls-layouts .lls-grid-main {
-      grid-template-columns: minmax(650px, 1.15fr) minmax(460px, 0.85fr);
-      gap: clamp(0.9rem, 1.9vw, 2rem);
-      align-items: center;
-    }
-
-    .lls-layouts article {
-      justify-self: start;
-      max-width: 800px;
-      padding-left: clamp(0.1rem, 0.8vw, 0.6rem);
-      padding-right: 0;
-    }
-
-    .lls-layouts h3 {
-      margin: 0 0 0.85rem;
-      color: #ffffff;
-      font-size: var(--lls-font-sizes);
-      line-height: 1.08;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      max-width: 25.6ch;
-    }
-
-    .lls-layouts p {
-      margin: 0 0 1.1rem;
-      max-width: 72.5ch;
-      color: rgba(242, 255, 250, 0.92);
-      font-size: clamp(1rem, 1.15vw, 1.25rem);
-      line-height: 1.7;
-    }
-
-    .lls-layout-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 0.58rem;
-    }
-
-    .lls-layout-list li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.72rem;
-      align-items: start;
-    }
-
-    .lls-layout-number {
-      color: rgba(205, 255, 236, 0.9);
-      font-size: clamp(2rem, 2.2vw, 2.8rem);
-      line-height: 0.95;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-      min-width: 2.2ch;
-    }
-
-    .lls-layout-title {
-      margin: 0 0 0.1rem;
-      color: #ffffff;
-      font-size: clamp(1.12rem, 1.35vw, 1.56rem);
-      font-weight: 400;
-      line-height: 1.25;
-      letter-spacing: 0.01em;
-    }
-
-    .lls-layout-copy {
-      margin: 0;
-      color: rgba(241, 255, 250, 0.88);
-      font-size: clamp(0.98rem, 1.05vw, 1.15rem);
-      line-height: 1.48;
-    }
-
-    .lls-layout-image {
-      max-width: 980px;
-      width: 100%;
-      margin: 0;
-      filter: drop-shadow(0 22px 26px rgba(2, 66, 51, 0.35));
-      justify-self: end;
-      transform: translateX(28px);
-      overflow: hidden;
-    }
-
-    .lls-layout-image img {
-      width: 100%;
-      max-width: 980px;
-    }
-
-    .lls-lifestyle {
-      text-align: center;
-      padding: 2.65rem 0 2.55rem;
-    }
-
-    .lls-lifestyle h3 {
-      margin: 0;
-      color: #006847;
-      font-size: clamp(1.5rem, 2.4vw, 3rem);
-      line-height: 1.08;
-      font-weight: 500;
-      margin-top: 7rem;
-      margin-bottom: 5rem;
-    }
-
-    .lls-lifestyle p {
-      margin: 0.68rem auto 1.16rem;
-      max-width: 940px;
-      color: #88a1a3;
-      font-size: clamp(1rem, 1.15vw, 1.25rem);
-      line-height: 1.7;
-    }
-
-    .lls-lifestyle-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .lls-lifestyle-grid img {
-      width: 100%;
-      border-radius: 6px;
-      box-shadow: 0 13px 24px rgba(23, 50, 52, 0.16);
-      object-fit: cover;
-      height: clamp(340px, 32vw, 460px);
-    }
-
-    .lls-brand {
-      text-align: center;
-      margin-top: 5rem;
-      padding: 0.65rem 0 2.65rem;
-    }
-
-    .lls-brand-mark {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lls-brand-mark img {
-      width: min(240px, 92%);
-      height: auto;
-      display: block;
-    }
-
-    .lls-brand h4 {
-      margin: 1.05rem 0 1rem;
-      color: #006847;
-      font-size: clamp(1.7rem, 2.35vw, 2.7rem);
-      font-weight: lighter;
-    }
-
-    .lls-brand-image {
-      width: min(900px, 100%);
-      margin: 0 auto;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 18px 30px rgba(28, 58, 60, 0.16);
-    }
-
-    .lls-brand-caption {
-      margin: 0.65rem auto 1rem;
-      max-width: 720px;
-      color: #95a6a8;
-      font-size: clamp(1rem, 1.15vw, 1.25rem);
-      line-height: 1.7;
-    }
-
-    .lls-cta {
+    .lls-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 48px;
-      padding: 0 1.4rem;
-      border-radius: 3px;
-      background: var(--lls-green-background);
-      color: #ffffff;
+      padding: 0.9rem 1.6rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--lls-green-gradient);
+      color: var(--lls-white);
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-decoration: none;
       text-transform: uppercase;
-      font-size: clamp(0.95rem, 1.02vw, 1.1rem);
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      box-shadow: 0 11px 19px rgba(13, 105, 88, 0.28);
+      box-shadow: 0 16px 28px rgba(14, 111, 67, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      cursor: pointer;
     }
 
-    .lls-cta:hover,
-    .lls-cta:focus-visible {
-      color: #fff6df;
-      border-color: #fff6df;
+    .lls-button:hover,
+    .lls-button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 30px rgba(14, 111, 67, 0.26);
+      opacity: 0.96;
     }
 
-    @media (max-width: 940px) {
-      .lls-container {
-        width: min(var(--lls-content), calc(100% - 1.5rem));
-      }
-
-      .lls-hero {
-        min-height: 480px;
-      }
-
-      .lls-grid-main,
-      .lls-lifestyle-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .lls-layouts {
-        padding: 1.5rem 0 1.4rem;
-      }
-
-      .lls-layouts .lls-container {
-        width: min(1260px, calc(100% - 2rem));
-      }
-
-      .lls-layouts .lls-grid-main {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-
-      .lls-layouts article {
-        max-width: none;
-        padding: 0;
-      }
-
-      .lls-layout-image {
-        max-width: 760px;
-        justify-self: center;
-        transform: none;
-      }
-
-      .lls-amenities-shell {
-        grid-template-columns: 1fr;
-        gap: 1.3rem;
-      }
-
-      .lls-copy {
-        padding: 0 min(7vw, 2rem);
-      }
-
-      .lls-copy h3 {
-        font-size: clamp(2rem, 6.8vw, 3.3rem);
-      }
-
-      .lls-copy>p {
-        font-size: 1rem;
-      }
-
-      .lls-lifestyle-grid img {
-        height: clamp(220px, 46vw, 320px);
-      }
-
-      .lls-image-main {
-        max-width: 860px;
-        margin: 0 auto;
-      }
+    .lls-button--light {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.46);
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    /* ── Mortgage Calculator ── */
-    .lls-mortgage {
-      padding: 5rem 0 5.5rem;
-      background: #f2faf5;
+    /* 1. Hero Redesign */
+    .lls-hero-new {
+      position: relative;
+      margin-top: calc(-1 * var(--lls-header-overlay, 122px));
+      width: 100%;
+      overflow: hidden;
     }
 
-    .lls-mortgage-inner {
-      width: min(1260px, calc(100% - 3rem));
+    .lls-hero-new__media {
+      height: min(100vh, 1070px);
+      background: url("img/Master_Plan.webp") center / cover no-repeat;
+    }
+
+    .lls-hero-new__bar {
+      background: var(--lls-green-gradient);
+      color: var(--lls-white);
+      text-align: center;
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+      width: 100%;
+    }
+
+    .lls-hero-new__bar h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+      line-height: 1.12;
+      font-weight: 500;
+      max-width: 900px;
+      margin-inline: auto;
+      padding-inline: 1.2rem;
+    }
+
+    .lls-hero-new__bar p {
+      margin: 1.2rem auto 2rem;
+      max-width: 820px;
+      opacity: 0.9;
+      font-size: clamp(1rem, 1.1vw, 1.1rem);
+      padding-inline: 1.2rem;
+    }
+
+    /* 2. Safety Section - FLUSH EDITION */
+    .lls-safety {
+      padding: 0;
+      background: #fafcfb;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .lls-safety__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      min-height: clamp(500px, 60vh, 800px);
+    }
+
+    .lls-safety__content {
+      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) max(1.2rem, calc((100vw - var(--lls-shell)) / 2 + 1.2rem));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .lls-safety__content h2 {
+      margin: 0 0 2.5rem;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      line-height: 1.08;
+      color: var(--lls-green-800);
+      font-weight: 600;
+      max-width: 14ch;
+    }
+
+    .lls-safety__content h2 {
+      margin: 0 0 2.5rem;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      line-height: 1.08;
+      color: var(--lls-green-800);
+      font-weight: 600;
+      max-width: 14ch;
+    }
+
+    .lls-safety__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 2.2rem;
+    }
+
+    .lls-safety__item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+    }
+
+    .lls-safety__num {
+      color: var(--lls-green-600);
+      font-size: 2.4rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .lls-safety__title {
+      margin: 0 0 0.4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #3e5a4b;
+    }
+
+    .lls-safety__copy {
+      margin: 0;
+      color: var(--lls-copy);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .lls-safety__media {
+      position: relative;
+    }
+
+    .lls-safety__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* 3. Intro Bar */
+    .lls-intro-bar {
+      background: var(--lls-green-gradient);
+      color: var(--lls-white);
+      text-align: center;
+      padding: 3.5rem 1rem;
+    }
+
+    .lls-intro-bar h2 {
+      margin: 0 0 0.6rem;
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      font-weight: 500;
+    }
+
+    .lls-intro-bar p {
+      margin: 0;
+      opacity: 0.88;
+      font-size: 1.1rem;
+    }
+
+    /* 4. Typologies (Rooms) */
+    .lls-typologies {
+      padding: var(--lls-section-space) 0;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .lls-branding {
+      margin-bottom: 5rem;
+    }
+
+    .lls-branding img {
+      width: min(320px, 70%);
       margin-inline: auto;
     }
 
-    .lls-mortgage-title {
-      font-size: clamp(1.1rem, 1.55vw, 1.5rem);
-      font-weight: 600;
-      color: #1a3a28;
-      margin: 0 0 1rem;
-      white-space: normal;
-      text-wrap: balance;
+    .lls-typologies__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+      gap: 4rem 3rem;
+      justify-content: center;
     }
 
-    .lls-mortgage-price-field {
+    .lls-type-card {
+      background: #f8f9fa;
+      border-radius: 20px;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      border: 2px solid #19a950;
-      border-radius: 8px;
-      padding: 0.9rem 1.2rem;
-      background: #fff;
-      margin-bottom: 0;
-      gap: 0.5rem;
+      flex-direction: column;
+      position: relative;
+      padding-top: 1.5rem; /* Space for the floating tag */
+      box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
-    .lls-mortgage-price-field span {
-      color: #19a950;
-      font-weight: 700;
-      font-size: 1.15rem;
+    .lls-type-card__tag {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--lls-green-800);
+      color: var(--lls-white);
+      padding: 0.6rem 2rem;
+      border-radius: 0 0 10px 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+      z-index: 10;
       white-space: nowrap;
     }
 
-    .lls-mortgage-price-field input {
-      border: none;
-      outline: none;
-      font-family: inherit;
-      font-size: 1.15rem;
-      color: #1a3a28;
-      background: transparent;
-      width: 100%;
-      min-width: 0;
-    }
-
-    .lls-mortgage-body {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .lls-mortgage-controls {
+    .lls-type-card__media {
+      background: linear-gradient(to bottom, #74b9ff, #ffffff);
+      padding: 1rem;
       display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-    }
-
-    .lls-mortgage-field label {
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2d4a39;
-      margin-bottom: 0.55rem;
-    }
-
-    .lls-mortgage-field select {
-      width: 100%;
-      padding: 0.8rem 2.6rem 0.8rem 1rem;
-      border: 2px solid #b5d9c4;
-      border-radius: 8px;
-      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2319a950' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") right 1rem center no-repeat;
-      appearance: none;
-      font-family: inherit;
-      font-size: 1.05rem;
-      color: #1a3a28;
-      cursor: pointer;
-    }
-
-    .lls-mortgage-field select:focus {
-      outline: none;
-      border-color: #19a950;
-    }
-
-    .lls-downpayment-value {
-      color: #19a950;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 0.65rem;
-    }
-
-    .lls-mortgage-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 7px;
-      border-radius: 4px;
-      background: #b5d9c4;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .lls-mortgage-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #fff;
-      border: 3px solid #19a950;
-      box-shadow: 0 3px 8px rgba(25,169,80,0.3);
-      cursor: pointer;
-    }
-
-    .lls-mortgage-slider::-moz-range-thumb {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #fff;
-      border: 3px solid #19a950;
-      box-shadow: 0 3px 8px rgba(25,169,80,0.3);
-      cursor: pointer;
-    }
-
-    .lls-mortgage-results {
-      background: #fff;
-      border: 2px solid #c2e0cc;
-      border-radius: 14px;
-      padding: 2.8rem 2.8rem 2.2rem;
-      box-shadow: 0 10px 28px rgba(15, 80, 50, 0.09);
-      min-width: 0;
-    }
-
-    .lls-mortgage-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
-      margin-bottom: 1.2rem;
-      align-items: start;
-    }
-
-    .lls-mortgage-split-label {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #4a6a58;
-      margin-bottom: 0.4rem;
-    }
-
-    .lls-mortgage-split-value {
-      font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-      font-weight: 700;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .lls-mortgage-split-value.green { color: #0d8f53; }
-    .lls-mortgage-split-value.dark  { color: #1a3a28; }
-
-    .lls-mortgage-bar {
-      height: 10px;
-      border-radius: 5px;
-      background: #c8ddd0;
-      margin-bottom: 1.8rem;
-      overflow: hidden;
-    }
-
-    .lls-mortgage-bar-fill {
-      height: 100%;
-      background: #19a950;
-      border-radius: 5px;
-      transition: width 0.3s ease;
-    }
-
-    .lls-mortgage-monthly-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #4a6a58;
-      margin-bottom: 0.5rem;
-    }
-
-    .lls-mortgage-monthly-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .lls-mortgage-monthly-amount {
-      font-size: clamp(2.2rem, 3.6vw, 3.2rem);
-      font-weight: 700;
-      color: #0d8f53;
-      letter-spacing: -0.01em;
-      min-width: 0;
-      max-width: 100%;
-      flex: 1 1 320px;
-      line-height: 1.08;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .lls-mortgage-precalify {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 1.9rem;
-      border-radius: 50px;
-      background: var(--lls-green-background);
-      color: #fff;
-      font-family: inherit;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 6px 16px rgba(13,105,88,0.3);
-      transition: opacity 0.2s;
-      white-space: nowrap;
-      flex: 0 0 auto;
-      max-width: 100%;
     }
 
-    .lls-mortgage-precalify:hover { opacity: 0.88; }
-
-    .lls-mortgage-disclaimer {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: #8aab98;
+    .lls-type-card__media img {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      object-fit: contain;
     }
 
-    .lls-mortgage-extra-header {
-      background: #0d8f53;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.75rem 1.1rem;
-      border-radius: 8px;
-      margin-top: 0.4rem;
-      cursor: pointer;
+    .lls-type-card__body {
+      padding: 2.5rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-    }
-
-    .lls-mortgage-extra-header::after {
-      content: '+';
-      font-size: 1.4rem;
-      font-weight: 400;
-      line-height: 1;
-      transition: transform 0.25s ease;
-    }
-
-    .lls-mortgage-extra-header.open::after {
-      transform: rotate(45deg);
-    }
-
-    .lls-mortgage-extra-body {
-      display: none;
       flex-direction: column;
-      gap: 1.8rem;
-      overflow: hidden;
+      align-items: center;
+      background: #f8f9fa;
     }
 
-    .lls-mortgage-extra-body.open {
+    .lls-type-card__list {
+      margin: 0 0 2.5rem;
+      padding: 0;
+      list-style: none;
       display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
     }
 
-    .lls-mortgage-extra-summary {
-      border: 2px solid #c2e0cc;
-      border-radius: 10px;
+    .lls-type-card__list li {
+      position: relative;
+      padding-left: 2rem;
+      color: #4a6356;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .lls-type-card__list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #27ae60;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .lls-type-card .lls-button {
+      min-width: 160px;
+      padding: 0.8rem 2rem;
+      background: var(--lls-green-gradient);
+      box-shadow: 0 4px 15px rgba(11, 79, 51, 0.2);
+    }
+
+    /* 5. Promotional CTA - FLUSH EDITION */
+    .lls-promo {
+      padding: 0;
+      background: var(--lls-green-800);
+      width: 100%;
       overflow: hidden;
     }
 
-    .lls-mes-row {
+    .lls-promo__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      max-width: none;
+      margin: 0;
+    }
+
+    .lls-promo__content {
+      background: var(--lls-green-gradient);
+      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) max(1.2rem, calc((100vw - var(--lls-shell)) / 2 + 1.2rem));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--lls-white);
+    }
+
+    .lls-promo h3 {
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin: 0 0 2.2rem;
+      max-width: 22ch;
+    }
+
+    .lls-promo h3 strong {
+      display: block;
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+
+    .lls-promo__media {
+      position: relative;
+    }
+
+    .lls-promo__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+
+    /* 6. Lifestyle / Amenities */
+    .lls-lifestyle-new {
+      padding: var(--lls-section-space) 0;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .lls-lifestyle-new h2 {
+      margin: 0 auto;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--lls-green-800);
+      max-width: 850px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .lls-lifestyle-new p {
+      margin: 1.5rem auto 4rem;
+      max-width: 800px;
+      color: var(--lls-copy);
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    .lls-lifestyle-new__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 1500px;
+      margin-inline: auto;
+    }
+
+    .lls-lifestyle-new__grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    /* 7. Branding Section (Bottom) */
+    .lls-brand {
+      padding: var(--lls-section-space) 1.5rem;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .lls-brand-mark img {
+      width: min(450px, 90%);
+      margin-inline: auto;
+      margin-bottom: 3rem;
+    }
+
+    .lls-brand h4 {
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      color: var(--lls-green-800);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    .lls-brand-image img {
+      width: 100%;
+      max-width: 1100px;
+      margin-inline: auto;
+      border-radius: 20px;
+      margin-bottom: 3rem;
+      box-shadow: var(--lls-shadow-soft);
+    }
+
+    .lls-brand-caption {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      color: var(--lls-copy);
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    /* 8. Calculator Redesign */
+    .lls-calc-section {
+      padding: var(--lls-section-space) 0;
+      background: #f1f7f4;
+    }
+
+    .lls-calc-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .lls-calc-form h2 {
+      margin: 0 0 1.5rem;
+      font-size: 1.6rem;
+      color: #1a3a28;
+    }
+
+    .lls-calc-field {
+      margin-bottom: 1.8rem;
+    }
+
+    .lls-calc-field label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: #3e5a4b;
+    }
+
+    .lls-calc-input-wrap {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 2px solid #c9e0d3;
+      border-radius: 8px;
+      padding: 0 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .lls-calc-input-wrap:focus-within {
+      border-color: var(--lls-green-700);
+    }
+
+    .lls-calc-input-wrap span {
+      color: var(--lls-green-700);
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+
+    .lls-calc-input-wrap input {
+      border: 0;
+      padding: 1rem 0;
+      width: 100%;
+      font: inherit;
+      color: var(--lls-ink);
+      outline: none;
+    }
+
+    .lls-calc-select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #c9e0d3;
+      border-radius: 8px;
+      font: inherit;
+      appearance: none;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2319a950' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") right 1.2rem center no-repeat;
+    }
+
+    .lls-calc-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #d4e8dd;
+      border-radius: 99px;
+      outline: none;
+    }
+
+    .lls-calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border: 3px solid var(--lls-green-700);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .lls-calc-extra__header {
+      background: var(--lls-green-800);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1.1rem;
-      font-size: 1rem;
-      color: #2d4a39;
-      border-bottom: 1px solid #e0f0e8;
-    }
-
-    .lls-mes-row:last-child { border-bottom: none; }
-
-    .lls-mes-row span:last-child {
       font-weight: 700;
-      color: #0d8f53;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    .lls-mortgage-with-extra { margin-top: 1.4rem; }
-
-    .lls-mwe-divider {
-      height: 2px;
-      background: #c2e0cc;
-      margin-bottom: 1.1rem;
+    .lls-calc-extra__body {
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid #d4e8dd;
+      border-top: 0;
+      border-radius: 0 0 6px 6px;
+      display: none;
     }
 
-    .lls-mwe-amount {
-      font-size: clamp(1.7rem, 2.7vw, 2.4rem) !important;
-      color: #0d8f53 !important;
+    .lls-calc-extra__body.open {
+      display: block;
+    }
+
+    .lls-calc-summary {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--lls-shadow-soft);
+      border: 1px solid var(--lls-line);
+    }
+
+    .lls-summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .lls-summary-label {
+      color: var(--lls-copy);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .lls-summary-val {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .lls-summary-val--green { color: var(--lls-green-700); }
+
+    .lls-summary-bar {
+      height: 8px;
+      background: #eee;
+      border-radius: 99px;
+      margin: 1.8rem 0;
+      overflow: hidden;
+    }
+
+    .lls-summary-bar-fill {
+      height: 100%;
+      background: var(--lls-green-700);
+      transition: width 0.3s;
+    }
+
+    .lls-summary-monthly-label {
+      font-weight: 600;
+      color: #3e5a4b;
       margin-bottom: 0.5rem;
     }
 
-    .lls-mwe-savings {
-      font-size: 1.1rem;
-      color: #0d8f53;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .lls-mwe-interest-saved {
-      font-size: 1.35rem;
-      color: #0b6e40;
+    .lls-summary-monthly-val {
+      font-size: clamp(2.5rem, 4.5vw, 3.5rem);
       font-weight: 700;
-      margin-top: 0.6rem;
-      padding: 0.85rem 1.1rem;
-      background: #e8f8ee;
-      border-left: 4px solid #19a950;
-      border-radius: 0 6px 6px 0;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      color: var(--lls-green-800);
+      line-height: 1;
+      margin-bottom: 1.8rem;
     }
 
-    @media (max-width: 760px) {
-      .lls-mortgage {
-        padding: 3.6rem 0 4rem;
-      }
+    .lls-summary-foot {
+      font-size: 0.85rem;
+      color: var(--lls-copy);
+      margin-top: 2rem;
+      font-style: italic;
+    }
 
-      .lls-mortgage-inner {
-        width: calc(100% - 2rem);
-      }
+    .lls-summary-extra-info {
+      background: #f1fbf7;
+      border-left: 4px solid var(--lls-green-600);
+      padding: 1.2rem;
+      margin-top: 1.5rem;
+      border-radius: 0 8px 8px 0;
+    }
 
-      .lls-mortgage-body {
+    .lls-summary-extra-info h4 {
+      margin: 0 0 0.5rem;
+      color: var(--lls-green-800);
+      font-size: 1rem;
+    }
+
+    .lls-summary-extra-info p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 960px) {
+      .lls-safety__grid,
+      .lls-calc-grid,
+      .lls-promo__grid,
+      .lls-typologies__grid,
+      .lls-lifestyle-new__grid {
         grid-template-columns: 1fr;
-        gap: 1.6rem;
       }
 
-      .lls-mortgage-controls {
-        gap: 1.25rem;
-      }
-
-      .lls-mortgage-results {
-        padding: 1.5rem 1.2rem 1.35rem;
-      }
-
-      .lls-mortgage-split {
-        grid-template-columns: 1fr;
-        gap: 0.95rem;
-      }
-
-      .lls-mortgage-monthly-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .lls-mortgage-precalify {
-        width: 100%;
-        padding: 0.95rem 1.25rem;
-      }
-
-      .lls-mortgage-monthly-amount {
-        font-size: clamp(1.95rem, 9vw, 2.7rem);
-      }
-
-      .lls-mes-row {
-        gap: 0.6rem;
-        align-items: flex-start;
-      }
-
-      .lls-mwe-interest-saved {
-        font-size: 1.05rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      :root {
-        --lls-mobile-shell: calc(100% - 2rem);
-      }
-
-      .lls-hero-content,
-      .lls-container,
-      .lls-layouts .lls-container,
-      .lls-amenities-shell,
-      .lls-lifestyle,
-      .lls-mortgage-inner,
-      .lls-amenities-shell,
-      .lls-copy,
-      .lls-layouts article,
-      .lls-layout-image,
-      .lls-lifestyle-grid,
-      .lls-brand-image,
-      .lls-mortgage-controls,
-      .lls-mortgage-results,
-      .lls-mortgage-split > div {
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .lls-hero-content,
-      .lls-container,
-      .lls-layouts .lls-container,
-      .lls-amenities-shell,
-      .lls-lifestyle,
-      .lls-mortgage-inner {
-        width: var(--lls-mobile-shell);
-        margin-inline: auto;
-      }
-
-      .lls-amenities {
-        padding: 3.2rem 0 3.6rem;
-      }
-
-      .lls-copy,
-      .lls-layouts article {
-        padding-left: 10%;
-        padding-right: 10%;
-      }
-
-      .lls-lifestyle {
-        padding-top: 2.4rem;
-        padding-bottom: 2.4rem;
-      }
-
-      .lls-lifestyle h3 {
-        margin-top: 0;
-        margin-bottom: 1.6rem;
-      }
-
-      .lls-lifestyle p {
-        margin-bottom: 1.4rem;
-      }
-
-      .lls-benefit-item > div,
-      .lls-layout-list li > div {
-        min-width: 0;
-      }
-
-      .lls-intro h2,
-      .lls-copy h3,
-      .lls-layouts h3,
-      .lls-lifestyle h3,
-      .lls-mortgage-title,
-      .lls-mortgage-split-value,
-      .lls-mwe-interest-saved {
-        overflow-wrap: anywhere;
-      }
-
-      .lls-mortgage-split-value {
-        white-space: normal;
-      }
-    }
-
-    @media (max-width: 640px) {
-      html,
-      body {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      body > * {
-        max-width: 100%;
-      }
-
-      .lls-hero::after {
-        top: 72px;
-      }
-
-      .lls-hero h1 {
-        top: var(--lls-hero-title-top-mobile);
-        letter-spacing: 0.17em;
-        font-size: clamp(0.78rem, 4.2vw, 4.05rem);
-      }
-
-      .lls-intro {
-        padding-top: 1.72rem;
-        padding-bottom: 1.76rem;
-      }
-
-      .lls-benefit-item {
-        grid-template-columns: 2.2rem 1fr;
-        gap: 0.75rem;
-      }
-
-      .lls-image-main img {
-        min-height: 320px;
-      }
-
-      .lls-image-main {
-        border-radius: 0 22px 22px 0;
-      }
-
-      .lls-lifestyle-grid img {
-        height: clamp(180px, 52vw, 260px);
-      }
-
-      .lls-amenities-shell,
-      .lls-layouts .lls-grid-main,
-      .lls-lifestyle-grid,
-      .lls-mortgage-body {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .lls-layout-image,
-      .lls-image-main,
-      .lls-brand-image {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .lls-mortgage-title {
-        font-size: 1.1rem;
-      }
-
-      .lls-mortgage-price-field {
-        padding: 0.9rem 1.1rem;
-      }
-
-      .lls-mortgage-price-field span,
-      .lls-mortgage-price-field input,
-      .lls-mortgage-field select {
-        font-size: 1rem;
-      }
-
-      .lls-mortgage-field select {
-        padding: 0.9rem 2.8rem 0.9rem 1rem;
-      }
-
-      .lls-mortgage-controls {
-        padding-inline: 0.2rem;
-      }
-
-      .lls-mortgage-extra-header {
-        padding: 0.8rem 0.95rem;
-        font-size: 0.88rem;
-        letter-spacing: 0.04em;
-      }
-
-      .lls-mes-row {
-        flex-direction: column;
-      }
-
-      .lls-mortgage-disclaimer {
-        font-size: 0.8rem;
-      }
+      .lls-promo__grid { border-radius: 0; }
+      .lls-promo__content { padding: 3rem 1.5rem; }
+      .lls-safety__grid { gap: 2.5rem; }
     }
   </style>
 </head>
@@ -1058,293 +702,312 @@
 <body>
   <?php include __DIR__ . '/components/header.php'; ?>
 
-  <section class="lls-hero">
-    <!-- <div class="lls-hero-content">
-      <h1>Caribbean Living, Every Day.</h1>
-    </div> -->
-  </section>
-
-  <section class="lls-intro" id="about">
-    <h2>A private residential destination shaped by<br>climate, calm, and everyday beauty.</h2>
-    <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a
-      property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the
-      North Coast of the Dominican Republic.</p>
-  </section>
-
-  <section class="lls-amenities" id="complex">
-    <div class="lls-amenities-shell">
-      <figure class="lls-image-main">
-        <img src="Familia en la terraza 2.webp" alt="Residents enjoying terrace amenities at Las Lomas Serenas" loading="lazy" decoding="async">
-      </figure>
-
-      <article class="lls-copy">
-        <h3>A refined community with<br>the feeling of a retreat.</h3>
-        <p>Owned and operated by U.S. investors and entrepreneurs, Las Lomas Serenas blends everyday comfort with a
-          destination lifestyle. The experience feels private and composed, while still connected to beaches,
-          restaurants, sports, and the social energy of Sosua.</p>
-
-        <ol class="lls-benefit-list" aria-label="Community benefits">
-          <li class="lls-benefit-item">
-            <span class="lls-benefit-number">01</span>
-            <div>
-              <h4 class="lls-benefit-title">24-hour security</h4>
-              <p class="lls-benefit-copy">Designed for peace of mind, comfort, and a relaxed sense of home.</p>
-            </div>
-          </li>
-          <li class="lls-benefit-item">
-            <span class="lls-benefit-number">02</span>
-            <div>
-              <h4 class="lls-benefit-title">Year-round tropical climate</h4>
-              <p class="lls-benefit-copy">Temperatures averaging between 75°F and 88°F invite outdoor living every
-                season.</p>
-            </div>
-          </li>
-          <li class="lls-benefit-item">
-            <span class="lls-benefit-number">03</span>
-            <div>
-              <h4 class="lls-benefit-title">North Coast positioning</h4>
-              <p class="lls-benefit-copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where nature
-                and convenience meet.</p>
-            </div>
-          </li>
-        </ol>
-      </article>
-    </div>
-  </section>
-
-  <section class="lls-layouts" id="layouts">
-    <div class="lls-container lls-grid-main">
-      <article>
-        <h3>Homes designed to feel personal,<br>spacious, and beautifully composed.</h3>
-        <p>The development features 2- and 3-bedroom condominiums equipped with the comforts and conveniences people
-          expect in a true home. The approach is warm, practical, and refined, ideal for full-time residents, seasonal
-          owners, or investors.</p>
-        <ul class="lls-layout-list">
-          <li>
-            <span class="lls-layout-number">01</span>
-            <div>
-              <h4 class="lls-layout-title">2-bedroom residences</h4>
-              <p class="lls-layout-copy">Flexible, elegant spaces for couples, part-time living, or those seeking a
-                refined tropical base.</p>
-            </div>
-          </li>
-          <li>
-            <span class="lls-layout-number">02</span>
-            <div>
-              <h4 class="lls-layout-title">3-bedroom residences</h4>
-              <p class="lls-layout-copy">Spacious layouts that offer more room for family life, hosting, and long-term
-                comfort.</p>
-            </div>
-          </li>
-          <li>
-            <span class="lls-layout-number">03</span>
-            <div>
-              <h4 class="lls-layout-title">Everyday comfort</h4>
-              <p class="lls-layout-copy">Layouts and living spaces conceived for ease, elegance, and the kind of home
-                people genuinely want to return to.</p>
-            </div>
-          </li>
-        </ul>
-      </article>
-
-      <figure class="lls-layout-image">
-        <img src="casa3d.webp" alt="3D apartment layouts with 2 and 3 bedroom options" loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </section>
-
-  <section class="lls-lifestyle lls-container" id="lifestyle">
-    <h3>An active, social lifestyle designed<br>around recreation, ease, and community.</h3>
-    <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
-      rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
-    <div class="lls-lifestyle-grid">
-      <img src="Amenities2.webp" alt="Lifestyle amenities and sports spaces" loading="lazy" decoding="async">
-      <img src="img/pool-family.webp" alt="Family pool and relaxation lifestyle" loading="lazy" decoding="async">
-    </div>
-  </section>
-
-  <!-- Mortgage Calculator -->
-  <section class="lls-mortgage" id="calculator">
-    <div class="lls-mortgage-inner">
-      <div class="lls-mortgage-body">
-        <div class="lls-mortgage-controls">
-          <p class="lls-mortgage-title">What is the price of the property you want to buy?</p>
-
-          <div class="lls-mortgage-price-field">
-            <span>US$</span>
-            <input type="text" id="mc-price" value="" inputmode="numeric" placeholder="100,000" autocomplete="off" aria-label="Property price">
-          </div>
-          <div class="lls-mortgage-field">
-            <label for="mc-bank">Select bank</label>
-            <select id="mc-bank">
-              <option value="12.95">Asociación Cibao (12.95% Annual)</option>
-              <option value="12.00">Banreservas (12.00% Annual)</option>
-              <option value="13.00">BHD León (13.00% Annual)</option>
-              <option value="13.50">Banco Popular (13.50% Annual)</option>
-              <option value="11.50">Scotiabank (11.50% Annual)</option>
-            </select>
-          </div>
-
-          <div class="lls-mortgage-field">
-            <label>Down payment</label>
-            <div class="lls-downpayment-value" id="mc-down-label">—</div>
-            <input type="range" class="lls-mortgage-slider" id="mc-down" min="10" max="80" value="30" step="1" aria-label="Down payment percentage">
-          </div>
-
-          <div class="lls-mortgage-field">
-            <label for="mc-term">Loan term</label>
-            <select id="mc-term">
-              <option value="10">10 years</option>
-              <option value="15">15 years</option>
-              <option value="20" selected>20 years</option>
-              <option value="25">25 years</option>
-              <option value="30">30 years</option>
-            </select>
-          </div>
-
-          <!-- Extra Payment -->
-          <div class="lls-mortgage-extra-header" id="mc-extra-toggle">Extra Payment Scenario</div>
-          <div class="lls-mortgage-extra-body" id="mc-extra-body">
-            <div class="lls-mortgage-field">
-              <label for="mc-extra-amount">Extra Payment Amount</label>
-              <div class="lls-mortgage-price-field" style="margin-bottom:0">
-                <span>US$</span>
-                <input type="number" id="mc-extra-amount" value="0" min="0" step="50" aria-label="Extra payment amount">
-              </div>
-            </div>
-            <div class="lls-mortgage-field">
-              <label for="mc-extra-freq">Frequency</label>
-              <select id="mc-extra-freq">
-                <option value="12">Monthly</option>
-                <option value="4">Quarterly</option>
-                <option value="2" selected>Semiannual</option>
-                <option value="1">Annual</option>
-              </select>
-            </div>
-            <div class="lls-mortgage-extra-summary" id="mc-extra-summary">
-              <div class="lls-mes-row"><span>Extra Payments per Year</span><span id="mc-xpy">2</span></div>
-              <div class="lls-mes-row"><span>Annual Extra Amount</span><span id="mc-xannual">US$0</span></div>
-              <div class="lls-mes-row"><span>Monthly Equivalent Extra</span><span id="mc-xmonthly">US$0.00</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lls-mortgage-results" id="mc-results-panel" style="display:none">
-          <div class="lls-mortgage-split">
-            <div>
-              <div class="lls-mortgage-split-label">Down payment</div>
-              <div class="lls-mortgage-split-value green" id="mc-res-down"></div>
-            </div>
-            <div>
-              <div class="lls-mortgage-split-label">Loan amount</div>
-              <div class="lls-mortgage-split-value dark" id="mc-res-loan"></div>
-            </div>
-          </div>
-
-          <div class="lls-mortgage-bar">
-            <div class="lls-mortgage-bar-fill" id="mc-bar" style="width:0%"></div>
-          </div>
-
-          <div class="lls-mortgage-monthly-label">Your estimated monthly payment:</div>
-          <div class="lls-mortgage-monthly-row">
-            <div class="lls-mortgage-monthly-amount" id="mc-monthly"></div>
-            <a class="lls-mortgage-precalify" href="#contact">Pre-Qualify</a>
-          </div>
-
-          <div class="lls-mortgage-with-extra" id="mc-extra-block" style="display:none">
-            <div class="lls-mwe-divider"></div>
-            <div class="lls-mortgage-monthly-label">With extra payments — effective monthly total:</div>
-            <div class="lls-mortgage-monthly-amount lls-mwe-amount" id="mc-monthly-extra">US$936</div>
-            <div class="lls-mwe-savings" id="mc-savings"></div>
-            <div class="lls-mwe-interest-saved" id="mc-interest-saved"></div>
-          </div>
-
-          <p class="lls-mortgage-disclaimer">* These amounts are estimates and are subject to change without notice.</p>
+  <main class="lls-page">
+    <!-- 1. Hero Content -->
+    <section class="lls-hero-new">
+      <div class="lls-hero-new__media" aria-label="Aerial view of Las Lomas Serenas project"></div>
+      <div class="lls-hero-new__bar">
+        <div class="lls-shell">
+          <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
+          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the North Coast of the Dominican Republic.</p>
+          <a href="tourguiado.php" class="lls-button lls-button--light">3D TOUR</a>
         </div>
       </div>
+    </section>
+
+    <!-- 2. Safety & Well-being - UPDATED STRUCTURE -->
+    <section class="lls-safety">
+      <div class="lls-safety__grid">
+        <div class="lls-safety__content">
+          <h2>Where safety and well-being come first</h2>
+          <ul class="lls-safety__list" aria-label="Project benefits">
+            <li class="lls-safety__item">
+              <span class="lls-safety__num">01</span>
+              <div>
+                <h3 class="lls-safety__title">24-Hour security</h3>
+                <p class="lls-safety__copy">Designed for peace of mind, comfort, and a relaxed sense of home.</p>
+              </div>
+            </li>
+            <li class="lls-safety__item">
+              <span class="lls-safety__num">02</span>
+              <div>
+                <h3 class="lls-safety__title">Year-round tropical climate</h3>
+                <p class="lls-safety__copy">Temperatures averaging between 75°F and 88°F invite outdoor living every season.</p>
+              </div>
+            </li>
+            <li class="lls-safety__item">
+              <span class="lls-safety__num">03</span>
+              <div>
+                <h3 class="lls-safety__title">North Coast positioning</h3>
+                <p class="lls-safety__copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where nature and convenience meet.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="lls-safety__media">
+          <img src="img/front-green.webp" alt="Primary entrance of Las Lomas Serenas" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Intro Housing Bar -->
+    <section class="lls-intro-bar">
+      <div class="lls-shell">
+        <h2>Find the perfect home for you and your lifestyle</h2>
+        <p>Explore our 3 and 2 bedroom options, thoughtfully designed to provide comfort, space, and functionality</p>
+      </div>
+    </section>
+
+    <!-- 4. Apartment Typologies -->
+    <section class="lls-typologies" id="layouts">
+      <div class="lls-shell">
+        <div class="lls-branding">
+          <img src="img/wlogo.svg" alt="Las Lomas Serenas Brand Mark" loading="lazy">
+        </div>
+        <div class="lls-typologies__grid">
+          <article class="lls-type-card">
+            <div class="lls-type-card__tag">3 Bedrooms</div>
+            <div class="lls-type-card__media">
+              <img src="img/Plano 3D2.png" alt="3 Bedroom Apartment Render" loading="lazy">
+            </div>
+            <div class="lls-type-card__body">
+              <ul class="lls-type-card__list">
+                <li>More comfort</li>
+                <li>More indoor space</li>
+                <li>Ideal for families</li>
+                <li>Exclusive rooftop space</li>
+              </ul>
+              <a href="rooms.php" class="lls-button">See More</a>
+            </div>
+          </article>
+
+          <article class="lls-type-card">
+            <div class="lls-type-card__tag">2 Bedrooms</div>
+            <div class="lls-type-card__media">
+              <img src="casa3d.webp" alt="2 Bedroom Apartment Render" loading="lazy">
+            </div>
+            <div class="lls-type-card__body">
+              <ul class="lls-type-card__list">
+                <li>Functional</li>
+                <li>Perfect for couples</li>
+              </ul>
+              <a href="rooms.php" class="lls-button">See More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Promotional CTA -->
+    <section class="lls-promo">
+      <div class="lls-promo__grid">
+        <div class="lls-promo__content">
+          <h3><strong>Homes designed to make</strong> every moment unique, comfortable, and truly yours</h3>
+          <a href="#contact" class="lls-button lls-button--light">Request Information</a>
+        </div>
+        <div class="lls-promo__media">
+          <img src="Familia en la terraza 2.webp" alt="Family sharing a moment on the terrace" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Lifestyle / Amenities -->
+    <section class="lls-lifestyle-new" id="lifestyle">
+      <div class="lls-shell">
+        <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
+        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast.</p>
+        <div class="lls-lifestyle-new__grid">
+          <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
+          <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Redesigned Simulator -->
+    <section class="lls-calc-section" id="contact">
+      <div class="lls-shell">
+        <div class="lls-calc-grid">
+          <div class="lls-calc-form">
+            <h2>What is the price of the property you want to buy?</h2>
+            
+            <div class="lls-calc-field">
+              <div class="lls-calc-input-wrap">
+                <span>US$</span>
+                <input type="text" id="mc-price" placeholder="10,000" inputmode="numeric" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="lls-calc-field">
+              <label for="mc-bank">Select bank</label>
+              <select id="mc-bank" class="lls-calc-select">
+                <option value="12.00">Banreservas (12.00% Annual)</option>
+                <option value="12.95">Asociacion Cibao (12.95% Annual)</option>
+                <option value="13.00">BHD Leon (13.00% Annual)</option>
+                <option value="13.50">Banco Popular (13.50% Annual)</option>
+                <option value="11.50">Scotiabank (11.50% Annual)</option>
+              </select>
+            </div>
+
+            <div class="lls-calc-field">
+              <label>Down payment</label>
+              <div class="lls-summary-val lls-summary-val--green" id="mc-down-label" style="margin-bottom: 0.5rem">US$3,000 | 30.00%</div>
+              <input type="range" id="mc-down" class="lls-calc-slider" min="10" max="80" value="30" step="1">
+            </div>
+
+            <div class="lls-calc-field">
+              <label for="mc-term">Loan term</label>
+              <select id="mc-term" class="lls-calc-select">
+                <option value="10">10 years</option>
+                <option value="15">15 years</option>
+                <option value="20" selected>20 years</option>
+                <option value="25">25 years</option>
+                <option value="30">30 years</option>
+              </select>
+            </div>
+
+            <div class="lls-calc-extra">
+              <div class="lls-calc-extra__header" id="mc-extra-toggle">Extra payment scenario <span>+</span></div>
+              <div class="lls-calc-extra__body" id="mc-extra-body">
+                <div class="lls-calc-field">
+                  <label for="mc-extra-amount">Extra payment amount (US$)</label>
+                  <div class="lls-calc-input-wrap">
+                    <input type="number" id="mc-extra-amount" value="0" min="0" step="50">
+                  </div>
+                </div>
+                <div class="lls-calc-field">
+                  <label for="mc-extra-freq">Frequency</label>
+                  <select id="mc-extra-freq" class="lls-calc-select">
+                    <option value="12">Monthly</option>
+                    <option value="4">Quarterly</option>
+                    <option value="2" selected>Semiannual</option>
+                    <option value="1">Annual</option>
+                  </select>
+                </div>
+                <div class="lls-calc-summary-small">
+                  <p>Extra frequency: <span id="mc-xpy">2</span>/year</p>
+                  <p>Annual extra: <span id="mc-xannual">US$0</span></p>
+                  <p>Monthly equiv: <span id="mc-xmonthly">US$0.00</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="lls-calc-summary" id="mc-results-panel">
+            <div class="lls-summary-row">
+              <div>
+                <div class="lls-summary-label">Down payment</div>
+                <div class="lls-summary-val lls-summary-val--green" id="mc-res-down">US$3,000</div>
+              </div>
+              <div style="text-align: right">
+                <div class="lls-summary-label">Loan amount</div>
+                <div class="lls-summary-val" id="mc-res-loan">US$7,000</div>
+              </div>
+            </div>
+
+            <div class="lls-summary-bar">
+              <div class="lls-summary-bar-fill" id="mc-bar" style="width: 30%"></div>
+            </div>
+
+            <div class="lls-summary-monthly-label">Your estimated monthly payment:</div>
+            <div class="lls-summary-monthly-val" id="mc-monthly">US$80</div>
+
+            <button class="lls-button" style="width: 100%">PRE-QUALIFY</button>
+
+            <div id="mc-extra-block" style="display: none" class="lls-summary-extra-info">
+              <h4>With extra payments</h4>
+              <div class="lls-summary-monthly-val" id="mc-monthly-extra" style="font-size: 2rem">US$0.00</div>
+              <p id="mc-savings"></p>
+              <p id="mc-interest-saved" style="font-weight: 700; margin-top: 0.5rem;"></p>
+            </div>
+
+            <p class="lls-summary-foot">* These amounts are estimates and are subject to change without notice.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="lls-brand lls-shell">
+    <div class="lls-brand-mark">
+      <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" loading="lazy">
     </div>
+    <h4>Own the lifestyle people travel to find.</h4>
+    <figure class="lls-brand-image">
+      <img src="img/front-green.webp" alt="Las Lomas Serenas main entrance" loading="lazy">
+    </figure>
+    <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed around climate, beauty, comfort, and long-term possibility.</p>
+    <a class="lls-button" href="#contact" style="display: inline-block; width: auto; padding-inline: 4rem;">Request Information</a>
   </section>
 
   <script>
   (function() {
     var priceInput = document.getElementById('mc-price');
-    var price      = { get value() { return priceInput.value.replace(/,/g, ''); } };
-
-    // Format price input with commas as the user types
-    priceInput.addEventListener('input', function() {
-      var raw    = this.value.replace(/[^0-9]/g, '');
-      var cursor = this.selectionStart;
-      var prev   = this.value.length;
-      if (raw === '') { this.value = ''; return; }
-      var num    = parseInt(raw, 10);
-      this.value = num.toLocaleString('en-US');
-      // Adjust cursor position after comma insertion
-      var diff = this.value.length - prev;
-      this.setSelectionRange(cursor + diff, cursor + diff);
-    });
-    var bank       = document.getElementById('mc-bank');
-    var down       = document.getElementById('mc-down');
-    var term       = document.getElementById('mc-term');
-    var extraAmt   = document.getElementById('mc-extra-amount');
-    var extraFreq  = document.getElementById('mc-extra-freq');
-
-    var downLbl    = document.getElementById('mc-down-label');
-    var resDown    = document.getElementById('mc-res-down');
-    var resLoan    = document.getElementById('mc-res-loan');
-    var bar        = document.getElementById('mc-bar');
-    var monthly    = document.getElementById('mc-monthly');
-    var xpy        = document.getElementById('mc-xpy');
-    var xannual    = document.getElementById('mc-xannual');
-    var xmonthly   = document.getElementById('mc-xmonthly');
+    var bank = document.getElementById('mc-bank');
+    var down = document.getElementById('mc-down');
+    var term = document.getElementById('mc-term');
+    var extraAmt = document.getElementById('mc-extra-amount');
+    var extraFreq = document.getElementById('mc-extra-freq');
+    var downLbl = document.getElementById('mc-down-label');
+    var resDown = document.getElementById('mc-res-down');
+    var resLoan = document.getElementById('mc-res-loan');
+    var bar = document.getElementById('mc-bar');
+    var monthly = document.getElementById('mc-monthly');
+    var xpy = document.getElementById('mc-xpy');
+    var xannual = document.getElementById('mc-xannual');
+    var xmonthly = document.getElementById('mc-xmonthly');
     var extraBlock = document.getElementById('mc-extra-block');
     var monthlyExtra = document.getElementById('mc-monthly-extra');
-    var savings       = document.getElementById('mc-savings');
+    var savings = document.getElementById('mc-savings');
     var interestSaved = document.getElementById('mc-interest-saved');
-    var resultsPanel  = document.getElementById('mc-results-panel');
 
     function fmt(n) {
       return 'US$' + Math.round(n).toLocaleString('en-US');
     }
+
     function fmt2(n) {
-      return 'US$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+      return 'US$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    function amortMonths(principal, monthlyRate, months) {
-      if (principal <= 0 || months <= 0) return 0;
-      if (monthlyRate === 0) return months;
-      var bal = principal, m = 0;
-      while (bal > 0.01 && m < months * 2) {
-        bal = bal * (1 + monthlyRate) - (arguments[3] || 0);
-        m++;
-      }
-      return m;
+    function parsePrice() {
+      return parseFloat((priceInput.value || '').replace(/,/g, '')) || 0;
     }
 
-    function calc() {
-      var p   = parseFloat(price.value) || 0;
-      var dp  = parseFloat(down.value) / 100;
-      var r   = parseFloat(bank.value) / 100 / 12;
-      var n   = parseInt(term.value) * 12;
-      var ea  = parseFloat(extraAmt.value) || 0;
-      var ef  = parseInt(extraFreq.value);
-
-      // Hide everything until the user enters a price
-      if (p <= 0) {
-        resultsPanel.style.display = 'none';
-        downLbl.textContent = '—';
+    priceInput.addEventListener('input', function() {
+      var raw = this.value.replace(/[^0-9]/g, '');
+      if (!raw) {
+        this.value = '';
+        calc();
         return;
       }
-      resultsPanel.style.display = '';
+      this.value = parseInt(raw, 10).toLocaleString('en-US');
+      calc();
+    });
 
-      var downAmt  = p * dp;
-      var loanAmt  = p - downAmt;
-      var pct      = (dp * 100).toFixed(2);
-      var loanPct  = (100 - dp * 100).toFixed(0);
+    function calc() {
+      var p = parsePrice();
+      var dp = (parseFloat(down.value) || 0) / 100;
+      var r = (parseFloat(bank.value) || 0) / 100 / 12;
+      var n = (parseInt(term.value, 10) || 0) * 12;
+      var ea = (parseFloat(extraAmt.value) || 0);
+      var ef = (parseInt(extraFreq.value, 10) || 0);
 
+      if (p <= 0) {
+        downLbl.textContent = '—';
+        resDown.textContent = 'US$0';
+        resLoan.textContent = 'US$0';
+        bar.style.width = '0%';
+        monthly.textContent = 'US$0';
+        extraBlock.style.display = 'none';
+        return;
+      }
+
+      var downAmt = p * dp;
+      var loanAmt = p - downAmt;
+      var pct = (dp * 100).toFixed(2);
       downLbl.textContent = fmt(downAmt) + ' | ' + pct + '%';
-      resDown.textContent = fmt(downAmt) + ' | ' + pct + '%';
-      resLoan.textContent = fmt(loanAmt) + ' | ' + loanPct + '%';
-      bar.style.width     = (dp * 100) + '%';
+      resDown.textContent = fmt(downAmt);
+      resLoan.textContent = fmt(loanAmt);
+      bar.style.width = (dp * 100) + '%';
 
       var m = 0;
       if (loanAmt > 0 && r > 0 && n > 0) {
@@ -1352,87 +1015,69 @@
       }
       monthly.textContent = fmt(m);
 
-      // Extra payment summary
-      var annualExtra   = ea * ef;
-      var monthlyEquiv  = annualExtra / 12;
-      xpy.textContent      = ef;
-      xannual.textContent  = fmt(annualExtra);
-      xmonthly.textContent = fmt2(monthlyEquiv);
+      var annualExtra = ea * ef;
+      var monthlyEquiv = annualExtra / 12;
+      if(xpy) xpy.textContent = ef;
+      if(xannual) xannual.textContent = fmt(annualExtra);
+      if(xmonthly) xmonthly.textContent = fmt2(monthlyEquiv);
 
       if (ea > 0 && m > 0) {
         extraBlock.style.display = '';
         var effectiveMonthly = m + monthlyEquiv;
         monthlyExtra.textContent = fmt2(effectiveMonthly);
 
-        // Simulate standard amortization (total interest without extra)
         var stdMonths = 0, stdInterest = 0, balStd = loanAmt;
         while (balStd > 0.01 && stdMonths < n * 2) {
-          var intCharge = balStd * r;
-          stdInterest += intCharge;
-          balStd = balStd + intCharge - m;
+          var intStd = balStd * r;
+          stdInterest += intStd;
+          balStd = balStd + intStd - m;
           stdMonths++;
         }
 
-        // Simulate amortization with extra payments
         var newMonths = 0, newInterest = 0, balExtra = loanAmt;
         while (balExtra > 0.01 && newMonths < n * 2) {
-          var intChargeX = balExtra * r;
-          newInterest += intChargeX;
-          balExtra = balExtra + intChargeX - effectiveMonthly;
+          var intExtra = balExtra * r;
+          newInterest += intExtra;
+          balExtra = balExtra + intExtra - effectiveMonthly;
           newMonths++;
         }
 
-        var monthsSaved   = Math.max(0, stdMonths - newMonths);
-        var yearsSaved    = Math.floor(monthsSaved / 12);
-        var remMonths     = monthsSaved % 12;
-        var interestDiff  = Math.max(0, stdInterest - newInterest);
-
-        var savingsTxt = '';
-        if (yearsSaved > 0 || remMonths > 0) {
-          var timeParts = '';
-          if (yearsSaved > 0) timeParts += yearsSaved + ' year' + (yearsSaved > 1 ? 's' : '');
-          if (yearsSaved > 0 && remMonths > 0) timeParts += ' and ';
-          if (remMonths > 0) timeParts += remMonths + ' month' + (remMonths > 1 ? 's' : '');
-          savingsTxt = 'You\'ll own your home ' + timeParts + ' sooner!';
-        }
-        savings.textContent = savingsTxt;
-
-        interestSaved.textContent = interestDiff > 0
-          ? 'You\'re saving ' + fmt(interestDiff) + ' in interest!'
-          : '';
+        var monthsSaved = Math.max(0, stdMonths - newMonths);
+        var yearsSaved = Math.floor(monthsSaved / 12);
+        var remMonths = monthsSaved % 12;
+        var interestDiff = Math.max(0, stdInterest - newInterest);
+        var timeText = [];
+        if (yearsSaved > 0) timeText.push(yearsSaved + ' year' + (yearsSaved > 1 ? 's' : ''));
+        if (remMonths > 0) timeText.push(remMonths + ' month' + (remMonths > 1 ? 's' : ''));
+        savings.textContent = timeText.length ? 'You will own your home ' + timeText.join(' and ') + ' sooner!' : '';
+        interestSaved.textContent = interestDiff > 0 ? 'Projected interest savings: ' + fmt(interestDiff) : '';
       } else {
         extraBlock.style.display = 'none';
       }
     }
 
-    [priceInput, extraAmt].forEach(function(el){ el.addEventListener('input', calc); });
-    [bank, term, extraFreq].forEach(function(el){ el.addEventListener('change', calc); });
-    down.addEventListener('input', calc);
-    calc();
-
-    // Toggle extra payment section
-    var toggle = document.getElementById('mc-extra-toggle');
-    var body   = document.getElementById('mc-extra-body');
-    toggle.addEventListener('click', function() {
-      var isOpen = body.classList.contains('open');
-      body.classList.toggle('open', !isOpen);
-      toggle.classList.toggle('open', !isOpen);
+    [bank, term, extraFreq].forEach(function(el) {
+      if(el) el.addEventListener('change', calc);
     });
+
+    [down, extraAmt].forEach(function(el) {
+      if(el) el.addEventListener('input', calc);
+    });
+
+    var toggle = document.getElementById('mc-extra-toggle');
+    var bodyExtra = document.getElementById('mc-extra-body');
+    if(toggle) {
+      toggle.addEventListener('click', function() {
+        var open = bodyExtra.classList.toggle('open');
+        toggle.querySelector('span').textContent = open ? '−' : '+';
+      });
+    }
+
+    priceInput.value = '10,000';
+    calc();
   })();
   </script>
 
-  <section class="lls-brand lls-container">
-    <h2 class="lls-brand-mark">
-      <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
-    </h2>
-    <h4>Own the lifestyle people travel to find.</h4>
-    <figure class="lls-brand-image">
-      <img src="img/front-green.webp" alt="Las Lomas Serenas main entrance" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='paginas/Front Green.webp';">
-    </figure>
-    <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed
-      around climate, beauty, comfort, and long-term possibility.</p>
-    <a class="lls-cta" href="#contact">Request Information</a>
-  </section>
 
   <?php include __DIR__ . '/components/footer.php'; ?>
 
