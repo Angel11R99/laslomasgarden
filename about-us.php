@@ -65,22 +65,30 @@
     }
 
     .about-hero {
-      background: var(--lls-green-background);
-      padding: clamp(4rem, 7vw, 5.5rem) 0;
+      background: linear-gradient(90deg,
+        #006837 0%,
+        #006837 19.2053%,
+        #22b573 42.4501%,
+        #006837 73.3775%,
+        #22b573 100%);
+      padding: clamp(1.4rem, 2.5vw, 2rem) 1.5rem;
       text-align: center;
-      margin-top: 5%;
+      margin-top: 2.5rem;
+      width: 100%;
+      border-radius: 0;
     }
 
     .about-hero .about-shell {
-      width: min(996px, calc(100% - 2.4rem));
+      width: min(1300px, calc(100% - 3rem));
     }
 
     .about-hero .about-copy {
       color: var(--lls-white);
-      max-width: 980px;
+      max-width: 100%;
       margin: 0 auto;
-      font-size: clamp(1rem, 1.45vw, 1.2rem);
-      line-height: 1.62;
+      font-size: clamp(1rem, 1.35vw, 1.15rem);
+      line-height: 1.6;
+      opacity: 0.95;
     }
 
     .about-grid {
@@ -94,29 +102,34 @@
       margin: 0;
       border-radius: var(--lls-card-radius);
       overflow: hidden;
-      background: #f6fbf8;
-      box-shadow: var(--lls-card-shadow);
+      background: transparent;
     }
 
     .about-card img {
       width: 100%;
       height: 100%;
       min-height: clamp(240px, 31vw, 364px);
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .about-description {
       text-align: center;
-      padding-top: clamp(3.2rem, 6vw, 4.6rem);
+      padding: clamp(3.2rem, 6vw, 4.6rem) 0 clamp(2rem, 4vw, 3rem);
+    }
+
+    .about-description .about-shell {
+      width: min(1200px, calc(100% - 4rem));
     }
 
     .about-description .about-copy {
-      max-width: 980px;
+      max-width: 100%;
       margin: 0 auto;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      line-height: 1.7;
     }
 
     .about-description .about-cta {
-      margin-top: 1.7rem;
+      margin-top: 2rem;
     }
 
     .about-button {
@@ -170,8 +183,7 @@
       margin: 0;
       border-radius: var(--lls-card-radius);
       overflow: hidden;
-      box-shadow: var(--lls-card-shadow);
-      background: #f6fbf8;
+      background: transparent;
     }
 
     .about-company-image img {
@@ -262,15 +274,16 @@
       <div class="about-shell">
         <div class="about-company-layout">
           <div class="about-company-copy">
-            <img class="about-company-logo" src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+            <img class="about-company-logo" src="img/MaireniLogo.webp" alt="Maireni Bournigal & Co logo" loading="lazy" decoding="async">
             <div class="about-company-text" id="about-company-title">
-              <p class="about-copy">Operating since 1985 as a contractor in the construction sector, located on Luperón Highway, Km 1, Edificio Depósito Ferretero, 2nd floor, Puerto Plata, Dominican Republic.</p>
-              <p class="about-copy">Our company has carried out construction projects throughout the Dominican Republic, primarily in the Northern and Eastern regions, developing and promoting hotels, industrial facilities, airport projects, residential communities, and private residences.</p>
+              <p class="about-copy">Since 1985, Bournigal Construction has delivered premium residential developments, hotels, and industrial projects across the Dominican Republic with unmatched engineering precision.</p>
+              <p class="about-copy">What sets us apart and has made us the number one construction company on the North Coast of the Dominican Republic for the last 40 years is our commitment to quality and client satisfaction.</p>
+              <p class="about-copy">We are proud to be partnering with Las Lomas Serenas and we are committed to making this an exceptional facility for all its residents.</p>
             </div>
           </div>
 
           <figure class="about-company-image">
-            <img src="img/building.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
+            <img src="img/MaireniRecurso.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>

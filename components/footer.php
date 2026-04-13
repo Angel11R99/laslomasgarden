@@ -1,9 +1,11 @@
 <style>
   .lls-footer {
-    background:
-      radial-gradient(ellipse at 62% 50%, #21c97a 0%, transparent 55%),
-      radial-gradient(ellipse at 30% 60%, #18a362 0%, transparent 50%),
-      #0a7040;
+      background: linear-gradient(90deg,
+        #006837 0%,
+        #006837 19.2053%,
+        #22b573 42.4501%,
+        #006837 73.3775%,
+        #22b573 100%);
     color: #ffffff;
     padding: clamp(3rem, 6vw, 4.8rem) 0;
   }
@@ -138,13 +140,13 @@
   .lls-social-row {
     display: flex;
     align-items: center;
-    gap: 0.95rem;
+    gap: 1.1rem;
   }
 
   .lls-social-link {
     color: #ffffff;
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -153,8 +155,8 @@
   }
 
   .lls-social-link svg {
-    width: 1.95rem;
-    height: 1.95rem;
+    width: 2.2rem;
+    height: 2.2rem;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.8;
@@ -162,11 +164,6 @@
     stroke-linejoin: round;
   }
 
-  .lls-social-link.lls-social-facebook svg,
-  .lls-social-link.lls-social-x svg {
-    fill: currentColor;
-    stroke: none;
-  }
 
   @media (max-width: 1080px) {
     .lls-footer-inner {
@@ -282,16 +279,16 @@
         <h3 class="lls-footer-title">Follow Us</h3>
         <div class="lls-social-row">
           <a class="lls-social-link" href="https://wa.me/" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.8 7l-3.2 1 1-3.1A8 8 0 1 1 20 12z"></path><path d="M9.2 9.4c.3-.7.6-.7.9-.7h.5c.2 0 .4 0 .6.4.2.4.7 1.5.7 1.6.1.1.1.3 0 .4l-.3.5c-.1.1-.2.2-.1.4.1.2.4.7 1 1.1.7.6 1.4.8 1.6.9.2.1.3 0 .4-.1l.5-.5c.1-.1.3-.2.4-.1.2.1 1.2.6 1.4.8.2.1.3.2.3.4 0 .2-.1.9-.6 1.2-.5.4-1.1.4-1.3.3-.2 0-2-.7-3.4-2-1.6-1.5-2.1-3-2.3-3.3-.2-.3-.2-.7 0-1z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7l-3.2 1 1-3.1A8 8 0 1 1 20 12z"/><path d="M9.2 9.4c.3-.7.6-.7.9-.7h.5c.2 0 .4 0 .6.4.2.4.7 1.5.7 1.6.1.1.1.3 0 .4l-.3.5c-.1.1-.2.2-.1.4.1.2.4.7 1 1.1.7.6 1.4.8 1.6.9.2.1.3 0 .4-.1l.5-.5c.1-.1.3-.2.4-.1.2.1 1.2.6 1.4.8.2.1.3.2.3.4 0 .2-.1.9-.6 1.2-.5.4-1.1.4-1.3.3-.2 0-2-.7-3.4-2-1.6-1.5-2.1-3-2.3-3.3-.2-.3-.2-.7 0-1z"/></svg>
           </a>
           <a class="lls-social-link" href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r="0.9"></circle></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a class="lls-social-link lls-social-facebook" href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M15 8h-2c-.7 0-1 .3-1 1v2h3l-.3 3H12v6h-3v-6H7v-3h2V8.9c0-2.3 1.3-3.9 3.9-3.9H15v3z"></path></svg>
+          <a class="lls-social-link" href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M13.5 8.5h-1a1.5 1.5 0 0 0-1.5 1.5v2H13l-.4 2.5H11V20" stroke-width="1.6"/></svg>
           </a>
-          <a class="lls-social-link lls-social-x" href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M4 4l6.5 8.4L4.6 20H7l4.7-5.4L15.9 20H20l-6.8-8.8L19.5 4h-2.4l-4 4.7L9.6 4H4z"></path></svg>
+          <a class="lls-social-link" href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4 4l6.5 8.4L4.6 20H7l4.7-5.4L15.9 20H20l-6.8-8.8L19.5 4h-2.4l-4 4.7L9.6 4H4z"/></svg>
           </a>
         </div>
       </section>
