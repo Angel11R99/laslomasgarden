@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" href="img/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
-    
+
     :root {
       --lls-bg: #ffffff;
       --lls-white: #ffffff;
@@ -709,7 +709,7 @@
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
           <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the North Coast of the Dominican Republic.</p>
-          <a href="tourguiado.php" class="lls-button lls-button--white">3D TOUR</a>
+          <a href="tourguiado" class="lls-button lls-button--white">3D TOUR</a>
         </div>
       </div>
     </section>
