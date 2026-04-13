@@ -108,21 +108,74 @@
       color: var(--lls-green-deep);
     }
 
-    /* ── Pricing Image Section ── */
-    .rooms-pricing-section {
-      padding: var(--lls-section-space) 0;
+    /* ── Pricing table ── */
+    .pricing-section {
+      padding: clamp(3rem, 6vw, 4.5rem) 1rem;
+      text-align: center;
       background: #ffffff;
     }
 
-    .rooms-pricing-img-wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: #ffffff;
+    .pricing-title {
+      margin: 0 0 1.8rem;
+      color: var(--lls-title);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
-    .rooms-pricing-img-wrapper img {
+    .pricing-wrap {
+      width: min(820px, 100%);
+      margin-inline: auto;
+    }
+
+    .pricing-table {
       width: 100%;
-      height: auto;
+      border-collapse: collapse;
+      font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+    }
+
+    .pricing-table thead th {
+      background: var(--lls-title);
+      color: #ffffff;
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1rem;
+      text-align: center;
+    }
+
+    .pricing-header-row td {
+      color: var(--lls-title);
+      font-weight: 700;
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      letter-spacing: 0.04em;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #dde8e2;
+    }
+
+    .pricing-table tbody tr:not(.pricing-header-row) td {
+      padding: 0.85rem 1rem;
+      font-size: clamp(1rem, 1.15vw, 1.12rem);
+      color: #444;
+      border-bottom: 1px solid #edf2ef;
+      text-align: center;
+    }
+
+    .pricing-table tbody tr:not(.pricing-header-row):last-child td {
+      border-bottom: none;
+    }
+
+    .pricing-notes {
+      margin-top: 1.8rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .pricing-notes p {
+      margin: 0;
+      font-size: clamp(1rem, 1.1vw, 1.1rem);
+      color: #333;
+      text-align: center;
     }
 
     /* ── Sections ── */
@@ -342,11 +395,48 @@
       </div>
     </section>
 
-    <!-- Pricing / Table Image -->
-    <section class="rooms-pricing-section">
-      <div class="lls-shell">
-        <div class="rooms-pricing-img-wrapper">
-          <img src="img/3bedrooms-image.png" alt="3 Bedrooms Pricing and Specifications" loading="lazy" decoding="async">
+    <!-- Pricing table -->
+    <section class="pricing-section">
+      <h2 class="pricing-title">3 BEDROOM - 110M²</h2>
+      <div class="pricing-wrap">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th colspan="3">PRICES FOR UNFURNISHED CONDOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pricing-header-row">
+              <td>FLOOR</td>
+              <td>AREA</td>
+              <td>PRICE</td>
+            </tr>
+            <tr>
+              <td>1<sup>st</sup> Floor</td>
+              <td>137 m2 / 1474.66 sq. ft.</td>
+              <td>$301,400</td>
+            </tr>
+            <tr>
+              <td>2<sup>nd</sup> Floor</td>
+              <td>115 m2 / 1237.85 sq. ft.</td>
+              <td>$253,000</td>
+            </tr>
+            <tr>
+              <td>3<sup>rd</sup> Floor</td>
+              <td>115 m2 / 1237.85 sq. ft.</td>
+              <td>$253,000</td>
+            </tr>
+            <tr>
+              <td>4<sup>th</sup> Floor</td>
+              <td>147 m2 / 1582.29 sq. ft.</td>
+              <td>$323,400</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pricing-notes">
+          <p><strong>All condos on the 1<sup>st</sup> floor include a 29 m2 (312 sq. ft.) front yard patio.</strong></p>
+          <p><strong>All condo on the 4<sup>th</sup> floor have a 20 m2 (215 sq. ft.) terrace.</strong></p>
+          <p><strong>All condo purchases include a free parking space.</strong></p>
         </div>
       </div>
     </section>
