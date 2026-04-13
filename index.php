@@ -776,7 +776,7 @@
                 <li>Ideal for families</li>
                 <li>Exclusive rooftop space</li>
               </ul>
-              <a href="rooms.php" class="lls-button">See More</a>
+              <a href="3-bedrooms" class="lls-button">See More</a>
             </div>
           </article>
 
@@ -790,7 +790,7 @@
                 <li>Functional</li>
                 <li>Perfect for couples</li>
               </ul>
-              <a href="rooms.php" class="lls-button">See More</a>
+              <a href="2-bedrooms" class="lls-button">See More</a>
             </div>
           </article>
         </div>
