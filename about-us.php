@@ -53,7 +53,10 @@
     }
 
     .about-section {
-      padding: clamp(3.7rem, 7.5vw, 5.8rem) 0 0;
+      padding-top: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      padding-left: 0;
     }
 
     .about-copy {
@@ -71,9 +74,10 @@
         #22b573 42.4501%,
         #006837 73.3775%,
         #22b573 100%);
-      padding: clamp(1.4rem, 2.5vw, 2rem) 1.5rem;
+      padding: clamp(6.4rem, 2.5vw, 2rem) 1.5rem;
       text-align: center;
-      margin-top: 2.5rem;
+      margin-top: 0;
+      margin-bottom: 3.5rem;
       width: 100%;
       border-radius: 0;
     }
@@ -95,7 +99,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: clamp(1.2rem, 2vw, 1.9rem);
-      align-items: stretch;
+      align-items: end;
     }
 
     .about-card {
@@ -103,6 +107,11 @@
       border-radius: var(--lls-card-radius);
       overflow: hidden;
       background: transparent;
+    }
+
+    /* Keep spacing for the map card (second child) */
+    .about-grid .about-card:nth-child(2) {
+      margin-bottom: 3.5rem;
     }
 
     .about-card img {
@@ -242,11 +251,6 @@
   <?php include __DIR__ . '/components/header.php'; ?>
 
   <main class="about-page">
-    <section class="about-hero" aria-labelledby="about-hero-text">
-      <div class="about-shell">
-        <p class="about-copy" id="about-hero-text">Las Lomas Serenas is a condominium development owned and operated by U.S. investors and entrepreneurs. It is located on the beautiful North Coast of the Dominican Republic, in the Province of Puerto Plata, in the vibrant seaside town of Sosúa.</p>
-      </div>
-    </section>
 
     <section class="about-section" aria-label="About gallery">
       <div class="about-shell">
@@ -261,12 +265,9 @@
       </div>
     </section>
 
-    <section class="about-description" aria-labelledby="about-description-text">
+    <section class="about-hero" aria-labelledby="about-hero-text">
       <div class="about-shell">
-        <p class="about-copy" id="about-description-text">At Las Lomas Serenas, we believe true quality living goes beyond architecture — it is about the daily experience of comfort, balance, and peace of mind. Our vision has always been to create a residential community where modern design coexists with nature, and where every detail contributes to a calm, functional, and harmonious lifestyle.</p>
-        <div class="about-cta">
-          <a class="about-button" href="#contact">Request Information</a>
-        </div>
+        <p class="about-copy" id="about-hero-text">Las Lomas Serenas is a condominium development owned and operated by U.S. investors and entrepreneurs. It is located on the beautiful North Coast of the Dominican Republic, in the Province of Puerto Plata, in the vibrant seaside town of Sosúa.</p>
       </div>
     </section>
 

@@ -66,7 +66,7 @@
 
         .amenities-hero__banner h1 {
             margin: 0;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(2.2rem, 2.5vw, 2.8rem);
             font-weight: 500;
             letter-spacing: 0.05em;
         }
@@ -103,7 +103,7 @@
         .amenities-intro p {
             margin: 0 auto;
             max-width: 900px;
-            font-size: clamp(1rem, 1.2vw, 1.25rem);
+            font-size: clamp(1.5rem, 1.2vw, 1.25rem);
             opacity: 0.9;
             line-height: 1.6;
             font-weight: 300;
@@ -195,20 +195,20 @@
 
         /* Button consistency with index.php */
         .amenities-page .lls-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 22px;
-            padding: 0.6rem 1.8rem;
-            border: 1px solid transparent;
-            border-radius: 1px;
-            background: var(--lls-green-gradient);
-            color: var(--lls-white, #fff);
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 1rem;
+                display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 22px;
+    padding: 1.6rem 3.8rem;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background: var(--lls-green-gradient);
+    color: var(--lls-white, #fff);
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1.2rem;
         }
 
         .amenities-page .lls-button:hover {
@@ -276,7 +276,7 @@
         <section class="amenities-hero">
             <div class="amenities-hero__banner">
                 <div class="lls-shell">
-                    <h1>Resort-Style-Recreation Center</h1>
+                    <h1>Private Resort Style Recreation Center</h1>
                 </div>
             </div>
             <div class="amenities-hero__media">
@@ -287,7 +287,7 @@
         <!-- 2. Franja descriptiva introductoria -->
         <section class="amenities-intro">
             <div class="lls-shell">
-                <h2>Discover an active lifestyle right at home</h2>
+                <h2>Discover an Active Lifestyle Right at Home</h2>
                 <p>
                     Our apartment complex offers more than just comfort—it delivers a dynamic living experience for everyone.
                     Enjoy modern sports facilities, including basketball and tennis courts, along with dedicated recreational
@@ -300,10 +300,10 @@
         <section class="amenity-block basketball">
             <div class="amenity-block__grid">
                 <div class="amenity-block__media">
-                    <img src="img/Basketball.webp" alt="Private Basketball Court at Las Lomas Serenas" loading="lazy">
+                    <img src="img/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
                 </div>
                 <div class="amenity-block__content">
-                    <h2>Private Basketball court</h2>
+                    <h2>Basketball Court</h2>
                     <p>
                         Stay active and enjoy the game in our private basketball court. Whether for a friendly match
                         or a solo practice session, this high-quality facility is available for residents who value
@@ -321,10 +321,10 @@
         <section class="amenity-block amenity-block--reversed amenity-block--dark padel">
             <div class="amenity-block__grid">
                 <div class="amenity-block__media">
-                    <img src="img/padel.webp" alt="Private Padel Court at Las Lomas Serenas" loading="lazy">
+                    <img src="img/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
                 </div>
                 <div class="amenity-block__content">
-                    <h2>Private Padel court</h2>
+                    <h2>Padel Court</h2>
                     <p>
                         Experience one of the fastest-growing sports in the world in our exclusive padel court.
                         Designed with modern standards and premium surfaces, it provides the perfect setting for fun,
