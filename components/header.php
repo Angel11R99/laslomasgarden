@@ -16,42 +16,42 @@
   }
 
   .lls-header.is-scrolled {
-    background: rgba(17, 115, 127, 0.28);
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    background: rgba(10, 94, 56, 0.84);
+    backdrop-filter: blur(7px) saturate(135%);
+    -webkit-backdrop-filter: blur(7px) saturate(135%);
+    box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16);
   }
 
   .lls-header-inner {
-    --lls-side-column: 520px;
     width: min(1280px, calc(100% - 2.4rem));
     margin: 0 auto;
     min-height: 104px;
     padding-top: 6px;
+    padding-inline: clamp(0.75rem, 1.8vw, 1.5rem);
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 0;
+    align-items: center;
+    gap: 1.25rem;
     background: transparent;
     transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease;
   }
 
   .lls-header-spacer,
   .lls-header-right {
-    width: var(--lls-side-column);
-    flex: 0 0 var(--lls-side-column);
+    flex: 0 0 auto;
   }
 
   .lls-header-spacer {
-    visibility: hidden;
-    pointer-events: none;
+    display: none;
   }
 
   .lls-header-center {
     flex: 0 0 auto;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0;
+    min-width: 0;
   }
 
   .lls-header-logo {
@@ -73,14 +73,15 @@
 
   .lls-header-right {
     display: flex;
+    flex: 1 1 auto;
     justify-content: flex-end;
     align-items: center;
     gap: 18px;
-    padding-top: 14px;
+    padding-top: 0;
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
-    transform: translateX(6rem);
+    width: auto;
     transition: padding-top 0.28s ease, padding-bottom 0.28s ease, min-height 0.28s ease, transform 0.28s ease, opacity 0.22s ease;
   }
 
@@ -106,7 +107,7 @@
     padding-bottom: 0;
     min-height: 64px;
     align-items: center;
-    transform: translateX(6rem);
+    transform: none;
   }
 
   .lls-nav-list {
@@ -184,7 +185,7 @@
     min-width: 148px;
     padding: 0.45rem 0;
     border-radius: 12px;
-    background: rgba(10, 70, 46, 0.94);
+    background: rgba(8, 78, 47, 0.96);
     box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
     transform: translateX(-50%);
     display: none;
@@ -237,10 +238,6 @@
     width: clamp(148px, 12vw, 190px);
   }
 
-  body.page-about .lls-header .lls-header-inner {
-    --lls-side-column: 430px;
-  }
-
   body.page-about .lls-header-right {
     padding-left: clamp(0.6rem, 1.2vw, 1rem);
   }
@@ -266,13 +263,12 @@
     }
 
     .lls-header-inner {
-      --lls-side-column: 480px;
       min-height: 98px;
     }
 
     .lls-header-right {
-      padding-top: 12px;
-      transform: translateX(0.7rem);
+      padding-top: 0;
+      transform: none;
     }
   }
 
@@ -282,15 +278,14 @@
     }
 
     .lls-header-inner {
-      --lls-side-column: 430px;
       min-height: 90px;
       padding-top: 4px;
     }
 
     .lls-header-right {
-      padding-top: 10px;
+      padding-top: 0;
       gap: 12px;
-      transform: translateX(0.45rem);
+      transform: none;
     }
 
     .lls-nav-list {
@@ -300,10 +295,6 @@
     .lls-nav-list a,
     .lls-lang-btn {
       font-size: 0.84rem;
-    }
-
-    body.page-about .lls-header .lls-header-inner {
-      --lls-side-column: 360px;
     }
 
     body.page-about .lls-header-right {
@@ -317,7 +308,6 @@
     }
 
     body.page-about .lls-header-inner {
-      --lls-side-column: 0px;
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
@@ -325,10 +315,6 @@
       grid-template-columns: 1fr;
       justify-items: center;
       gap: 0.7rem;
-    }
-
-    body.page-about .lls-header-spacer {
-      display: none;
     }
 
     body.page-about .lls-header-center {
@@ -376,7 +362,6 @@
     }
 
     .lls-header-inner {
-      --lls-side-column: 0px;
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
@@ -384,10 +369,6 @@
       grid-template-columns: 1fr;
       justify-items: center;
       gap: 0.7rem;
-    }
-
-    .lls-header-spacer {
-      display: none;
     }
 
     .lls-header-right {
@@ -506,7 +487,7 @@
       height: 48px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: 10px;
-      background: rgba(13, 103, 61, 0.22);
+      background: rgba(11, 96, 57, 0.5);
       color: #ffffff;
       font-family: "Outfit", "Segoe UI", Arial, sans-serif;
       font-size: 1.65rem;
@@ -523,7 +504,7 @@
 
     .lls-menu-toggle:hover,
     .lls-menu-toggle:focus-visible {
-      background: rgba(13, 103, 61, 0.34);
+      background: rgba(11, 96, 57, 0.68);
       outline: none;
     }
 
@@ -580,8 +561,8 @@
       min-height: 60px;
       padding-top: 0.3rem;
       padding-bottom: 0.3rem;
-      gap: 0;
-      justify-content: flex-end;
+      gap: 0.75rem;
+      justify-content: space-between;
     }
 
     .lls-header.is-scrolled .lls-header-right,
@@ -600,7 +581,9 @@
       margin: 0 auto;
       padding: 0.9rem 1rem 1rem;
       border-radius: 18px;
-      background: rgba(10, 70, 46, 0.94);
+      background: rgba(8, 78, 47, 0.97);
+      backdrop-filter: blur(7px) saturate(132%);
+      -webkit-backdrop-filter: blur(7px) saturate(132%);
       box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
       position: relative;
       z-index: 1001;
@@ -678,18 +661,13 @@
       padding-bottom: 0;
     }
 
-    .lls-header.is-scrolled .lls-header-center,
-    .lls-header.is-compact .lls-header-center {
-      display: none;
-    }
-
     body.page-about .lls-header.is-scrolled .lls-header-inner,
     body.page-about .lls-header.is-compact .lls-header-inner {
-      justify-content: flex-end;
+      justify-content: space-between;
       min-height: 60px;
       padding-top: 0.3rem;
       padding-bottom: 0.3rem;
-      gap: 0;
+      gap: 0.75rem;
     }
 
     body.page-about .lls-header.is-scrolled .lls-header-right,
@@ -699,11 +677,6 @@
       min-height: 48px;
       padding-right: 0;
       justify-content: flex-end;
-    }
-
-    body.page-about .lls-header.is-scrolled .lls-header-center,
-    body.page-about .lls-header.is-compact .lls-header-center {
-      display: none;
     }
 
     .lls-header.is-scrolled .lls-header-logo,
@@ -722,7 +695,7 @@
 
     <div class="lls-header-center">
       <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
-        <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+        <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </a>
     </div>
 
