@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+  <link rel="preload" href="img/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
     :root {
       --lls-bg: #ffffff;
@@ -1059,9 +1059,9 @@
   <?php include __DIR__ . '/components/header.php'; ?>
 
   <section class="lls-hero">
-    <div class="lls-hero-content">
+    <!-- <div class="lls-hero-content">
       <h1>Caribbean Living, Every Day.</h1>
-    </div>
+    </div> -->
   </section>
 
   <section class="lls-intro" id="about">
@@ -1423,7 +1423,7 @@
 
   <section class="lls-brand lls-container">
     <h2 class="lls-brand-mark">
-      <img src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+      <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
     </h2>
     <h4>Own the lifestyle people travel to find.</h4>
     <figure class="lls-brand-image">

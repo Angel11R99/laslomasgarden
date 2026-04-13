@@ -262,7 +262,7 @@
       <div class="about-shell">
         <div class="about-company-layout">
           <div class="about-company-copy">
-            <img class="about-company-logo" src="img/logo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+            <img class="about-company-logo" src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
             <div class="about-company-text" id="about-company-title">
               <p class="about-copy">Operating since 1985 as a contractor in the construction sector, located on Luperón Highway, Km 1, Edificio Depósito Ferretero, 2nd floor, Puerto Plata, Dominican Republic.</p>
               <p class="about-copy">Our company has carried out construction projects throughout the Dominican Republic, primarily in the Northern and Eastern regions, developing and promoting hotels, industrial facilities, airport projects, residential communities, and private residences.</p>
