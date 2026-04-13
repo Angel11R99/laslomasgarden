@@ -37,30 +37,33 @@ jobs:
 
           echo "Deploy target: $DEPLOY_PATH"
 
-          ssh \
-            -i ~/.ssh/codeguard_sftp \
-            -o IdentitiesOnly=yes \
-            -o PreferredAuthentications=publickey \
-            -o PubkeyAuthentication=yes \
-            -o PasswordAuthentication=no \
-            -o KbdInteractiveAuthentication=no \
-            -o StrictHostKeyChecking=no \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "mkdir -p \"$DEPLOY_PATH\""
+          # SSH Options for stability and debugging
+          SSH_OPTS="-vvv -i ~/.ssh/codeguard_sftp -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PubkeyAuthentication=yes -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=60"
 
+          echo "::group::Verifying SSH Connection and Creating Directory"
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          until ssh $SSH_OPTS "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "mkdir -p \"$DEPLOY_PATH\""; do
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+              echo "Error: Failed to connect to server after $MAX_RETRIES attempts."
+              exit 1
+            fi
+            echo "SSH connection failed. Retrying in 5 seconds... ($RETRY_COUNT/$MAX_RETRIES)"
+            sleep 5
+          done
+          echo "::endgroup::"
+
+          echo "::group::Rsyncing Files"
           rsync -avz --delete \
             --exclude ".git/" \
             --exclude ".github/" \
             --exclude ".gitignore" \
-            -e "ssh -i ~/.ssh/codeguard_sftp -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PubkeyAuthentication=yes -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o StrictHostKeyChecking=no" \
+            -e "ssh $SSH_OPTS" \
             ./ \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$DEPLOY_PATH/"
+          echo "::endgroup::"
 
-          ssh \
-            -i ~/.ssh/codeguard_sftp \
-            -o IdentitiesOnly=yes \
-            -o PreferredAuthentications=publickey \
-            -o PubkeyAuthentication=yes \
-            -o PasswordAuthentication=no \
-            -o KbdInteractiveAuthentication=no \
-            -o StrictHostKeyChecking=no \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo 'Deploy OK en: $DEPLOY_PATH'; date > \"$DEPLOY_PATH/.deploy-check.txt\"; ls -la \"$DEPLOY_PATH\" | head -n 40"
+          echo "::group::Finalizing Deployment"
+          ssh $SSH_OPTS "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo 'Deploy OK en: $DEPLOY_PATH'; date > \"$DEPLOY_PATH/.deploy-check.txt\"; ls -la \"$DEPLOY_PATH\" | head -n 40"
+          echo "::endgroup::"
