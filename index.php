@@ -311,7 +311,7 @@
     }
 
     .lls-type-card__media {
-      background: linear-gradient(to bottom, #74b9ff, #ffffff);
+      background: linear-gradient(to bottom, #509ce9, #ffffff);
       padding: 1rem;
       display: flex;
       align-items: center;
@@ -767,7 +767,7 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">3 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/Plano 3D2.png" alt="3 Bedroom Apartment Render" loading="lazy">
+              <img src="img/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -783,7 +783,7 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="casa3d.webp" alt="2 Bedroom Apartment Render" loading="lazy">
+              <img src="img/3habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
