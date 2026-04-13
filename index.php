@@ -460,42 +460,6 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
-    /* 7. Branding Section (Bottom) */
-    .lls-brand {
-      padding: var(--lls-section-space) 1.5rem;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    .lls-brand-mark img {
-      width: min(450px, 90%);
-      margin-inline: auto;
-      margin-bottom: 3rem;
-    }
-
-    .lls-brand h4 {
-      font-size: clamp(1.4rem, 2.2vw, 2rem);
-      color: var(--lls-green-800);
-      margin-bottom: 2.5rem;
-      font-weight: 500;
-    }
-
-    .lls-brand-image img {
-      width: 100%;
-      max-width: 1100px;
-      margin-inline: auto;
-      border-radius: 20px;
-      margin-bottom: 3rem;
-      box-shadow: var(--lls-shadow-soft);
-    }
-
-    .lls-brand-caption {
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      color: var(--lls-copy);
-      font-size: 1.15rem;
-      line-height: 1.6;
-    }
 
     /* 8. Calculator Redesign */
     .lls-calc-section {
@@ -963,17 +927,6 @@
     </section>
   </main>
 
-  <section class="lls-brand lls-shell">
-    <div class="lls-brand-mark">
-      <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" loading="lazy">
-    </div>
-    <h4>Own the lifestyle people travel to find.</h4>
-    <figure class="lls-brand-image">
-      <img src="img/front-green.webp" alt="Las Lomas Serenas main entrance" loading="lazy">
-    </figure>
-    <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed around climate, beauty, comfort, and long-term possibility.</p>
-    <a class="lls-button lls-button--outline" href="#contact" style="display: inline-block; width: auto; padding-inline: 4rem; color: var(--lls-green-800); border-color: var(--lls-green-800);">Request Information</a>
-  </section>
 
   <script>
     (function() {
