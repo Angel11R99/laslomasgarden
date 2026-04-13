@@ -19,7 +19,7 @@
       --lls-green-800: #0d673d;
       --lls-green-700: #129247;
       --lls-green-600: #19a950;
-      --lls-green-gradient: linear-gradient(180deg, #18a362 0%, #0f8f53 100%);
+      --lls-green-gradient: linear-gradient(30deg, #006837 0%, #006837 19.2053%, #22b573 42.4501%, #006837 73.3775%, #22b573 100%);
       --lls-shell: 1220px;
       --lls-section-space: clamp(4rem, 7vw, 6.5rem);
       --lls-card-radius: 22px;
@@ -67,36 +67,48 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0.9rem 1.6rem;
-      border: 0;
-      border-radius: 999px;
+      min-height: 52px;
+      padding: 0.8rem 2.2rem;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      /* Rectangular as requested */
       background: var(--lls-green-gradient);
       color: var(--lls-white);
       font: inherit;
       font-size: 0.94rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-decoration: none;
       text-transform: uppercase;
-      box-shadow: 0 16px 28px rgba(14, 111, 67, 0.24);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 10px 20px rgba(11, 79, 51, 0.15);
+      transition: all 0.2s ease;
       cursor: pointer;
     }
 
     .lls-button:hover,
     .lls-button:focus-visible {
       transform: translateY(-2px);
-      box-shadow: 0 20px 30px rgba(14, 111, 67, 0.26);
-      opacity: 0.96;
+      box-shadow: 0 15px 25px rgba(11, 79, 51, 0.2);
+      opacity: 0.9;
     }
 
-    .lls-button--light {
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.46);
+    .lls-button--outline {
+      background: transparent;
+      border: 1px solid var(--lls-white);
+      color: var(--lls-white);
       box-shadow: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .lls-button--white {
+      background: var(--lls-white);
+      color: var(--lls-green-800);
+      border: 1px solid var(--lls-white);
+      box-shadow: none;
+    }
+
+    .lls-button--white:hover {
+      background: transparent;
+      color: var(--lls-white);
     }
 
     /* 1. Hero Redesign */
@@ -154,7 +166,7 @@
     }
 
     .lls-safety__content {
-      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) max(1.2rem, calc((100vw - var(--lls-shell)) / 2 + 1.2rem));
+      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) clamp(1.5rem, 6vw, 8rem);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -275,9 +287,10 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      padding-top: 1.5rem; /* Space for the floating tag */
-      box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-      border: 1px solid rgba(0,0,0,0.03);
+      padding-top: 1.5rem;
+      /* Space for the floating tag */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.03);
     }
 
     .lls-type-card__tag {
@@ -288,7 +301,7 @@
       background: var(--lls-green-800);
       color: var(--lls-white);
       padding: 0.6rem 2rem;
-      border-radius: 0 0 10px 10px;
+      border-radius: 10px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -372,7 +385,7 @@
 
     .lls-promo__content {
       background: var(--lls-green-gradient);
-      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) max(1.2rem, calc((100vw - var(--lls-shell)) / 2 + 1.2rem));
+      padding: var(--lls-section-space) clamp(2rem, 5vw, 5rem) var(--lls-section-space) clamp(1.5rem, 6vw, 8rem);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -434,8 +447,9 @@
       grid-template-columns: 1fr 1fr;
       gap: 1.2rem;
       width: 100%;
-      max-width: 1500px;
+      max-width: 1800px;
       margin-inline: auto;
+      padding-inline: 1.5rem;
     }
 
     .lls-lifestyle-new__grid img {
@@ -443,7 +457,7 @@
       height: 100%;
       object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     /* 7. Branding Section (Bottom) */
@@ -489,6 +503,15 @@
       background: #f1f7f4;
     }
 
+    .lls-calc-title {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--lls-green-800);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
     .lls-calc-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -496,7 +519,7 @@
       align-items: start;
     }
 
-    .lls-calc-form h2 {
+    .lls-calc-form h3 {
       margin: 0 0 1.5rem;
       font-size: 1.6rem;
       color: #1a3a28;
@@ -569,7 +592,7 @@
       border: 3px solid var(--lls-green-700);
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .lls-calc-extra__header {
@@ -626,7 +649,9 @@
       font-size: 1.1rem;
     }
 
-    .lls-summary-val--green { color: var(--lls-green-700); }
+    .lls-summary-val--green {
+      color: var(--lls-green-700);
+    }
 
     .lls-summary-bar {
       height: 8px;
@@ -684,6 +709,7 @@
     }
 
     @media (max-width: 960px) {
+
       .lls-safety__grid,
       .lls-calc-grid,
       .lls-promo__grid,
@@ -692,9 +718,17 @@
         grid-template-columns: 1fr;
       }
 
-      .lls-promo__grid { border-radius: 0; }
-      .lls-promo__content { padding: 3rem 1.5rem; }
-      .lls-safety__grid { gap: 2.5rem; }
+      .lls-promo__grid {
+        border-radius: 0;
+      }
+
+      .lls-promo__content {
+        padding: 3rem 1.5rem;
+      }
+
+      .lls-safety__grid {
+        gap: 2.5rem;
+      }
     }
   </style>
 </head>
@@ -710,7 +744,7 @@
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
           <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the North Coast of the Dominican Republic.</p>
-          <a href="tourguiado.php" class="lls-button lls-button--light">3D TOUR</a>
+          <a href="tourguiado.php" class="lls-button lls-button--white">3D TOUR</a>
         </div>
       </div>
     </section>
@@ -754,7 +788,8 @@
     <section class="lls-intro-bar">
       <div class="lls-shell">
         <h2>Find the perfect home for you and your lifestyle</h2>
-        <p>Explore our 3 and 2 bedroom options, thoughtfully designed to provide comfort, space, and functionality</p>
+        <p>Explore our 3 and 2 bedroom options, thoughtfully designed to match your lifestyle and provide
+          comfort, space, and functionality in every detail</p>
       </div>
     </section>
 
@@ -803,7 +838,7 @@
       <div class="lls-promo__grid">
         <div class="lls-promo__content">
           <h3><strong>Homes designed to make</strong> every moment unique, comfortable, and truly yours</h3>
-          <a href="#contact" class="lls-button lls-button--light">Request Information</a>
+          <a href="#contact" class="lls-button lls-button--outline">Request Information</a>
         </div>
         <div class="lls-promo__media">
           <img src="Familia en la terraza 2.webp" alt="Family sharing a moment on the terrace" loading="lazy">
@@ -815,7 +850,7 @@
     <section class="lls-lifestyle-new" id="lifestyle">
       <div class="lls-shell">
         <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
-        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast.</p>
+        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
         <div class="lls-lifestyle-new__grid">
           <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
           <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
@@ -826,10 +861,11 @@
     <!-- 7. Redesigned Simulator -->
     <section class="lls-calc-section" id="contact">
       <div class="lls-shell">
+        <h2 class="lls-calc-title">Loan Calculator</h2>
         <div class="lls-calc-grid">
           <div class="lls-calc-form">
-            <h2>What is the price of the property you want to buy?</h2>
-            
+            <h3>What is the price of the property you want to buy?</h3>
+
             <div class="lls-calc-field">
               <div class="lls-calc-input-wrap">
                 <span>US$</span>
@@ -936,146 +972,153 @@
       <img src="img/front-green.webp" alt="Las Lomas Serenas main entrance" loading="lazy">
     </figure>
     <p class="lls-brand-caption">A private residential experience on the North Coast of the Dominican Republic, designed around climate, beauty, comfort, and long-term possibility.</p>
-    <a class="lls-button" href="#contact" style="display: inline-block; width: auto; padding-inline: 4rem;">Request Information</a>
+    <a class="lls-button lls-button--outline" href="#contact" style="display: inline-block; width: auto; padding-inline: 4rem; color: var(--lls-green-800); border-color: var(--lls-green-800);">Request Information</a>
   </section>
 
   <script>
-  (function() {
-    var priceInput = document.getElementById('mc-price');
-    var bank = document.getElementById('mc-bank');
-    var down = document.getElementById('mc-down');
-    var term = document.getElementById('mc-term');
-    var extraAmt = document.getElementById('mc-extra-amount');
-    var extraFreq = document.getElementById('mc-extra-freq');
-    var downLbl = document.getElementById('mc-down-label');
-    var resDown = document.getElementById('mc-res-down');
-    var resLoan = document.getElementById('mc-res-loan');
-    var bar = document.getElementById('mc-bar');
-    var monthly = document.getElementById('mc-monthly');
-    var xpy = document.getElementById('mc-xpy');
-    var xannual = document.getElementById('mc-xannual');
-    var xmonthly = document.getElementById('mc-xmonthly');
-    var extraBlock = document.getElementById('mc-extra-block');
-    var monthlyExtra = document.getElementById('mc-monthly-extra');
-    var savings = document.getElementById('mc-savings');
-    var interestSaved = document.getElementById('mc-interest-saved');
+    (function() {
+      var priceInput = document.getElementById('mc-price');
+      var bank = document.getElementById('mc-bank');
+      var down = document.getElementById('mc-down');
+      var term = document.getElementById('mc-term');
+      var extraAmt = document.getElementById('mc-extra-amount');
+      var extraFreq = document.getElementById('mc-extra-freq');
+      var downLbl = document.getElementById('mc-down-label');
+      var resDown = document.getElementById('mc-res-down');
+      var resLoan = document.getElementById('mc-res-loan');
+      var bar = document.getElementById('mc-bar');
+      var monthly = document.getElementById('mc-monthly');
+      var xpy = document.getElementById('mc-xpy');
+      var xannual = document.getElementById('mc-xannual');
+      var xmonthly = document.getElementById('mc-xmonthly');
+      var extraBlock = document.getElementById('mc-extra-block');
+      var monthlyExtra = document.getElementById('mc-monthly-extra');
+      var savings = document.getElementById('mc-savings');
+      var interestSaved = document.getElementById('mc-interest-saved');
 
-    function fmt(n) {
-      return 'US$' + Math.round(n).toLocaleString('en-US');
-    }
+      function fmt(n) {
+        return 'US$' + Math.round(n).toLocaleString('en-US');
+      }
 
-    function fmt2(n) {
-      return 'US$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
+      function fmt2(n) {
+        return 'US$' + n.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
 
-    function parsePrice() {
-      return parseFloat((priceInput.value || '').replace(/,/g, '')) || 0;
-    }
+      function parsePrice() {
+        return parseFloat((priceInput.value || '').replace(/,/g, '')) || 0;
+      }
 
-    priceInput.addEventListener('input', function() {
-      var raw = this.value.replace(/[^0-9]/g, '');
-      if (!raw) {
-        this.value = '';
+      priceInput.addEventListener('input', function() {
+        var raw = this.value.replace(/[^0-9]/g, '');
+        if (!raw) {
+          this.value = '';
+          calc();
+          return;
+        }
+        this.value = parseInt(raw, 10).toLocaleString('en-US');
         calc();
-        return;
-      }
-      this.value = parseInt(raw, 10).toLocaleString('en-US');
-      calc();
-    });
-
-    function calc() {
-      var p = parsePrice();
-      var dp = (parseFloat(down.value) || 0) / 100;
-      var r = (parseFloat(bank.value) || 0) / 100 / 12;
-      var n = (parseInt(term.value, 10) || 0) * 12;
-      var ea = (parseFloat(extraAmt.value) || 0);
-      var ef = (parseInt(extraFreq.value, 10) || 0);
-
-      if (p <= 0) {
-        downLbl.textContent = '—';
-        resDown.textContent = 'US$0';
-        resLoan.textContent = 'US$0';
-        bar.style.width = '0%';
-        monthly.textContent = 'US$0';
-        extraBlock.style.display = 'none';
-        return;
-      }
-
-      var downAmt = p * dp;
-      var loanAmt = p - downAmt;
-      var pct = (dp * 100).toFixed(2);
-      downLbl.textContent = fmt(downAmt) + ' | ' + pct + '%';
-      resDown.textContent = fmt(downAmt);
-      resLoan.textContent = fmt(loanAmt);
-      bar.style.width = (dp * 100) + '%';
-
-      var m = 0;
-      if (loanAmt > 0 && r > 0 && n > 0) {
-        m = loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-      }
-      monthly.textContent = fmt(m);
-
-      var annualExtra = ea * ef;
-      var monthlyEquiv = annualExtra / 12;
-      if(xpy) xpy.textContent = ef;
-      if(xannual) xannual.textContent = fmt(annualExtra);
-      if(xmonthly) xmonthly.textContent = fmt2(monthlyEquiv);
-
-      if (ea > 0 && m > 0) {
-        extraBlock.style.display = '';
-        var effectiveMonthly = m + monthlyEquiv;
-        monthlyExtra.textContent = fmt2(effectiveMonthly);
-
-        var stdMonths = 0, stdInterest = 0, balStd = loanAmt;
-        while (balStd > 0.01 && stdMonths < n * 2) {
-          var intStd = balStd * r;
-          stdInterest += intStd;
-          balStd = balStd + intStd - m;
-          stdMonths++;
-        }
-
-        var newMonths = 0, newInterest = 0, balExtra = loanAmt;
-        while (balExtra > 0.01 && newMonths < n * 2) {
-          var intExtra = balExtra * r;
-          newInterest += intExtra;
-          balExtra = balExtra + intExtra - effectiveMonthly;
-          newMonths++;
-        }
-
-        var monthsSaved = Math.max(0, stdMonths - newMonths);
-        var yearsSaved = Math.floor(monthsSaved / 12);
-        var remMonths = monthsSaved % 12;
-        var interestDiff = Math.max(0, stdInterest - newInterest);
-        var timeText = [];
-        if (yearsSaved > 0) timeText.push(yearsSaved + ' year' + (yearsSaved > 1 ? 's' : ''));
-        if (remMonths > 0) timeText.push(remMonths + ' month' + (remMonths > 1 ? 's' : ''));
-        savings.textContent = timeText.length ? 'You will own your home ' + timeText.join(' and ') + ' sooner!' : '';
-        interestSaved.textContent = interestDiff > 0 ? 'Projected interest savings: ' + fmt(interestDiff) : '';
-      } else {
-        extraBlock.style.display = 'none';
-      }
-    }
-
-    [bank, term, extraFreq].forEach(function(el) {
-      if(el) el.addEventListener('change', calc);
-    });
-
-    [down, extraAmt].forEach(function(el) {
-      if(el) el.addEventListener('input', calc);
-    });
-
-    var toggle = document.getElementById('mc-extra-toggle');
-    var bodyExtra = document.getElementById('mc-extra-body');
-    if(toggle) {
-      toggle.addEventListener('click', function() {
-        var open = bodyExtra.classList.toggle('open');
-        toggle.querySelector('span').textContent = open ? '−' : '+';
       });
-    }
 
-    priceInput.value = '10,000';
-    calc();
-  })();
+      function calc() {
+        var p = parsePrice();
+        var dp = (parseFloat(down.value) || 0) / 100;
+        var r = (parseFloat(bank.value) || 0) / 100 / 12;
+        var n = (parseInt(term.value, 10) || 0) * 12;
+        var ea = (parseFloat(extraAmt.value) || 0);
+        var ef = (parseInt(extraFreq.value, 10) || 0);
+
+        if (p <= 0) {
+          downLbl.textContent = '—';
+          resDown.textContent = 'US$0';
+          resLoan.textContent = 'US$0';
+          bar.style.width = '0%';
+          monthly.textContent = 'US$0';
+          extraBlock.style.display = 'none';
+          return;
+        }
+
+        var downAmt = p * dp;
+        var loanAmt = p - downAmt;
+        var pct = (dp * 100).toFixed(2);
+        downLbl.textContent = fmt(downAmt) + ' | ' + pct + '%';
+        resDown.textContent = fmt(downAmt);
+        resLoan.textContent = fmt(loanAmt);
+        bar.style.width = (dp * 100) + '%';
+
+        var m = 0;
+        if (loanAmt > 0 && r > 0 && n > 0) {
+          m = loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+        monthly.textContent = fmt(m);
+
+        var annualExtra = ea * ef;
+        var monthlyEquiv = annualExtra / 12;
+        if (xpy) xpy.textContent = ef;
+        if (xannual) xannual.textContent = fmt(annualExtra);
+        if (xmonthly) xmonthly.textContent = fmt2(monthlyEquiv);
+
+        if (ea > 0 && m > 0) {
+          extraBlock.style.display = '';
+          var effectiveMonthly = m + monthlyEquiv;
+          monthlyExtra.textContent = fmt2(effectiveMonthly);
+
+          var stdMonths = 0,
+            stdInterest = 0,
+            balStd = loanAmt;
+          while (balStd > 0.01 && stdMonths < n * 2) {
+            var intStd = balStd * r;
+            stdInterest += intStd;
+            balStd = balStd + intStd - m;
+            stdMonths++;
+          }
+
+          var newMonths = 0,
+            newInterest = 0,
+            balExtra = loanAmt;
+          while (balExtra > 0.01 && newMonths < n * 2) {
+            var intExtra = balExtra * r;
+            newInterest += intExtra;
+            balExtra = balExtra + intExtra - effectiveMonthly;
+            newMonths++;
+          }
+
+          var monthsSaved = Math.max(0, stdMonths - newMonths);
+          var yearsSaved = Math.floor(monthsSaved / 12);
+          var remMonths = monthsSaved % 12;
+          var interestDiff = Math.max(0, stdInterest - newInterest);
+          var timeText = [];
+          if (yearsSaved > 0) timeText.push(yearsSaved + ' year' + (yearsSaved > 1 ? 's' : ''));
+          if (remMonths > 0) timeText.push(remMonths + ' month' + (remMonths > 1 ? 's' : ''));
+          savings.textContent = timeText.length ? 'You will own your home ' + timeText.join(' and ') + ' sooner!' : '';
+          interestSaved.textContent = interestDiff > 0 ? 'Projected interest savings: ' + fmt(interestDiff) : '';
+        } else {
+          extraBlock.style.display = 'none';
+        }
+      }
+
+      [bank, term, extraFreq].forEach(function(el) {
+        if (el) el.addEventListener('change', calc);
+      });
+
+      [down, extraAmt].forEach(function(el) {
+        if (el) el.addEventListener('input', calc);
+      });
+
+      var toggle = document.getElementById('mc-extra-toggle');
+      var bodyExtra = document.getElementById('mc-extra-body');
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          var open = bodyExtra.classList.toggle('open');
+          toggle.querySelector('span').textContent = open ? '−' : '+';
+        });
+      }
+
+      priceInput.value = '10,000';
+      calc();
+    })();
   </script>
 
 
@@ -1084,9 +1127,3 @@
 </body>
 
 </html>
-
-
-
-
-
-

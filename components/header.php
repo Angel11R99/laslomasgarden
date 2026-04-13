@@ -97,9 +97,9 @@
   }
 
   .lls-header.is-compact .lls-header-logo {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.94);
-    pointer-events: none;
+    opacity: 1;
+    transform: translateY(5px) scale(0.78);
+    pointer-events: auto;
   }
 
   .lls-header.is-compact .lls-header-right {
@@ -400,9 +400,9 @@
     }
 
     .lls-header.is-compact .lls-header-logo {
-      opacity: 0;
-      transform: translateY(-8px) scale(0.94);
-      pointer-events: none;
+      opacity: 1;
+      transform: translateY(5px) scale(0.78);
+      pointer-events: auto;
     }
 
     .lls-header.is-compact .lls-header-right {
@@ -681,9 +681,9 @@
 
     .lls-header.is-scrolled .lls-header-logo,
     .lls-header.is-compact .lls-header-logo {
-      opacity: 0;
-      transform: translateY(-8px) scale(0.94);
-      pointer-events: none;
+      opacity: 1;
+      transform: translateY(5px) scale(0.78);
+      pointer-events: auto;
     }
 
   }
