@@ -698,20 +698,18 @@
 
     #map_container {
       width: 100%;
-      padding: 20px;
+
 
       /* fondo suave */
       display: flex;
       justify-content: center;
-      margin-bottom: 150px;
+   
 
     }
 
     #map_container img {
       width: 100%;
-      max-width: 1600px;
-      /* limita tamaño en pantallas grandes */
-      border-radius: 16px;
+   
     
     }
 
@@ -995,7 +993,7 @@
         <h2 class="lls-calc-title">Strategic Location</h2>
       </div>
     </div>
-    <section id="map_container">
+    <section id="map_container" style="padding-top:60px">
       <img src="img/Mapa.webp" alt="Mapa">
     </section>
   </main>
