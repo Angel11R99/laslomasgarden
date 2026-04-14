@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" href="img/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
-
     :root {
       --lls-bg: #ffffff;
       --lls-white: #ffffff;
@@ -697,6 +696,31 @@
       line-height: 1.45;
     }
 
+    #map_container {
+      width: 100%;
+      padding: 20px;
+
+      /* fondo suave */
+      display: flex;
+      justify-content: center;
+      margin-bottom: 150px;
+
+    }
+
+    #map_container img {
+      width: 100%;
+      max-width: 1600px;
+      /* limita tamaño en pantallas grandes */
+      border-radius: 16px;
+    
+    }
+
+    #map_container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     @media (max-width: 960px) {
 
       .lls-safety__grid,
@@ -732,7 +756,9 @@
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
-          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the North Coast of the Dominican Republic.</p>
+          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more
+            than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm
+            of life on the North Coast of the Dominican Republic.</p>
           <a href="tourguiado" class="lls-button lls-button--white">3D TOUR</a>
         </div>
       </div>
@@ -755,14 +781,16 @@
               <span class="lls-safety__num">02</span>
               <div>
                 <h3 class="lls-safety__title">Year-round tropical climate</h3>
-                <p class="lls-safety__copy">Temperatures averaging between 75°F and 88°F invite outdoor living every season.</p>
+                <p class="lls-safety__copy">Temperatures averaging between 75°F and 88°F invite outdoor living every
+                  season.</p>
               </div>
             </li>
             <li class="lls-safety__item">
               <span class="lls-safety__num">03</span>
               <div>
                 <h3 class="lls-safety__title">North Coast positioning</h3>
-                <p class="lls-safety__copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where nature and convenience meet.</p>
+                <p class="lls-safety__copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where
+                  nature and convenience meet.</p>
               </div>
             </li>
           </ul>
@@ -808,7 +836,8 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy" class="lls-type-card__img--sm">
+              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy"
+                class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -841,19 +870,21 @@
     <section class="lls-lifestyle-new" id="lifestyle">
       <div class="lls-lifestyle-new__text">
         <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
-        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
+        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
+          rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
       </div>
       <div class="lls-lifestyle-new__grid">
-        <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
+        <img src="img/sport_home.webp" alt="Project amenities sports court" loading="lazy">
         <img src="img/pool-family.webp" alt="Project pool area" loading="lazy">
       </div>
     </section>
 
-    <div class="lls-calc-header" id="contact">
+    <div class="lls-calc-header" id="contact" style="padding-top:0px;padding-bottom:70px;">
       <div class="lls-shell">
         <h2 class="lls-calc-title">Loan Calculator</h2>
       </div>
     </div>
+
 
     <!-- 7. Redesigned Simulator -->
     <section class="lls-calc-section">
@@ -882,7 +913,8 @@
 
             <div class="lls-calc-field">
               <label>Down payment</label>
-              <div class="lls-summary-val lls-summary-val--green" id="mc-down-label" style="margin-bottom: 0.5rem">US$3,000 | 30.00%</div>
+              <div class="lls-summary-val lls-summary-val--green" id="mc-down-label" style="margin-bottom: 0.5rem">
+                US$3,000 | 30.00%</div>
               <input type="range" id="mc-down" class="lls-calc-slider" min="10" max="80" value="30" step="1">
             </div>
 
@@ -957,11 +989,20 @@
         </div>
       </div>
     </section>
+
+    <div class="lls-calc-header">
+      <div class="lls-shell">
+        <h2 class="lls-calc-title">Strategic Location</h2>
+      </div>
+    </div>
+    <section id="map_container">
+      <img src="img/Mapa.webp" alt="Mapa">
+    </section>
   </main>
 
 
   <script>
-    (function() {
+    (function () {
       var priceInput = document.getElementById('mc-price');
       var bank = document.getElementById('mc-bank');
       var down = document.getElementById('mc-down');
@@ -996,7 +1037,7 @@
         return parseFloat((priceInput.value || '').replace(/,/g, '')) || 0;
       }
 
-      priceInput.addEventListener('input', function() {
+      priceInput.addEventListener('input', function () {
         var raw = this.value.replace(/[^0-9]/g, '');
         if (!raw) {
           this.value = '';
@@ -1084,18 +1125,18 @@
         }
       }
 
-      [bank, term, extraFreq].forEach(function(el) {
+      [bank, term, extraFreq].forEach(function (el) {
         if (el) el.addEventListener('change', calc);
       });
 
-      [down, extraAmt].forEach(function(el) {
+      [down, extraAmt].forEach(function (el) {
         if (el) el.addEventListener('input', calc);
       });
 
       var toggle = document.getElementById('mc-extra-toggle');
       var bodyExtra = document.getElementById('mc-extra-body');
       if (toggle) {
-        toggle.addEventListener('click', function() {
+        toggle.addEventListener('click', function () {
           var open = bodyExtra.classList.toggle('open');
           toggle.querySelector('span').textContent = open ? '−' : '+';
         });
