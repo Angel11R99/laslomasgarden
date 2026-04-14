@@ -2068,6 +2068,39 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       setTimeout(() => heroRoot.classList.remove('is-front-view'), 420);
     }
 
+    const fallbackApartmentIds = [
+      'app1', 'app2-T', 'app3', 'app4-T', 'app5', 'app6-T', 'app7-T', 'app8', 'app9-T', 'app10',
+      'app11-T', 'app12-T', 'app13', 'app14-T', 'app15', 'app16-T', 'app17', 'app18-T', 'app19', 'app20-T',
+      'app21-T', 'app22', 'app23', 'app24', 'app25-T', 'app26-T', 'app27', 'app28', 'app29-T', 'app30',
+      'app31-T', 'app32', 'app33', 'app34-T'
+    ];
+
+    function getApartmentElements(svgContainer) {
+      if (!svgContainer) return [];
+
+      const identifiedUnits = Array.from(
+        svgContainer.querySelectorAll('[id^="app"], [id^="APP"], [data-unit-id]')
+      );
+      if (identifiedUnits.length) return identifiedUnits;
+
+      const imageUnits = Array.from(svgContainer.querySelectorAll('svg image')).filter((node) => {
+        const name = String(node.getAttribute('data-name') || '').toLowerCase();
+        return name !== 'land';
+      });
+
+      if (imageUnits.length !== fallbackApartmentIds.length) return [];
+
+      imageUnits.forEach((node, index) => {
+        const fallbackId = fallbackApartmentIds[index];
+        node.setAttribute('data-unit-id', fallbackId);
+        if (!node.getAttribute('id')) {
+          node.setAttribute('id', fallbackId);
+        }
+      });
+
+      return imageUnits;
+    }
+
     // Attach click handlers to all elements with ID starting with "app"
     function initSvgApartmentClicks() {
       const svgContainer = document.querySelector('#svgContainer');
@@ -2076,7 +2109,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       const tooltip = document.getElementById('aptTooltip');
       const tooltipText = document.getElementById('aptTooltipText');
 
-      const apartmentElements = svgContainer.querySelectorAll('[id^="app"], [id^="APP"]');
+      const apartmentElements = getApartmentElements(svgContainer);
+      if (!apartmentElements.length) return;
 
       // Intro attention pulse — staggered so units glow one by one
       apartmentElements.forEach((el, i) => {
@@ -2084,7 +2118,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
 
       apartmentElements.forEach(element => {
-        const id = element.getAttribute('id') || '';
+        const id = element.getAttribute('data-unit-id') || element.getAttribute('id') || '';
         const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
         const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
         const unitNum = id.replace(/[^0-9]/g, '');
@@ -2141,7 +2175,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       const svgContainer = document.querySelector('#svgContainer');
       const shouldUseMobileMasterPlan = window.matchMedia('(max-width: 768px)').matches;
       if (svgContainer && !shouldUseMobileMasterPlan) {
-        fetch('img/plano-interactivo.svg')
+        fetch('img/plano-interactivo.min.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
