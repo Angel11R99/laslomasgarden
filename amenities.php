@@ -235,6 +235,83 @@
             color: var(--lls-white, #fff) !important;
         }
 
+        /* ── Room card: image full-width, text centered below ── */
+        .room-card {
+            margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        .room-card-media {
+            margin: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .room-card-media img {
+            width: 100%;
+            /* height: clamp(420px, 60vw, 750px); */
+            object-fit: cover;
+            display: block;
+        }
+
+        .room-card-copy {
+            text-align: center;
+            padding: clamp(1.8rem, 3.5vw, 2.8rem) clamp(1.2rem, 8vw, 6rem);
+            background: #ffffff;
+        }
+
+        .room-card-copy h2 {
+            margin: 0 0 0.9rem;
+            color: #0a9a72;
+            font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .room-card-copy p {
+            margin: 0 auto;
+            max-width: 860px;
+            font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+            line-height: 1.75;
+            color: #63706b;
+        }
+
+        .room-card-actions {
+            margin-top: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .room-card-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 1.1rem;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            border: 1px solid #089e67;
+            transition: opacity 0.2s ease;
+        }
+
+        .room-card-btn:hover { opacity: 0.82; }
+
+        .room-card-btn.is-solid {
+            background: #089e67;
+            color: #ffffff;
+        }
+
+        .room-card-btn.is-outline {
+            background: transparent;
+            color: #067c56;
+            border-color: #d4ded9;
+        }
+
         /* Responsive */
         @media (max-width: 960px) {
             .amenity-block__grid {
@@ -296,68 +373,50 @@
             </div>
         </section>
 
-        <!-- 3. Sección 1: Private Basketball court -->
-        <section class="amenity-block basketball">
-            <div class="amenity-block__grid">
-                <div class="amenity-block__media">
-                    <img src="img/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
-                </div>
-                <div class="amenity-block__content">
-                    <h2>Basketball Court</h2>
-                    <p>
-                        Stay active and enjoy the game in our private basketball court. Whether for a friendly match
-                        or a solo practice session, this high-quality facility is available for residents who value
-                        healthy living and sports performance right at their doorstep.
-                    </p>
-                    <div class="amenity-block__actions">
-                        <a href="/contact-us" class="lls-button">Request Information</a>
-                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
-                    </div>
+        <!-- 3. Basketball Court -->
+        <div class="room-card">
+            <figure class="room-card-media">
+                <img src="img/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
+            </figure>
+            <div class="room-card-copy">
+                <h2>Basketball Court</h2>
+                <p>Stay active and enjoy the game in our private basketball court. Whether for a friendly match or a solo practice session, this high-quality facility is available for residents who value healthy living and sports performance right at their doorstep.</p>
+                <div class="room-card-actions">
+                    <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
+                    <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 4. Sección 2: Private Padel court (Inverted, Dark/Green style) -->
-        <section class="amenity-block amenity-block--reversed amenity-block--dark padel">
-            <div class="amenity-block__grid">
-                <div class="amenity-block__media">
-                    <img src="img/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
-                </div>
-                <div class="amenity-block__content">
-                    <h2>Padel Court</h2>
-                    <p>
-                        Experience one of the fastest-growing sports in the world in our exclusive padel court.
-                        Designed with modern standards and premium surfaces, it provides the perfect setting for fun,
-                        competition, and socializing with friends and neighbors.
-                    </p>
-                    <div class="amenity-block__actions">
-                        <a href="/contact-us" class="lls-button lls-button--white">Request Information</a>
-                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
-                    </div>
+        <!-- 4. Padel Court -->
+        <div class="room-card">
+            <figure class="room-card-media">
+                <img src="img/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
+            </figure>
+            <div class="room-card-copy">
+                <h2>Padel Court</h2>
+                <p>Experience one of the fastest-growing sports in the world in our exclusive padel court. Designed with modern standards and premium surfaces, it provides the perfect setting for fun, competition, and socializing with friends and neighbors.</p>
+                <div class="room-card-actions">
+                    <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
+                    <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 5. Sección 3: A Space to Connect -->
-        <section class="amenity-block social">
-            <div class="amenity-block__grid">
-                <div class="amenity-block__media">
-                    <img src="img/pool-family.webp" alt="Social gathering space at Las Lomas Serenas" loading="lazy">
-                </div>
-                <div class="amenity-block__content">
-                    <h2>A Space to Connect</h2>
-                    <p>
-                        Our community spaces are designed for relaxation and connection. A comfortable gazebo and
-                        lounge area offer the perfect spot to sit back, relax, and share moments with loved ones,
-                        all while enjoying the beautiful tropical surroundings of the project.
-                    </p>
-                    <div class="amenity-block__actions">
-                        <a href="/contact-us" class="lls-button">Request Information</a>
-                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
-                    </div>
+        <!-- 5. A Space to Connect -->
+        <div class="room-card">
+            <figure class="room-card-media">
+                <img src="img/pool-family.webp" alt="Social gathering space at Las Lomas Serenas" loading="lazy">
+            </figure>
+            <div class="room-card-copy">
+                <h2>A Space to Connect</h2>
+                <p>Our community spaces are designed for relaxation and connection. A comfortable gazebo and lounge area offer the perfect spot to sit back, relax, and share moments with loved ones, all while enjoying the beautiful tropical surroundings of the project.</p>
+                <div class="room-card-actions">
+                    <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
+                    <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 
