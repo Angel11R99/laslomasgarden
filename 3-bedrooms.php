@@ -306,7 +306,7 @@
 
     <!-- Pricing table -->
     <section class="pricing-section">
-      <h2 class="pricing-title">3 BEDROOM - 110M²</h2>
+      <h2 class="pricing-title">3 BEDROOM - 115 m² (1,237 sq. ft.)</h2>
       <div class="pricing-wrap">
         <table class="pricing-table">
           <thead>
@@ -322,23 +322,23 @@
             </tr>
             <tr>
               <td>1<sup>st</sup> Floor</td>
-              <td>139 m2 / 1496 sq. ft.</td>
-              <td>$247,800</td>
+              <td>144 m2 / 1,550 sq. ft.</td>
+              <td>$258,800</td>
             </tr>
             <tr>
               <td>2<sup>nd</sup> Floor</td>
-              <td>110 m2 / 1184 sq. ft.</td>
-              <td>$242,000</td>
+              <td>115 m2 / 1,237 sq. ft.</td>
+              <td>$253,000</td>
             </tr>
             <tr>
               <td>3<sup>rd</sup> Floor</td>
-              <td>110 m2 / 1184 sq. ft.</td>
-              <td>$242,000</td>
+              <td>115 m2 / 1,237 sq. ft.</td>
+              <td>$253,000</td>
             </tr>
             <tr>
               <td>4<sup>th</sup> Floor</td>
-              <td>137 m2 / 1475 sq. ft.</td>
-              <td>$247,400</td>
+              <td>142 m2 / 1,528 sq. ft.</td>
+              <td>$258,400</td>
             </tr>
           </tbody>
         </table>

@@ -306,7 +306,7 @@
 
     <!-- Pricing table -->
     <section class="pricing-section">
-      <h2 class="pricing-title">2 BEDROOM - 84.3M²</h2>
+      <h2 class="pricing-title">2 BEDROOM - 84.3 m² (907 sq. ft.)</h2>
       <div class="pricing-wrap">
         <table class="pricing-table">
           <thead>
