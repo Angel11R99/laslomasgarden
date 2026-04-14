@@ -131,7 +131,7 @@
     .hero.step-1 #svgContainer {
       position: relative;
       overflow: hidden;
-      background: #dce9e4;
+      background: transparent;
     }
 
     .hero.step-1 #svgContainer svg {
@@ -298,9 +298,20 @@
       inset: 0;
       z-index: 2;
       pointer-events: auto;
+      display: block;
       transform-origin: center center;
       transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   opacity 0.55s ease;
+    }
+
+    .hero-map-base {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+     
+      display: block;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -308,6 +319,9 @@
     }
 
     #svgContainer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       width: 100%;
       height: 100%;
     }
@@ -316,6 +330,11 @@
       width: 100%;
       height: 100%;
       display: block;
+    }
+
+    #svgContainer svg image {
+      opacity: 0;
+      pointer-events: all;
     }
 
     .hero.is-front-view .hero-apartment-map {
@@ -1698,6 +1717,7 @@
 
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
+        <img class="hero-map-base" src="img/plano-interactivo-base.webp" alt="Master plan" fetchpriority="high" loading="eager" decoding="async">
         <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
         
         <div id="svgContainer">
@@ -2170,12 +2190,14 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
     }
 
-    // Load SVG externally then init interactions
-    document.addEventListener('DOMContentLoaded', () => {
+    function loadInteractiveHeroMap() {
       const svgContainer = document.querySelector('#svgContainer');
       const shouldUseMobileMasterPlan = window.matchMedia('(max-width: 768px)').matches;
       if (svgContainer && !shouldUseMobileMasterPlan) {
-        fetch('img/plano-interactivo.min.svg')
+        if (svgContainer.dataset.loaded === 'true' || svgContainer.dataset.loading === 'true') return;
+        svgContainer.dataset.loading = 'true';
+
+        fetch('img/plano-interactivo-overlay.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
@@ -2183,11 +2205,27 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             if (loadedSvg) {
               loadedSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
             }
+            svgContainer.dataset.loading = 'false';
+            svgContainer.dataset.loaded = 'true';
             initSvgApartmentClicks();
+          })
+          .catch(() => {
+            svgContainer.dataset.loading = '';
           });
       } else if (svgContainer) {
         svgContainer.innerHTML = '';
       }
+    }
+
+    // Load overlay after first render so the hero image appears immediately
+    document.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadInteractiveHeroMap, { timeout: 1200 });
+        } else {
+          setTimeout(loadInteractiveHeroMap, 180);
+        }
+      });
     });
 
     // Hero close button
