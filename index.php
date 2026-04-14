@@ -349,7 +349,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: start;
       gap: 0.8rem;
     }
 
