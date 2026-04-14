@@ -181,7 +181,7 @@
       line-height: 1.08;
       color: var(--lls-green-800);
       font-weight: 600;
-      max-width: 14ch;
+      max-width: 15ch;
     }
 
     .lls-safety__content h2 {
@@ -190,7 +190,7 @@
       line-height: 1.08;
       color: var(--lls-green-800);
       font-weight: 600;
-      max-width: 14ch;
+      max-width: 15ch;
     }
 
     .lls-safety__list {
@@ -226,6 +226,7 @@
       color: var(--lls-copy);
       font-size: 1rem;
       line-height: 1.6;
+      max-width: 60ch;
     }
 
     .lls-safety__media {
@@ -349,7 +350,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: start;
       gap: 0.8rem;
     }
 
@@ -460,7 +461,7 @@
 
     .lls-lifestyle-new p {
       margin: 1.5rem auto 4rem;
-      max-width: 800px;
+      max-width: 900px;
       color: var(--lls-copy);
       font-size: 1.15rem;
       line-height: 1.6;
@@ -481,9 +482,13 @@
     }
 
 
-    /* 8. Calculator Redesign */
+    .lls-calc-header {
+      padding: var(--lls-section-space) 0 0;
+      background: var(--lls-white);
+    }
+
     .lls-calc-section {
-      padding: var(--lls-section-space) 0;
+      padding: clamp(2rem, 4vw, 3.5rem) 0 var(--lls-section-space);
       background: #f1f7f4;
     }
 
@@ -840,14 +845,19 @@
       </div>
       <div class="lls-lifestyle-new__grid">
         <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
-        <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
+        <img src="img/pool-family.webp" alt="Project pool area" loading="lazy">
       </div>
     </section>
 
-    <!-- 7. Redesigned Simulator -->
-    <section class="lls-calc-section" id="contact">
+    <div class="lls-calc-header" id="contact">
       <div class="lls-shell">
         <h2 class="lls-calc-title">Loan Calculator</h2>
+      </div>
+    </div>
+
+    <!-- 7. Redesigned Simulator -->
+    <section class="lls-calc-section">
+      <div class="lls-shell">
         <div class="lls-calc-grid">
           <div class="lls-calc-form">
             <h3>What is the price of the property you want to buy?</h3>
