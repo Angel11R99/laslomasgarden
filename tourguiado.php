@@ -131,12 +131,35 @@
     .hero.step-1 #svgContainer {
       position: relative;
       overflow: hidden;
-      background: transparent;
+      background: transparent url('img/plano-interactivo-base.webp') center/100% 100% no-repeat;
     }
 
     .hero.step-1 #svgContainer svg {
+      width: 100%;
+      height: 100%;
       transform: scaleX(1.12) scaleY(0.9);
       transform-origin: center;
+    }
+
+    .hero-map-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(221, 233, 228, 0.85);
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #17483b;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .hero-map-loading.hidden {
+      display: none;
     }
 
     .hero::after {
@@ -1717,10 +1740,10 @@
 
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
-        <img class="hero-map-base" src="img/plano-interactivo-base.webp" alt="Master plan" fetchpriority="high" loading="eager" decoding="async">
         <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
         
         <div id="svgContainer">
+          <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- ================================================================ -->
           <!-- PLACE YOUR FULL SVG CONTENT HERE (replacing the example below)  -->
           <!-- Make sure each apartment element has an ID starting with "app"   -->
@@ -2207,6 +2230,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             }
             svgContainer.dataset.loading = 'false';
             svgContainer.dataset.loaded = 'true';
+            const loadingEl = document.getElementById('heroMapLoading');
+            if (loadingEl) loadingEl.classList.add('hidden');
             initSvgApartmentClicks();
           })
           .catch(() => {
