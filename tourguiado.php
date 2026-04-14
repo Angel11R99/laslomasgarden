@@ -1710,11 +1710,11 @@
       </div>
 
       <div class="hero-front-view" id="heroFrontView" aria-hidden="true">
-        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with balcony in the roof">
+        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
         <div class="hero-front-controls">
-          <span class="hero-front-title" id="heroFrontTitle">Unit with balcony in the roof</span>
+          <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
           <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
         </div>
       </div>
@@ -1800,14 +1800,14 @@
 
     const heroApartmentViews = {
       'with-balcony': {
-        title: 'Unit with balcony in the roof',
-        image: 'img/Serenasconbalcon.svg',
+        title: 'Unit with 3 rooms',
+        image: 'img/Serenas3rooms.svg',
         interactive: true,
         step2Svg: 'img/masterplan3room.svg'
       },
       'without-balcony': {
-        title: 'Unit without balcony in the roof',
-        image: 'img/Serenasnobalcon.svg',
+        title: 'Unit with 2 rooms',
+        image: 'img/Serenas2rooms.svg',
         interactive: true,
         step2Svg: 'img/masterplan2room.svg'
       }
@@ -2086,7 +2086,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       apartmentElements.forEach(element => {
         const id = element.getAttribute('id') || '';
         const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
-        const apartmentLabel = viewKey === 'with-balcony' ? 'With Balcony' : 'Without Balcony';
+        const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
         const unitNum = id.replace(/[^0-9]/g, '');
 
         // Wrap <image> in a <g> that takes the positioning transform.
