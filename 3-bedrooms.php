@@ -369,7 +369,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
+          <img src="img/Kitchen-3b.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
@@ -383,7 +383,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/Kitchen-3b.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
+          <img src="img/BedRoom-3b.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
@@ -397,7 +397,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/BedRoom-3b.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
+          <img src="img/3-Bed-IMG/BathRoom-.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Clean Design Practical Comfort</h2>
