@@ -323,8 +323,9 @@
     .lls-type-card__media img {
       width: 100%;
       height: auto;
-      max-height: 250px;
-      object-fit: contain;
+      max-height: 340px;
+      object-fit: cover;
+      object-position: center;
     }
 
     .lls-type-card__body {

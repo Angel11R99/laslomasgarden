@@ -123,7 +123,7 @@
 
     .room-card-media img {
       width: 100%;
-      height: clamp(300px, 42vw, 560px);
+      /*height: clamp(300px, 42vw, 560px);*/
       object-fit: cover;
       display: block;
     }
@@ -144,10 +144,17 @@
 
     .room-card-copy p {
       margin: 0 auto;
-      max-width: 760px;
-      font-size: clamp(1rem, 1.2vw, 1.12rem);
+      max-width: 980px;
+      font-size: clamp(1.1rem, 1.4vw, 1.25rem);
       line-height: 1.7;
       color: var(--lls-copy);
+      text-wrap: balance;
+    }
+
+    @media (min-width: 1920px) {
+      .room-card-copy p {
+        max-width: 60%;
+      }
     }
 
     .rooms-actions {
@@ -163,11 +170,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
-      padding: 0.5rem 1.4rem;
+      min-height: 48px;
+      padding: 0.7rem 2rem;
       text-decoration: none;
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 1.05rem;
       line-height: 1;
       letter-spacing: 0.02em;
       border: 1px solid var(--lls-green);
@@ -216,7 +223,7 @@
     .pricing-table thead th {
       background: var(--lls-title);
       color: #ffffff;
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-size: clamp(1.2rem, 1.6vw, 1.45rem);
       font-weight: 700;
       letter-spacing: 0.06em;
       padding: 0.9rem 1rem;
@@ -226,7 +233,7 @@
     .pricing-header-row td {
       color: var(--lls-title);
       font-weight: 700;
-      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
       letter-spacing: 0.04em;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #dde8e2;
@@ -234,7 +241,7 @@
 
     .pricing-table tbody tr:not(.pricing-header-row) td {
       padding: 0.85rem 1rem;
-      font-size: clamp(1rem, 1.15vw, 1.12rem);
+      font-size: clamp(1.1rem, 1.3vw, 1.25rem);
       color: #444;
       border-bottom: 1px solid #edf2ef;
       text-align: center;
@@ -252,7 +259,7 @@
 
     .pricing-notes p {
       margin: 0;
-      font-size: clamp(1rem, 1.1vw, 1.1rem);
+      font-size: clamp(1.1rem, 1.25vw, 1.2rem);
       color: #333;
       text-align: center;
     }
@@ -348,7 +355,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-living.webp" alt="Warm and relaxing living room" decoding="async">
+          <img src="img/2-Bed-IMG/Living-1.webp" alt="Warm and relaxing living room" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Warm and Relaxing Living Spaces</h2>
@@ -362,7 +369,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
+          <img src="img/2-Bed-IMG/Kitchen-2.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
@@ -376,7 +383,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-bedroom.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
+          <img src="img/2-Bed-IMG/Bedroom-3.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
@@ -390,7 +397,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-bathroom.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
+          <img src="img/2-Bed-IMG/BathRoom-4.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Clean Design Practical Comfort</h2>
@@ -404,7 +411,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-laundry.webp" alt="Laundry area" loading="lazy" decoding="async">
+          <img src="img/2-Bed-IMG/Laundry-5.webp" alt="Laundry area" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Every Detail Has a Reason</h2>
