@@ -840,7 +840,7 @@
       </div>
       <div class="lls-lifestyle-new__grid">
         <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
-        <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
+        <img src="img/pool-family.webp" alt="Project pool area" loading="lazy">
       </div>
     </section>
 
