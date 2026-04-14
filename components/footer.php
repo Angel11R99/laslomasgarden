@@ -258,11 +258,12 @@
           <li><a href="/">Home</a></li>
           <li class="lls-footer-has-submenu">
             <button class="lls-footer-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-footer-submenu">
-              Complex
+              Residence
             </button>
             <ul class="lls-footer-submenu" id="lls-footer-submenu" hidden>
               <li><a href="/tourguiado">Tour</a></li>
-              <li><a href="/rooms">Rooms</a></li>
+              <li><a href="/2-bedrooms">2 Bedrooms</a></li>
+              <li><a href="/3-bedrooms">3 Bedrooms</a></li>
             </ul>
           </li>
           <li><a href="/about-us">About Us</a></li>

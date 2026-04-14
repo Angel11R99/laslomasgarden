@@ -310,8 +310,8 @@
                         healthy living and sports performance right at their doorstep.
                     </p>
                     <div class="amenity-block__actions">
-                        <a href="#" class="lls-button">Request Information</a>
-                        <a href="#" class="lls-button lls-button--outline">Contact US</a>
+                        <a href="/contact-us" class="lls-button">Request Information</a>
+                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
                     </div>
                 </div>
             </div>
@@ -331,8 +331,8 @@
                         competition, and socializing with friends and neighbors.
                     </p>
                     <div class="amenity-block__actions">
-                        <a href="#" class="lls-button lls-button--white">Request Information</a>
-                        <a href="#" class="lls-button lls-button--outline">Contact US</a>
+                        <a href="/contact-us" class="lls-button lls-button--white">Request Information</a>
+                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
                     </div>
                 </div>
             </div>
@@ -352,8 +352,8 @@
                         all while enjoying the beautiful tropical surroundings of the project.
                     </p>
                     <div class="amenity-block__actions">
-                        <a href="#" class="lls-button">Request Information</a>
-                        <a href="#" class="lls-button lls-button--outline">Contact US</a>
+                        <a href="/contact-us" class="lls-button">Request Information</a>
+                        <a href="/contact-us" class="lls-button lls-button--outline">Contact US</a>
                     </div>
                 </div>
             </div>

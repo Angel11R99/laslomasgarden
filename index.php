@@ -261,13 +261,13 @@
 
     /* 4. Typologies (Rooms) */
     .lls-typologies {
-      padding: var(--lls-section-space) 0;
+      padding: clamp(2rem, 4vw, 3rem) 0 var(--lls-section-space);
       text-align: center;
       background: #ffffff;
     }
 
     .lls-branding {
-      margin-bottom: 5rem;
+      margin-bottom: 2rem;
     }
 
     .lls-branding img {
@@ -277,55 +277,62 @@
 
     .lls-typologies__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+      grid-template-columns: repeat(auto-fit, minmax(380px, 520px));
       gap: 4rem 3rem;
       justify-content: center;
+      padding-top: 1.5rem;
     }
 
     .lls-type-card {
       background: #f8f9fa;
       border-radius: 20px;
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       flex-direction: column;
       position: relative;
-      padding-top: 1.5rem;
-      /* Space for the floating tag */
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
       border: 1px solid rgba(0, 0, 0, 0.03);
     }
 
     .lls-type-card__tag {
       position: absolute;
-      top: 0;
+      top: -1.2rem;
       left: 50%;
       transform: translateX(-50%);
       background: var(--lls-green-800);
       color: var(--lls-white);
-      padding: 0.6rem 2rem;
+      padding: 0.7rem 2.4rem;
       border-radius: 10px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       z-index: 10;
       white-space: nowrap;
     }
 
     .lls-type-card__media {
       background: linear-gradient(to bottom, #509ce9, #ffffff);
-      padding: 1rem;
+      padding: 2.5rem 1rem 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      height: 380px;
     }
 
     .lls-type-card__media img {
       width: 100%;
       height: auto;
-      max-height: 340px;
+      max-height: 420px;
       object-fit: cover;
       object-position: center;
+    }
+
+    .lls-type-card__img--sm {
+      max-height: 300px !important;
+      width: auto !important;
     }
 
     .lls-type-card__body {
@@ -342,7 +349,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.8rem;
     }
 
@@ -351,7 +358,7 @@
       padding-left: 2rem;
       color: #4a6356;
       font-weight: 500;
-      font-size: 1.05rem;
+      font-size: 1.2rem;
     }
 
     .lls-type-card__list li::before {
@@ -403,6 +410,14 @@
       max-width: 22ch;
     }
 
+    @media (min-width: 2000px) {
+      .lls-promo__content .lls-button {
+        font-size: 1.3rem;
+        padding: 1rem 2.8rem;
+        white-space: nowrap;
+      }
+    }
+
     .lls-promo h3 strong {
       display: block;
       font-weight: 700;
@@ -428,13 +443,19 @@
       background: #ffffff;
     }
 
+    .lls-lifestyle-new__text {
+      width: 100%;
+      padding: 0 clamp(1rem, 4vw, 4rem);
+    }
+
     .lls-lifestyle-new h2 {
       margin: 0 auto;
       font-size: clamp(2rem, 3.5vw, 3rem);
       color: var(--lls-green-800);
-      max-width: 850px;
+      max-width: 1100px;
       line-height: 1.1;
       font-weight: 700;
+      text-wrap: balance;
     }
 
     .lls-lifestyle-new p {
@@ -448,18 +469,14 @@
     .lls-lifestyle-new__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      gap: 0;
       width: 100%;
-      max-width: 1800px;
-      margin-inline: auto;
-      padding-inline: 1.5rem;
     }
 
     .lls-lifestyle-new__grid img {
       width: 100%;
-      height: 100%;
+      height: clamp(300px, 45vw, 700px);
       object-fit: cover;
-      border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
@@ -770,7 +787,7 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">3 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy">
+              <img src="img/3habitacionestrans.svg" alt="3 Bedroom Apartment Render" loading="lazy">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -786,7 +803,7 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy">
+              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy" class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -807,7 +824,7 @@
       <div class="lls-promo__grid">
         <div class="lls-promo__content">
           <h3><strong>Homes designed to make</strong> every moment unique, comfortable, and truly yours</h3>
-          <a href="#contact" class="lls-button lls-button--outline">Request Information</a>
+          <a href="/contact-us" class="lls-button lls-button--outline">Request Information</a>
         </div>
         <div class="lls-promo__media">
           <img src="Familia en la terraza 2.webp" alt="Family sharing a moment on the terrace" loading="lazy">
@@ -817,13 +834,13 @@
 
     <!-- 6. Lifestyle / Amenities -->
     <section class="lls-lifestyle-new" id="lifestyle">
-      <div class="lls-shell">
+      <div class="lls-lifestyle-new__text">
         <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
         <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
-        <div class="lls-lifestyle-new__grid">
-          <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
-          <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
-        </div>
+      </div>
+      <div class="lls-lifestyle-new__grid">
+        <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
+        <img src="img/Pool.webp" alt="Project pool area" loading="lazy">
       </div>
     </section>
 

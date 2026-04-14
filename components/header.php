@@ -725,7 +725,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
             </ul>
           </li>
           <li><a href="/amenities">Amenities</a></li>
-          <!-- <li><a href="/index.php#contact">Contact Us</a></li> -->
+          <!-- <li><a href="/contact-us">Contact Us</a></li> -->
           <li><a href="/about-us">About Us</a></li>
         </ul>
       </nav>
@@ -750,7 +750,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
             <li><a href="/rooms">Rooms</a></li>
           </ul>
         </li>
-        <li><a href="/index.php#contact">Contact Us</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
         <li><a href="/about-us">About Us</a></li>
       </ul>
     </nav>
