@@ -703,20 +703,25 @@
       /* fondo suave */
       display: flex;
       justify-content: center;
-   
+
 
     }
 
     #map_container img {
       width: 100%;
-   
-    
+
+
     }
 
     #map_container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+
+    .image_full {
+      width: 100%;
     }
 
     @media (max-width: 960px) {
@@ -818,7 +823,8 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">3 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/3habitacionestrans.svg" alt="3 Bedroom Apartment Render" loading="lazy">
+              <img src="img/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy"
+                class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -859,7 +865,7 @@
           <a href="/contact-us" class="lls-button lls-button--outline">Request Information</a>
         </div>
         <div class="lls-promo__media">
-          <img src="Familia en la terraza 2.webp" alt="Family sharing a moment on the terrace" loading="lazy">
+          <img src="bbq_home.webp" alt="Family sharing a moment on the terrace" loading="lazy">
         </div>
       </div>
     </section>
@@ -871,11 +877,24 @@
         <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
           rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
       </div>
-      <div class="lls-lifestyle-new__grid">
-        <img src="img/sport_home.webp" alt="Project amenities sports court" loading="lazy">
-        <img src="img/pool-family.webp" alt="Project pool area" loading="lazy">
+      <div class="">
+        <img src="img/sport_home.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+
       </div>
     </section>
+
+    <section class="lls-lifestyle-new" style="padding-top:0px" >
+      <div class="lls-lifestyle-new__text">
+        <h2>The Art of Living Well</h2>
+        <p>A perfect moment where laughter, sunshine, and relaxation come together, capturing the balance between joy
+          and peace we all seek.</p>
+      </div>
+      <div class="">
+        <img src="img/pool-family.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+
+      </div>
+    </section>
+
 
     <div class="lls-calc-header" id="contact" style="padding-top:0px;padding-bottom:70px;">
       <div class="lls-shell">
