@@ -19,6 +19,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16);
     border: 0;
     transition: background-color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease, box-shadow 0.28s ease;
+    height: 110px;
+
   }
 
   .lls-header.is-home:not(.is-scrolled) {
@@ -32,8 +34,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   .lls-header-inner {
     width: min(1280px, calc(100% - 2.4rem));
     margin: 0 auto;
-    min-height: 104px;
-    padding-top: 6px;
+    min-height: 120px;
+    padding-top: 8px;
     padding-inline: clamp(0.75rem, 1.8vw, 1.5rem);
     display: flex;
     justify-content: space-between;
@@ -70,6 +72,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     transform-origin: center top;
     will-change: transform, opacity;
     transition: opacity 0.22s ease, transform 0.28s ease, width 0.28s ease;
+    padding-top: 15px;
   }
 
   .lls-header.is-home .lls-header-logo {
@@ -98,8 +101,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   }
 
   .lls-header.is-compact .lls-header-inner {
-    min-height: 78px;
-    padding-top: 0;
+    min-height: 100px;
+    padding-top: 10px;
     align-items: center;
   }
 
@@ -163,7 +166,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     white-space: nowrap;
   }
 
-  .lls-nav-item-complex > .lls-submenu-toggle {
+  .lls-nav-item-complex>.lls-submenu-toggle {
     color: #ffffff;
     font-family: "Outfit", "Segoe UI", Arial, sans-serif;
     font-size: clamp(0.92rem, 0.95vw, 1rem);
@@ -172,7 +175,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     text-decoration: none;
   }
 
-  .lls-nav-item-complex > .lls-submenu-toggle::after {
+  .lls-nav-item-complex>.lls-submenu-toggle::after {
     content: "\25BE";
     margin-left: 6px;
     font-size: 0.68em;
@@ -180,7 +183,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     transition: transform 0.2s ease;
   }
 
-  .lls-has-submenu.is-open > .lls-submenu-toggle::after {
+  .lls-has-submenu.is-open>.lls-submenu-toggle::after {
     transform: rotate(180deg);
   }
 
@@ -190,7 +193,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     list-style: none;
   }
 
-  .lls-nav-item-complex > .lls-submenu {
+  .lls-nav-item-complex>.lls-submenu {
     position: absolute;
     top: calc(100% + 0.7rem);
     left: 50%;
@@ -204,11 +207,11 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     z-index: 1003;
   }
 
-  .lls-nav-item-complex.is-open > .lls-submenu {
+  .lls-nav-item-complex.is-open>.lls-submenu {
     display: block;
   }
 
-  .lls-nav-item-complex > .lls-submenu a {
+  .lls-nav-item-complex>.lls-submenu a {
     display: block;
     padding: 0.55rem 1rem;
     text-align: left;
@@ -421,64 +424,45 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
   }
 
-  @media (max-width: 768px) {
-    :root {
-      --lls-header-overlay: 88px;
-    }
-
+  @media (max-width: 1100px) {
+    
     .lls-header {
-      overflow: visible;
+      height: auto;
+      min-height: 88px;
     }
 
     .lls-header-inner {
       width: calc(100% - 1rem);
-      max-width: 100%;
-      min-width: 0;
-      min-height: 84px;
-      padding-top: 0.4rem;
-      padding-bottom: 0.4rem;
-      padding-inline: 0.25rem;
-      display: flex;
-      justify-content: space-between;
+      min-height: 88px;
+      padding: 0.5rem 0.25rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
       gap: 0.75rem;
-      transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease;
-    }
-
-    .lls-header-spacer {
-      display: none;
     }
 
     .lls-header-center {
-      display: flex;
-      align-items: center;
       justify-content: flex-start;
+      align-items: center;
       min-width: 0;
-      max-width: 132px;
-      overflow: hidden;
     }
 
     .lls-header-logo {
-      width: clamp(104px, 28vw, 128px);
-      opacity: 1;
+      width: clamp(120px, 20vw, 170px);
+      padding-top: 0;
+      margin: 0;
       transform: none;
-      pointer-events: auto;
     }
 
     .lls-header-right {
+      flex: 0 0 auto;
       width: auto;
-      max-width: none;
       min-width: 48px;
       min-height: 48px;
-      padding-top: 0;
-      padding-right: 0;
-      transform: none;
+      padding: 0;
       justify-content: flex-end;
       align-items: center;
       gap: 0;
-      flex-wrap: nowrap;
-      overflow: visible;
-      transition: padding-right 0.28s ease, transform 0.28s ease, opacity 0.22s ease;
     }
 
     .lls-nav,
@@ -488,105 +472,26 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
     .lls-menu-toggle {
       display: inline-flex;
-      flex: 0 0 48px;
-      align-self: center;
-      margin-right: 0;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: 10px;
       background: rgba(11, 96, 57, 0.5);
-      color: #ffffff;
-      font-family: "Outfit", "Segoe UI", Arial, sans-serif;
-      font-size: 1.65rem;
+      color: #fff;
+      font-size: 1.5rem;
       line-height: 1;
       cursor: pointer;
       position: relative;
       z-index: 1002;
     }
 
-    .lls-menu-toggle span {
-      display: block;
-      line-height: 1;
-    }
-
-    .lls-menu-toggle:hover,
-    .lls-menu-toggle:focus-visible {
-      background: rgba(11, 96, 57, 0.68);
-      outline: none;
-    }
-
-
-    .lls-header-inner {
-      width: calc(100% - 1rem);
-      min-height: 84px;
-      padding-top: 0.4rem;
-      padding-bottom: 0.4rem;
-      padding-inline: 0.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .lls-header-center {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      min-width: 0;
-      max-width: 132px;
-      overflow: hidden;
-      padding-top: 0;
-    }
-
-    .lls-header-logo {
-      width: clamp(104px, 28vw, 128px);
-    }
-
-    .lls-header-right {
-      width: auto;
-      min-width: 48px;
-      min-height: 48px;
-      padding-top: 0;
-      padding-left: 0;
-      padding-right: 0;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 0;
-      text-align: right;
-      flex-wrap: nowrap;
-      transform: none;
-    }
-
-
-    .lls-header.is-scrolled .lls-header-inner,
-    .lls-header.is-compact .lls-header-inner {
-      width: calc(100% - 1rem);
-      min-height: 60px;
-      padding-top: 0.3rem;
-      padding-bottom: 0.3rem;
-      gap: 0.75rem;
-      justify-content: space-between;
-    }
-
-    .lls-header.is-scrolled .lls-header-right,
-    .lls-header.is-compact .lls-header-right {
-      width: auto;
-      max-width: none;
-      min-width: 48px;
-      min-height: 48px;
-      padding-right: 0;
-    }
-
     .lls-mobile-menu {
-      width: calc(100% - 2rem);
-      max-width: 100%;
-      min-width: 0;
-      margin: 0 auto;
+      width: calc(100% - 1rem);
+      margin: 0.35rem auto 0;
       padding: 0.9rem 1rem 1rem;
-      border-radius: 18px;
+      border-radius: 16px;
       background: rgba(8, 78, 47, 0.97);
       backdrop-filter: blur(7px) saturate(132%);
       -webkit-backdrop-filter: blur(7px) saturate(132%);
@@ -605,7 +510,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0;
     }
 
     .lls-mobile-nav-list a,
@@ -613,86 +518,54 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     .lls-mobile-lang {
       display: block;
       width: 100%;
-      max-width: 100%;
-      padding: 0.82rem 0;
-      color: #ffffff;
+      padding: 0.85rem 0;
+      color: #fff;
       text-decoration: none;
       font-family: "Outfit", "Segoe UI", Arial, sans-serif;
       font-size: 1rem;
-      line-height: 1.3;
+      line-height: 1.35;
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      overflow-wrap: anywhere;
+      background: transparent;
     }
 
-    .lls-mobile-nav-list li:last-child a,
-    .lls-mobile-lang {
-      border-bottom: 0;
-    }
-
-    .lls-mobile-nav-item-complex > .lls-submenu-toggle {
+    .lls-mobile-nav-list .lls-submenu-toggle {
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
       text-align: left;
+      cursor: pointer;
     }
 
-    .lls-mobile-nav-item-complex > .lls-submenu-toggle::after {
-      content: "\25BE";
-      margin-left: 0.45rem;
-      font-size: 0.72em;
-      vertical-align: middle;
-      transition: transform 0.2s ease;
-    }
-
-    .lls-mobile-nav-item-complex.is-open > .lls-submenu-toggle::after {
-      transform: rotate(180deg);
-    }
-
-    .lls-mobile-nav-item-complex > .lls-submenu {
+    .lls-mobile-nav-item-complex>.lls-submenu {
       display: none;
       padding-left: 1rem;
     }
 
-    .lls-mobile-nav-item-complex.is-open > .lls-submenu {
+    .lls-mobile-nav-item-complex.is-open>.lls-submenu {
       display: block;
-    }
-
-    .lls-mobile-nav-item-complex > .lls-submenu a {
-      padding-top: 0.72rem;
-      padding-bottom: 0.72rem;
-      font-size: 0.96rem;
     }
 
     .lls-mobile-lang {
       display: inline-flex;
       align-items: center;
       gap: 0.55rem;
+      padding-top: 0.9rem;
       padding-bottom: 0;
+      border-bottom: 0;
     }
 
     .lls-header.is-scrolled .lls-header-inner,
     .lls-header.is-compact .lls-header-inner {
-      justify-content: space-between;
-      min-height: 60px;
-      padding-top: 0.3rem;
-      padding-bottom: 0.3rem;
-      gap: 0.75rem;
+      min-height: 72px;
+      padding-top: 0.35rem;
+      padding-bottom: 0.35rem;
     }
-
-    .lls-header.is-scrolled .lls-header-right,
-    .lls-header.is-compact .lls-header-right {
-      width: auto;
-      min-width: 48px;
-      min-height: 48px;
-      padding-right: 0;
-      justify-content: flex-end;
-    }
-
 
     .lls-header.is-scrolled .lls-header-logo,
     .lls-header.is-compact .lls-header-logo {
-      opacity: 1;
-      transform: translateY(5px) scale(0.78);
-      pointer-events: auto;
+      width: clamp(110px, 18vw, 150px);
+      transform: none;
     }
-
   }
 </style>
 
@@ -702,12 +575,14 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
     <div class="lls-header-center">
       <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
-        <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+        <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async"
+          fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </a>
     </div>
 
     <div class="lls-header-right">
-      <button class="lls-menu-toggle" id="lls-menu-toggle" type="button" aria-expanded="false" aria-controls="lls-mobile-menu" aria-label="Open navigation menu">
+      <button class="lls-menu-toggle" id="lls-menu-toggle" type="button" aria-expanded="false"
+        aria-controls="lls-mobile-menu" aria-label="Open navigation menu">
         <span aria-hidden="true">☰</span>
       </button>
 
