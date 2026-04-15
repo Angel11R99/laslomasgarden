@@ -13,13 +13,13 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     z-index: 1000;
     width: 100%;
     max-width: 100%;
-    background: rgba(10, 94, 56, 0.84);
+    background: rgba(10, 94, 56, 70);
     backdrop-filter: blur(7px) saturate(135%);
     -webkit-backdrop-filter: blur(7px) saturate(135%);
-    box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16);
+    /* box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16); */
     border: 0;
     transition: background-color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease, box-shadow 0.28s ease;
-    height: 110px;
+    min-height: 102px;
 
   }
 
@@ -28,15 +28,17 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     box-shadow: none;
+    padding-top: 10px;
   }
 
 
   .lls-header-inner {
     width: min(1280px, calc(100% - 2.4rem));
     margin: 0 auto;
-    min-height: 120px;
-    padding-top: 8px;
+    min-height: 110px;
+    padding-block: 12px;
     padding-inline: clamp(0.75rem, 1.8vw, 1.5rem);
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,10 +71,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     width: clamp(148px, 12vw, 190px);
     opacity: 1;
     transform: translateY(0);
-    transform-origin: center top;
+    transform-origin: center center;
     will-change: transform, opacity;
     transition: opacity 0.22s ease, transform 0.28s ease, width 0.28s ease;
-    padding-top: 15px;
+    padding-top: 0;
   }
 
   .lls-header.is-home .lls-header-logo {
@@ -102,7 +104,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
   .lls-header.is-compact .lls-header-inner {
     min-height: 100px;
-    padding-top: 10px;
+    padding-block: 10px;
     align-items: center;
   }
 
@@ -113,7 +115,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
   .lls-header.is-compact .lls-header-logo {
     opacity: 1;
-    transform: translateY(5px) scale(0.78);
+    width: clamp(118px, 9.8vw, 148px);
+    transform: none;
     pointer-events: auto;
   }
 
