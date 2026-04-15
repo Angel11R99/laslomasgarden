@@ -131,12 +131,35 @@
     .hero.step-1 #svgContainer {
       position: relative;
       overflow: hidden;
-      background: #dce9e4;
+      background: transparent url('img/plano-interactivo-base.webp') center/100% 100% no-repeat;
     }
 
     .hero.step-1 #svgContainer svg {
+      width: 100%;
+      height: 100%;
       transform: scaleX(1.12) scaleY(0.9);
       transform-origin: center;
+    }
+
+    .hero-map-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(221, 233, 228, 0.85);
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #17483b;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .hero-map-loading.hidden {
+      display: none;
     }
 
     .hero::after {
@@ -298,9 +321,20 @@
       inset: 0;
       z-index: 2;
       pointer-events: auto;
+      display: block;
       transform-origin: center center;
       transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   opacity 0.55s ease;
+    }
+
+    .hero-map-base {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+     
+      display: block;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -308,6 +342,9 @@
     }
 
     #svgContainer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       width: 100%;
       height: 100%;
     }
@@ -316,6 +353,11 @@
       width: 100%;
       height: 100%;
       display: block;
+    }
+
+    #svgContainer svg image {
+      opacity: 0;
+      pointer-events: all;
     }
 
     .hero.is-front-view .hero-apartment-map {
@@ -1701,6 +1743,7 @@
         <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
         
         <div id="svgContainer">
+          <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- ================================================================ -->
           <!-- PLACE YOUR FULL SVG CONTENT HERE (replacing the example below)  -->
           <!-- Make sure each apartment element has an ID starting with "app"   -->
@@ -1710,11 +1753,11 @@
       </div>
 
       <div class="hero-front-view" id="heroFrontView" aria-hidden="true">
-        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with balcony in the roof">
+        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
         <div class="hero-front-controls">
-          <span class="hero-front-title" id="heroFrontTitle">Unit with balcony in the roof</span>
+          <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
           <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
         </div>
       </div>
@@ -1800,14 +1843,14 @@
 
     const heroApartmentViews = {
       'with-balcony': {
-        title: 'Unit with balcony in the roof',
-        image: 'img/Serenasconbalcon.svg',
+        title: 'Unit with 3 rooms',
+        image: 'img/Serenas3rooms.svg',
         interactive: true,
         step2Svg: 'img/masterplan3room.svg'
       },
       'without-balcony': {
-        title: 'Unit without balcony in the roof',
-        image: 'img/Serenasnobalcon.svg',
+        title: 'Unit with 2 rooms',
+        image: 'img/Serenas2rooms.svg',
         interactive: true,
         step2Svg: 'img/masterplan2room.svg'
       }
@@ -2068,6 +2111,39 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       setTimeout(() => heroRoot.classList.remove('is-front-view'), 420);
     }
 
+    const fallbackApartmentIds = [
+      'app1', 'app2-T', 'app3', 'app4-T', 'app5', 'app6-T', 'app7-T', 'app8', 'app9-T', 'app10',
+      'app11-T', 'app12-T', 'app13', 'app14-T', 'app15', 'app16-T', 'app17', 'app18-T', 'app19', 'app20-T',
+      'app21-T', 'app22', 'app23', 'app24', 'app25-T', 'app26-T', 'app27', 'app28', 'app29-T', 'app30',
+      'app31-T', 'app32', 'app33', 'app34-T'
+    ];
+
+    function getApartmentElements(svgContainer) {
+      if (!svgContainer) return [];
+
+      const identifiedUnits = Array.from(
+        svgContainer.querySelectorAll('[id^="app"], [id^="APP"], [data-unit-id]')
+      );
+      if (identifiedUnits.length) return identifiedUnits;
+
+      const imageUnits = Array.from(svgContainer.querySelectorAll('svg image')).filter((node) => {
+        const name = String(node.getAttribute('data-name') || '').toLowerCase();
+        return name !== 'land';
+      });
+
+      if (imageUnits.length !== fallbackApartmentIds.length) return [];
+
+      imageUnits.forEach((node, index) => {
+        const fallbackId = fallbackApartmentIds[index];
+        node.setAttribute('data-unit-id', fallbackId);
+        if (!node.getAttribute('id')) {
+          node.setAttribute('id', fallbackId);
+        }
+      });
+
+      return imageUnits;
+    }
+
     // Attach click handlers to all elements with ID starting with "app"
     function initSvgApartmentClicks() {
       const svgContainer = document.querySelector('#svgContainer');
@@ -2076,7 +2152,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       const tooltip = document.getElementById('aptTooltip');
       const tooltipText = document.getElementById('aptTooltipText');
 
-      const apartmentElements = svgContainer.querySelectorAll('[id^="app"], [id^="APP"]');
+      const apartmentElements = getApartmentElements(svgContainer);
+      if (!apartmentElements.length) return;
 
       // Intro attention pulse — staggered so units glow one by one
       apartmentElements.forEach((el, i) => {
@@ -2084,9 +2161,9 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
 
       apartmentElements.forEach(element => {
-        const id = element.getAttribute('id') || '';
+        const id = element.getAttribute('data-unit-id') || element.getAttribute('id') || '';
         const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
-        const apartmentLabel = viewKey === 'with-balcony' ? 'With Balcony' : 'Without Balcony';
+        const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
         const unitNum = id.replace(/[^0-9]/g, '');
 
         // Wrap <image> in a <g> that takes the positioning transform.
@@ -2136,12 +2213,14 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
     }
 
-    // Load SVG externally then init interactions
-    document.addEventListener('DOMContentLoaded', () => {
+    function loadInteractiveHeroMap() {
       const svgContainer = document.querySelector('#svgContainer');
       const shouldUseMobileMasterPlan = window.matchMedia('(max-width: 768px)').matches;
       if (svgContainer && !shouldUseMobileMasterPlan) {
-        fetch('img/plano-interactivo.svg')
+        if (svgContainer.dataset.loaded === 'true' || svgContainer.dataset.loading === 'true') return;
+        svgContainer.dataset.loading = 'true';
+
+        fetch('img/plano-interactivo-overlay.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
@@ -2149,11 +2228,29 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             if (loadedSvg) {
               loadedSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
             }
+            svgContainer.dataset.loading = 'false';
+            svgContainer.dataset.loaded = 'true';
+            const loadingEl = document.getElementById('heroMapLoading');
+            if (loadingEl) loadingEl.classList.add('hidden');
             initSvgApartmentClicks();
+          })
+          .catch(() => {
+            svgContainer.dataset.loading = '';
           });
       } else if (svgContainer) {
         svgContainer.innerHTML = '';
       }
+    }
+
+    // Load overlay after first render so the hero image appears immediately
+    document.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadInteractiveHeroMap, { timeout: 1200 });
+        } else {
+          setTimeout(loadInteractiveHeroMap, 180);
+        }
+      });
     });
 
     // Hero close button

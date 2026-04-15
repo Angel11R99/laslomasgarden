@@ -306,7 +306,7 @@
 
     <!-- Pricing table -->
     <section class="pricing-section">
-      <h2 class="pricing-title">3 BEDROOM - 110M²</h2>
+      <h2 class="pricing-title">3 BEDROOM - 115 m² (1,237 sq. ft.)</h2>
       <div class="pricing-wrap">
         <table class="pricing-table">
           <thead>
@@ -322,23 +322,23 @@
             </tr>
             <tr>
               <td>1<sup>st</sup> Floor</td>
-              <td>139 m2 / 1496 sq. ft.</td>
-              <td>$247,800</td>
+              <td>144 m2 / 1,550 sq. ft.</td>
+              <td>$258,800</td>
             </tr>
             <tr>
               <td>2<sup>nd</sup> Floor</td>
-              <td>110 m2 / 1184 sq. ft.</td>
-              <td>$242,000</td>
+              <td>115 m2 / 1,237 sq. ft.</td>
+              <td>$253,000</td>
             </tr>
             <tr>
               <td>3<sup>rd</sup> Floor</td>
-              <td>110 m2 / 1184 sq. ft.</td>
-              <td>$242,000</td>
+              <td>115 m2 / 1,237 sq. ft.</td>
+              <td>$253,000</td>
             </tr>
             <tr>
               <td>4<sup>th</sup> Floor</td>
-              <td>137 m2 / 1475 sq. ft.</td>
-              <td>$247,400</td>
+              <td>142 m2 / 1,528 sq. ft.</td>
+              <td>$258,400</td>
             </tr>
           </tbody>
         </table>
@@ -369,7 +369,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
+          <img src="img/Kitchen-3b.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
@@ -383,7 +383,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/Kitchen-3b.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
+          <img src="img/BedRoom-3b.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
@@ -397,7 +397,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/BedRoom-3b.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
+          <img src="img/3-Bed-IMG/BathRoom-.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Clean Design Practical Comfort</h2>
