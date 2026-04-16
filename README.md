@@ -44,4 +44,26 @@ Este sitio web ha sido construido utilizando tecnologías web modernas:
 - **Backend**: PHP para la gestión de componentes y envíos de formularios.
 - **Infraestructura**: Despliegue automatizado mediante GitHub Actions.
 
+## Configuración de Correo en cPanel
+
+Para evitar que el deploy borre la configuración del formulario de contacto, no dependas únicamente de `public_html/.env`.
+
+Rutas persistentes soportadas por el backend:
+
+- `$HOME/.env`
+- `$HOME/laslomas.env`
+- `$HOME/.laslomasserenas.env`
+- la ruta absoluta definida en `LAS_LOMAS_ENV_FILE`
+
+Ejemplo recomendado en cPanel:
+
+```env
+BREVO_API_KEY=tu_api_key
+BREVO_SENDER_EMAIL=no-reply@laslomasserenas.com
+BREVO_SENDER_NAME=Las Lomas Serenas
+CONTACT_RECIPIENT_EMAIL=info@laslomasserenas.com
+```
+
+Guardalo fuera del directorio desplegado, por ejemplo en `/home/tu_usuario_cpanel/.laslomasserenas.env`.
+
 © 2025 Las Lomas Gardens. Todos los derechos reservados.

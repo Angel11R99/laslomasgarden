@@ -6,10 +6,17 @@ header('Content-Type: application/json; charset=UTF-8');
 
 require_once __DIR__ . '/components/env.php';
 
+$accountHome = $_SERVER['HOME'] ?? getenv('HOME') ?: null;
+$externalEnvFile = env_value('LAS_LOMAS_ENV_FILE');
+
 $envCandidates = array_unique(array_filter([
     __DIR__ . '/.env',
     dirname(__DIR__) . '/.env',
     ($_SERVER['DOCUMENT_ROOT'] ?? '') !== '' ? rtrim((string) $_SERVER['DOCUMENT_ROOT'], '/\\') . '/.env' : null,
+    $accountHome ? rtrim((string) $accountHome, '/\\') . '/.env' : null,
+    $accountHome ? rtrim((string) $accountHome, '/\\') . '/laslomas.env' : null,
+    $accountHome ? rtrim((string) $accountHome, '/\\') . '/.laslomasserenas.env' : null,
+    $externalEnvFile ?: null,
 ]));
 
 foreach ($envCandidates as $envCandidate) {
@@ -180,7 +187,7 @@ function build_confirmation_email_html(array $data): string
             <td style="padding:0 36px 36px;">
               <div style="background:#0a4f33;border-radius:18px;padding:18px 22px;color:#ffffff;">
                 <div style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">Contact</div>
-                <div style="font-size:16px;line-height:1.6;">If you need immediate assistance, reply to this email or contact us at info@laslomasserenas.com.</div>
+                <div style="font-size:16px;line-height:1.6;">If you need immediate assistance, reply to this email or contact us at <a href="mailto:info@laslomasserenas.com" style="color:#f6f1d3;text-decoration:underline;text-decoration-color:rgba(246,241,211,0.65);font-weight:600;">info@laslomasserenas.com</a>.</div>
               </div>
             </td>
           </tr>
