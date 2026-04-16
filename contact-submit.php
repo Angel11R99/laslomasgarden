@@ -131,6 +131,87 @@ function build_email_html(array $data): string
 </html>';
 }
 
+function build_confirmation_email_html(array $data): string
+{
+    $firstName = e($data['first_name']);
+    $interest = e($data['interest_label']);
+
+    return '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We received your message</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f7f5;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#214335;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f7f5;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 48px rgba(12,54,38,0.08);">
+          <tr>
+            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:32px 36px;color:#ffffff;">
+              <div style="font-size:13px;letter-spacing:0.24em;text-transform:uppercase;opacity:0.78;margin-bottom:10px;">Las Lomas Serenas</div>
+              <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;">We received your message</div>
+              <div style="font-size:16px;line-height:1.7;max-width:500px;opacity:0.92;">
+                Thank you for contacting our team. Your inquiry has been received and we will get back to you shortly.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px 36px 20px;">
+              <div style="font-size:24px;line-height:1.4;font-weight:700;color:#0a4f33;margin-bottom:12px;">Hello ' . $firstName . ',</div>
+              <div style="font-size:16px;line-height:1.8;color:#456257;margin-bottom:18px;">
+                We have successfully received your request regarding <strong style="color:#0a4f33;">' . $interest . '</strong>.
+              </div>
+              <div style="background:#f4f8f6;border-radius:18px;padding:20px 22px;font-size:15px;line-height:1.8;color:#456257;">
+                One of our representatives will review your message and contact you using this email address or the phone number you provided.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 36px 36px;">
+              <div style="background:#0a4f33;border-radius:18px;padding:18px 22px;color:#ffffff;">
+                <div style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">Contact</div>
+                <div style="font-size:16px;line-height:1.6;">If you need immediate assistance, reply to this email or contact us at info@laslomasserenas.com.</div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>';
+}
+
+function send_brevo_email(string $apiKey, array $payload): array
+{
+    $ch = curl_init('https://api.brevo.com/v3/smtp/email');
+
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'accept: application/json',
+            'api-key: ' . $apiKey,
+            'content-type: application/json',
+        ],
+        CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 20,
+    ]);
+
+    $responseBody = curl_exec($ch);
+    $curlError = curl_error($ch);
+    $statusCode = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    curl_close($ch);
+
+    return [
+        'body' => $responseBody,
+        'error' => $curlError,
+        'status' => $statusCode,
+    ];
+}
+
 $firstName = clean_input('first_name');
 $lastName = clean_input('last_name');
 $email = clean_input('email');
@@ -210,7 +291,7 @@ if (!$curlAvailable) {
     exit;
 }
 
-$payload = [
+$internalPayload = [
     'sender' => [
         'name' => $senderName,
         'email' => $senderEmail,
@@ -238,25 +319,32 @@ $payload = [
     ]),
 ];
 
-$ch = curl_init('https://api.brevo.com/v3/smtp/email');
-curl_setopt_array($ch, [
-    CURLOPT_POST => true,
-    CURLOPT_HTTPHEADER => [
-        'accept: application/json',
-        'api-key: ' . $apiKey,
-        'content-type: application/json',
+$confirmationPayload = [
+    'sender' => [
+        'name' => $senderName,
+        'email' => $senderEmail,
     ],
-    CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT => 20,
-]);
+    'to' => [[
+        'email' => $email,
+        'name' => trim($firstName . ' ' . $lastName),
+    ]],
+    'subject' => 'We received your message | Las Lomas Serenas',
+    'htmlContent' => build_confirmation_email_html($submission),
+    'textContent' => implode("\n", [
+        'We received your message',
+        '',
+        'Hello ' . trim($firstName . ' ' . $lastName) . ',',
+        'Thank you for contacting Las Lomas Serenas.',
+        'We received your inquiry regarding ' . ($interestOptions[$interest] ?? 'General Inquiry') . '.',
+        'Our team will get back to you shortly.',
+        '',
+        'Contact: info@laslomasserenas.com',
+    ]),
+];
 
-$responseBody = curl_exec($ch);
-$curlError = curl_error($ch);
-$statusCode = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-curl_close($ch);
+$internalResponse = send_brevo_email($apiKey, $internalPayload);
 
-if ($responseBody === false || $curlError !== '') {
+if ($internalResponse['body'] === false || $internalResponse['error'] !== '') {
     http_response_code(502);
     echo json_encode([
         'status' => 'error',
@@ -265,12 +353,33 @@ if ($responseBody === false || $curlError !== '') {
     exit;
 }
 
-if ($statusCode < 200 || $statusCode >= 300) {
+if ($internalResponse['status'] < 200 || $internalResponse['status'] >= 300) {
     http_response_code(502);
     echo json_encode([
         'status' => 'error',
         'message' => 'The message was saved, but Brevo rejected the delivery request.',
-        'brevo_status' => $statusCode,
+        'brevo_status' => $internalResponse['status'],
+    ]);
+    exit;
+}
+
+$confirmationResponse = send_brevo_email($apiKey, $confirmationPayload);
+
+if ($confirmationResponse['body'] === false || $confirmationResponse['error'] !== '') {
+    http_response_code(502);
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'The internal message was sent, but the confirmation email could not be delivered.',
+    ]);
+    exit;
+}
+
+if ($confirmationResponse['status'] < 200 || $confirmationResponse['status'] >= 300) {
+    http_response_code(502);
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'The internal message was sent, but the confirmation email was rejected.',
+        'brevo_status' => $confirmationResponse['status'],
     ]);
     exit;
 }
