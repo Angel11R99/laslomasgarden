@@ -54,6 +54,11 @@ function e(string $value): string
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
+function brand_logo_url(): string
+{
+    return 'https://laslomasserenas.com/img/logo-fallback.png';
+}
+
 function save_contact_submission(array $payload): void
 {
     $file = __DIR__ . '/survey-responses.json';
@@ -82,6 +87,7 @@ function build_email_html(array $data): string
 {
     $fullName = trim($data['first_name'] . ' ' . $data['last_name']);
     $message = nl2br(e($data['message'] !== '' ? $data['message'] : 'No message provided.'));
+    $logoUrl = brand_logo_url();
 
     return '<!DOCTYPE html>
 <html lang="en">
@@ -96,8 +102,12 @@ function build_email_html(array $data): string
       <td align="center">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 48px rgba(12,54,38,0.08);">
           <tr>
-            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:32px 36px;color:#ffffff;">
-              <div style="font-size:13px;letter-spacing:0.24em;text-transform:uppercase;opacity:0.78;margin-bottom:10px;">Las Lomas Serenas</div>
+            <td align="center" style="background:#ffffff;padding:28px 36px 22px;border-bottom:1px solid #e4ece8;">
+              <img src="' . e($logoUrl) . '" alt="Las Lomas Serenas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
+            </td>
+          </tr>
+          <tr>
+            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:24px 36px;color:#ffffff;">
               <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;">New contact request</div>
               <div style="font-size:16px;line-height:1.7;max-width:480px;opacity:0.92;">
                 A visitor submitted the contact form and is waiting to hear back from your team.
@@ -162,6 +172,7 @@ function build_confirmation_email_html(array $data): string
 {
     $firstName = e($data['first_name']);
     $interest = e($data['interest_label']);
+    $logoUrl = brand_logo_url();
 
     return '<!DOCTYPE html>
 <html lang="en">
@@ -176,8 +187,12 @@ function build_confirmation_email_html(array $data): string
       <td align="center">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 48px rgba(12,54,38,0.08);">
           <tr>
-            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:32px 36px;color:#ffffff;">
-              <div style="font-size:13px;letter-spacing:0.24em;text-transform:uppercase;opacity:0.78;margin-bottom:10px;">Las Lomas Serenas</div>
+            <td align="center" style="background:#ffffff;padding:28px 36px 22px;border-bottom:1px solid #e4ece8;">
+              <img src="' . e($logoUrl) . '" alt="Las Lomas Serenas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
+            </td>
+          </tr>
+          <tr>
+            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:24px 36px;color:#ffffff;">
               <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;">We received your message</div>
               <div style="font-size:16px;line-height:1.7;max-width:500px;opacity:0.92;">
                 Thank you for contacting our team. Your inquiry has been received and we will get back to you shortly.
