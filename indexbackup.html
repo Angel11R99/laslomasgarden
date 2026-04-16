@@ -251,10 +251,11 @@
 
     .hero-copy {
       text-align: center;
-      padding-top: 62px;
-      display: grid;
-      gap: 14px;
-      justify-items: center;
+      padding-top: 42px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
       position: relative;
       z-index: 4;
       transition: opacity 0.32s ease, transform 0.32s ease;
@@ -275,9 +276,10 @@
       text-transform: uppercase;
       text-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
       max-width: min(92vw, 18ch);
-      margin: 0 auto;
+      margin: 0;
       white-space: normal;
       text-wrap: balance;
+      order: 2;
     }
 
     .hero-tour-link {
@@ -296,6 +298,8 @@
       text-transform: uppercase;
       box-shadow: 0 14px 34px rgba(7, 21, 17, 0.2);
       transition: transform 0.24s ease, box-shadow 0.24s ease;
+      margin-top: 0;
+      order: 1;
     }
 
     .hero-tour-link:hover {
@@ -673,23 +677,21 @@
     }
 
     .hero-map-hint {
-      display:none;
-      position: absolute;
-      bottom: clamp(16px, 3vw, 32px);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
       display: flex;
+      position: absolute;
+      top: max(1.8rem, env(safe-area-inset-top));
+      left: max(1.8rem, env(safe-area-inset-left));
+      z-index: 10;
       align-items: center;
-      gap: 9px;
-      padding: 9px 20px;
+      gap: 10px;
+      padding: 12px 22px;
       border-radius: 999px;
       background: rgba(5, 18, 14, 0.82);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(210, 168, 24, 0.38);
       color: rgba(255, 255, 255, 0.92);
-      font-size: 0.72rem;
+      font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1575,6 +1577,7 @@
 
       .hero.step-1 .hero-tour-link {
         pointer-events: auto;
+        margin-bottom: 600px;
       }
 
       .hero-copy h1 {
