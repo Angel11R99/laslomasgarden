@@ -20,6 +20,10 @@
       --lls-border: #d4ded9;
       --lls-shell: 1120px;
       --lls-section-space: clamp(4rem, 7vw, 6.5rem);
+      --contact-info-icon-box-size: 44px;
+      --contact-info-icon-size: 28px;
+      --contact-info-icon-color: #ffffff;
+      --contact-info-icon-bg: var(--lls-green-gradient);
     }
 
     * { box-sizing: border-box; }
@@ -104,16 +108,29 @@
     }
 
     .contact-info__icon {
-      width: 44px;
-      height: 44px;
-      background: var(--lls-green-gradient);
+      width: var(--contact-info-icon-box-size);
+      height: var(--contact-info-icon-box-size);
+      background: var(--contact-info-icon-bg);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: #fff;
-      font-size: 1.1rem;
+    }
+
+    .contact-info__icon-symbol {
+      width: var(--contact-info-icon-size);
+      height: var(--contact-info-icon-size);
+      display: block;
+      background-color: var(--contact-info-icon-color);
+      -webkit-mask-image: var(--contact-info-icon-src);
+      mask-image: var(--contact-info-icon-src);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      mask-size: contain;
     }
 
     .contact-info__label {
@@ -273,7 +290,9 @@
             <p>Whether you're looking for more details about our residences, pricing, or availability — our team is here to guide you every step of the way.</p>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon">📍</div>
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/location.svg');" aria-hidden="true">
+                <span class="contact-info__icon-symbol"></span>
+              </div>
               <div>
                 <div class="contact-info__label">Location</div>
                 <div class="contact-info__value">Las Lomas Serenas, North Coast, Dominican Republic</div>
@@ -281,7 +300,9 @@
             </div>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon">📞</div>
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/phone.svg');" aria-hidden="true">
+                <span class="contact-info__icon-symbol"></span>
+              </div>
               <div>
                 <div class="contact-info__label">Phone</div>
                 <div class="contact-info__value">+1 (809) 000-0000</div>
@@ -289,7 +310,9 @@
             </div>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon">✉️</div>
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/email.svg');" aria-hidden="true">
+                <span class="contact-info__icon-symbol"></span>
+              </div>
               <div>
                 <div class="contact-info__label">Email</div>
                 <div class="contact-info__value">info@laslomasserenas.com</div>
