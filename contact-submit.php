@@ -107,9 +107,9 @@ function build_email_html(array $data): string
             </td>
           </tr>
           <tr>
-            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:24px 36px;color:#ffffff;">
-              <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;">New contact request</div>
-              <div style="font-size:16px;line-height:1.7;max-width:480px;opacity:0.92;">
+            <td style="background:#ffffff;padding:24px 36px 26px;color:#0a4f33;">
+              <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;color:#0a4f33;">New contact request</div>
+              <div style="font-size:16px;line-height:1.7;max-width:480px;color:#2f5a4a;">
                 A visitor submitted the contact form and is waiting to hear back from your team.
               </div>
             </td>
@@ -192,9 +192,9 @@ function build_confirmation_email_html(array $data): string
             </td>
           </tr>
           <tr>
-            <td style="background:linear-gradient(135deg,#0a4f33 0%,#089e67 100%);padding:24px 36px;color:#ffffff;">
-              <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;">We received your message</div>
-              <div style="font-size:16px;line-height:1.7;max-width:500px;opacity:0.92;">
+            <td style="background:#ffffff;padding:24px 36px 26px;color:#0a4f33;">
+              <div style="font-size:30px;line-height:1.2;font-weight:700;margin:0 0 10px;color:#0a4f33;">We received your message</div>
+              <div style="font-size:16px;line-height:1.7;max-width:500px;color:#2f5a4a;">
                 Thank you for contacting our team. Your inquiry has been received and we will get back to you shortly.
               </div>
             </td>
