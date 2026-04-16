@@ -1,3 +1,9 @@
+<?php
+$scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/contact-us.php');
+$basePath = rtrim(dirname($scriptName), '/');
+$basePath = $basePath === '.' ? '' : $basePath;
+$contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -354,7 +360,7 @@
             <h3>Send us a message</h3>
             <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
 
-            <form id="contactForm" action="contact-submit.php" method="POST" novalidate>
+            <form id="contactForm" action="<?php echo htmlspecialchars($contactSubmitEndpoint, ENT_QUOTES, 'UTF-8'); ?>" method="POST" novalidate>
               <div class="form-row">
                 <div class="form-group">
                   <label for="first_name">First Name</label>
