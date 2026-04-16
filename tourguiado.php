@@ -2489,13 +2489,13 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         g.style.cursor = 'pointer';
         g.setAttribute('role', 'button');
         g.setAttribute('tabindex', '0');
-        g.setAttribute('aria-label', 'Edificio ' + realNum + ' · ' + apartmentLabel);
+        g.setAttribute('aria-label', 'Building ' + realNum + ' · ' + apartmentLabel);
 
         g.addEventListener('mouseenter', (e) => {
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Edificio ' + realNum + '  ·  ' + apartmentLabel + '  →';
+          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + '  →';
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
@@ -2566,13 +2566,25 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
     });
 
-    // Hero close button
+    // Hero close button — si estamos en step 2 vuelve al step 1, si no cierra todo
     if (heroFrontClose) {
-      heroFrontClose.addEventListener('click', hideHeroFrontView);
+      heroFrontClose.addEventListener('click', () => {
+        const inStep2 = heroFrontSvgStage && heroFrontSvgStage.classList.contains('is-step-2');
+        if (inStep2) {
+          showHeroFrontView(activePlanViewKey);
+        } else {
+          hideHeroFrontView();
+        }
+      });
     }
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && heroFrontView && heroFrontView.classList.contains('active')) {
-        hideHeroFrontView();
+        const inStep2 = heroFrontSvgStage && heroFrontSvgStage.classList.contains('is-step-2');
+        if (inStep2) {
+          showHeroFrontView(activePlanViewKey);
+        } else {
+          hideHeroFrontView();
+        }
       }
     });
 
