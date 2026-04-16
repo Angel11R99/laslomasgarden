@@ -322,7 +322,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: url('img/SERENAS SITE.jpg') center/100% 100% no-repeat;
+      background: url('img/SERENAS SITE.webp') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -2495,7 +2495,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + '  →';
+          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + '';
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
