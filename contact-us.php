@@ -235,6 +235,35 @@
       transform: translateY(-1px);
     }
 
+    .form-submit:disabled {
+      opacity: 0.72;
+      cursor: wait;
+      transform: none;
+    }
+
+    .form-status {
+      display: none;
+      margin-bottom: 1.25rem;
+      padding: 0.95rem 1rem;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .form-status.is-success {
+      display: block;
+      background: rgba(8, 158, 103, 0.08);
+      color: var(--lls-green-800);
+      border: 1px solid rgba(8, 158, 103, 0.18);
+    }
+
+    .form-status.is-error {
+      display: block;
+      background: rgba(183, 55, 44, 0.08);
+      color: #8b2d24;
+      border: 1px solid rgba(183, 55, 44, 0.18);
+    }
+
     /* ── Success message ── */
     .form-success {
       display: none;
@@ -323,7 +352,9 @@
           <!-- Form -->
           <div class="contact-form-card">
             <h3>Send us a message</h3>
-            <form id="contactForm" action="survey-save.php" method="POST" novalidate>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+            <form id="contactForm" action="contact-submit.php" method="POST" novalidate>
               <div class="form-row">
                 <div class="form-group">
                   <label for="first_name">First Name</label>
@@ -360,7 +391,7 @@
                 <textarea id="message" name="message" placeholder="Tell us how we can help you..."></textarea>
               </div>
 
-              <button type="submit" class="form-submit">Send Message</button>
+              <button type="submit" class="form-submit" id="contactSubmitButton">Send Message</button>
             </form>
 
             <div class="form-success" id="formSuccess">
@@ -379,11 +410,57 @@
   <?php include __DIR__ . '/components/footer.php'; ?>
 
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      this.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    });
+    (function() {
+      var form = document.getElementById('contactForm');
+      var successBox = document.getElementById('formSuccess');
+      var statusBox = document.getElementById('formStatus');
+      var submitButton = document.getElementById('contactSubmitButton');
+
+      if (!form || !successBox || !statusBox || !submitButton) return;
+
+      function setStatus(message, type) {
+        statusBox.textContent = message;
+        statusBox.className = 'form-status' + (type ? ' is-' + type : '');
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        setStatus('', '');
+        successBox.style.display = 'none';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        try {
+          var response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          var result = await response.json();
+
+          if (!response.ok || result.status !== 'ok') {
+            throw new Error(result.message || 'We could not send your message right now.');
+          }
+
+          form.reset();
+          form.style.display = 'none';
+          successBox.style.display = 'block';
+
+          if (result.delivery === 'pending_configuration') {
+            setStatus('The form is working and the submission was saved locally. Add the Brevo credentials in .env to activate email delivery.', 'success');
+          }
+        } catch (error) {
+          setStatus(error.message || 'We could not send your message right now. Please try again in a moment.', 'error');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Message';
+        }
+      });
+    })();
   </script>
 </body>
 
