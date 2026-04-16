@@ -575,10 +575,35 @@
     }
 
     .hero-front-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: top 0.4s ease, font-size 0.4s ease, font-weight 0.4s ease;
+    }
+
+    /* Paso 1 — grande en el cielo */
+    .hero-front-view.layout-selection-focus .hero-front-title {
+      top: 14%;
+      font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35);
+    }
+
+    /* Paso 2 — pequeño en la zona de controles (abajo) */
+    .hero-front-view.step-2-focus .hero-front-title {
+      bottom: clamp(24px, 4vw, 44px);
+      top: auto;
+      transform: translateX(-50%);
       font-size: clamp(0.9rem, 1.6vw, 1.2rem);
       font-weight: 600;
       letter-spacing: 0.06em;
-      text-transform: uppercase;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
@@ -725,6 +750,42 @@
       to {
         opacity: 1;
         transform: scale(1);
+      }
+    }
+
+    @keyframes tourShellEnter {
+      from {
+        opacity: 0;
+        transform: perspective(1200px) rotateX(8deg) scale(0.96) translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0);
+      }
+    }
+
+    @keyframes ambientDepth {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+
+    @keyframes sceneNameFlip {
+      from {
+        opacity: 0;
+        transform: perspective(400px) rotateX(-50deg) translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(400px) rotateX(0deg) translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .tour-shell.is-entering {
+        animation: tourShellEnter 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .tour-room-label-text.updating {
+        animation: sceneNameFlip 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
     }
 
@@ -1052,12 +1113,15 @@
       cursor: pointer;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      transform-origin: left center;
+      transition: background-color 0.22s ease, transform 0.2s ease;
     }
 
     .tour-back-plan:hover,
     .tour-back-plan:focus-visible {
       background: rgba(7, 138, 99, 0.72);
       outline: none;
+      transform: perspective(400px) rotateY(-6deg) translateX(-2px);
     }
 
     .survey-modal h2 {
@@ -1122,7 +1186,12 @@
       max-height: none;
       border-radius: 0;
       overflow: hidden;
-      background: rgba(7, 14, 12, 0.94);
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(7, 138, 99, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(4, 104, 75, 0.05) 0%, transparent 50%),
+        #070e0c;
+      background-size: 200% 200%;
+      animation: ambientDepth 12s ease infinite;
       box-shadow: none;
     }
 
@@ -1149,6 +1218,9 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
       max-width: min(88vw, 28rem);
       text-align: center;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: box-shadow 0.15s ease;
     }
 
     .tour-room-label-text {
@@ -1173,20 +1245,27 @@
       line-height: 1;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.12s ease, opacity 0.2s ease, box-shadow 0.12s ease;
     }
 
     .tour-scene-nav-btn:hover,
     .tour-scene-nav-btn:focus-visible {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-1px);
+      transform: translateY(-3px) translateZ(4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       outline: none;
+    }
+
+    .tour-scene-nav-btn:active {
+      transform: translateY(1px) translateZ(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
     .tour-scene-nav-btn:disabled {
       opacity: 0.45;
       cursor: default;
       transform: none;
+      box-shadow: none;
     }
 
     .tour-hotspot-toggle {
@@ -1207,13 +1286,14 @@
       cursor: pointer;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: background-color 0.22s ease, transform 0.22s ease;
+      transition: background-color 0.22s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .tour-hotspot-toggle:hover,
     .tour-hotspot-toggle:focus-visible {
       background: rgba(7, 138, 99, 0.72);
-      transform: translateY(-1px);
+      transform: translateY(-2px) translateZ(3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
       outline: none;
     }
 
@@ -1270,25 +1350,26 @@
       flex: 0 0 auto;
     }
 
-    /* Overlay de transición tipo blend suave entre escenas */
+    /* Overlay de transición tipo warp entre escenas */
     .tour-transition-overlay {
       position: absolute;
       inset: 0;
       z-index: 30;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(10, 16, 14, 0.34) 0%, rgba(8, 13, 11, 0.7) 70%, rgba(6, 9, 8, 0.94) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: radial-gradient(circle at 50% 50%, rgba(10, 16, 14, 0.2) 0%, rgba(6, 12, 9, 0.88) 60%, rgba(4, 8, 6, 0.97) 100%);
       opacity: 0;
-      transition: opacity 0.46s ease;
-      will-change: opacity;
+      clip-path: circle(0% at 50% 50%);
+      transition: opacity 0.4s ease, clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: opacity, clip-path;
     }
     .tour-transition-overlay.fading {
       opacity: 1;
+      clip-path: circle(80% at 50% 50%);
     }
     .tour-transition-overlay.releasing {
       opacity: 0;
-      transition: opacity 0.58s ease;
+      clip-path: circle(0% at 50% 50%);
+      transition: opacity 0.5s ease, clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Ayudante de posición */
@@ -1656,8 +1737,11 @@
         width: 100%;
       }
 
-      .hero-front-title {
-        max-width: 100%;
+      .hero-front-view.layout-selection-focus .hero-front-title {
+        font-size: clamp(1.4rem, 6vw, 2.4rem);
+        white-space: normal;
+        width: 90%;
+        top: 10%;
       }
 
       .feature {
@@ -1869,8 +1953,8 @@
         <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
+        <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
         <div class="hero-front-controls">
-          <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
           <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
         </div>
       </div>
@@ -1973,6 +2057,26 @@
     };
 
     let activePlanViewKey = 'without-balcony';
+    let selectedBuildingNum = '';
+
+    const BUILDING_NUMBER_MAP = {
+      'app1':    '21', 'app2-T':  '19', 'app3':    '17', 'app4-T':  '15',
+      'app5':    '13', 'app6-T':  '11', 'app7-T':  '3',  'app8':    '2',
+      'app9-T':  '1',  /* app10 eliminado */
+      'app11-T': '22', 'app12-T': '20', 'app13':   '18', 'app14-T': '16',
+      'app15':   '14', 'app16-T': '12', 'app17':   '4',  'app18-T': '5',
+      'app19':   '6',  'app20-T': '8',  'app21-T': '7',  'app22':   '9',
+      'app23':   '25', 'app24':   '28', 'app25-T': '10', 'app26-T': '24',
+      'app27':   '23', 'app28':   '26', 'app29-T': '27', 'app30':   '30',
+      'app31-T': '29', 'app32':   '31', 'app33':   '32', 'app34-T': '33'
+    };
+
+    const APP_UNIT_LETTERS = {
+      'App-1': 'G', 'App-2': 'H',
+      'App-3': 'E', 'App-4': 'F',
+      'App-5': 'C', 'App-6': 'D',
+      'App-7': 'A', 'App-8': 'B'
+    };
 
     const masterplanSceneById = {
       // masterplan2room (2 bedrooms) IDs: Balcon, LivingRoom, Dinning, Kitchen, BedRoom1, BedRoom2, BathRoom1, BathRoom2, Closet, Laundry
@@ -2092,20 +2196,38 @@
       return { targetNode: wrapper, visualNode: node };
     }
 
-    function bindStep1LikeHover(targetNode, visualNode) {
+    function bindStep1LikeHover(targetNode, visualNode, unitLabel) {
       if (!targetNode || !visualNode) return;
 
-      const showHover = () => {
+      const tooltip = document.getElementById('aptTooltip');
+      const tooltipText = document.getElementById('aptTooltipText');
+
+      const showHover = (e) => {
         visualNode.style.transform = 'scale(1.04)';
         visualNode.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+        if (unitLabel && tooltip && tooltipText) {
+          tooltipText.textContent = unitLabel;
+          tooltip.style.left = ((e ? e.clientX : 0) + 16) + 'px';
+          tooltip.style.top  = ((e ? e.clientY : 0) - 42) + 'px';
+          tooltip.classList.add('visible');
+        }
+      };
+
+      const moveTooltip = (e) => {
+        if (unitLabel && tooltip) {
+          tooltip.style.left = (e.clientX + 16) + 'px';
+          tooltip.style.top  = (e.clientY - 42) + 'px';
+        }
       };
 
       const hideHover = () => {
         visualNode.style.transform = '';
         visualNode.style.filter = '';
+        if (tooltip) tooltip.classList.remove('visible');
       };
 
       targetNode.addEventListener('mouseenter', showHover);
+      targetNode.addEventListener('mousemove', moveTooltip);
       targetNode.addEventListener('mouseleave', hideHover);
       targetNode.addEventListener('focus', showHover);
       targetNode.addEventListener('blur', hideHover);
@@ -2140,7 +2262,9 @@
         if (node.id === 'Layer_1') return;
         const interactiveNodes = createSvgInteractiveTarget(node);
         if (!interactiveNodes) return;
-        bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode);
+        const letter = APP_UNIT_LETTERS[node.id];
+        const unitLabel = letter ? (selectedBuildingNum ? selectedBuildingNum + '-' + letter : letter) : '';
+        bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode, unitLabel);
         makeSvgElementButton(interactiveNodes.targetNode, openStep2);
       });
 
@@ -2347,9 +2471,17 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       apartmentElements.forEach(element => {
         const id = element.getAttribute('data-unit-id') || element.getAttribute('id') || '';
+
+        // Ocultar y saltar app10 (eliminado del plan real)
+        if (/^app10$/i.test(id)) {
+          element.style.display = 'none';
+          element.style.pointerEvents = 'none';
+          return;
+        }
+
         const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
         const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
-        const unitNum = id.replace(/[^0-9]/g, '');
+        const realNum = BUILDING_NUMBER_MAP[id] || id.replace(/[^0-9]/g, '');
 
         // Wrap <image> in a <g> that takes the positioning transform.
         // The <image> is left with no transform so CSS scale works from its center.
@@ -2364,13 +2496,13 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         g.style.cursor = 'pointer';
         g.setAttribute('role', 'button');
         g.setAttribute('tabindex', '0');
-        g.setAttribute('aria-label', 'Apartamento ' + id + ' ' + apartmentLabel);
+        g.setAttribute('aria-label', 'Edificio ' + realNum + ' · ' + apartmentLabel);
 
         g.addEventListener('mouseenter', (e) => {
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Unit ' + unitNum + '  ·  ' + apartmentLabel + '  →';
+          tooltipText.textContent = 'Edificio ' + realNum + '  ·  ' + apartmentLabel + '  →';
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
@@ -2387,7 +2519,10 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           if (tooltip) tooltip.classList.remove('visible');
         });
 
-        const openUnit = () => showHeroFrontView(viewKey);
+        const openUnit = () => {
+          selectedBuildingNum = realNum;
+          showHeroFrontView(viewKey);
+        };
         g.addEventListener('click', openUnit);
         g.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -3060,7 +3195,12 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       renderSceneButtons();
       renderHotspots(scene);
 
-      if (tourSceneTitle) tourSceneTitle.textContent = scene.title;
+      if (tourSceneTitle) {
+        tourSceneTitle.classList.remove('updating');
+        void tourSceneTitle.offsetWidth;
+        tourSceneTitle.textContent = scene.title;
+        tourSceneTitle.classList.add('updating');
+      }
       if (tourStatus) {
         tourStatus.textContent = 'Scene ' + (availableScenePosition + 1) + ' of ' + availableTourIndexes.length;
       }
@@ -3218,6 +3358,13 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       tourModal.classList.add('active');
       tourModal.setAttribute('aria-hidden', 'false');
       pageBody.style.overflow = 'hidden';
+
+      const tourShell = tourModal.querySelector('.tour-shell');
+      if (tourShell) {
+        tourShell.classList.remove('is-entering');
+        void tourShell.offsetWidth;
+        tourShell.classList.add('is-entering');
+      }
 
       if (tourScene && typeof tourScene.play === 'function') {
         tourScene.play();
@@ -3543,6 +3690,31 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         setTimeout(() => { tourPosCopyBtn.textContent = 'Copiar'; }, 1400);
       });
     }
+
+    // Mouse-tilt 3D en el room label (solo dispositivos con puntero fino)
+    (function initRoomLabelTilt() {
+      const label = document.querySelector('.tour-room-label');
+      if (!label || !window.matchMedia('(pointer: fine)').matches) return;
+
+      let isHovering = false;
+      const STRENGTH = 10;
+      const PERSPECTIVE = 600;
+
+      label.addEventListener('mouseenter', () => { isHovering = true; });
+      label.addEventListener('mouseleave', () => {
+        isHovering = false;
+        label.style.transform = 'translateX(-50%)';
+      });
+      label.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        const rect = label.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const rx = ((e.clientY - cy) / (rect.height / 2)) * -STRENGTH;
+        const ry = ((e.clientX - cx) / (rect.width / 2)) * STRENGTH;
+        label.style.transform = `translateX(-50%) perspective(${PERSPECTIVE}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+    })();
   </script>
 
 </body>
