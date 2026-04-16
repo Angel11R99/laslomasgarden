@@ -598,13 +598,14 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
             </button>
             <ul class="lls-submenu" id="lls-desktop-submenu" hidden>
               <li><a href="/tourguiado">Tour</a></li>
+              <li><a href="/amenities">Amenities</a></li>
               <li><a href="/2-bedrooms">2 Bedrooms</a></li>
               <li><a href="/3-bedrooms">3 Bedrooms</a></li>
             </ul>
           </li>
-          <li><a href="/amenities">Amenities</a></li>
           <!-- <li><a href="/contact-us">Contact Us</a></li> -->
           <li><a href="/about-us">About Us</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
         </ul>
       </nav>
 
@@ -625,12 +626,13 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
           </button>
           <ul class="lls-submenu" id="lls-mobile-submenu" hidden>
             <li><a href="/tourguiado">Tour</a></li>
+            <li><a href="/amenities">Amenities</a></li>
             <li><a href="/2-bedrooms">2 Bedrooms</a></li>
             <li><a href="/3-bedrooms">3 Bedrooms</a></li>
           </ul>
         </li>
-        <li><a href="/amenities">Amenities</a></li>
         <li><a href="/about-us">About Us</a></li>
+        <li><a href="/contact-us">Contact Us</a></li>
       </ul>
     </nav>
 
