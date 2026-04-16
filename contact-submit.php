@@ -8,11 +8,23 @@ require_once __DIR__ . '/components/env.php';
 
 $accountHome = $_SERVER['HOME'] ?? getenv('HOME') ?: null;
 $externalEnvFile = env_value('LAS_LOMAS_ENV_FILE');
+$projectParent = dirname(__DIR__);
+$projectGrandparent = dirname($projectParent);
+$projectGreatGrandparent = dirname($projectGrandparent);
 
 $envCandidates = array_unique(array_filter([
     __DIR__ . '/.env',
     dirname(__DIR__) . '/.env',
     ($_SERVER['DOCUMENT_ROOT'] ?? '') !== '' ? rtrim((string) $_SERVER['DOCUMENT_ROOT'], '/\\') . '/.env' : null,
+    $projectParent . '/.env',
+    $projectParent . '/laslomas.env',
+    $projectParent . '/.laslomasserenas.env',
+    $projectGrandparent . '/.env',
+    $projectGrandparent . '/laslomas.env',
+    $projectGrandparent . '/.laslomasserenas.env',
+    $projectGreatGrandparent . '/.env',
+    $projectGreatGrandparent . '/laslomas.env',
+    $projectGreatGrandparent . '/.laslomasserenas.env',
     $accountHome ? rtrim((string) $accountHome, '/\\') . '/.env' : null,
     $accountHome ? rtrim((string) $accountHome, '/\\') . '/laslomas.env' : null,
     $accountHome ? rtrim((string) $accountHome, '/\\') . '/.laslomasserenas.env' : null,
