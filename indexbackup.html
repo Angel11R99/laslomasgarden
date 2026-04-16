@@ -2052,6 +2052,10 @@
     let activePlanViewKey = 'without-balcony';
     let selectedBuildingNum = '';
 
+    const THREE_ROOM_BUILDINGS = new Set([
+      '1','2','3','4','11','12','13','15','17','19','21','23','26','29','31'
+    ]);
+
     const BUILDING_NUMBER_MAP = {
       'app1':    '21', 'app2-T':  '19', 'app3':    '17', 'app4-T':  '15',
       'app5':    '13', 'app6-T':  '11', 'app7-T':  '3',  'app8':    '2',
@@ -2472,9 +2476,9 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           return;
         }
 
-        const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
-        const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
         const realNum = BUILDING_NUMBER_MAP[id] || id.replace(/[^0-9]/g, '');
+        const viewKey = THREE_ROOM_BUILDINGS.has(realNum) ? 'with-balcony' : 'without-balcony';
+        const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
 
         // Wrap <image> in a <g> that takes the positioning transform.
         // The <image> is left with no transform so CSS scale works from its center.
@@ -2495,7 +2499,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + '  →';
+          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + ' ';
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
