@@ -6,7 +6,15 @@ header('Content-Type: application/json; charset=UTF-8');
 
 require_once __DIR__ . '/components/env.php';
 
-load_env_file(__DIR__ . '/.env');
+$envCandidates = array_unique(array_filter([
+    __DIR__ . '/.env',
+    dirname(__DIR__) . '/.env',
+    ($_SERVER['DOCUMENT_ROOT'] ?? '') !== '' ? rtrim((string) $_SERVER['DOCUMENT_ROOT'], '/\\') . '/.env' : null,
+]));
+
+foreach ($envCandidates as $envCandidate) {
+    load_env_file($envCandidate);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -274,10 +282,25 @@ $recipientEmail = env_value('CONTACT_RECIPIENT_EMAIL');
 $curlAvailable = function_exists('curl_init');
 
 if ($apiKey === null || $senderEmail === null || $recipientEmail === null) {
+    $missingConfiguration = [];
+
+    if ($apiKey === null) {
+        $missingConfiguration[] = 'BREVO_API_KEY';
+    }
+
+    if ($senderEmail === null) {
+        $missingConfiguration[] = 'BREVO_SENDER_EMAIL';
+    }
+
+    if ($recipientEmail === null) {
+        $missingConfiguration[] = 'CONTACT_RECIPIENT_EMAIL';
+    }
+
     echo json_encode([
         'status' => 'ok',
-        'message' => 'Message saved. Configure Brevo in .env to enable email delivery.',
+        'message' => 'Message saved, but email delivery is not configured on this server yet.',
         'delivery' => 'pending_configuration',
+        'missing_configuration' => $missingConfiguration,
     ]);
     exit;
 }
