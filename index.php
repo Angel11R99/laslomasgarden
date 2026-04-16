@@ -125,6 +125,31 @@
       background: url("img/Master_Plan.webp") center / cover no-repeat;
     }
 
+    .lls-hero-new__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .lls-hero-new__overlay-inner {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: calc(var(--lls-header-overlay, 122px) + clamp(1rem, 2vw, 1.6rem));
+    }
+
+    .lls-hero-new__tagline {
+      width: min(100%, 340px);
+    }
+
+    .lls-hero-new__tagline img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
+    }
+
     .lls-hero-new__bar {
       background: var(--lls-green-gradient);
       color: var(--lls-white);
@@ -726,6 +751,15 @@
 
     @media (max-width: 960px) {
 
+      .lls-hero-new__overlay-inner {
+        justify-content: center;
+        padding-top: calc(var(--lls-header-overlay, 122px) + 1rem);
+      }
+
+      .lls-hero-new__tagline {
+        width: min(78vw, 320px);
+      }
+
       .lls-safety__grid,
       .lls-calc-grid,
       .lls-promo__grid,
@@ -755,6 +789,13 @@
   <main class="lls-page">
     <!-- 1. Hero Content -->
     <section class="lls-hero-new">
+      <div class="lls-hero-new__overlay" aria-hidden="true">
+        <div class="lls-shell lls-hero-new__overlay-inner">
+          <div class="lls-hero-new__tagline">
+            <img src="img/Invest_in_Paradise.svg" alt="" loading="eager" decoding="async">
+          </div>
+        </div>
+      </div>
       <div class="lls-hero-new__media" aria-label="Aerial view of Las Lomas Serenas project"></div>
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
