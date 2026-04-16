@@ -452,13 +452,17 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
             throw new Error(result.message || 'We could not send your message right now.');
           }
 
+          if (result.delivery === 'pending_configuration') {
+            var missing = Array.isArray(result.missing_configuration) && result.missing_configuration.length
+              ? ' Missing: ' + result.missing_configuration.join(', ') + '.'
+              : '';
+            setStatus('The form was saved locally, but email delivery is not configured on this server yet.' + missing, 'error');
+            return;
+          }
+
           form.reset();
           form.style.display = 'none';
           successBox.style.display = 'block';
-
-          if (result.delivery === 'pending_configuration') {
-            setStatus('The form is working and the submission was saved locally. Add the Brevo credentials in .env to activate email delivery.', 'success');
-          }
         } catch (error) {
           setStatus(error.message || 'We could not send your message right now. Please try again in a moment.', 'error');
         } finally {
