@@ -37,7 +37,6 @@
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--bg);
       color: var(--text);
       line-height: 1.52;
       overflow-x: hidden;
@@ -111,9 +110,7 @@
 
     .hero.step-1 {
       container-type: inline-size;
-      background:
-        radial-gradient(circle at 50% 8%, color-mix(in oklab, #ffffff 68%, #c9e8df 32%) 0%, transparent 52%),
-        linear-gradient(180deg, #f6f7f5 0%, #ecf2ef 48%, #dde9e4 100%);
+     
       isolation: isolate;
     }
 
@@ -131,7 +128,7 @@
     .hero.step-1 #svgContainer {
       position: relative;
       overflow: hidden;
-      background: transparent url('img/plano-interactivo-base.webp') center/100% 100% no-repeat;
+
     }
 
     .hero.step-1 #svgContainer svg {
@@ -154,7 +151,7 @@
       position: absolute;
       inset: auto 0 0 0;
       height: 6px;
-      background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+     
     }
 
     .hero-inner {
@@ -324,8 +321,8 @@
       z-index: 0;
       width: 100%;
       height: 100%;
-     
       display: block;
+      background: url('img/SERENAS SITE.jpg') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -1531,12 +1528,7 @@
       height: 100%;
     }
 
-    footer {
-      padding: 12px 0 26px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
+ 
 
 
     @media (max-width: 960px) {
@@ -1937,8 +1929,9 @@
 
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
+        <div class="hero-map-base" aria-hidden="true"></div>
         <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
-        
+
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- ================================================================ -->
