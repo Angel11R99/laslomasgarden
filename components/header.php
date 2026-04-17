@@ -28,7 +28,6 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     box-shadow: none;
-    padding-top: 10px;
   }
 
 
@@ -43,7 +42,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     justify-content: space-between;
     align-items: center;
     gap: 1.25rem;
-    transform: translateX(3%);
+    transform: translateX(0%);
     background: transparent;
     transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease, transform 0.28s ease;
   }
@@ -59,7 +58,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     display: flex;
     align-items: center;
     padding-right: clamp(1.25rem, 2.5vw, 2.75rem);
-    transform: translateX(-23%);
+    transform: translateX(-35%);
   }
 
   .lls-header-center {
@@ -69,10 +68,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     align-items: center;
     padding-top: 0;
     min-width: 0;
-    transform: translateX(calc(38px + 3%));
+    transform: translateX(calc(68px + 4%));
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.28s ease;
+    transition: opacity 0.18s ease, transform 0.28s ease;
   }
 
   .lls-header-tagline {
@@ -139,7 +138,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     padding-top: 0;
   }
 
-  .lls-header.is-scrolled .lls-header-center,
+  .lls-header.has-tagline-hidden .lls-header-center,
   .lls-header.is-compact .lls-header-center {
     opacity: 0;
     visibility: hidden;
@@ -700,14 +699,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     var submenuItems = header.querySelectorAll('.lls-has-submenu');
     var previousScrolled = null;
     var previousCompact = null;
-    var debounceTimer = null;
-
-    function debounce(fn, delay) {
-      return function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(fn, delay);
-      };
-    }
+    var previousTaglineHidden = null;
 
     function syncHeaderOverlay() {
       var headerHeight = Math.ceil(header.getBoundingClientRect().height) + 1;
@@ -755,12 +747,19 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
 
     function updateHeaderGlass() {
-      var isScrolled = window.scrollY > 12;
+      var scrolledEnterThreshold = 20;
+      var scrolledExitThreshold = 2;
+      var scrolledBase = previousScrolled ? scrolledExitThreshold : scrolledEnterThreshold;
+      var isScrolled = window.scrollY > scrolledBase;
       var isMobile = isMobileViewport();
       var compactEnterThreshold = 82;
       var compactExitThreshold = 42;
       var compactBase = previousCompact ? compactExitThreshold : compactEnterThreshold;
       var isCompact = !isMobile && window.scrollY > compactBase;
+      var taglineHideEnterThreshold = 20;
+      var taglineHideExitThreshold = 2;
+      var taglineBase = previousTaglineHidden ? taglineHideExitThreshold : taglineHideEnterThreshold;
+      var isTaglineHidden = !isMobile && window.scrollY > taglineBase;
 
       if (previousScrolled !== isScrolled) {
         header.classList.toggle('is-scrolled', isScrolled);
@@ -772,11 +771,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
         previousCompact = isCompact;
         syncHeaderOverlay();
       }
-    }
 
-    // Debounced versions
-    var debouncedUpdateHeaderGlass = debounce(updateHeaderGlass, 10);
-    var debouncedSyncHeaderOverlay = debounce(syncHeaderOverlay, 10);
+      if (previousTaglineHidden !== isTaglineHidden) {
+        header.classList.toggle('has-tagline-hidden', isTaglineHidden);
+        previousTaglineHidden = isTaglineHidden;
+      }
+    }
 
     // Observa cambios en el tamaño del header
     if (window.ResizeObserver) {
@@ -790,10 +790,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     // Sincroniza al hacer scroll, resize, load, y visibilidad
     updateHeaderGlass();
     syncHeaderOverlay();
-    window.addEventListener('scroll', debouncedUpdateHeaderGlass, { passive: true });
+    window.addEventListener('scroll', updateHeaderGlass, { passive: true });
     window.addEventListener('resize', function () {
-      debouncedUpdateHeaderGlass();
-      debouncedSyncHeaderOverlay();
+      updateHeaderGlass();
+      syncHeaderOverlay();
       if (!isMobileViewport()) {
         setMobileMenuState(false);
       }
