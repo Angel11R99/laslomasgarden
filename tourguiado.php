@@ -37,7 +37,6 @@
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--bg);
       color: var(--text);
       line-height: 1.52;
       overflow-x: hidden;
@@ -111,9 +110,7 @@
 
     .hero.step-1 {
       container-type: inline-size;
-      background:
-        radial-gradient(circle at 50% 8%, color-mix(in oklab, #ffffff 68%, #c9e8df 32%) 0%, transparent 52%),
-        linear-gradient(180deg, #f6f7f5 0%, #ecf2ef 48%, #dde9e4 100%);
+     
       isolation: isolate;
     }
 
@@ -131,12 +128,22 @@
     .hero.step-1 #svgContainer {
       position: relative;
       overflow: hidden;
-      background: transparent;
+
     }
 
     .hero.step-1 #svgContainer svg {
+      width: 100%;
+      height: 100%;
       transform: scaleX(1.12) scaleY(0.9);
       transform-origin: center;
+    }
+
+    .hero-map-loading {
+      display: none;
+    }
+
+    .hero-map-loading.hidden {
+      display: none;
     }
 
     .hero::after {
@@ -144,7 +151,7 @@
       position: absolute;
       inset: auto 0 0 0;
       height: 6px;
-      background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+     
     }
 
     .hero-inner {
@@ -241,10 +248,11 @@
 
     .hero-copy {
       text-align: center;
-      padding-top: 62px;
-      display: grid;
-      gap: 14px;
-      justify-items: center;
+      padding-top: 42px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
       position: relative;
       z-index: 4;
       transition: opacity 0.32s ease, transform 0.32s ease;
@@ -265,9 +273,10 @@
       text-transform: uppercase;
       text-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
       max-width: min(92vw, 18ch);
-      margin: 0 auto;
+      margin: 0;
       white-space: normal;
       text-wrap: balance;
+      order: 2;
     }
 
     .hero-tour-link {
@@ -286,6 +295,8 @@
       text-transform: uppercase;
       box-shadow: 0 14px 34px rgba(7, 21, 17, 0.2);
       transition: transform 0.24s ease, box-shadow 0.24s ease;
+      margin-top: 0;
+      order: 1;
     }
 
     .hero-tour-link:hover {
@@ -310,8 +321,8 @@
       z-index: 0;
       width: 100%;
       height: 100%;
-     
       display: block;
+      background: url('img/SERENAS SITE.avif') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -375,6 +386,12 @@
       -webkit-backdrop-filter: blur(14px) brightness(0.7);
     }
 
+    .hero-front-view.layout-selection-focus {
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
     /* Image fills the whole screen, starts zoomed-in then settles */
     .hero-front-image {
       position: absolute;
@@ -435,6 +452,17 @@
       width: 100%;
       height: 100%;
       display: block;
+    }
+
+    .hero-front-svg-stage [role="button"] {
+      cursor: pointer;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hero-front-svg-stage [role="button"]:focus,
+    .hero-front-svg-stage [role="button"]:active {
+      outline: none;
     }
 
     .hero-front-area-tooltip {
@@ -515,6 +543,10 @@
       );
     }
 
+    .hero-front-view.layout-selection-focus::after {
+      background: none;
+    }
+
     /* Controls slide up from bottom */
     .hero-front-controls {
       position: absolute;
@@ -540,10 +572,35 @@
     }
 
     .hero-front-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: top 0.4s ease, font-size 0.4s ease, font-weight 0.4s ease;
+    }
+
+    /* Paso 1 — grande en el cielo */
+    .hero-front-view.layout-selection-focus .hero-front-title {
+      top: 14%;
+      font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35);
+    }
+
+    /* Paso 2 — pequeño en la zona de controles (abajo) */
+    .hero-front-view.step-2-focus .hero-front-title {
+      bottom: clamp(24px, 4vw, 44px);
+      top: auto;
+      transform: translateX(-50%);
       font-size: clamp(0.9rem, 1.6vw, 1.2rem);
       font-weight: 600;
       letter-spacing: 0.06em;
-      text-transform: uppercase;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
@@ -575,6 +632,17 @@
     /* Apartment hover & UX interaction signals */
     #svgContainer svg {
       overflow: visible;
+    }
+
+    #svgContainer [role="button"] {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #svgContainer [role="button"]:focus,
+    #svgContainer [role="button"]:active,
+    #svgContainer [role="button"]:focus-visible {
+      outline: none;
     }
 
     #svgContainer image[id^="app"],
@@ -631,23 +699,21 @@
     }
 
     .hero-map-hint {
-      display:none;
-      position: absolute;
-      bottom: clamp(16px, 3vw, 32px);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
       display: flex;
+      position: absolute;
+      top: max(1.8rem, env(safe-area-inset-top));
+      left: max(1.8rem, env(safe-area-inset-left));
+      z-index: 10;
       align-items: center;
-      gap: 9px;
-      padding: 9px 20px;
+      gap: 10px;
+      padding: 12px 22px;
       border-radius: 999px;
       background: rgba(5, 18, 14, 0.82);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(210, 168, 24, 0.38);
       color: rgba(255, 255, 255, 0.92);
-      font-size: 0.72rem;
+      font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -681,6 +747,42 @@
       to {
         opacity: 1;
         transform: scale(1);
+      }
+    }
+
+    @keyframes tourShellEnter {
+      from {
+        opacity: 0;
+        transform: perspective(1200px) rotateX(8deg) scale(0.96) translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0);
+      }
+    }
+
+    @keyframes ambientDepth {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+
+    @keyframes sceneNameFlip {
+      from {
+        opacity: 0;
+        transform: perspective(400px) rotateX(-50deg) translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(400px) rotateX(0deg) translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .tour-shell.is-entering {
+        animation: tourShellEnter 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .tour-room-label-text.updating {
+        animation: sceneNameFlip 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
     }
 
@@ -1008,12 +1110,15 @@
       cursor: pointer;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      transform-origin: left center;
+      transition: background-color 0.22s ease, transform 0.2s ease;
     }
 
     .tour-back-plan:hover,
     .tour-back-plan:focus-visible {
       background: rgba(7, 138, 99, 0.72);
       outline: none;
+      transform: perspective(400px) rotateY(-6deg) translateX(-2px);
     }
 
     .survey-modal h2 {
@@ -1078,7 +1183,12 @@
       max-height: none;
       border-radius: 0;
       overflow: hidden;
-      background: rgba(7, 14, 12, 0.94);
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(7, 138, 99, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(4, 104, 75, 0.05) 0%, transparent 50%),
+        #070e0c;
+      background-size: 200% 200%;
+      animation: ambientDepth 12s ease infinite;
       box-shadow: none;
     }
 
@@ -1088,7 +1198,10 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
-      padding: 0.55rem 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 999px;
       background: rgba(8, 18, 14, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -1099,11 +1212,91 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      white-space: nowrap;
-      pointer-events: none;
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
       max-width: min(88vw, 28rem);
       text-align: center;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .tour-room-label-text {
+      min-width: 0;
+      max-width: min(62vw, 20rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tour-scene-nav-btn {
+      width: 2.05rem;
+      height: 2.05rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease, transform 0.12s ease, opacity 0.2s ease, box-shadow 0.12s ease;
+    }
+
+    .tour-scene-nav-btn:hover,
+    .tour-scene-nav-btn:focus-visible {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px) translateZ(4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      outline: none;
+    }
+
+    .tour-scene-nav-btn:active {
+      transform: translateY(1px) translateZ(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .tour-scene-nav-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .tour-hotspot-toggle {
+      position: absolute;
+      top: calc(max(1rem, env(safe-area-inset-top)) + 3.6rem);
+      right: max(1rem, env(safe-area-inset-right));
+      z-index: 21;
+      min-height: 2.7rem;
+      padding: 0 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(15, 27, 22, 0.72);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.22s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .tour-hotspot-toggle:hover,
+    .tour-hotspot-toggle:focus-visible {
+      background: rgba(7, 138, 99, 0.72);
+      transform: translateY(-2px) translateZ(3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      outline: none;
+    }
+
+    .tour-hotspot-toggle.is-off {
+      background: rgba(45, 16, 16, 0.72);
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     .tour-touch-hint {
@@ -1154,25 +1347,26 @@
       flex: 0 0 auto;
     }
 
-    /* Overlay de transición tipo blend suave entre escenas */
+    /* Overlay de transición tipo warp entre escenas */
     .tour-transition-overlay {
       position: absolute;
       inset: 0;
       z-index: 30;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(10, 16, 14, 0.34) 0%, rgba(8, 13, 11, 0.7) 70%, rgba(6, 9, 8, 0.94) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: radial-gradient(circle at 50% 50%, rgba(10, 16, 14, 0.2) 0%, rgba(6, 12, 9, 0.88) 60%, rgba(4, 8, 6, 0.97) 100%);
       opacity: 0;
-      transition: opacity 0.46s ease;
-      will-change: opacity;
+      clip-path: circle(0% at 50% 50%);
+      transition: opacity 0.4s ease, clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: opacity, clip-path;
     }
     .tour-transition-overlay.fading {
       opacity: 1;
+      clip-path: circle(80% at 50% 50%);
     }
     .tour-transition-overlay.releasing {
       opacity: 0;
-      transition: opacity 0.58s ease;
+      clip-path: circle(0% at 50% 50%);
+      transition: opacity 0.5s ease, clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Ayudante de posición */
@@ -1334,12 +1528,7 @@
       height: 100%;
     }
 
-    footer {
-      padding: 12px 0 26px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
+ 
 
 
     @media (max-width: 960px) {
@@ -1461,6 +1650,7 @@
 
       .hero.step-1 .hero-tour-link {
         pointer-events: auto;
+        margin-bottom: 600px;
       }
 
       .hero-copy h1 {
@@ -1539,8 +1729,11 @@
         width: 100%;
       }
 
-      .hero-front-title {
-        max-width: 100%;
+      .hero-front-view.layout-selection-focus .hero-front-title {
+        font-size: clamp(1.4rem, 6vw, 2.4rem);
+        white-space: normal;
+        width: 90%;
+        top: 10%;
       }
 
       .feature {
@@ -1574,9 +1767,20 @@
 
       .tour-room-label {
         font-size: 0.74rem;
-        padding: 0.45rem 0.9rem;
+        gap: 0.35rem;
+        padding: 0.35rem 0.45rem;
         bottom: max(0.75rem, env(safe-area-inset-bottom));
         max-width: calc(100vw - 5.5rem);
+      }
+
+      .tour-room-label-text {
+        max-width: calc(100vw - 10.5rem);
+      }
+
+      .tour-scene-nav-btn {
+        width: 1.9rem;
+        height: 1.9rem;
+        font-size: 0.92rem;
       }
 
       .tour-touch-hint {
@@ -1600,6 +1804,14 @@
         min-height: 2.5rem;
         font-size: 0.68rem;
         padding: 0 0.82rem;
+      }
+
+      .tour-hotspot-toggle {
+        top: calc(max(0.85rem, env(safe-area-inset-top)) + 3rem);
+        right: max(0.85rem, env(safe-area-inset-right));
+        min-height: 2.45rem;
+        padding: 0 0.78rem;
+        font-size: 0.64rem;
       }
 
       .tour-pos-toggle {
@@ -1717,10 +1929,11 @@
 
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
-        <img class="hero-map-base" src="img/plano-interactivo-base.webp" alt="Master plan" fetchpriority="high" loading="eager" decoding="async">
+        <div class="hero-map-base" aria-hidden="true"></div>
         <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
-        
+
         <div id="svgContainer">
+          <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- ================================================================ -->
           <!-- PLACE YOUR FULL SVG CONTENT HERE (replacing the example below)  -->
           <!-- Make sure each apartment element has an ID starting with "app"   -->
@@ -1733,8 +1946,8 @@
         <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
+        <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
         <div class="hero-front-controls">
-          <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
           <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
         </div>
       </div>
@@ -1748,8 +1961,11 @@
     <div class="tour-shell" role="dialog" aria-modal="true" aria-labelledby="tourSceneTitle">
       <button class="tour-back-plan" id="tourBackPlanBtn" type="button">Back to plan</button>
       <button class="tour-close" id="tourCloseBtn" type="button" aria-label="Close 360 tour">&times;</button>
+      <button class="tour-hotspot-toggle" id="tourHotspotToggle" type="button" aria-pressed="true">Hide hotspots</button>
       <div class="tour-room-label">
-        <span id="tourSceneTitle">Balcón</span>
+        <button class="tour-scene-nav-btn" id="tourPrevBtn" type="button" aria-label="Previous 360 view">&#8249;</button>
+        <span class="tour-room-label-text" id="tourSceneTitle">Balcón</span>
+        <button class="tour-scene-nav-btn" id="tourNextBtn" type="button" aria-label="Next 360 view">&#8250;</button>
       </div>
       <div class="tour-touch-hint" id="tourTouchHint" aria-hidden="true">
         <strong>1 dedo</strong> para mover
@@ -1833,6 +2049,32 @@
       }
     };
 
+    let activePlanViewKey = 'without-balcony';
+    let selectedBuildingNum = '';
+
+    const THREE_ROOM_BUILDINGS = new Set([
+      '1','2','3','4','11','12','13','15','17','19','21','23','26','29','31'
+    ]);
+
+    const BUILDING_NUMBER_MAP = {
+      'app1':    '21', 'app2-T':  '19', 'app3':    '17', 'app4-T':  '15',
+      'app5':    '13', 'app6-T':  '11', 'app7-T':  '3',  'app8':    '2',
+      'app9-T':  '1',  /* app10 eliminado */
+      'app11-T': '22', 'app12-T': '20', 'app13':   '18', 'app14-T': '16',
+      'app15':   '14', 'app16-T': '12', 'app17':   '4',  'app18-T': '5',
+      'app19':   '6',  'app20-T': '8',  'app21-T': '7',  'app22':   '9',
+      'app23':   '25', 'app24':   '28', 'app25-T': '10', 'app26-T': '24',
+      'app27':   '23', 'app28':   '26', 'app29-T': '27', 'app30':   '30',
+      'app31-T': '29', 'app32':   '31', 'app33':   '32', 'app34-T': '33'
+    };
+
+    const APP_UNIT_LETTERS = {
+      'App-1': 'G', 'App-2': 'H',
+      'App-3': 'E', 'App-4': 'F',
+      'App-5': 'C', 'App-6': 'D',
+      'App-7': 'A', 'App-8': 'B'
+    };
+
     const masterplanSceneById = {
       // masterplan2room (2 bedrooms) IDs: Balcon, LivingRoom, Dinning, Kitchen, BedRoom1, BedRoom2, BathRoom1, BathRoom2, Closet, Laundry
       balcon: 'balcon-exterior',
@@ -1904,21 +2146,97 @@
         e.preventDefault();
         e.stopPropagation();
         onActivate(node);
+        if (typeof node.blur === 'function') node.blur();
       });
       node.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           e.stopPropagation();
           onActivate(node);
+          if (typeof node.blur === 'function') node.blur();
         }
       });
     }
 
+    function createSvgInteractiveTarget(node) {
+      if (!node) return null;
+
+      const isImageNode = String(node.tagName || '').toLowerCase() === 'image';
+      if (!isImageNode) {
+        return { targetNode: node, visualNode: node };
+      }
+
+      const parentNode = node.parentNode;
+      if (!parentNode) {
+        return { targetNode: node, visualNode: node };
+      }
+
+      const ns = 'http://www.w3.org/2000/svg';
+      const wrapper = document.createElementNS(ns, 'g');
+      const originalTransform = node.getAttribute('transform') || '';
+      const existingWrapper = parentNode.tagName && String(parentNode.tagName).toLowerCase() === 'g' && parentNode.getAttribute('data-interactive-wrapper') === 'true';
+
+      node.style.transition = 'filter 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+      node.style.transformBox = 'fill-box';
+      node.style.transformOrigin = '50% 50%';
+
+      if (existingWrapper) {
+        return { targetNode: parentNode, visualNode: node };
+      }
+
+      wrapper.setAttribute('data-interactive-wrapper', 'true');
+      if (originalTransform) wrapper.setAttribute('transform', originalTransform);
+      node.removeAttribute('transform');
+      parentNode.insertBefore(wrapper, node);
+      wrapper.appendChild(node);
+
+      return { targetNode: wrapper, visualNode: node };
+    }
+
+    function bindStep1LikeHover(targetNode, visualNode, unitLabel) {
+      if (!targetNode || !visualNode) return;
+
+      const tooltip = document.getElementById('aptTooltip');
+      const tooltipText = document.getElementById('aptTooltipText');
+
+      const showHover = (e) => {
+        visualNode.style.transform = 'scale(1.04)';
+        visualNode.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+        if (unitLabel && tooltip && tooltipText) {
+          tooltipText.textContent = unitLabel;
+          tooltip.style.left = ((e ? e.clientX : 0) + 16) + 'px';
+          tooltip.style.top  = ((e ? e.clientY : 0) - 42) + 'px';
+          tooltip.classList.add('visible');
+        }
+      };
+
+      const moveTooltip = (e) => {
+        if (unitLabel && tooltip) {
+          tooltip.style.left = (e.clientX + 16) + 'px';
+          tooltip.style.top  = (e.clientY - 42) + 'px';
+        }
+      };
+
+      const hideHover = () => {
+        visualNode.style.transform = '';
+        visualNode.style.filter = '';
+        if (tooltip) tooltip.classList.remove('visible');
+      };
+
+      targetNode.addEventListener('mouseenter', showHover);
+      targetNode.addEventListener('mousemove', moveTooltip);
+      targetNode.addEventListener('mouseleave', hideHover);
+      targetNode.addEventListener('focus', showHover);
+      targetNode.addEventListener('blur', hideHover);
+    }
+
     function setupInteractiveNoBalcony(svgText, viewKey) {
       if (!heroFrontSvgStage) return false;
+      activePlanViewKey = viewKey || activePlanViewKey;
       heroFrontSvgStage.innerHTML = svgText;
       heroFrontSvgStage.classList.remove('is-step-2');
       heroFrontView?.classList.remove('step-2-focus');
+      heroFrontView?.classList.add('layout-selection-focus');
       const inlineSvg = heroFrontSvgStage.querySelector('svg');
       if (!inlineSvg) return false;
 
@@ -1930,29 +2248,36 @@
         fetch(getStep2MasterplanSvg(currentViewKey))
           .then((r) => r.text())
           .then((nextSvgText) => {
-            setupMasterplan2RoomStep(nextSvgText);
+            setupMasterplan2RoomStep(nextSvgText, currentViewKey);
           });
       };
 
-      let hotspots = inlineSvg.querySelectorAll('[data-front-nav], [id^="app"], [id^="APP"]');
+      let hotspots = inlineSvg.querySelectorAll('[data-front-nav], [id^="app"], [id^="APP"], [id^="App"]');
       if (!hotspots.length) hotspots = inlineSvg.querySelectorAll('[id]');
 
       hotspots.forEach((node) => {
         if (node.id === 'Layer_1') return;
-        makeSvgElementButton(node, openStep2);
+        const interactiveNodes = createSvgInteractiveTarget(node);
+        if (!interactiveNodes) return;
+        const letter = APP_UNIT_LETTERS[node.id];
+        const unitLabel = letter ? (selectedBuildingNum ? selectedBuildingNum + '-' + letter : letter) : '';
+        bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode, unitLabel);
+        makeSvgElementButton(interactiveNodes.targetNode, openStep2);
       });
 
       return true;
     }
 
-    function setupMasterplan2RoomStep(svgText) {
+    function setupMasterplan2RoomStep(svgText, viewKey) {
       if (!heroFrontSvgStage) return false;
+      activePlanViewKey = viewKey || activePlanViewKey;
       heroFrontSvgStage.innerHTML = svgText;
       heroFrontSvgStage.classList.add('is-step-2');
       heroFrontSvgStage.classList.remove('step2-animate');
       void heroFrontSvgStage.offsetWidth;
       heroFrontSvgStage.classList.add('step2-animate');
       heroFrontView?.classList.add('step-2-focus');
+      heroFrontView?.classList.remove('layout-selection-focus');
       const inlineSvg = heroFrontSvgStage.querySelector('svg');
       if (!inlineSvg) return false;
 
@@ -2013,6 +2338,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     function showHeroFrontView(viewKey) {
       const view = heroApartmentViews[viewKey];
       if (!view || !heroRoot || !heroFrontView || !heroFrontImage) return;
+      activePlanViewKey = viewKey;
 
       if (heroFrontTitle) heroFrontTitle.textContent = view.title;
 
@@ -2034,6 +2360,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           .catch(() => {
             heroFrontSvgStage.classList.remove('active');
             heroFrontSvgStage.setAttribute('aria-hidden', 'true');
+            heroFrontView.classList.remove('layout-selection-focus');
             heroFrontView.classList.remove('step-2-focus');
             heroFrontImage.style.display = '';
             heroFrontImage.src = view.image;
@@ -2045,6 +2372,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       heroFrontSvgStage?.classList.remove('active');
       heroFrontSvgStage?.classList.remove('is-step-2');
+      heroFrontView.classList.remove('layout-selection-focus');
       heroFrontView.classList.remove('step-2-focus');
       heroFrontSvgStage?.setAttribute('aria-hidden', 'true');
       if (heroFrontSvgStage) heroFrontSvgStage.innerHTML = '';
@@ -2080,6 +2408,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         heroFrontAreaTooltip.classList.remove('visible');
         heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
       }
+      heroFrontView.classList.remove('layout-selection-focus');
       heroFrontView.classList.remove('step-2-focus');
       if (heroFrontImage) heroFrontImage.style.display = '';
       document.body.style.overflow = '';
@@ -2139,9 +2468,17 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       apartmentElements.forEach(element => {
         const id = element.getAttribute('data-unit-id') || element.getAttribute('id') || '';
-        const viewKey = /-T$/i.test(id) ? 'with-balcony' : 'without-balcony';
+
+        // Ocultar y saltar app10 (eliminado del plan real)
+        if (/^app10$/i.test(id)) {
+          element.style.display = 'none';
+          element.style.pointerEvents = 'none';
+          return;
+        }
+
+        const realNum = BUILDING_NUMBER_MAP[id] || id.replace(/[^0-9]/g, '');
+        const viewKey = THREE_ROOM_BUILDINGS.has(realNum) ? 'with-balcony' : 'without-balcony';
         const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
-        const unitNum = id.replace(/[^0-9]/g, '');
 
         // Wrap <image> in a <g> that takes the positioning transform.
         // The <image> is left with no transform so CSS scale works from its center.
@@ -2156,13 +2493,13 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         g.style.cursor = 'pointer';
         g.setAttribute('role', 'button');
         g.setAttribute('tabindex', '0');
-        g.setAttribute('aria-label', 'Apartamento ' + id + ' ' + apartmentLabel);
+        g.setAttribute('aria-label', 'Building ' + realNum + ' · ' + apartmentLabel);
 
         g.addEventListener('mouseenter', (e) => {
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Unit ' + unitNum + '  ·  ' + apartmentLabel + '  →';
+          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + ' ';
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
@@ -2179,7 +2516,10 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           if (tooltip) tooltip.classList.remove('visible');
         });
 
-        const openUnit = () => showHeroFrontView(viewKey);
+        const openUnit = () => {
+          selectedBuildingNum = realNum;
+          showHeroFrontView(viewKey);
+        };
         g.addEventListener('click', openUnit);
         g.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -2207,6 +2547,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             }
             svgContainer.dataset.loading = 'false';
             svgContainer.dataset.loaded = 'true';
+            const loadingEl = document.getElementById('heroMapLoading');
+            if (loadingEl) loadingEl.classList.add('hidden');
             initSvgApartmentClicks();
           })
           .catch(() => {
@@ -2228,13 +2570,25 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       });
     });
 
-    // Hero close button
+    // Hero close button — si estamos en step 2 vuelve al step 1, si no cierra todo
     if (heroFrontClose) {
-      heroFrontClose.addEventListener('click', hideHeroFrontView);
+      heroFrontClose.addEventListener('click', () => {
+        const inStep2 = heroFrontSvgStage && heroFrontSvgStage.classList.contains('is-step-2');
+        if (inStep2) {
+          showHeroFrontView(activePlanViewKey);
+        } else {
+          hideHeroFrontView();
+        }
+      });
     }
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && heroFrontView && heroFrontView.classList.contains('active')) {
-        hideHeroFrontView();
+        const inStep2 = heroFrontSvgStage && heroFrontSvgStage.classList.contains('is-step-2');
+        if (inStep2) {
+          showHeroFrontView(activePlanViewKey);
+        } else {
+          hideHeroFrontView();
+        }
       }
     });
 
@@ -2419,6 +2773,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     const tourSceneList = document.getElementById('tourSceneList');
     const tourPrevBtn = document.getElementById('tourPrevBtn');
     const tourNextBtn = document.getElementById('tourNextBtn');
+    const tourHotspotToggle = document.getElementById('tourHotspotToggle');
     const tourTransitionOverlay = document.getElementById('tourTransitionOverlay');
     const tourPosToggle = document.getElementById('tourPosToggle');
     const tourPosDebug = document.getElementById('tourPosDebug');
@@ -2441,7 +2796,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     const PINCH_ZOOM_STRENGTH = 0.78;
     const TOUCH_LOOK_SENSITIVITY = 0.0032;
     const MAX_TOUR_PITCH = (Math.PI / 2) - 0.08;
-    const ENABLE_TOUR_HOTSPOTS = false;
+    let areTourHotspotsVisible = false;
     const TOUCH_HINT_STORAGE_KEY = 'tour-touch-hint-seen';
     let tourTouchHintTimeout = null;
     let tourTouchHintShowTimeout = null;
@@ -2557,16 +2912,25 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     function setControlsDisabled(disabled) {
       if (tourPrevBtn) tourPrevBtn.disabled = disabled;
       if (tourNextBtn) tourNextBtn.disabled = disabled;
+      if (tourHotspotToggle) tourHotspotToggle.disabled = disabled;
       if (!tourSceneList) return;
       tourSceneList.querySelectorAll('button').forEach((button) => {
         button.disabled = disabled || button.classList.contains('locked');
       });
     }
 
+    function updateHotspotToggleUi() {
+      if (!tourHotspotToggle) return;
+      const isVisible = areTourHotspotsVisible;
+      tourHotspotToggle.textContent = isVisible ? 'Hide hotspots' : 'Show hotspots';
+      tourHotspotToggle.setAttribute('aria-pressed', isVisible ? 'true' : 'false');
+      tourHotspotToggle.classList.toggle('is-off', !isVisible);
+    }
+
     function renderHotspots(scene) {
       if (!tourHotspots) return;
       tourHotspots.innerHTML = '';
-      if (!ENABLE_TOUR_HOTSPOTS) {
+      if (!areTourHotspotsVisible) {
         tourHotspots.setAttribute('visible', 'false');
         return;
       }
@@ -2840,7 +3204,12 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       renderSceneButtons();
       renderHotspots(scene);
 
-      if (tourSceneTitle) tourSceneTitle.textContent = scene.title;
+      if (tourSceneTitle) {
+        tourSceneTitle.classList.remove('updating');
+        void tourSceneTitle.offsetWidth;
+        tourSceneTitle.textContent = scene.title;
+        tourSceneTitle.classList.add('updating');
+      }
       if (tourStatus) {
         tourStatus.textContent = 'Scene ' + (availableScenePosition + 1) + ' of ' + availableTourIndexes.length;
       }
@@ -2887,7 +3256,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       }, SCENE_BLEND_SWAP_DELAY);
 
       window.setTimeout(() => {
-        if (tourHotspots) tourHotspots.setAttribute('visible', 'true');
+        if (tourHotspots) tourHotspots.setAttribute('visible', areTourHotspotsVisible ? 'true' : 'false');
         setControlsDisabled(false);
         isTransitioning = false;
       }, SCENE_BLEND_TOTAL_DURATION);
@@ -2951,7 +3320,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         tourCamera.removeAttribute('animation__move');
         tourCamera.removeAttribute('animation__continue');
         tourCamera.setAttribute('position', '0 1.6 0');
-        if (tourHotspots) tourHotspots.setAttribute('visible', 'true');
+        if (tourHotspots) tourHotspots.setAttribute('visible', areTourHotspotsVisible ? 'true' : 'false');
         setControlsDisabled(false);
         isTransitioning = false;
       }, SCENE_MOVE_TOTAL_DURATION);
@@ -2979,11 +3348,11 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       revealHeroFrontView();
 
-      const step2Svg = getStep2MasterplanSvg('without-balcony');
+      const step2Svg = getStep2MasterplanSvg(activePlanViewKey);
       fetch(step2Svg)
         .then((r) => r.text())
         .then((svgText) => {
-          const ok = setupMasterplan2RoomStep(svgText);
+          const ok = setupMasterplan2RoomStep(svgText, activePlanViewKey);
           if (!ok) hideHeroFrontView();
         })
         .catch(() => {
@@ -2998,6 +3367,13 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       tourModal.classList.add('active');
       tourModal.setAttribute('aria-hidden', 'false');
       pageBody.style.overflow = 'hidden';
+
+      const tourShell = tourModal.querySelector('.tour-shell');
+      if (tourShell) {
+        tourShell.classList.remove('is-entering');
+        void tourShell.offsetWidth;
+        tourShell.classList.add('is-entering');
+      }
 
       if (tourScene && typeof tourScene.play === 'function') {
         tourScene.play();
@@ -3022,6 +3398,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         setSkyMaterial(tourSkyBlend, 0, true);
       }
       isTransitioning = false;
+      updateHotspotToggleUi();
 
       setTourScene(activeTourIndex, true);
     }
@@ -3067,6 +3444,16 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         const currentAvailableIndex = availableTourIndexes.indexOf(activeTourIndex);
         const nextAvailableIndex = (currentAvailableIndex + 1) % availableTourIndexes.length;
         runSceneBlendTransition(availableTourIndexes[nextAvailableIndex], true);
+      });
+    }
+
+    if (tourHotspotToggle) {
+      updateHotspotToggleUi();
+      tourHotspotToggle.addEventListener('click', () => {
+        areTourHotspotsVisible = !areTourHotspotsVisible;
+        updateHotspotToggleUi();
+        const currentScene = tourScenes[activeTourIndex];
+        if (currentScene) renderHotspots(currentScene);
       });
     }
 
@@ -3312,6 +3699,31 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         setTimeout(() => { tourPosCopyBtn.textContent = 'Copiar'; }, 1400);
       });
     }
+
+    // Mouse-tilt 3D en el room label (solo dispositivos con puntero fino)
+    (function initRoomLabelTilt() {
+      const label = document.querySelector('.tour-room-label');
+      if (!label || !window.matchMedia('(pointer: fine)').matches) return;
+
+      let isHovering = false;
+      const STRENGTH = 10;
+      const PERSPECTIVE = 600;
+
+      label.addEventListener('mouseenter', () => { isHovering = true; });
+      label.addEventListener('mouseleave', () => {
+        isHovering = false;
+        label.style.transform = 'translateX(-50%)';
+      });
+      label.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        const rect = label.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const rx = ((e.clientY - cy) / (rect.height / 2)) * -STRENGTH;
+        const ry = ((e.clientX - cx) / (rect.width / 2)) * STRENGTH;
+        label.style.transform = `translateX(-50%) perspective(${PERSPECTIVE}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+    })();
   </script>
 
 </body>

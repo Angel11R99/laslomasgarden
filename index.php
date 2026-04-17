@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" href="img/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
-
     :root {
       --lls-bg: #ffffff;
       --lls-white: #ffffff;
@@ -124,6 +123,31 @@
     .lls-hero-new__media {
       height: min(100vh, 1070px);
       background: url("img/Master_Plan.webp") center / cover no-repeat;
+    }
+
+    .lls-hero-new__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .lls-hero-new__overlay-inner {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: calc(var(--lls-header-overlay, 122px) + clamp(1rem, 2vw, 1.6rem));
+    }
+
+    .lls-hero-new__tagline {
+      width: min(100%, 340px);
+    }
+
+    .lls-hero-new__tagline img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
     }
 
     .lls-hero-new__bar {
@@ -697,7 +721,44 @@
       line-height: 1.45;
     }
 
+    #map_container {
+      width: 100%;
+
+
+      /* fondo suave */
+      display: flex;
+      justify-content: center;
+
+
+    }
+
+    #map_container img {
+      width: 100%;
+
+
+    }
+
+    #map_container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    .image_full {
+      width: 100%;
+    }
+
     @media (max-width: 960px) {
+
+      .lls-hero-new__overlay-inner {
+        justify-content: center;
+        padding-top: calc(var(--lls-header-overlay, 122px) + 1rem);
+      }
+
+      .lls-hero-new__tagline {
+        width: min(78vw, 320px);
+      }
 
       .lls-safety__grid,
       .lls-calc-grid,
@@ -845,7 +906,9 @@
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
-          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm of life on the North Coast of the Dominican Republic.</p>
+          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more
+            than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm
+            of life on the North Coast of the Dominican Republic.</p>
           <a href="tourguiado" class="lls-button lls-button--white">3D TOUR</a>
         </div>
       </div>
@@ -868,14 +931,16 @@
               <span class="lls-safety__num">02</span>
               <div>
                 <h3 class="lls-safety__title">Year-round tropical climate</h3>
-                <p class="lls-safety__copy">Temperatures averaging between 75°F and 88°F invite outdoor living every season.</p>
+                <p class="lls-safety__copy">Temperatures averaging between 75°F and 88°F invite outdoor living every
+                  season.</p>
               </div>
             </li>
             <li class="lls-safety__item">
               <span class="lls-safety__num">03</span>
               <div>
                 <h3 class="lls-safety__title">North Coast positioning</h3>
-                <p class="lls-safety__copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where nature and convenience meet.</p>
+                <p class="lls-safety__copy">Beautifully placed in Puerto Plata's vibrant seaside environment, where
+                  nature and convenience meet.</p>
               </div>
             </li>
           </ul>
@@ -905,7 +970,8 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">3 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/3habitacionestrans.svg" alt="3 Bedroom Apartment Render" loading="lazy">
+              <img src="img/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy"
+                class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -921,7 +987,8 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy" class="lls-type-card__img--sm">
+              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy"
+                class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
               <ul class="lls-type-card__list">
@@ -945,7 +1012,7 @@
           <a href="/contact-us" class="lls-button lls-button--outline">Request Information</a>
         </div>
         <div class="lls-promo__media">
-          <img src="Familia en la terraza 2.webp" alt="Family sharing a moment on the terrace" loading="lazy">
+          <img src="bbq_home.webp" alt="Family sharing a moment on the terrace" loading="lazy">
         </div>
       </div>
     </section>
@@ -954,11 +1021,24 @@
     <section class="lls-lifestyle-new" id="lifestyle">
       <div class="lls-lifestyle-new__text">
         <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
-        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
+        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
+          rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
       </div>
-      <div class="lls-lifestyle-new__grid">
-        <img src="Amenities2.webp" alt="Project amenities sports court" loading="lazy">
-        <img src="img/pool-family.webp" alt="Project pool area" loading="lazy">
+      <div class="">
+        <img src="img/sport_home.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+
+      </div>
+    </section>
+
+    <section class="lls-lifestyle-new" style="padding-top:0px" >
+      <div class="lls-lifestyle-new__text">
+        <h2>The Art of Living Well</h2>
+        <p>A perfect moment where laughter, sunshine, and relaxation come together, capturing the balance between joy
+          and peace we all seek.</p>
+      </div>
+      <div class="">
+        <img src="img/pool-family.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+
       </div>
     </section>
 

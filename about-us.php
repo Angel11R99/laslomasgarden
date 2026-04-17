@@ -50,6 +50,7 @@
     .about-shell {
       width: min(var(--lls-shell), calc(100% - 2rem));
       margin-inline: auto;
+      
     }
 
     .about-section {
@@ -69,11 +70,11 @@
 
     .about-hero {
       background: linear-gradient(90deg,
-        #006837 0%,
-        #006837 19.2053%,
-        #22b573 42.4501%,
-        #006837 73.3775%,
-        #22b573 100%);
+          #006837 0%,
+          #006837 19.2053%,
+          #22b573 42.4501%,
+          #006837 73.3775%,
+          #22b573 100%);
       padding: clamp(6.4rem, 2.5vw, 2rem) 1.5rem;
       text-align: center;
       margin-top: 0;
@@ -118,7 +119,7 @@
       width: 100%;
       height: 100%;
       min-height: clamp(240px, 31vw, 364px);
-      object-fit: contain;
+
     }
 
     .about-description {
@@ -203,6 +204,7 @@
     }
 
     @media (max-width: 900px) {
+
       .about-grid,
       .about-company-layout {
         grid-template-columns: 1fr;
@@ -253,13 +255,15 @@
   <main class="about-page">
 
     <section class="about-section" aria-label="About gallery">
-      <div class="about-shell">
-        <div class="about-grid">
+      <div class="">
+        <div class="about-grid" style="height: 90%;">
           <figure class="about-card">
-            <img src="img/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy" decoding="async">
+            <img src="img/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy"
+              decoding="async">
           </figure>
           <figure class="about-card">
-            <img src="img/mapa_recurso.webp" alt="Map of the Caribbean showing the Dominican Republic location" loading="lazy" decoding="async">
+            <img src="img/mapa_recurso.webp" alt="Map of the Caribbean showing the Dominican Republic location"
+              loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
@@ -267,7 +271,9 @@
 
     <section class="about-hero" aria-labelledby="about-hero-text">
       <div class="about-shell">
-        <p class="about-copy" id="about-hero-text">Las Lomas Serenas is a condominium development owned and operated by U.S. investors and entrepreneurs. It is located on the beautiful North Coast of the Dominican Republic, in the Province of Puerto Plata, in the vibrant seaside town of Sosúa.</p>
+        <p class="about-copy" id="about-hero-text">Las Lomas Serenas is a condominium development owned and operated by
+          U.S. investors and entrepreneurs. It is located on the beautiful North Coast of the Dominican Republic, in the
+          Province of Puerto Plata, in the vibrant seaside town of Sosúa.</p>
       </div>
     </section>
 
@@ -275,11 +281,16 @@
       <div class="about-shell">
         <div class="about-company-layout">
           <div class="about-company-copy">
-            <img class="about-company-logo" src="img/MaireniLogo.webp" alt="Maireni Bournigal & Co logo" loading="lazy" decoding="async">
+            <img class="about-company-logo" src="img/MaireniLogo.webp" alt="Maireni Bournigal & Co logo" loading="lazy"
+              decoding="async">
             <div class="about-company-text" id="about-company-title">
-              <p class="about-copy">Since 1985, Bournigal Construction has delivered premium residential developments, hotels, and industrial projects across the Dominican Republic with unmatched engineering precision.</p>
-              <p class="about-copy">What sets us apart and has made us the number one construction company on the North Coast of the Dominican Republic for the last 40 years is our commitment to quality and client satisfaction.</p>
-              <p class="about-copy">We are proud to be partnering with Las Lomas Serenas and we are committed to making this an exceptional facility for all its residents.</p>
+              <p class="about-copy">Since 1985, Bournigal Construction has delivered premium residential developments,
+                hotels, and industrial projects across the Dominican Republic with unmatched engineering precision.</p>
+              <p class="about-copy">What sets us apart and has made us the number one construction company on the North
+                Coast of the Dominican Republic for the last 40 years is our commitment to quality and client
+                satisfaction.</p>
+              <p class="about-copy">We are proud to be partnering with Las Lomas Serenas and we are committed to making
+                this an exceptional facility for all its residents.</p>
             </div>
           </div>
 

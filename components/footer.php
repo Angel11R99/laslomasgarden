@@ -262,12 +262,13 @@
             </button>
             <ul class="lls-footer-submenu" id="lls-footer-submenu" hidden>
               <li><a href="/tourguiado">Tour</a></li>
+              <li><a href="/amenities">Amenities</a></li>
               <li><a href="/2-bedrooms">2 Bedrooms</a></li>
               <li><a href="/3-bedrooms">3 Bedrooms</a></li>
             </ul>
           </li>
           <li><a href="/about-us">About Us</a></li>
-          <li><a href="/index.php#contact">Contact</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
         </ul>
       </section>
 
