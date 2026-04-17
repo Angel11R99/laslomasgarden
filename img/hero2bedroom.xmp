@@ -6,15 +6,16 @@
     xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
     xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
     xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
     xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
-    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
    exif:ExifVersion="0231"
    tiff:Orientation="1"
    xmpMM:DocumentID="4A36CFF10555C1350519EE3000C9AEF2"
    xmpMM:OriginalDocumentID="4A36CFF10555C1350519EE3000C9AEF2"
-   xmpMM:InstanceID="xmp.iid:756ff092-076b-da4d-9080-72fe92a36a04"
+   xmpMM:InstanceID="xmp.iid:4b21db0f-48da-6440-94a3-adec87211a76"
    dc:format="image/webp"
+   xmp:MetadataDate="2026-04-17T11:04:55-04:00"
    crs:Version="18.2"
    crs:ProcessVersion="15.4"
    crs:WhiteBalance="As Shot"
@@ -116,14 +117,19 @@
    crs:HasCrop="False"
    crs:AlreadyApplied="False"
    photoshop:SidecarForExtension="WEBP"
-   photoshop:EmbeddedXMPDigest="00000000000000000000000000000000"
-   xmp:MetadataDate="2026-04-15T17:24:25-04:00">
+   photoshop:EmbeddedXMPDigest="B44F9AFDEB5347965CAC2CEAF94B87DD">
    <xmpMM:History>
     <rdf:Seq>
      <rdf:li
       stEvt:action="saved"
       stEvt:instanceID="xmp.iid:756ff092-076b-da4d-9080-72fe92a36a04"
       stEvt:when="2026-04-15T17:24:25-04:00"
+      stEvt:softwareAgent="Adobe Photoshop Camera Raw 18.2 (Windows)"
+      stEvt:changed="/metadata"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:4b21db0f-48da-6440-94a3-adec87211a76"
+      stEvt:when="2026-04-17T11:04:55-04:00"
       stEvt:softwareAgent="Adobe Photoshop Camera Raw 18.2 (Windows)"
       stEvt:changed="/metadata"/>
     </rdf:Seq>
