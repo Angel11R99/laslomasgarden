@@ -49,7 +49,7 @@
 
     /* ── Hero ── */
     .rooms-hero {
-      height: 100vh;
+      height: 90vh;
       min-height: 500px;
       background-image: url("img/hero2bedroom.webp");
       background-position: center;
