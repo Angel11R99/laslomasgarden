@@ -789,13 +789,6 @@
   <main class="lls-page">
     <!-- 1. Hero Content -->
     <section class="lls-hero-new">
-      <div class="lls-hero-new__overlay" aria-hidden="true">
-        <div class="lls-shell lls-hero-new__overlay-inner">
-          <div class="lls-hero-new__tagline">
-            <img src="img/Invest_in_Paradise.svg" alt="" loading="eager" decoding="async">
-          </div>
-        </div>
-      </div>
       <div class="lls-hero-new__media" aria-label="Aerial view of Las Lomas Serenas project"></div>
       <div class="lls-hero-new__bar">
         <div class="lls-shell">

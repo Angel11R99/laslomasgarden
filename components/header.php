@@ -47,22 +47,39 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease;
   }
 
-  .lls-header-spacer,
+  .lls-header-left,
+  .lls-header-center,
   .lls-header-right {
-    flex: 0 0 auto;
+    min-width: 0;
   }
 
-  .lls-header-spacer {
-    display: none;
+  .lls-header-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
   }
 
   .lls-header-center {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding-top: 0;
     min-width: 0;
+  }
+
+  .lls-header-tagline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(100%, 340px);
+  }
+
+  .lls-header-tagline img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.2));
   }
 
   .lls-header-logo {
@@ -90,7 +107,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
   .lls-header-right {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     justify-content: flex-end;
     align-items: center;
     gap: 18px;
@@ -240,7 +257,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
   .lls-header-right {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     justify-content: flex-end;
     align-items: center;
     gap: 18px;
@@ -282,6 +299,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       padding-top: 0;
       transform: none;
     }
+
+    .lls-header-tagline {
+      width: min(100%, 290px);
+    }
   }
 
   @media (max-width: 1120px) {
@@ -298,6 +319,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       padding-top: 0;
       gap: 12px;
       transform: none;
+    }
+
+    .lls-header-tagline {
+      width: min(100%, 240px);
     }
 
     .lls-nav-list {
@@ -325,43 +350,42 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-items: center;
+      display: flex;
+      justify-content: space-between;
       gap: 0.7rem;
-    }
-
-    .lls-header-center {
-      padding-top: 0;
     }
 
     .lls-header-logo {
       width: clamp(148px, 26vw, 190px);
     }
 
+    .lls-header-tagline {
+      width: min(100%, 220px);
+    }
+
     .lls-header-right {
       width: auto;
       flex: 0 1 auto;
-      justify-content: center;
+      justify-content: flex-end;
       padding-top: 0;
       padding-left: 0;
       gap: 14px;
-      text-align: center;
-      flex-wrap: wrap;
+      text-align: right;
+      flex-wrap: nowrap;
       transform: none;
     }
 
     .lls-nav-list {
       gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-wrap: nowrap;
     }
 
     .lls-header.is-compact .lls-header-inner {
       min-height: 78px;
       padding-top: 6px;
       gap: 0.7rem;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .lls-header.is-compact .lls-header-right {
@@ -380,20 +404,19 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       width: calc(100% - 1.4rem);
       min-height: 78px;
       padding-top: 6px;
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-items: center;
+      display: flex;
+      justify-content: space-between;
       gap: 0.7rem;
     }
 
     .lls-header-right {
       width: auto;
       flex: 0 1 auto;
-      justify-content: center;
+      justify-content: flex-end;
       padding-top: 0;
       gap: 14px;
-      text-align: center;
-      flex-wrap: wrap;
+      text-align: right;
+      flex-wrap: nowrap;
       transform: none;
     }
 
@@ -404,15 +427,15 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
     .lls-nav-list {
       gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-wrap: nowrap;
     }
 
     .lls-header.is-compact .lls-header-inner {
       min-height: 78px;
       padding-top: 6px;
       gap: 0.7rem;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .lls-header.is-compact .lls-header-logo {
@@ -444,9 +467,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       gap: 0.75rem;
     }
 
-    .lls-header-center {
-      justify-content: flex-start;
-      align-items: center;
+    .lls-header-left {
       min-width: 0;
     }
 
@@ -455,6 +476,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       padding-top: 0;
       margin: 0;
       transform: none;
+    }
+
+    .lls-header-center {
+      display: none;
     }
 
     .lls-header-right {
@@ -574,13 +599,17 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
 <header class="lls-header <?php echo $is_home ? 'is-home' : ''; ?>" id="site-header">
   <div class="lls-header-inner">
-    <div class="lls-header-spacer" aria-hidden="true"></div>
-
-    <div class="lls-header-center">
+    <div class="lls-header-left">
       <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
         <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async"
           fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
       </a>
+    </div>
+
+    <div class="lls-header-center">
+      <div class="lls-header-tagline">
+        <img src="img/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
+      </div>
     </div>
 
     <div class="lls-header-right">
