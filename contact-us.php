@@ -154,6 +154,16 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
       line-height: 1.5;
     }
 
+    .contact-info__value a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact-info__value a:hover,
+    .contact-info__value a:focus-visible {
+      text-decoration: underline;
+    }
+
     /* ── Form card ── */
     .contact-form-card {
       background: #ffffff;
@@ -340,7 +350,9 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
               </div>
               <div>
                 <div class="contact-info__label">Phone</div>
-                <div class="contact-info__value">+1 (809) 000-0000</div>
+                <div class="contact-info__value">
+                  <a href="tel:+18494104632">+1 (849) 410-4632</a>
+                </div>
               </div>
             </div>
 
@@ -379,7 +391,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
 
               <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000">
+                <input type="tel" id="phone" name="phone" placeholder="+1 (849) 410-4632">
               </div>
 
               <div class="form-group">
