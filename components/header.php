@@ -5,6 +5,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 <style>
   :root {
     --lls-header-overlay: 122px;
+    --lls-header-side-offset: 3%;
   }
 
   .lls-header {
@@ -30,13 +31,17 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     box-shadow: none;
   }
 
+  .lls-header.is-home:not(.is-scrolled) .lls-header-left {
+    padding-top: 0.55rem;
+  }
+
 
   .lls-header-inner {
-    width: min(1280px, calc(100% - 2.4rem));
+    width: 100%;
     margin: 0 auto;
     min-height: 110px;
     padding-block: 12px;
-    padding-inline: clamp(0.75rem, 1.8vw, 1.5rem);
+    padding-inline: var(--lls-header-side-offset);
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -57,13 +62,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    padding-right: clamp(1.25rem, 2.5vw, 2.75rem);
-    transform: translateX(-35%);
+    padding-right: clamp(1rem, 2vw, 2rem);
   }
 
   .lls-header-center {
     flex: 1 1 auto;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     padding-top: 0;
@@ -74,11 +78,15 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     transition: opacity 0.18s ease, transform 0.28s ease;
   }
 
+  .lls-header.is-home .lls-header-center {
+    display: flex;
+  }
+
   .lls-header-tagline {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: min(100%, 340px);
+    width: min(100%, 400px);
   }
 
   .lls-header-tagline img {
@@ -117,13 +125,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     justify-content: flex-end;
     align-items: center;
     gap: 18px;
-    padding-left: clamp(1.25rem, 2.5vw, 2.75rem);
+    padding-left: clamp(1rem, 2vw, 2rem);
     padding-top: 0;
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
     width: auto;
-    transform: translateX(23%);
     transition: padding-top 0.28s ease, padding-bottom 0.28s ease, min-height 0.28s ease, transform 0.28s ease, opacity 0.22s ease;
   }
 
@@ -277,7 +284,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     align-items: center;
     gap: 18px;
     padding-top: 0;
-    padding-left: clamp(0.6rem, 1.2vw, 1rem);
+    padding-left: clamp(1rem, 2vw, 2rem);
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
@@ -304,6 +311,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   @media (max-width: 1260px) {
     :root {
       --lls-header-overlay: 112px;
+      --lls-header-side-offset: 2.5%;
     }
 
     .lls-header-inner {
@@ -323,6 +331,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   @media (max-width: 1120px) {
     :root {
       --lls-header-overlay: 98px;
+      --lls-header-side-offset: 2%;
     }
 
     .lls-header-inner {
@@ -362,7 +371,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
 
     .lls-header-inner {
-      width: calc(100% - 1.4rem);
+      width: 100%;
       min-height: 78px;
       padding-top: 6px;
       display: flex;
@@ -416,7 +425,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
 
     .lls-header-inner {
-      width: calc(100% - 1.4rem);
+      width: 100%;
       min-height: 78px;
       padding-top: 6px;
       display: flex;
@@ -473,9 +482,9 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
 
     .lls-header-inner {
-      width: calc(100% - 1rem);
+      width: 100%;
       min-height: 88px;
-      padding: 0.5rem 0.25rem;
+      padding: 0.5rem 1rem;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
