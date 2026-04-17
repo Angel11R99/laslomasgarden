@@ -362,7 +362,9 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
               </div>
               <div>
                 <div class="contact-info__label">Email</div>
-                <div class="contact-info__value">info@laslomasserenas.com</div>
+                <div class="contact-info__value">
+                  <a href="mailto:info@laslomasserenas.com">info@laslomasserenas.com</a>
+                </div>
               </div>
             </div>
           </div>
