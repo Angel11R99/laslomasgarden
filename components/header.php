@@ -43,8 +43,9 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     justify-content: space-between;
     align-items: center;
     gap: 1.25rem;
+    transform: translateX(3%);
     background: transparent;
-    transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease;
+    transition: min-height 0.28s ease, padding-top 0.28s ease, padding-bottom 0.28s ease, gap 0.28s ease, transform 0.28s ease;
   }
 
   .lls-header-left,
@@ -57,6 +58,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    padding-right: clamp(1.25rem, 2.5vw, 2.75rem);
+    transform: translateX(-23%);
   }
 
   .lls-header-center {
@@ -66,6 +69,10 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     align-items: center;
     padding-top: 0;
     min-width: 0;
+    transform: translateX(calc(38px + 3%));
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.28s ease;
   }
 
   .lls-header-tagline {
@@ -111,11 +118,13 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     justify-content: flex-end;
     align-items: center;
     gap: 18px;
+    padding-left: clamp(1.25rem, 2.5vw, 2.75rem);
     padding-top: 0;
     text-align: right;
     white-space: nowrap;
     min-height: 64px;
     width: auto;
+    transform: translateX(23%);
     transition: padding-top 0.28s ease, padding-bottom 0.28s ease, min-height 0.28s ease, transform 0.28s ease, opacity 0.22s ease;
   }
 
@@ -128,6 +137,13 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   .lls-header.is-compact .lls-header-center {
     align-items: center;
     padding-top: 0;
+  }
+
+  .lls-header.is-scrolled .lls-header-center,
+  .lls-header.is-compact .lls-header-center {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .lls-header.is-compact .lls-header-logo {
@@ -465,10 +481,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       grid-template-columns: 1fr auto;
       align-items: center;
       gap: 0.75rem;
+      transform: none;
     }
 
     .lls-header-left {
       min-width: 0;
+      transform: none;
     }
 
     .lls-header-logo {
@@ -491,6 +509,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       justify-content: flex-end;
       align-items: center;
       gap: 0;
+      transform: none;
     }
 
     .lls-nav,
