@@ -527,7 +527,7 @@
 
     .lls-calc-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: start;
     }
@@ -780,6 +780,119 @@
         gap: 2.5rem;
       }
     }
+
+    /* ── Investment / Rental Income Calculator ── */
+    /* Investment Calculator — currency selector */
+    .ric-currency-wrap {
+      margin-bottom: 1.8rem;
+    }
+
+    .ric-currency-label {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a3a28;
+      margin: 0 0 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .ric-currency-sel {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .ric-currency-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 3px solid #c9e0d3;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      font-size: 1.9rem;
+      line-height: 1;
+      padding: 0;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .ric-currency-btn:hover {
+      border-color: var(--lls-green-700);
+      transform: scale(1.08);
+    }
+
+    .ric-currency-btn.ric-curr-active {
+      border-color: var(--lls-green-700);
+      box-shadow: 0 0 0 3px rgba(18,146,71,0.25);
+      transform: scale(1.1);
+    }
+
+    /* Investment Calculator — expense list inside summary card */
+    .ric-exp-list {
+      margin: 0 0 1.4rem;
+      border: 1px solid #e4ede8;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ric-exp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--lls-copy);
+      border-bottom: 1px solid #edf4f0;
+    }
+
+    .ric-exp-row:last-child { border-bottom: none; }
+
+    .ric-exp-total {
+      background: #f6faf8;
+      font-weight: 700;
+      color: var(--lls-ink);
+    }
+
+    .ric-red { color: #c0392b; font-weight: 600; }
+
+    .ric-breakeven {
+      background: #f1fbf7;
+      border-left: 4px solid var(--lls-green-600);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1rem 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .ric-breakeven__title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lls-green-800);
+      margin-bottom: 0.6rem;
+    }
+
+    .ric-breakeven__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--lls-copy);
+      padding: 0.2rem 0;
+    }
+
+    .ric-breakeven__row strong { color: #b7770d; }
+
+    .ric-breakeven__row.ric-annual strong { color: var(--lls-green-700); }
+
+    /* Net value color states */
+    .lls-summary-monthly-val.ric-pos { color: var(--lls-green-800); }
+    .lls-summary-monthly-val.ric-neg { color: #c0392b; }
+    .lls-summary-monthly-val.ric-neutral { color: var(--lls-copy); }
+
+    @media (max-width: 960px) {
+      .ric-exp-list { margin-bottom: 1rem; }
+    }
   </style>
 </head>
 
@@ -929,275 +1042,317 @@
       </div>
     </section>
 
-
-    <div class="lls-calc-header" id="contact" style="padding-top:0px;padding-bottom:70px;">
+    <!-- Investment / Rental Income Calculator -->
+    <div class="lls-calc-header">
       <div class="lls-shell">
-        <h2 class="lls-calc-title">Loan Calculator</h2>
+        <h2 class="lls-calc-title">Investment Calculator<br><span style="font-size:0.58em; font-weight:500; letter-spacing:0.03em; color:var(--lls-copy);">Rental Income Estimator</span></h2>
       </div>
     </div>
 
-
-    <!-- 7. Redesigned Simulator -->
     <section class="lls-calc-section">
       <div class="lls-shell">
         <div class="lls-calc-grid">
+
+          <!-- Left: Inputs -->
           <div class="lls-calc-form">
-            <h3>What is the price of the property you want to buy?</h3>
+
+            <!-- Currency selector -->
+            <div class="ric-currency-wrap">
+              <p class="ric-currency-label" data-i18n="chooseCurrency">Choose your currency</p>
+              <div class="ric-currency-sel">
+                <button class="ric-currency-btn ric-curr-active" id="ric-btn-usd" onclick="ricSetCurrency('USD')" title="USD – US Dollar">
+                  <img src="https://flagcdn.com/us.svg" alt="US Dollar" width="32" height="22" style="border-radius:3px;display:block;">
+                </button>
+                <button class="ric-currency-btn" id="ric-btn-dop" onclick="ricSetCurrency('DOP')" title="DOP – Dominican Peso">
+                  <img src="https://flagcdn.com/do.svg" alt="Dominican Peso" width="32" height="22" style="border-radius:3px;display:block;">
+                </button>
+              </div>
+            </div>
+
+            <h3 data-i18n="rentalInfo">Enter your rental information</h3>
 
             <div class="lls-calc-field">
+              <label data-i18n="labelPrice">Rental Price per Night</label>
               <div class="lls-calc-input-wrap">
-                <span>US$</span>
-                <input type="text" id="mc-price" placeholder="10,000" inputmode="numeric" autocomplete="off">
+                <span id="ric-sym-price">US$</span>
+                <input type="number" id="ric-price" placeholder="0.00" min="0" step="1">
               </div>
             </div>
 
             <div class="lls-calc-field">
-              <label for="mc-bank">Select bank</label>
-              <select id="mc-bank" class="lls-calc-select">
-                <option value="12.00">Banreservas (12.00% Annual)</option>
-                <option value="12.95">Asociacion Cibao (12.95% Annual)</option>
-                <option value="13.00">BHD Leon (13.00% Annual)</option>
-                <option value="13.50">Banco Popular (13.50% Annual)</option>
-                <option value="11.50">Scotiabank (11.50% Annual)</option>
-              </select>
-            </div>
-
-            <div class="lls-calc-field">
-              <label>Down payment</label>
-              <div class="lls-summary-val lls-summary-val--green" id="mc-down-label" style="margin-bottom: 0.5rem">
-                US$3,000 | 30.00%</div>
-              <input type="range" id="mc-down" class="lls-calc-slider" min="10" max="80" value="30" step="1">
-            </div>
-
-            <div class="lls-calc-field">
-              <label for="mc-term">Loan term</label>
-              <select id="mc-term" class="lls-calc-select">
-                <option value="10">10 years</option>
-                <option value="15">15 years</option>
-                <option value="20" selected>20 years</option>
-                <option value="25">25 years</option>
-                <option value="30">30 years</option>
-              </select>
-            </div>
-
-            <div class="lls-calc-extra">
-              <div class="lls-calc-extra__header" id="mc-extra-toggle">Extra payment scenario <span>+</span></div>
-              <div class="lls-calc-extra__body" id="mc-extra-body">
-                <div class="lls-calc-field">
-                  <label for="mc-extra-amount">Extra payment amount (US$)</label>
-                  <div class="lls-calc-input-wrap">
-                    <input type="number" id="mc-extra-amount" value="0" min="0" step="50">
-                  </div>
-                </div>
-                <div class="lls-calc-field">
-                  <label for="mc-extra-freq">Frequency</label>
-                  <select id="mc-extra-freq" class="lls-calc-select">
-                    <option value="12">Monthly</option>
-                    <option value="4">Quarterly</option>
-                    <option value="2" selected>Semiannual</option>
-                    <option value="1">Annual</option>
-                  </select>
-                </div>
-                <div class="lls-calc-summary-small">
-                  <p>Extra frequency: <span id="mc-xpy">2</span>/year</p>
-                  <p>Annual extra: <span id="mc-xannual">US$0</span></p>
-                  <p>Monthly equiv: <span id="mc-xmonthly">US$0.00</span></p>
-                </div>
+              <label data-i18n="labelNights">Nights Rented per Month</label>
+              <div class="lls-calc-input-wrap">
+                <input type="number" id="ric-nights" placeholder="0" min="1" max="30" step="1" style="padding-left:0.2rem;">
               </div>
             </div>
+
+            <div class="lls-calc-field">
+              <label><span data-i18n="labelMortgage">Monthly Mortgage Payment</span> <span style="font-weight:400; font-size:0.85em; color:var(--lls-copy);" data-i18n="labelMortgageOpt">(optional)</span></label>
+              <div class="lls-calc-input-wrap">
+                <span id="ric-sym-mortgage">US$</span>
+                <input type="number" id="ric-mortgage" placeholder="0.00" min="0" step="1">
+              </div>
+            </div>
+
+            <p data-i18n="disclaimer" style="font-size:0.75rem; color:var(--lls-copy); font-style:italic; line-height:1.5; margin-top:1rem;">&#9888; All figures are estimates based on market assumptions. Actual results may vary depending on occupancy, pricing, operating costs, taxes, and other factors.</p>
           </div>
 
-          <aside class="lls-calc-summary" id="mc-results-panel">
+          <!-- Right: Summary card -->
+          <aside class="lls-calc-summary">
+
             <div class="lls-summary-row">
               <div>
-                <div class="lls-summary-label">Down payment</div>
-                <div class="lls-summary-val lls-summary-val--green" id="mc-res-down">US$3,000</div>
+                <div class="lls-summary-label" data-i18n="occupancy">Occupancy Rate</div>
+                <div class="lls-summary-val" id="ric-occ">—</div>
               </div>
-              <div style="text-align: right">
-                <div class="lls-summary-label">Loan amount</div>
-                <div class="lls-summary-val" id="mc-res-loan">US$7,000</div>
+              <div style="text-align:right">
+                <div class="lls-summary-label" data-i18n="grossIncome">Gross Monthly Income</div>
+                <div class="lls-summary-val lls-summary-val--green" id="ric-gross">—</div>
               </div>
             </div>
 
             <div class="lls-summary-bar">
-              <div class="lls-summary-bar-fill" id="mc-bar" style="width: 30%"></div>
+              <div class="lls-summary-bar-fill" id="ric-bar" style="width:0%"></div>
             </div>
 
-            <div class="lls-summary-monthly-label">Your estimated monthly payment:</div>
-            <div class="lls-summary-monthly-val" id="mc-monthly">US$80</div>
-
-            <button class="lls-button" style="width: 100%">PRE-QUALIFY</button>
-
-            <div id="mc-extra-block" style="display: none" class="lls-summary-extra-info">
-              <h4>With extra payments</h4>
-              <div class="lls-summary-monthly-val" id="mc-monthly-extra" style="font-size: 2rem">US$0.00</div>
-              <p id="mc-savings"></p>
-              <p id="mc-interest-saved" style="font-weight: 700; margin-top: 0.5rem;"></p>
+            <div class="ric-exp-list">
+              <div class="ric-exp-row"><span data-i18n="hoaLabel">HOA (fixed)</span><span class="ric-red" id="ric-hoa">$200.00</span></div>
+              <div class="ric-exp-row"><span data-i18n="utilitiesLabel">Utilities (est.)</span><span class="ric-red" id="ric-utils">—</span></div>
+              <div class="ric-exp-row"><span data-i18n="cleaningLabel">Cleaning (est.)</span><span class="ric-red" id="ric-clean">—</span></div>
+              <div class="ric-exp-row"><span data-i18n="platformLabel">Other / Platform (5%)</span><span class="ric-red" id="ric-other">—</span></div>
+              <div class="ric-exp-row ric-exp-total"><span data-i18n="totalExpenses">Total Monthly Expenses</span><span class="ric-red" id="ric-total-exp">—</span></div>
             </div>
 
-            <p class="lls-summary-foot">* These amounts are estimates and are subject to change without notice.</p>
+            <div class="lls-summary-monthly-label" data-i18n="netMonthly">Your estimated net monthly income:</div>
+            <div class="lls-summary-monthly-val ric-neutral" id="ric-net">—</div>
+            <p id="ric-net-status" style="font-size:1.1rem; font-weight:700; font-style:italic; text-align:center; margin: -0.4rem 0 1.4rem; color:var(--lls-green-600);"></p>
+
+            <button class="lls-button" style="width:100%" onclick="window.location='/contact-us'" data-i18n="btnRequest">REQUEST INFORMATION</button>
+
+            <div class="ric-breakeven">
+              <div class="ric-breakeven__title" data-i18n="breakEvenTitle">Break-Even Analysis</div>
+              <div class="ric-breakeven__row">
+                <span data-i18n="minNights">Min. Nights to Break Even</span>
+                <strong id="ric-be-nights">—</strong>
+              </div>
+              <div class="ric-breakeven__row">
+                <span data-i18n="minRate">Min. Nightly Rate</span>
+                <strong id="ric-be-rate">—</strong>
+              </div>
+              <div class="ric-breakeven__row ric-annual" style="border-top:1px solid #d4e8dd; margin-top:0.5rem; padding-top:0.5rem;">
+                <span data-i18n="netAnnual">Net Annual Income (est.)</span>
+                <strong id="ric-net-annual">—</strong>
+              </div>
+            </div>
+
+            <p class="lls-summary-foot" data-i18n="footNote">* These amounts are estimates and are subject to change without notice.</p>
           </aside>
+
         </div>
       </div>
     </section>
 
-    <div class="lls-calc-header">
-      <div class="lls-shell">
-        <h2 class="lls-calc-title">Strategic Location</h2>
-      </div>
-    </div>
-    <section id="map_container" style="padding-top:60px">
-      <img src="img/Mapa.webp" alt="Mapa">
-    </section>
   </main>
-
 
   <script>
     (function () {
-      var priceInput = document.getElementById('mc-price');
-      var bank = document.getElementById('mc-bank');
-      var down = document.getElementById('mc-down');
-      var term = document.getElementById('mc-term');
-      var extraAmt = document.getElementById('mc-extra-amount');
-      var extraFreq = document.getElementById('mc-extra-freq');
-      var downLbl = document.getElementById('mc-down-label');
-      var resDown = document.getElementById('mc-res-down');
-      var resLoan = document.getElementById('mc-res-loan');
-      var bar = document.getElementById('mc-bar');
-      var monthly = document.getElementById('mc-monthly');
-      var xpy = document.getElementById('mc-xpy');
-      var xannual = document.getElementById('mc-xannual');
-      var xmonthly = document.getElementById('mc-xmonthly');
-      var extraBlock = document.getElementById('mc-extra-block');
-      var monthlyExtra = document.getElementById('mc-monthly-extra');
-      var savings = document.getElementById('mc-savings');
-      var interestSaved = document.getElementById('mc-interest-saved');
+      var currency = 'USD';
+      var lang     = 'en';
+      var RATE_DOP = 59;
 
-      function fmt(n) {
-        return 'US$' + Math.round(n).toLocaleString('en-US');
-      }
+      var T = {
+        en: {
+          chooseCurrency:         'Choose your currency',
+          rentalInfo:             'Enter your rental information',
+          labelPrice:             'Rental Price per Night',
+          labelNights:            'Nights Rented per Month',
+          labelMortgage:          'Monthly Mortgage Payment',
+          labelMortgageOpt:       '(optional)',
+          disclaimer:             '⚠ All figures are estimates based on market assumptions. Actual results may vary depending on occupancy, pricing, operating costs, taxes, and other factors.',
+          occupancy:              'Occupancy Rate',
+          grossIncome:            'Gross Monthly Income',
+          hoaLabel:               'HOA (fixed)',
+          utilitiesLabel:         'Utilities (est.)',
+          cleaningLabel:          'Cleaning (est.)',
+          platformLabel:          'Other / Platform (5%)',
+          totalExpenses:          'Total Monthly Expenses',
+          netMonthly:             'Your estimated net monthly income:',
+          btnRequest:             'REQUEST INFORMATION',
+          breakEvenTitle:         'Break-Even Analysis',
+          minNights:              'Min. Nights to Break Even',
+          minRate:                'Min. Nightly Rate',
+          netAnnual:              'Net Annual Income (est.)',
+          footNote:               '* These amounts are estimates and are subject to change without notice.',
+          nightsSuffix:           'nights',
+          statusProfit:           'Your property pays for itself and generates profit.',
+          statusProfitNoMortgage: 'This rental generates profit every month.',
+          statusLoss:             'Monthly expenses exceed rental income.',
+        },
+        es: {
+          chooseCurrency:         'Elige tu divisa',
+          rentalInfo:             'Ingresa tu información de renta',
+          labelPrice:             'Precio por noche',
+          labelNights:            'Noches rentadas por mes',
+          labelMortgage:          'Pago mensual de hipoteca',
+          labelMortgageOpt:       '(opcional)',
+          disclaimer:             '⚠ Todas las cifras son estimaciones basadas en supuestos del mercado. Los resultados reales pueden variar según ocupación, precios, costos operativos, impuestos y otros factores.',
+          occupancy:              'Tasa de ocupación',
+          grossIncome:            'Ingreso bruto mensual',
+          hoaLabel:               'HOA (fijo)',
+          utilitiesLabel:         'Servicios (est.)',
+          cleaningLabel:          'Limpieza (est.)',
+          platformLabel:          'Otro / Plataforma (5%)',
+          totalExpenses:          'Gastos mensuales totales',
+          netMonthly:             'Tu ingreso neto mensual estimado:',
+          btnRequest:             'SOLICITAR INFORMACIÓN',
+          breakEvenTitle:         'Análisis de Punto de Equilibrio',
+          minNights:              'Noches mín. para equilibrar',
+          minRate:                'Tarifa mínima por noche',
+          netAnnual:              'Ingreso neto anual (est.)',
+          footNote:               '* Estas cifras son estimaciones y están sujetas a cambios sin previo aviso.',
+          nightsSuffix:           'noches',
+          statusProfit:           'Tu propiedad se paga sola y genera ganancias.',
+          statusProfitNoMortgage: 'Esta renta genera ganancias cada mes.',
+          statusLoss:             'Los gastos superan el ingreso por renta.',
+        }
+      };
 
-      function fmt2(n) {
-        return 'US$' + n.toLocaleString('en-US', {
+      var priceEl    = document.getElementById('ric-price');
+      var nightsEl   = document.getElementById('ric-nights');
+      var mortgageEl = document.getElementById('ric-mortgage');
+
+      var HOA             = 200;
+      var UTILS_AT_14     = 120;
+      var UTILS_BASE_N    = 14;
+      var CLEAN_PER_STAY  = 50;
+      var NIGHTS_PER_STAY = 3.5;
+      var PLATFORM_PCT    = 0.05;
+      var DAYS_MONTH      = 30;
+
+      function xRate()  { return currency === 'DOP' ? RATE_DOP : 1; }
+      function symbol() { return currency === 'DOP' ? 'RD$' : 'US$'; }
+
+      function fmt(usdVal) {
+        var display = usdVal * xRate();
+        return symbol() + Math.abs(display).toLocaleString('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         });
       }
 
-      function parsePrice() {
-        return parseFloat((priceInput.value || '').replace(/,/g, '')) || 0;
-      }
+      function inputUSD(el) { return (parseFloat(el.value) || 0) / xRate(); }
 
-      priceInput.addEventListener('input', function () {
-        var raw = this.value.replace(/[^0-9]/g, '');
-        if (!raw) {
-          this.value = '';
-          calc();
-          return;
-        }
-        this.value = parseInt(raw, 10).toLocaleString('en-US');
-        calc();
-      });
-
-      function calc() {
-        var p = parsePrice();
-        var dp = (parseFloat(down.value) || 0) / 100;
-        var r = (parseFloat(bank.value) || 0) / 100 / 12;
-        var n = (parseInt(term.value, 10) || 0) * 12;
-        var ea = (parseFloat(extraAmt.value) || 0);
-        var ef = (parseInt(extraFreq.value, 10) || 0);
-
-        if (p <= 0) {
-          downLbl.textContent = '—';
-          resDown.textContent = 'US$0';
-          resLoan.textContent = 'US$0';
-          bar.style.width = '0%';
-          monthly.textContent = 'US$0';
-          extraBlock.style.display = 'none';
-          return;
-        }
-
-        var downAmt = p * dp;
-        var loanAmt = p - downAmt;
-        var pct = (dp * 100).toFixed(2);
-        downLbl.textContent = fmt(downAmt) + ' | ' + pct + '%';
-        resDown.textContent = fmt(downAmt);
-        resLoan.textContent = fmt(loanAmt);
-        bar.style.width = (dp * 100) + '%';
-
-        var m = 0;
-        if (loanAmt > 0 && r > 0 && n > 0) {
-          m = loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-        }
-        monthly.textContent = fmt(m);
-
-        var annualExtra = ea * ef;
-        var monthlyEquiv = annualExtra / 12;
-        if (xpy) xpy.textContent = ef;
-        if (xannual) xannual.textContent = fmt(annualExtra);
-        if (xmonthly) xmonthly.textContent = fmt2(monthlyEquiv);
-
-        if (ea > 0 && m > 0) {
-          extraBlock.style.display = '';
-          var effectiveMonthly = m + monthlyEquiv;
-          monthlyExtra.textContent = fmt2(effectiveMonthly);
-
-          var stdMonths = 0,
-            stdInterest = 0,
-            balStd = loanAmt;
-          while (balStd > 0.01 && stdMonths < n * 2) {
-            var intStd = balStd * r;
-            stdInterest += intStd;
-            balStd = balStd + intStd - m;
-            stdMonths++;
-          }
-
-          var newMonths = 0,
-            newInterest = 0,
-            balExtra = loanAmt;
-          while (balExtra > 0.01 && newMonths < n * 2) {
-            var intExtra = balExtra * r;
-            newInterest += intExtra;
-            balExtra = balExtra + intExtra - effectiveMonthly;
-            newMonths++;
-          }
-
-          var monthsSaved = Math.max(0, stdMonths - newMonths);
-          var yearsSaved = Math.floor(monthsSaved / 12);
-          var remMonths = monthsSaved % 12;
-          var interestDiff = Math.max(0, stdInterest - newInterest);
-          var timeText = [];
-          if (yearsSaved > 0) timeText.push(yearsSaved + ' year' + (yearsSaved > 1 ? 's' : ''));
-          if (remMonths > 0) timeText.push(remMonths + ' month' + (remMonths > 1 ? 's' : ''));
-          savings.textContent = timeText.length ? 'You will own your home ' + timeText.join(' and ') + ' sooner!' : '';
-          interestSaved.textContent = interestDiff > 0 ? 'Projected interest savings: ' + fmt(interestDiff) : '';
-        } else {
-          extraBlock.style.display = 'none';
-        }
-      }
-
-      [bank, term, extraFreq].forEach(function (el) {
-        if (el) el.addEventListener('change', calc);
-      });
-
-      [down, extraAmt].forEach(function (el) {
-        if (el) el.addEventListener('input', calc);
-      });
-
-      var toggle = document.getElementById('mc-extra-toggle');
-      var bodyExtra = document.getElementById('mc-extra-body');
-      if (toggle) {
-        toggle.addEventListener('click', function () {
-          var open = bodyExtra.classList.toggle('open');
-          toggle.querySelector('span').textContent = open ? '−' : '+';
+      function setLang(l) {
+        lang = l;
+        var t = T[l];
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.textContent = t[key];
         });
       }
 
-      priceInput.value = '10,000';
+      function calc() {
+        var t        = T[lang];
+        var price    = inputUSD(priceEl);
+        var nights   = parseFloat(nightsEl.value) || 0;
+        var mortgage = inputUSD(mortgageEl);
+
+        var occ   = nights / DAYS_MONTH;
+        var gross = price * nights;
+
+        var utils  = (UTILS_AT_14 / UTILS_BASE_N) * nights;
+        var clean  = (CLEAN_PER_STAY / NIGHTS_PER_STAY) * nights;
+        var other  = PLATFORM_PCT * price * nights;
+        var opExp  = HOA + utils + clean + other;
+        var totExp = mortgage + opExp;
+
+        var net       = gross - totExp;
+        var netAnnual = net * 12;
+
+        var utilsPN  = UTILS_AT_14 / UTILS_BASE_N;
+        var cleanPN  = CLEAN_PER_STAY / NIGHTS_PER_STAY;
+        var otherPN  = PLATFORM_PCT * price;
+        var netPerN  = price - utilsPN - cleanPN - otherPN;
+        var fixedExp = mortgage + HOA;
+        var beNights = netPerN > 0 ? Math.ceil(fixedExp / netPerN) : Infinity;
+        var beRate   = nights > 0 ? totExp / (nights * (1 - PLATFORM_PCT)) : 0;
+
+        var dash = '—';
+
+        if (price <= 0 || nights <= 0) {
+          document.getElementById('ric-occ').textContent        = dash;
+          document.getElementById('ric-gross').textContent      = dash;
+          document.getElementById('ric-hoa').textContent        = fmt(HOA);
+          document.getElementById('ric-utils').textContent      = dash;
+          document.getElementById('ric-clean').textContent      = dash;
+          document.getElementById('ric-other').textContent      = dash;
+          document.getElementById('ric-total-exp').textContent  = dash;
+          document.getElementById('ric-bar').style.width        = '0%';
+          document.getElementById('ric-net').textContent        = dash;
+          document.getElementById('ric-net').className          = 'lls-summary-monthly-val ric-neutral';
+          document.getElementById('ric-net-status').textContent = '';
+          document.getElementById('ric-net-annual').textContent = dash;
+          document.getElementById('ric-be-nights').textContent  = dash;
+          document.getElementById('ric-be-rate').textContent    = dash;
+          return;
+        }
+
+        document.getElementById('ric-occ').textContent       = (occ * 100).toFixed(1) + '%';
+        document.getElementById('ric-gross').textContent     = fmt(gross);
+        document.getElementById('ric-hoa').textContent       = fmt(HOA);
+        document.getElementById('ric-utils').textContent     = fmt(utils);
+        document.getElementById('ric-clean').textContent     = fmt(clean);
+        document.getElementById('ric-other').textContent     = fmt(other);
+        document.getElementById('ric-total-exp').textContent = fmt(totExp);
+
+        var barPct = gross > 0 ? Math.min(100, (gross / (totExp || 1)) * 100) : 0;
+        document.getElementById('ric-bar').style.width = barPct + '%';
+
+        var netEl    = document.getElementById('ric-net');
+        var statusEl = document.getElementById('ric-net-status');
+        netEl.textContent = fmt(net);
+        if (net > 0) {
+          netEl.className      = 'lls-summary-monthly-val ric-pos';
+          statusEl.textContent = mortgage > 0 ? t.statusProfit : t.statusProfitNoMortgage;
+          statusEl.style.color = 'var(--lls-green-600)';
+        } else if (net < 0) {
+          netEl.className      = 'lls-summary-monthly-val ric-neg';
+          statusEl.textContent = t.statusLoss;
+          statusEl.style.color = '#c0392b';
+        } else {
+          netEl.className      = 'lls-summary-monthly-val ric-neutral';
+          statusEl.textContent = '';
+        }
+
+        document.getElementById('ric-net-annual').textContent = fmt(netAnnual);
+        document.getElementById('ric-be-nights').textContent  =
+          isFinite(beNights) ? beNights + ' ' + t.nightsSuffix : '—';
+        document.getElementById('ric-be-rate').textContent    = fmt(beRate);
+      }
+
+      window.ricSetCurrency = function (cur) {
+        if (cur === currency) return;
+        var oldRate = xRate();
+        currency = cur;
+        var newRate = xRate();
+        if (priceEl.value)    priceEl.value    = ((parseFloat(priceEl.value)    / oldRate) * newRate).toFixed(2);
+        if (mortgageEl.value) mortgageEl.value = ((parseFloat(mortgageEl.value) / oldRate) * newRate).toFixed(2);
+        var sym = symbol();
+        document.getElementById('ric-sym-price').textContent    = sym;
+        document.getElementById('ric-sym-mortgage').textContent = sym;
+        document.getElementById('ric-btn-usd').classList.toggle('ric-curr-active', cur === 'USD');
+        document.getElementById('ric-btn-dop').classList.toggle('ric-curr-active', cur === 'DOP');
+        setLang(cur === 'DOP' ? 'es' : 'en');
+        calc();
+      };
+
+      priceEl.addEventListener('input', calc);
+      nightsEl.addEventListener('input', calc);
+      mortgageEl.addEventListener('input', calc);
+
       calc();
     })();
   </script>
-
 
   <?php include __DIR__ . '/components/footer.php'; ?>
 
