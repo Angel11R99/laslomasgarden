@@ -1934,11 +1934,8 @@
 
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
-          <!-- ================================================================ -->
-          <!-- PLACE YOUR FULL SVG CONTENT HERE (replacing the example below)  -->
-          <!-- Make sure each apartment element has an ID starting with "app"   -->
-          <!-- e.g., app1-T, app2, app3-T, app4, etc.                          -->
-          <!-- ================================================================ -->
+          <!-- SVG is loaded dynamically from:                                  -->
+          <!-- img/SERENAS SITE LAND reduce.svg                                 -->
         </div>
       </div>
 
@@ -2065,7 +2062,7 @@
       'app19':   '6',  'app20-T': '8',  'app21-T': '7',  'app22':   '9',
       'app23':   '25', 'app24':   '28', 'app25-T': '10', 'app26-T': '24',
       'app27':   '23', 'app28':   '26', 'app29-T': '27', 'app30':   '30',
-      'app31-T': '29', 'app32':   '31', 'app33':   '32', 'app34-T': '33'
+      'app31-T': '29', 'app32-T': '31', 'app33':   '32', 'app34-T': '33'
     };
 
     const APP_UNIT_LETTERS = {
@@ -2421,8 +2418,31 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       'app1', 'app2-T', 'app3', 'app4-T', 'app5', 'app6-T', 'app7-T', 'app8', 'app9-T', 'app10',
       'app11-T', 'app12-T', 'app13', 'app14-T', 'app15', 'app16-T', 'app17', 'app18-T', 'app19', 'app20-T',
       'app21-T', 'app22', 'app23', 'app24', 'app25-T', 'app26-T', 'app27', 'app28', 'app29-T', 'app30',
-      'app31-T', 'app32', 'app33', 'app34-T'
+      'app31-T', 'app32-T', 'app33', 'app34-T'
     ];
+
+    const MAP_HOTSPOT_CONFIG = {
+      entrance: {
+        label: 'entrance',
+        sceneId: 'balcon-exterior'
+      },
+      pool: {
+        label: 'pool',
+        sceneId: 'balcon-exterior'
+      },
+      basketball: {
+        label: 'basketball',
+        sceneId: 'balcon-exterior'
+      },
+      padel: {
+        label: 'padel',
+        sceneId: 'balcon-exterior'
+      },
+      shofoball: {
+        label: 'shofoball',
+        sceneId: 'balcon-exterior'
+      }
+    };
 
     function getApartmentElements(svgContainer) {
       if (!svgContainer) return [];
@@ -2430,7 +2450,14 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       const identifiedUnits = Array.from(
         svgContainer.querySelectorAll('[id^="app"], [id^="APP"], [data-unit-id]')
       );
-      if (identifiedUnits.length) return identifiedUnits;
+      const hotspotNodes = Array.from(svgContainer.querySelectorAll('[id]')).filter((node) => {
+        const nodeId = String(node.getAttribute('id') || '').toLowerCase();
+        return !!MAP_HOTSPOT_CONFIG[nodeId];
+      });
+
+      if (identifiedUnits.length || hotspotNodes.length) {
+        return Array.from(new Set([...identifiedUnits, ...hotspotNodes]));
+      }
 
       const imageUnits = Array.from(svgContainer.querySelectorAll('svg image')).filter((node) => {
         const name = String(node.getAttribute('data-name') || '').toLowerCase();
@@ -2468,6 +2495,9 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       apartmentElements.forEach(element => {
         const id = element.getAttribute('data-unit-id') || element.getAttribute('id') || '';
+        const normalizedId = String(id).toLowerCase();
+        const hotspotConfig = MAP_HOTSPOT_CONFIG[normalizedId] || null;
+        const isApartmentUnit = /^app\d+/i.test(id);
 
         // Ocultar y saltar app10 (eliminado del plan real)
         if (/^app10$/i.test(id)) {
@@ -2476,9 +2506,11 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           return;
         }
 
-        const realNum = BUILDING_NUMBER_MAP[id] || id.replace(/[^0-9]/g, '');
+        const realNum = isApartmentUnit ? (BUILDING_NUMBER_MAP[id] || id.replace(/[^0-9]/g, '')) : '';
         const viewKey = THREE_ROOM_BUILDINGS.has(realNum) ? 'with-balcony' : 'without-balcony';
-        const apartmentLabel = viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms';
+        const apartmentLabel = isApartmentUnit
+          ? (viewKey === 'with-balcony' ? '3 Rooms' : '2 Rooms')
+          : (hotspotConfig ? hotspotConfig.label : 'Hotspot');
 
         // Wrap <image> in a <g> that takes the positioning transform.
         // The <image> is left with no transform so CSS scale works from its center.
@@ -2493,13 +2525,19 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         g.style.cursor = 'pointer';
         g.setAttribute('role', 'button');
         g.setAttribute('tabindex', '0');
-        g.setAttribute('aria-label', 'Building ' + realNum + ' · ' + apartmentLabel);
+        if (isApartmentUnit) {
+          g.setAttribute('aria-label', 'Building ' + realNum + ' · ' + apartmentLabel);
+        } else {
+          g.setAttribute('aria-label', apartmentLabel);
+        }
 
         g.addEventListener('mouseenter', (e) => {
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
-          tooltipText.textContent = 'Building ' + realNum + '  ·  ' + apartmentLabel + ' ';
+          tooltipText.textContent = isApartmentUnit
+            ? ('Building ' + realNum + '  ·  ' + apartmentLabel + ' ')
+            : apartmentLabel;
           tooltip.style.left = (e.clientX + 16) + 'px';
           tooltip.style.top  = (e.clientY - 42) + 'px';
           tooltip.classList.add('visible');
@@ -2517,8 +2555,18 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         });
 
         const openUnit = () => {
-          selectedBuildingNum = realNum;
-          showHeroFrontView(viewKey);
+          if (isApartmentUnit) {
+            selectedBuildingNum = realNum;
+            showHeroFrontView(viewKey);
+            return;
+          }
+
+          const targetSceneId = hotspotConfig && hotspotConfig.sceneId
+            ? resolveTourSceneId(hotspotConfig.sceneId)
+            : '';
+          if (targetSceneId) {
+            openTourAtScene(targetSceneId);
+          }
         };
         g.addEventListener('click', openUnit);
         g.addEventListener('keydown', (e) => {
@@ -2537,7 +2585,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         if (svgContainer.dataset.loaded === 'true' || svgContainer.dataset.loading === 'true') return;
         svgContainer.dataset.loading = 'true';
 
-        fetch('img/plano-interactivo-overlay.svg')
+        fetch('img/SERENAS%20SITE%20LAND%20reduce.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
