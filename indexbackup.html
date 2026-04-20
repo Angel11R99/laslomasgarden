@@ -139,11 +139,39 @@
     }
 
     .hero-map-loading {
-      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(7, 18, 14, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .hero-map-loading::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      border-top-color: #13b98b;
+      animation: spinLoader 0.8s linear infinite;
     }
 
     .hero-map-loading.hidden {
       display: none;
+    }
+
+    @keyframes spinLoader {
+      to { transform: rotate(360deg); }
     }
 
     .hero::after {
@@ -1517,6 +1545,39 @@
       touch-action: none;
     }
 
+    .tour-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(5, 12, 9, 0.72);
+      color: #f0fff8;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .tour-loading.active {
+      display: flex;
+    }
+
+    .tour-loading-spinner {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.32);
+      border-top-color: #13b98b;
+      animation: spinLoader 0.8s linear infinite;
+      flex: 0 0 auto;
+    }
+
     .tour-stage canvas {
       touch-action: none;
     }
@@ -1985,6 +2046,10 @@
 
       <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
       <div class="tour-stage">
+        <div class="tour-loading active" id="tourLoading" aria-hidden="false">
+          <span class="tour-loading-spinner" aria-hidden="true"></span>
+          <span id="tourLoadingText">Loading 360...</span>
+        </div>
         <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" class="tour-scene" id="tourScene">
           <a-assets>
             <img id="tourAssetBalcon" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" alt="Balcón exterior">
@@ -2829,6 +2894,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     const tourPosCopyBtn = document.getElementById('tourPosCopyBtn');
     const tourPosFixBtn  = document.getElementById('tourPosFixBtn');
     const tourTouchHint = document.getElementById('tourTouchHint');
+    const tourLoadingOverlay = document.getElementById('tourLoading');
+    const tourLoadingText = document.getElementById('tourLoadingText');
     const openTourButtons = document.querySelectorAll('.js-open-tour');
     const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
     const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
@@ -2848,6 +2915,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     const TOUCH_HINT_STORAGE_KEY = 'tour-touch-hint-seen';
     let tourTouchHintTimeout = null;
     let tourTouchHintShowTimeout = null;
+    let tourLoadingToken = 0;
 
     const availableTourIndexes = tourScenes
       .map((scene, index) => scene.locked ? null : index)
@@ -3150,11 +3218,28 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       );
     }
 
+    function beginTourLoading(message = 'Loading 360...') {
+      if (!tourLoadingOverlay) return 0;
+      tourLoadingToken += 1;
+      if (tourLoadingText) tourLoadingText.textContent = message;
+      tourLoadingOverlay.classList.add('active');
+      tourLoadingOverlay.setAttribute('aria-hidden', 'false');
+      return tourLoadingToken;
+    }
+
+    function endTourLoading(token) {
+      if (!tourLoadingOverlay) return;
+      if (token && token !== tourLoadingToken) return;
+      tourLoadingOverlay.classList.remove('active');
+      tourLoadingOverlay.setAttribute('aria-hidden', 'true');
+    }
+
     function replaceSkyTexture(source, rotation, options = {}) {
       if (!tourScene || !tourSky || !tourSkyBlend) return;
 
       const crossfade = Boolean(options.crossfade);
       const fadeDuration = Number(options.fadeDuration) > 0 ? Number(options.fadeDuration) : 320;
+      const loadingToken = beginTourLoading('Loading scene...');
       const activeSky = tourSky;
       const incomingSky = tourSkyBlend;
 
@@ -3205,6 +3290,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             setSkyMaterial(incomingSky, 1, false);
             tourSky = incomingSky;
             tourSkyBlend = activeSky;
+            endTourLoading(loadingToken);
           }, fadeDuration + 40);
         } else {
           activeSky.setAttribute('visible', 'true');
@@ -3219,6 +3305,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           incomingSky.removeAttribute('animation__skyfadeout');
           incomingSky.setAttribute('visible', 'false');
           setSkyMaterial(incomingSky, 0, true);
+          window.setTimeout(() => endTourLoading(loadingToken), 80);
         }
       };
       preloader.onerror = () => {
@@ -3233,6 +3320,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         tourSkyBlend.removeAttribute('animation__skyfadeout');
         tourSkyBlend.setAttribute('visible', 'false');
         setSkyMaterial(tourSkyBlend, 0, true);
+        endTourLoading(loadingToken);
       };
       preloader.src = source;
     }
@@ -3429,6 +3517,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       window.requestAnimationFrame(refreshSceneViewport);
       resetTourZoom();
       showTourTouchHint();
+      beginTourLoading('Loading 360...');
 
       if (tourTransitionOverlay) {
         tourTransitionOverlay.classList.remove('fading', 'releasing');
@@ -3462,6 +3551,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       if (tourScene && typeof tourScene.pause === 'function') {
         tourScene.pause();
       }
+      endTourLoading(tourLoadingToken);
     }
 
     openTourButtons.forEach((button) => {
