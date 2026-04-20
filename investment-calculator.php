@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Investment Calculator | Las Lomas Serenas</title>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest-investment.json">
   <link rel="apple-touch-icon" href="img/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

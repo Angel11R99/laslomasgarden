@@ -1,0 +1,23 @@
+{
+  "id": "/investment-calculator",
+  "name": "Investment Calculator — Las Lomas Serenas",
+  "short_name": "Invest Calc",
+  "start_url": "/investment-calculator.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2d6a4f",
+  "icons": [
+    {
+      "src": "img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "img/logo-fallback.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
