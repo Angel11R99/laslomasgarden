@@ -38,6 +38,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: clip;
     }
 
     body {
@@ -46,6 +47,7 @@
       color: var(--lls-ink);
       font-family: "Outfit", "Segoe UI", Arial, sans-serif;
       line-height: 1.5;
+      overflow-x: clip;
     }
 
     img {
@@ -132,6 +134,13 @@
       width: 100%;
       z-index: 2;
       pointer-events: none;
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      .lls-hero-new__overlay {
+        display: block;
+      }
     }
 
     .lls-hero-new__overlay-inner {
@@ -753,11 +762,11 @@
 
       .lls-hero-new__overlay-inner {
         justify-content: center;
-        padding-top: calc(var(--lls-header-overlay, 122px) + 1rem);
+        padding-top: calc(88px + 8.5rem);
       }
 
       .lls-hero-new__tagline {
-        width: min(78vw, 320px);
+        width: min(70vw, 280px);
       }
 
       .lls-safety__grid,
@@ -903,6 +912,13 @@
     <!-- 1. Hero Content -->
     <section class="lls-hero-new">
       <div class="lls-hero-new__media" aria-label="Aerial view of Las Lomas Serenas project"></div>
+      <div class="lls-hero-new__overlay" aria-hidden="true">
+        <div class="lls-hero-new__overlay-inner">
+          <div class="lls-hero-new__tagline">
+            <img src="img/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
+          </div>
+        </div>
+      </div>
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
@@ -1075,7 +1091,7 @@
               <label data-i18n="labelPrice">Rental Price per Night</label>
               <div class="lls-calc-input-wrap">
                 <span id="ric-sym-price">US$</span>
-                <input type="number" id="ric-price" placeholder="0.00" min="0" step="1">
+                <input type="number" id="ric-price" value="0.00" min="0" step="0.01">
               </div>
             </div>
 
@@ -1090,7 +1106,7 @@
               <label><span data-i18n="labelMortgage">Monthly Mortgage Payment</span> <span style="font-weight:400; font-size:0.85em; color:var(--lls-copy);" data-i18n="labelMortgageOpt">(optional)</span></label>
               <div class="lls-calc-input-wrap">
                 <span id="ric-sym-mortgage">US$</span>
-                <input type="number" id="ric-mortgage" placeholder="0.00" min="0" step="1">
+                <input type="number" id="ric-mortgage" value="0.00" min="0" step="0.01">
               </div>
             </div>
 
@@ -1221,6 +1237,22 @@
       var nightsEl   = document.getElementById('ric-nights');
       var mortgageEl = document.getElementById('ric-mortgage');
 
+      function fmtDecimalInput(el) {
+        var val = parseFloat(el.value.replace(/,/g, '')) || 0;
+        el.type = 'text';
+        el.value = val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      [priceEl, mortgageEl].forEach(function(el) {
+        fmtDecimalInput(el);
+        el.addEventListener('focus', function() {
+          var raw = parseFloat(this.value.replace(/,/g, '')) || 0;
+          this.type = 'number';
+          this.value = raw || '';
+          this.select();
+        });
+        el.addEventListener('blur', function() { fmtDecimalInput(this); });
+      });
+
       var HOA             = 200;
       var UTILS_AT_14     = 120;
       var UTILS_BASE_N    = 14;
@@ -1240,7 +1272,7 @@
         });
       }
 
-      function inputUSD(el) { return (parseFloat(el.value) || 0) / xRate(); }
+      function inputUSD(el) { return (parseFloat(el.value.replace(/,/g, '')) || 0) / xRate(); }
 
       function setLang(l) {
         lang = l;

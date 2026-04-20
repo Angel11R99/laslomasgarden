@@ -176,7 +176,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     gap: 22px;
   }
 
-  .lls-nav-list a {
+  .lls-nav-list a,
+  .lls-nav-item-complex > .lls-submenu-toggle {
     color: #ffffff;
     font-family: "Outfit", "Segoe UI", Arial, sans-serif;
     font-size: clamp(0.92rem, 0.95vw, 1rem);
@@ -186,11 +187,42 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     white-space: nowrap;
   }
 
-  .lls-nav-list a:hover,
-  .lls-nav-list a:focus-visible,
-  .lls-lang-btn:hover,
-  .lls-lang-btn:focus-visible {
-    opacity: 0.82;
+  @media (hover: hover) {
+    .lls-nav-list a,
+    .lls-nav-item-complex > .lls-submenu-toggle {
+      position: relative;
+      padding-bottom: 3px;
+      transition: opacity 0.2s ease;
+    }
+
+    .lls-nav-list a::after,
+    .lls-nav-item-complex > .lls-submenu-toggle::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: #ffffff;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.22s ease;
+    }
+
+    .lls-nav-list a:hover::after,
+    .lls-nav-list a:focus-visible::after,
+    .lls-nav-item-complex > .lls-submenu-toggle:hover::before,
+    .lls-nav-item-complex > .lls-submenu-toggle:focus-visible::before {
+      transform: scaleX(1);
+    }
+
+    .lls-nav-list a:hover,
+    .lls-nav-list a:focus-visible,
+    .lls-lang-btn:hover,
+    .lls-lang-btn:focus-visible {
+      opacity: 0.9;
+    }
   }
 
   .lls-has-submenu {
@@ -504,7 +536,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       transform: none;
     }
 
-    .lls-header-center {
+    .lls-header-center,
+    .lls-header.is-home .lls-header-center {
       display: none;
     }
 
@@ -543,15 +576,17 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
 
     .lls-mobile-menu {
-      width: calc(100% - 1rem);
-      margin: 0.35rem auto 0;
+      position: absolute;
+      top: 100%;
+      left: 0.5rem;
+      right: 0.5rem;
+      width: auto;
       padding: 0.9rem 1rem 1rem;
       border-radius: 16px;
       background: rgba(8, 78, 47, 0.97);
       backdrop-filter: blur(7px) saturate(132%);
       -webkit-backdrop-filter: blur(7px) saturate(132%);
       box-shadow: 0 18px 32px rgba(9, 43, 33, 0.18);
-      position: relative;
       z-index: 1001;
     }
 

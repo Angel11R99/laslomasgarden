@@ -737,57 +737,148 @@
 
   @media (max-width: 960px) {
     :root {
-      --lls-header-overlay: 132px;
+      --lls-header-overlay: 72px;
     }
 
     .lls-header-inner {
       --lls-side-column: 0px;
       width: calc(100% - 1.4rem);
-      min-height: 78px;
-      padding-top: 6px;
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-items: center;
-      gap: 0.7rem;
+      min-height: 72px;
+      padding-top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
     }
 
     .lls-header-spacer {
       display: none;
     }
 
-    .lls-header-right {
-      width: auto;
-      flex: 0 1 auto;
-      justify-content: center;
-      padding-top: 0;
-      gap: 14px;
-      text-align: center;
-      flex-wrap: wrap;
-      transform: none;
+    .lls-header-center {
+      align-items: center;
     }
 
-    .lls-nav-list {
-      gap: 14px;
+    .lls-header-logo {
+      width: clamp(120px, 32vw, 180px);
+    }
+
+    .lls-header-right {
+      display: none;
+    }
+
+    .lls-menu-toggle {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      flex-wrap: wrap;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .lls-menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+
+    .lls-header.is-menu-open .lls-menu-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .lls-header.is-menu-open .lls-menu-toggle span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .lls-header.is-menu-open .lls-menu-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .lls-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--lls-header-overlay, 72px);
+      left: 0;
+      right: 0;
+      background: rgba(11, 79, 51, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1.5rem 1.6rem 2rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 0;
+      animation: lls-menu-in 0.22s ease forwards;
+    }
+
+    .lls-header.is-menu-open ~ .lls-mobile-menu,
+    .lls-mobile-menu.is-open {
+      display: flex;
+    }
+
+    @keyframes lls-menu-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lls-mobile-menu a {
+      display: block;
+      color: #ffffff;
+      font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .lls-mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .lls-mobile-menu .lls-mobile-lang {
+      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      width: fit-content;
     }
 
     .lls-header.is-compact .lls-header-inner {
-      min-height: 78px;
-      padding-top: 6px;
-      gap: 0.7rem;
-      align-items: flex-start;
+      min-height: 72px;
+      padding-top: 0;
+      align-items: center;
     }
 
     .lls-header.is-compact .lls-header-logo {
-      opacity: 0;
-      transform: translateY(-8px) scale(0.94);
-      pointer-events: none;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
     }
 
     .lls-header.is-compact .lls-header-right {
-      min-height: 64px;
-      align-items: center;
+      display: none;
+    }
+  }
+
+  @media (min-width: 961px) {
+    .lls-menu-toggle,
+    .lls-mobile-menu {
+      display: none !important;
     }
   }
 </style>
@@ -818,8 +909,26 @@
         <span>Spanish</span>
       </a>
     </div>
+
+    <button class="lls-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="lls-mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
+
+<nav class="lls-mobile-menu" id="lls-mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="/index.php">Home</a>
+  <a href="/">Tour</a>
+  <a href="/index.php#complex">Complex</a>
+  <a href="/index.php#contact">Contact Us</a>
+  <a href="/index.php#about">About Us</a>
+  <a class="lls-mobile-lang" href="/index.php" aria-label="Selected language Spanish">
+    <span class="lls-flag-es" aria-hidden="true"></span>
+    <span>Spanish</span>
+  </a>
+</nav>
 
 <script>
   (function () {
@@ -863,6 +972,51 @@
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(syncHeaderOverlay);
     }
+  })();
+
+  (function () {
+    var toggle = document.querySelector('.lls-menu-toggle');
+    var menu = document.getElementById('lls-mobile-menu');
+    var header = document.getElementById('site-header');
+    if (!toggle || !menu) return;
+
+    function openMenu() {
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      header.classList.add('is-menu-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      header.classList.remove('is-menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', function () {
+      if (menu.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('is-open') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 960) closeMenu();
+    });
   })();
 </script>
 

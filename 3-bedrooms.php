@@ -744,7 +744,7 @@
                 <div class="lls-calc-field">
                   <label for="mc-extra-amount">Extra payment amount (US$)</label>
                   <div class="lls-calc-input-wrap">
-                    <input type="number" id="mc-extra-amount" value="0" min="0" step="50">
+                    <input type="number" id="mc-extra-amount" value="0.00" min="0" step="0.01">
                   </div>
                 </div>
                 <div class="lls-calc-field">
@@ -808,6 +808,21 @@
       var term = document.getElementById('mc-term');
       var extraAmt = document.getElementById('mc-extra-amount');
       var extraFreq = document.getElementById('mc-extra-freq');
+
+      function fmtDecimalInput(el) {
+        var val = parseFloat(el.value.replace(/,/g, '')) || 0;
+        el.type = 'text';
+        el.value = val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      fmtDecimalInput(extraAmt);
+      extraAmt.addEventListener('focus', function() {
+        var raw = parseFloat(this.value.replace(/,/g, '')) || 0;
+        this.type = 'number';
+        this.value = raw || '';
+        this.select();
+      });
+      extraAmt.addEventListener('blur', function() { fmtDecimalInput(this); });
+
       var downLbl = document.getElementById('mc-down-label');
       var resDown = document.getElementById('mc-res-down');
       var resLoan = document.getElementById('mc-res-loan');
@@ -852,7 +867,7 @@
         var dp = (parseFloat(down.value) || 0) / 100;
         var r = (parseFloat(bank.value) || 0) / 100 / 12;
         var n = (parseInt(term.value, 10) || 0) * 12;
-        var ea = (parseFloat(extraAmt.value) || 0);
+        var ea = (parseFloat(extraAmt.value.replace(/,/g, '')) || 0);
         var ef = (parseInt(extraFreq.value, 10) || 0);
 
         if (p <= 0) {
