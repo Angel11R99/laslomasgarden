@@ -322,7 +322,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: url('img/SERENAS SITE.avif') center/100% 100% no-repeat;
+      background: url('img/SERENAS SITE LAND reduce.svg') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
