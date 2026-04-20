@@ -482,6 +482,11 @@
       display: block;
     }
 
+    .hero-front-svg-stage.is-two-rooms-layout svg {
+      transform: translateY(-2.2%) scale(1.03);
+      transform-origin: center top;
+    }
+
     .hero-front-svg-stage [role="button"] {
       cursor: pointer;
       outline: none;
@@ -2134,7 +2139,8 @@
       'App-1': 'G', 'App-2': 'H',
       'App-3': 'E', 'App-4': 'F',
       'App-5': 'C', 'App-6': 'D',
-      'App-7': 'A', 'App-8': 'B'
+      'App-7': 'A', 'App-8': 'B',
+      'App-9': 'I', 'App-10': 'J'
     };
 
     const masterplanSceneById = {
@@ -2255,15 +2261,19 @@
       return { targetNode: wrapper, visualNode: node };
     }
 
-    function bindStep1LikeHover(targetNode, visualNode, unitLabel) {
+    function bindStep1LikeHover(targetNode, visualNode, unitLabel, options = {}) {
       if (!targetNode || !visualNode) return;
 
       const tooltip = document.getElementById('aptTooltip');
       const tooltipText = document.getElementById('aptTooltipText');
+      const disableScale = Boolean(options.disableScale);
+      const hoverFilter = disableScale
+        ? 'brightness(1.08) drop-shadow(0 0 8px rgba(210,168,24,0.65))'
+        : 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
 
       const showHover = (e) => {
-        visualNode.style.transform = 'scale(1.04)';
-        visualNode.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+        visualNode.style.transform = disableScale ? '' : 'scale(1.04)';
+        visualNode.style.filter = hoverFilter;
         if (unitLabel && tooltip && tooltipText) {
           tooltipText.textContent = unitLabel;
           tooltip.style.left = ((e ? e.clientX : 0) + 16) + 'px';
@@ -2297,6 +2307,7 @@
       activePlanViewKey = viewKey || activePlanViewKey;
       heroFrontSvgStage.innerHTML = svgText;
       heroFrontSvgStage.classList.remove('is-step-2');
+      heroFrontSvgStage.classList.toggle('is-two-rooms-layout', viewKey === 'without-balcony');
       heroFrontView?.classList.remove('step-2-focus');
       heroFrontView?.classList.add('layout-selection-focus');
       const inlineSvg = heroFrontSvgStage.querySelector('svg');
@@ -2323,7 +2334,9 @@
         if (!interactiveNodes) return;
         const letter = APP_UNIT_LETTERS[node.id];
         const unitLabel = letter ? (selectedBuildingNum ? selectedBuildingNum + '-' + letter : letter) : '';
-        bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode, unitLabel);
+        bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode, unitLabel, {
+          disableScale: viewKey === 'without-balcony'
+        });
         makeSvgElementButton(interactiveNodes.targetNode, openStep2);
       });
 
@@ -2335,6 +2348,7 @@
       activePlanViewKey = viewKey || activePlanViewKey;
       heroFrontSvgStage.innerHTML = svgText;
       heroFrontSvgStage.classList.add('is-step-2');
+      heroFrontSvgStage.classList.remove('is-two-rooms-layout');
       heroFrontSvgStage.classList.remove('step2-animate');
       void heroFrontSvgStage.offsetWidth;
       heroFrontSvgStage.classList.add('step2-animate');
@@ -2421,6 +2435,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           })
           .catch(() => {
             heroFrontSvgStage.classList.remove('active');
+            heroFrontSvgStage.classList.remove('is-two-rooms-layout');
             heroFrontSvgStage.setAttribute('aria-hidden', 'true');
             heroFrontView.classList.remove('layout-selection-focus');
             heroFrontView.classList.remove('step-2-focus');
@@ -2434,6 +2449,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       heroFrontSvgStage?.classList.remove('active');
       heroFrontSvgStage?.classList.remove('is-step-2');
+      heroFrontSvgStage?.classList.remove('is-two-rooms-layout');
       heroFrontView.classList.remove('layout-selection-focus');
       heroFrontView.classList.remove('step-2-focus');
       heroFrontSvgStage?.setAttribute('aria-hidden', 'true');
@@ -2462,6 +2478,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontSvgStage) {
         heroFrontSvgStage.classList.remove('active');
         heroFrontSvgStage.classList.remove('is-step-2');
+        heroFrontSvgStage.classList.remove('is-two-rooms-layout');
         heroFrontSvgStage.classList.remove('step2-animate');
         heroFrontSvgStage.setAttribute('aria-hidden', 'true');
         heroFrontSvgStage.innerHTML = '';
