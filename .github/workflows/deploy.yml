@@ -1,14 +1,14 @@
-name: Deploy to cPanel
+name: Deploy to cPanel + FTP
 
 on:
   push:
     branches:
       - main
-      - master
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-ssh:
+    name: Deploy via SSH (cPanel)
     runs-on: ubuntu-latest
 
     steps:
@@ -67,3 +67,29 @@ jobs:
           echo "::group::Finalizing Deployment"
           ssh $SSH_OPTS "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo 'Deploy OK en: $DEPLOY_PATH'; date > \"$DEPLOY_PATH/.deploy-check.txt\"; ls -la \"$DEPLOY_PATH\" | head -n 40"
           echo "::endgroup::"
+
+  deploy-ftp:
+    name: Deploy via FTPS (vistalomascondos)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync files via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          server-dir: ${{ secrets.FTP_PATH }}
+          local-dir: ./
+          exclude: |
+            **/.git/**
+            **/.github/**
+            .gitignore
+            **/node_modules/**
+            **/.DS_Store
+            **/Thumbs.db
