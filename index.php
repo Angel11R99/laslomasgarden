@@ -127,7 +127,8 @@
 
     .lls-hero-new__media {
       height: min(100vh, 1070px);
-      background: url("img/Master_Plan.webp") center / cover no-repeat;
+      background: url("img/Master_Plan.webp") center / 100% 100% no-repeat;
+      background-color: #f0f0f0;
     }
 
     .lls-hero-new__overlay {
