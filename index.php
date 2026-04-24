@@ -763,6 +763,10 @@
     }
 
     @media (max-width: 960px) {
+      .lls-hero-new__media {
+        height: 50vh;
+        background-size: cover;
+      }
 
       .lls-hero-new__overlay-inner {
         justify-content: center;
