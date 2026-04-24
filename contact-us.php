@@ -11,9 +11,9 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Las Lomas Serenas | Contact Us</title>
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -337,7 +337,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
             <p>Whether you're looking for more details about our residences, pricing, or availability — our team is here to guide you every step of the way.</p>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/location.svg');" aria-hidden="true">
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/contact/location.svg');" aria-hidden="true">
                 <span class="contact-info__icon-symbol"></span>
               </div>
               <div>
@@ -347,7 +347,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
             </div>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/phone.svg');" aria-hidden="true">
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/contact/phone.svg');" aria-hidden="true">
                 <span class="contact-info__icon-symbol"></span>
               </div>
               <div>
@@ -359,7 +359,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
             </div>
 
             <div class="contact-info__item">
-              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/icons/email.svg');" aria-hidden="true">
+              <div class="contact-info__icon" style="--contact-info-icon-src: url('./img/contact/email.svg');" aria-hidden="true">
                 <span class="contact-info__icon-symbol"></span>
               </div>
               <div>

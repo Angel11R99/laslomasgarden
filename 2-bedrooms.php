@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Las Lomas Serenas | 2 Bedrooms</title>
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,7 +53,7 @@
     .rooms-hero {
       height: 90vh;
       min-height: 500px;
-      background-image: url("img/hero2bedroom.webp");
+      background-image: url("img/2-bedrooms/hero2bedroom.webp");
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -622,7 +622,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/2-Bed-IMG/Living-1.webp" alt="Warm and relaxing living room" decoding="async">
+          <img src="img/2-bedrooms/Living-1.webp" alt="Warm and relaxing living room" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Warm and Relaxing Living Spaces</h2>
@@ -636,7 +636,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/2-Bed-IMG/Kitchen-2.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
+          <img src="img/2-bedrooms/Kitchen-2.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
@@ -650,7 +650,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/2-Bed-IMG/Bedroom-3.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
+          <img src="img/2-bedrooms/Bedroom-3.webp" alt="Comfortable modern bedroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
@@ -664,7 +664,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/2-Bed-IMG/BathRoom-4.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
+          <img src="img/2-bedrooms/BathRoom-4.webp" alt="Clean modern bathroom" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Clean Design Practical Comfort</h2>
@@ -678,7 +678,7 @@
 
       <div class="room-card">
         <figure class="room-card-media">
-          <img src="img/2-Bed-IMG/Laundry-5.webp" alt="Laundry area" loading="lazy" decoding="async">
+          <img src="img/2-bedrooms/Laundry-5.webp" alt="Laundry area" loading="lazy" decoding="async">
         </figure>
         <div class="room-card-copy">
           <h2>Every Detail Has a Reason</h2>

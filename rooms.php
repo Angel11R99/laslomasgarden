@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Las Lomas Serenas | Rooms</title>
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
 
     .rooms-hero {
       min-height: clamp(290px, 48vw, 430px);
-      background-image: linear-gradient(to bottom, rgba(12, 76, 98, 0.36) 0%, rgba(12, 76, 98, 0.08) 55%, rgba(12, 76, 98, 0) 100%), url("img/rooms-hero-building.webp");
+      background-image: linear-gradient(to bottom, rgba(12, 76, 98, 0.36) 0%, rgba(12, 76, 98, 0.08) 55%, rgba(12, 76, 98, 0) 100%), url("img/rooms/rooms-hero-building.webp");
       background-position: center;
       background-size: cover;
     }
@@ -226,7 +226,7 @@
     <section class="rooms-shell rooms-sections" aria-label="Room highlights">
       <article class="rooms-section">
         <figure class="rooms-section-media">
-          <img src="img/rooms-living.webp" alt="Warm and relaxing living room" decoding="async">
+          <img src="img/rooms/rooms-living.webp" alt="Warm and relaxing living room" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Warm and Relaxing Living Spaces</h2>
@@ -240,7 +240,7 @@
 
       <article class="rooms-section is-reverse">
         <figure class="rooms-section-media">
-          <img src="img/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
+          <img src="img/rooms/rooms-kitchen.webp" alt="Contemporary kitchen" loading="lazy" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
@@ -254,7 +254,7 @@
 
       <article class="rooms-section">
         <figure class="rooms-section-media">
-          <img src="img/rooms-bedroom.webp" alt="Comfortable bedroom with natural light" loading="lazy" decoding="async">
+          <img src="img/rooms/rooms-bedroom.webp" alt="Comfortable bedroom with natural light" loading="lazy" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
@@ -268,7 +268,7 @@
 
       <article class="rooms-section is-reverse">
         <figure class="rooms-section-media">
-          <img src="img/rooms-bathroom.webp" alt="Bathroom with clean design" loading="lazy" decoding="async">
+          <img src="img/rooms/rooms-bathroom.webp" alt="Bathroom with clean design" loading="lazy" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Clean Design Practical Comfort</h2>
@@ -282,7 +282,7 @@
 
       <article class="rooms-section">
         <figure class="rooms-section-media">
-          <img src="img/rooms-closet.webp" alt="Modern walk-in closet" loading="lazy" decoding="async">
+          <img src="img/rooms/rooms-closet.webp" alt="Modern walk-in closet" loading="lazy" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Comfortable &amp; Modern Closet</h2>
@@ -296,7 +296,7 @@
 
       <article class="rooms-section is-reverse">
         <figure class="rooms-section-media">
-          <img src="img/rooms-laundry.webp" alt="Laundry area" loading="lazy" decoding="async">
+          <img src="img/rooms/rooms-laundry.webp" alt="Laundry area" loading="lazy" decoding="async">
         </figure>
         <div class="rooms-section-copy">
           <h2>Every Detail Has a Reason</h2>

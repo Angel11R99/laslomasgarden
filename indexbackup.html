@@ -350,7 +350,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: url('img/SERENAS SITE.avif') center/100% 100% no-repeat;
+      background: url('img/tourguiado/SERENAS SITE.avif') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -987,7 +987,7 @@
     }
 
     .gallery-item:last-child {
-      background-image: url('./pool%20family.webp');
+      background-image: url('img/shared/pool-family.webp');
     }
 
     .cta {
@@ -1676,7 +1676,7 @@
       }
 
       .hero-apartment-map {
-        background-image: url('img/Master_Plan.webp');
+        background-image: url('img/shared/Master_Plan.webp');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -2001,12 +2001,12 @@
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- SVG is loaded dynamically from:                                  -->
-          <!-- img/SERENAS SITE LAND reduce.svg                                 -->
+          <!-- img/tourguiado/SERENAS SITE LAND reduce.svg                                 -->
         </div>
       </div>
 
       <div class="hero-front-view" id="heroFrontView" aria-hidden="true">
-        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
+        <img class="hero-front-image" id="heroFrontImage" src="img/tourguiado/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
         <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
@@ -2057,23 +2057,23 @@
         </div>
         <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" class="tour-scene" id="tourScene">
           <a-assets>
-            <img id="tourAssetBalcon" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" alt="Balcón exterior">
-            <img id="tourAssetSala" src="img/Renders%20360/Interiores/Sala.webp" alt="Sala">
-            <img id="tourAssetComedor" src="img/Renders%20360/Interiores/Comedor.webp" alt="Comedor">
-            <img id="tourAssetCocina" src="img/Renders%20360/Interiores/Cocina.webp" alt="Cocina">
-            <img id="tourAssetPasillo" src="img/Renders%20360/Interiores/Pasillo.webp" alt="Pasillo">
-            <img id="tourAssetPasillo2" src="img/Renders%20360/Interiores/Pasillo2.webp" alt="Pasillo 2">
-            <img id="tourAssetDormPrincipal" src="img/Renders%20360/Interiores/Dormitorio%20principal.webp" alt="Dormitorio Principal">
-            <img id="tourAssetDormA" src="img/Renders%20360/Interiores/Dormitorio%20A.webp" alt="Dormitorio A">
-            <img id="tourAssetDormB" src="img/Renders%20360/Interiores/Dormitorio%20B.webp" alt="Dormitorio B">
-            <img id="tourAssetBano" src="img/Renders%20360/Interiores/Baño.webp" alt="Baño Principal">
-            <img id="tourAssetBano2" src="img/Renders%20360/Interiores/Baño%202.webp" alt="Baño 2">
-            <img id="tourAssetWC" src="img/Renders%20360/Interiores/WC.webp" alt="WC">
+            <img id="tourAssetBalcon" src="img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" alt="Balcón exterior">
+            <img id="tourAssetSala" src="img/tourguiado/renders/interiores/Sala.webp" alt="Sala">
+            <img id="tourAssetComedor" src="img/tourguiado/renders/interiores/Comedor.webp" alt="Comedor">
+            <img id="tourAssetCocina" src="img/tourguiado/renders/interiores/Cocina.webp" alt="Cocina">
+            <img id="tourAssetPasillo" src="img/tourguiado/renders/interiores/Pasillo.webp" alt="Pasillo">
+            <img id="tourAssetPasillo2" src="img/tourguiado/renders/interiores/Pasillo2.webp" alt="Pasillo 2">
+            <img id="tourAssetDormPrincipal" src="img/tourguiado/renders/interiores/Dormitorio%20principal.webp" alt="Dormitorio Principal">
+            <img id="tourAssetDormA" src="img/tourguiado/renders/interiores/Dormitorio%20A.webp" alt="Dormitorio A">
+            <img id="tourAssetDormB" src="img/tourguiado/renders/interiores/Dormitorio%20B.webp" alt="Dormitorio B">
+            <img id="tourAssetBano" src="img/tourguiado/renders/interiores/Baño.webp" alt="Baño Principal">
+            <img id="tourAssetBano2" src="img/tourguiado/renders/interiores/Baño%202.webp" alt="Baño 2">
+            <img id="tourAssetWC" src="img/tourguiado/renders/interiores/WC.webp" alt="WC">
           </a-assets>
           <a-entity camera="fov: 80" look-controls="touchEnabled: false; mouseEnabled: true; magicWindowTrackingEnabled: false" wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="objects: .tour-hotspot"></a-entity>
           </a-entity>
-          <a-sky id="tourSky" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" rotation="0 -90 0" radius="30"></a-sky>
+          <a-sky id="tourSky" src="img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" rotation="0 -90 0" radius="30"></a-sky>
           <a-sky id="tourSkyBlend" visible="false" rotation="0 -90 0" radius="29.8"></a-sky>
           <a-entity id="tourHotspots"></a-entity>
 
@@ -2104,15 +2104,15 @@
     const heroApartmentViews = {
       'with-balcony': {
         title: 'Unit with 3 rooms',
-        image: 'img/Serenas3rooms.svg',
+        image: 'img/tourguiado/Serenas3rooms.svg',
         interactive: true,
-        step2Svg: 'img/masterplan3room.svg'
+        step2Svg: 'img/tourguiado/masterplan3room.svg'
       },
       'without-balcony': {
         title: 'Unit with 2 rooms',
-        image: 'img/Serenas2rooms.svg',
+        image: 'img/tourguiado/Serenas2rooms.svg',
         interactive: true,
-        step2Svg: 'img/masterplan2room.svg'
+        step2Svg: 'img/tourguiado/masterplan2room.svg'
       }
     };
 
@@ -2171,7 +2171,7 @@
 
     function getStep2MasterplanSvg(viewKey) {
       const view = heroApartmentViews[viewKey];
-      return view && view.step2Svg ? view.step2Svg : 'img/masterplan2room.svg';
+      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/masterplan2room.svg';
     }
 
     function revealHeroFrontView() {
@@ -2667,7 +2667,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         if (svgContainer.dataset.loaded === 'true' || svgContainer.dataset.loading === 'true') return;
         svgContainer.dataset.loading = 'true';
 
-        fetch('img/SERENAS%20SITE%20LAND%20reduce.svg')
+        fetch('img/tourguiado/SERENAS%20SITE%20LAND%20reduce.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
@@ -2733,8 +2733,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'balcon-exterior',
         title: 'Balcony',
-        image: 'img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
-        mobileImage: 'img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
+        image: 'img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
+        mobileImage: 'img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
         rotation: '0 -90 0',
         hotspots: [
           { to: 'sala', label: 'Living Room', position: '0 0 4' }
@@ -2743,8 +2743,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'sala',
         title: 'Living Room',
-        image: 'img/Renders%20360/Interiores/Sala.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Sala.webp',
+        image: 'img/tourguiado/renders/interiores/Sala.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Sala.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Pasillo: arco/puerta visible en borde izquierdo (~3%) → casi al frente
@@ -2759,8 +2759,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'comedor',
         title: 'Dining Room',
-        image: 'img/Renders%20360/Interiores/Comedor.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Comedor.webp',
+        image: 'img/tourguiado/renders/interiores/Comedor.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Comedor.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Cocina: zona de cocina visible al (~8%) → adelante-izquierda
@@ -2772,8 +2772,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'cocina',
         title: 'Kitchen',
-        image: 'img/Renders%20360/Interiores/Cocina.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Cocina.webp',
+        image: 'img/tourguiado/renders/interiores/Cocina.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Cocina.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Comedor: arco/apertura hacia comedor visible al (~48%) → detrás
@@ -2783,8 +2783,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'pasillo',
         title: 'Door',
-        image: 'img/Renders%20360/Interiores/Pasillo.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Pasillo.webp',
+        image: 'img/tourguiado/renders/interiores/Pasillo.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Pasillo.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Dormitorio Principal: arco abierto grande (~3-5%) → casi al frente
@@ -2802,8 +2802,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'dormitorio-principal',
         title: 'Master Bedroom',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20principal.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20principal.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20principal.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20principal.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Pasillo: puerta de salida al pasillo (~5%) → casi al frente-izquierda
@@ -2816,8 +2816,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'bano-principal',
         title: 'Master Bathroom',
-        image: 'img/Renders%20360/Interiores/Baño.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Baño.webp',
+        image: 'img/tourguiado/renders/interiores/Baño.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Baño.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al dormitorio principal (~5%) → casi al frente
@@ -2827,8 +2827,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'dormitorio-a',
         title: 'Bedroom A',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20A.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20A.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20A.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20A.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta al pasillo 2 visible (~10%) → adelante-izquierda
@@ -2838,8 +2838,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'pasillo-2',
         title: 'Hallway 2',
-        image: 'img/Renders%20360/Interiores/Pasillo2.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Pasillo2.webp',
+        image: 'img/tourguiado/renders/interiores/Pasillo2.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Pasillo2.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Dormitorio B: puerta lateral izquierda (~3%) → casi al frente
@@ -2857,8 +2857,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'dormitorio-b',
         title: 'Bedroom B',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20B.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20B.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20B.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20B.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta al pasillo 2 (~17%) → izquierda-adelante
@@ -2868,8 +2868,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'bano-2',
         title: 'Bathroom 2',
-        image: 'img/Renders%20360/Interiores/Baño%202.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Baño%202.webp',
+        image: 'img/tourguiado/renders/interiores/Baño%202.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Baño%202.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta abierta hacia pasillo 2 (~30%) → izquierda-detrás
@@ -2879,8 +2879,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'wc',
         title: 'WC',
-        image: 'img/Renders%20360/Interiores/WC.webp',
-        mobileImage: 'img/Renders%20360/Interiores/WC.webp',
+        image: 'img/tourguiado/renders/interiores/WC.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/WC.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al pasillo 2 (~40%) → izquierda-detrás

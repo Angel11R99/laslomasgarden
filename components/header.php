@@ -689,14 +689,14 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
   <div class="lls-header-inner">
     <div class="lls-header-left">
       <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
-        <img src="img/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async"
-          fetchpriority="high" onerror="this.onerror=null;this.src='img/logo-fallback.png';">
+        <img src="/img/shared/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async"
+          fetchpriority="high" onerror="this.onerror=null;this.src='/img/shared/logo-fallback.png';">
       </a>
     </div>
 
     <div class="lls-header-center">
       <div class="lls-header-tagline">
-        <img src="img/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
+        <img src="/img/home/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
       </div>
     </div>
 
