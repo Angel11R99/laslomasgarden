@@ -2049,31 +2049,16 @@
         <button class="tour-pos-copy" id="tourPosCopyBtn">Copiar</button>
       </div>
 
-      <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
       <div class="tour-stage">
         <div class="tour-loading active" id="tourLoading" aria-hidden="false">
           <span class="tour-loading-spinner" aria-hidden="true"></span>
           <span id="tourLoadingText">Loading 360...</span>
         </div>
-        <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" class="tour-scene" id="tourScene">
-          <a-assets>
-            <img id="tourAssetBalcon" src="img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" alt="Balcón exterior">
-            <img id="tourAssetSala" src="img/tourguiado/renders/interiores/Sala.webp" alt="Sala">
-            <img id="tourAssetComedor" src="img/tourguiado/renders/interiores/Comedor.webp" alt="Comedor">
-            <img id="tourAssetCocina" src="img/tourguiado/renders/interiores/Cocina.webp" alt="Cocina">
-            <img id="tourAssetPasillo" src="img/tourguiado/renders/interiores/Pasillo.webp" alt="Pasillo">
-            <img id="tourAssetPasillo2" src="img/tourguiado/renders/interiores/Pasillo2.webp" alt="Pasillo 2">
-            <img id="tourAssetDormPrincipal" src="img/tourguiado/renders/interiores/Dormitorio%20principal.webp" alt="Dormitorio Principal">
-            <img id="tourAssetDormA" src="img/tourguiado/renders/interiores/Dormitorio%20A.webp" alt="Dormitorio A">
-            <img id="tourAssetDormB" src="img/tourguiado/renders/interiores/Dormitorio%20B.webp" alt="Dormitorio B">
-            <img id="tourAssetBano" src="img/tourguiado/renders/interiores/Baño.webp" alt="Baño Principal">
-            <img id="tourAssetBano2" src="img/tourguiado/renders/interiores/Baño%202.webp" alt="Baño 2">
-            <img id="tourAssetWC" src="img/tourguiado/renders/interiores/WC.webp" alt="WC">
-          </a-assets>
+        <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" loading-screen="enabled: false" class="tour-scene" id="tourScene">
           <a-entity camera="fov: 80" look-controls="touchEnabled: false; mouseEnabled: true; magicWindowTrackingEnabled: false" wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="objects: .tour-hotspot"></a-entity>
           </a-entity>
-          <a-sky id="tourSky" src="img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" rotation="0 -90 0" radius="30"></a-sky>
+          <a-sky id="tourSky" visible="false" rotation="0 -90 0" radius="30"></a-sky>
           <a-sky id="tourSkyBlend" visible="false" rotation="0 -90 0" radius="29.8"></a-sky>
           <a-entity id="tourHotspots"></a-entity>
 
@@ -2933,6 +2918,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     let tourTouchHintTimeout = null;
     let tourTouchHintShowTimeout = null;
     let tourLoadingToken = 0;
+    let tourEngineLoadPromise = null;
+    let tourInteractionHandlersReady = false;
 
     const availableTourIndexes = tourScenes
       .map((scene, index) => scene.locked ? null : index)
@@ -2958,6 +2945,49 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
     function getTourLookControls() {
       return tourCamera && tourCamera.components ? tourCamera.components['look-controls'] : null;
+    }
+
+    function ensureTourEngineLoaded() {
+      if (!tourScene) return Promise.reject(new Error('Tour scene not found'));
+
+      const waitForScene = () => new Promise((resolve) => {
+        const finish = () => {
+          if (!tourInteractionHandlersReady) {
+            setupClickPositionPicker();
+            setupTouchZoom();
+            tourInteractionHandlersReady = true;
+          }
+          resolve();
+        };
+
+        if (tourScene.hasLoaded) {
+          finish();
+          return;
+        }
+
+        tourScene.addEventListener('loaded', finish, { once: true });
+      });
+
+      if (window.AFRAME) return waitForScene();
+
+      if (!tourEngineLoadPromise) {
+        tourEngineLoadPromise = new Promise((resolve, reject) => {
+          const existingScript = document.querySelector('script[data-tour-aframe="true"]');
+          const script = existingScript || document.createElement('script');
+
+          script.addEventListener('load', () => waitForScene().then(resolve), { once: true });
+          script.addEventListener('error', reject, { once: true });
+
+          if (!existingScript) {
+            script.src = 'https://aframe.io/releases/1.6.0/aframe.min.js';
+            script.async = true;
+            script.dataset.tourAframe = 'true';
+            document.head.appendChild(script);
+          }
+        });
+      }
+
+      return tourEngineLoadPromise;
     }
 
     function syncTourCameraRotation() {
@@ -3528,33 +3558,42 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         tourShell.classList.add('is-entering');
       }
 
-      if (tourScene && typeof tourScene.play === 'function') {
-        tourScene.play();
-      }
-      window.requestAnimationFrame(refreshSceneViewport);
-      resetTourZoom();
-      showTourTouchHint();
       beginTourLoading('Loading 360...');
 
-      if (tourTransitionOverlay) {
-        tourTransitionOverlay.classList.remove('fading', 'releasing');
-      }
-      if (tourSky) {
-        tourSky.removeAttribute('animation__skyfadein');
-        tourSky.removeAttribute('animation__skyfadeout');
-        tourSky.setAttribute('visible', 'true');
-        setSkyMaterial(tourSky, 1, false);
-      }
-      if (tourSkyBlend) {
-        tourSkyBlend.removeAttribute('animation__skyfadein');
-        tourSkyBlend.removeAttribute('animation__skyfadeout');
-        tourSkyBlend.setAttribute('visible', 'false');
-        setSkyMaterial(tourSkyBlend, 0, true);
-      }
-      isTransitioning = false;
-      updateHotspotToggleUi();
+      ensureTourEngineLoaded()
+        .then(() => {
+          if (!tourModal || !tourModal.classList.contains('active')) return;
 
-      setTourScene(activeTourIndex, true);
+          if (tourScene && typeof tourScene.play === 'function') {
+            tourScene.play();
+          }
+          window.requestAnimationFrame(refreshSceneViewport);
+          resetTourZoom();
+          showTourTouchHint();
+
+          if (tourTransitionOverlay) {
+            tourTransitionOverlay.classList.remove('fading', 'releasing');
+          }
+          if (tourSky) {
+            tourSky.removeAttribute('animation__skyfadein');
+            tourSky.removeAttribute('animation__skyfadeout');
+            tourSky.setAttribute('visible', 'true');
+            setSkyMaterial(tourSky, 1, false);
+          }
+          if (tourSkyBlend) {
+            tourSkyBlend.removeAttribute('animation__skyfadein');
+            tourSkyBlend.removeAttribute('animation__skyfadeout');
+            tourSkyBlend.setAttribute('visible', 'false');
+            setSkyMaterial(tourSkyBlend, 0, true);
+          }
+          isTransitioning = false;
+          updateHotspotToggleUi();
+
+          setTourScene(activeTourIndex, true);
+        })
+        .catch(() => {
+          if (tourLoadingText) tourLoadingText.textContent = 'Could not load 360 tour.';
+        });
     }
 
     function closeTour() {
@@ -3795,9 +3834,6 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         else { tourScene.addEventListener('loaded', trySetup); }
       }
     }
-
-    setupClickPositionPicker();
-    setupTouchZoom();
 
     if (tourPosToggle) {
       tourPosToggle.addEventListener('click', () => {
