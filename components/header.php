@@ -35,6 +35,26 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     padding-top: 0.55rem;
   }
 
+  .lls-header.is-scrolled .lls-nav-list a,
+  .lls-header.is-scrolled .lls-nav-item-complex > .lls-submenu-toggle {
+    color: #0d673d;
+  }
+
+  .lls-header.is-scrolled .lls-lang-btn {
+    color: #0d673d;
+    border-color: #0d673d;
+  }
+
+  .lls-header:not(.is-home) .lls-nav-list a,
+  .lls-header:not(.is-home) .lls-nav-item-complex > .lls-submenu-toggle {
+    color: #0d673d;
+  }
+
+  .lls-header:not(.is-home) .lls-lang-btn {
+    color: #0d673d;
+    border-color: #0d673d;
+  }
+
 
   .lls-header-inner {
     width: 100%;
@@ -657,6 +677,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       transform: none;
     }
   }
+
+  #lls-desktop-submenu a{
+    color: #ffffff;
+  }
+
+
 </style>
 
 <header class="lls-header <?php echo $is_home ? 'is-home' : ''; ?>" id="site-header">
@@ -687,7 +713,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
             <button class="lls-submenu-toggle" type="button" aria-expanded="false" aria-controls="lls-desktop-submenu">
               Residence
             </button>
-            <ul class="lls-submenu" id="lls-desktop-submenu" hidden>
+            <ul class="lls-submenu" id="lls-desktop-submenu" hidden style="color: #ffffff;">
               <li><a href="/tourguiado">Tour</a></li>
               <li><a href="/amenities">Amenities</a></li>
               <li><a href="/2-bedrooms">2 Bedrooms</a></li>
