@@ -14,7 +14,7 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     z-index: 1000;
     width: 100%;
     max-width: 100%;
-    background: rgba(10, 94, 56, 70);
+    background: #ffffff;
     backdrop-filter: blur(7px) saturate(135%);
     -webkit-backdrop-filter: blur(7px) saturate(135%);
     /* box-shadow: 0 10px 30px rgba(5, 53, 31, 0.16); */
