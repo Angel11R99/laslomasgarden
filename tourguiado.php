@@ -2109,10 +2109,17 @@
       return promise;
     }
 
-    // Inicia precarga en background de un SVG sin bloquear nada.
+    // Inicia precarga en background de un SVG y las imágenes que referencia.
     function prefetchSvgBackground(url) {
       if (_svgCache.has(url) || _svgFetching.has(url)) return;
-      fetchSvgCached(url);
+      fetchSvgCached(url).then((svgText) => {
+        // Extraer hrefs de <image> y precargar cada imagen en el browser cache
+        const matches = svgText.matchAll(/href="([^"]+\.(?:webp|avif|png|jpg|jpeg))"/gi);
+        for (const [, imgUrl] of matches) {
+          const img = new Image();
+          img.src = imgUrl;
+        }
+      });
     }
 
     const pageBody = document.body;
