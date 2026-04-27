@@ -2107,25 +2107,6 @@
       fetchSvgCached(url);
     }
 
-    // Precarga todas las imágenes externas referenciadas dentro de un SVG inyectado.
-    // Resuelve cuando todas cargan (o tras 4s de timeout para no bloquear).
-    function preloadSvgImages(container) {
-      const XLINKNS = 'http://www.w3.org/1999/xlink';
-      const hrefs = Array.from(container.querySelectorAll('image')).map(el =>
-        el.getAttribute('href') || el.getAttributeNS(XLINKNS, 'href')
-      ).filter(Boolean);
-      if (!hrefs.length) return Promise.resolve();
-      const loads = hrefs.map(src => new Promise(resolve => {
-        const img = new Image();
-        img.onload = img.onerror = resolve;
-        img.src = src;
-      }));
-      return Promise.race([
-        Promise.all(loads),
-        new Promise(resolve => setTimeout(resolve, 4000))
-      ]);
-    }
-
     const pageBody = document.body;
     const heroRoot = document.querySelector('.hero');
     const heroFrontView = document.getElementById('heroFrontView');
@@ -2467,17 +2448,15 @@
         fetchSvgCached(view.image)
           .then((svgText) => {
             const ok = setupInteractiveNoBalcony(svgText, viewKey);
-            if (!ok) {
-              heroFrontSvgStage.classList.remove('active');
-              heroFrontSvgStage.setAttribute('aria-hidden', 'true');
-              return;
-            }
-            heroFrontImage.style.display = 'none';
-            return preloadSvgImages(heroFrontSvgStage).then(() => {
+            if (ok) {
+              heroFrontImage.style.display = 'none';
               heroFrontSvgStage.classList.add('active');
               heroFrontSvgStage.setAttribute('aria-hidden', 'false');
               revealHeroFrontView();
-            });
+              return;
+            }
+            heroFrontSvgStage.classList.remove('active');
+            heroFrontSvgStage.setAttribute('aria-hidden', 'true');
           })
           .catch(() => {
             heroFrontSvgStage.classList.remove('active');
