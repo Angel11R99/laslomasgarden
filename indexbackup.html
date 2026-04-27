@@ -1594,22 +1594,7 @@
       height: 100%;
     }
 
-    .hero-front-svg-stage.is-loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(4, 14, 11, 0.55);
-    }
-
-    .hero-front-svg-stage.is-loading::after {
-      content: '';
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.18);
-      border-top-color: #13b98b;
-      animation: spinLoader 0.8s linear infinite;
-    }
+ 
 
 
     @media (max-width: 960px) {
@@ -2448,36 +2433,32 @@
       if (!view || !heroRoot || !heroFrontView || !heroFrontImage) return;
       activePlanViewKey = viewKey;
 
-      if (view.interactive && heroFrontSvgStage) {
-        // Abrir la vista inmediatamente con spinner para feedback visual instantáneo
-        heroFrontImage.style.display = 'none';
-        heroFrontSvgStage.innerHTML = '';
-        heroFrontSvgStage.classList.add('active', 'is-loading');
-        heroFrontSvgStage.classList.remove('is-step-2', 'is-two-rooms-layout', 'step2-animate');
-        heroFrontSvgStage.setAttribute('aria-hidden', 'false');
-        heroFrontView.classList.remove('step-2-focus');
-        heroFrontView.classList.add('layout-selection-focus');
-        if (heroFrontTitle) heroFrontTitle.textContent = 'Loading...';
-        if (heroFrontClose) heroFrontClose.textContent = 'Return to site map';
-        revealHeroFrontView();
+      if (heroFrontTitle) heroFrontTitle.textContent = view.title;
 
+      if (view.interactive && heroFrontSvgStage) {
         fetchSvgCached(view.image)
           .then((svgText) => {
-            heroFrontSvgStage.classList.remove('is-loading');
             const ok = setupInteractiveNoBalcony(svgText, viewKey);
-            if (!ok) {
-              heroFrontSvgStage.classList.remove('active');
-              heroFrontSvgStage.setAttribute('aria-hidden', 'true');
+            if (ok) {
+              heroFrontImage.style.display = 'none';
+              heroFrontSvgStage.classList.add('active');
+              heroFrontSvgStage.setAttribute('aria-hidden', 'false');
+              revealHeroFrontView();
+              return;
             }
+            heroFrontSvgStage.classList.remove('active');
+            heroFrontSvgStage.setAttribute('aria-hidden', 'true');
           })
           .catch(() => {
-            heroFrontSvgStage.classList.remove('active', 'is-loading');
+            heroFrontSvgStage.classList.remove('active');
             heroFrontSvgStage.classList.remove('is-two-rooms-layout');
             heroFrontSvgStage.setAttribute('aria-hidden', 'true');
-            heroFrontView.classList.remove('layout-selection-focus', 'step-2-focus');
+            heroFrontView.classList.remove('layout-selection-focus');
+            heroFrontView.classList.remove('step-2-focus');
             heroFrontImage.style.display = '';
             heroFrontImage.src = view.image;
             heroFrontImage.alt = view.title;
+            revealHeroFrontView();
           });
         return;
       }
@@ -2651,6 +2632,14 @@
         }
 
         g.addEventListener('mouseenter', (e) => {
+          // Precarga en hover — da tiempo al fetch antes del clic sin desperdiciar ancho de banda
+          if (isApartmentUnit) {
+            const prefetchView = heroApartmentViews[viewKey];
+            if (prefetchView) {
+              fetchSvgCached(prefetchView.image);
+              fetchSvgCached(prefetchView.step2Svg);
+            }
+          }
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
