@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(magick --version)",
+      "Bash(cwebp -version)",
+      "Bash(ffmpeg -version)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(npm *)"
+    ]
+  }
+}

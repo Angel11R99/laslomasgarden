@@ -2078,14 +2078,26 @@
     // Hero map click handling (inline SVG)
     // ================================
 
-    // Caché de SVGs en memoria — evita refetches repetidos sin penalizar conexiones lentas.
-    // Los SVGs se precargan al hacer hover sobre un edificio (mouseenter), no al cargar la página.
+    // Caché de SVGs en memoria.
+    // _svgFetching guarda el promise en vuelo para no lanzar fetches duplicados
+    // mientras el archivo aún está descargando.
     const _svgCache = new Map();
+    const _svgFetching = new Map();
     function fetchSvgCached(url) {
       if (_svgCache.has(url)) return Promise.resolve(_svgCache.get(url));
-      return fetch(url)
+      if (_svgFetching.has(url)) return _svgFetching.get(url);
+      const promise = fetch(url)
         .then((r) => r.text())
-        .then((text) => { _svgCache.set(url, text); return text; });
+        .then((text) => { _svgCache.set(url, text); _svgFetching.delete(url); return text; })
+        .catch((err) => { _svgFetching.delete(url); throw err; });
+      _svgFetching.set(url, promise);
+      return promise;
+    }
+
+    // Inicia precarga en background de un SVG sin bloquear nada.
+    function prefetchSvgBackground(url) {
+      if (_svgCache.has(url) || _svgFetching.has(url)) return;
+      fetchSvgCached(url);
     }
 
     const pageBody = document.body;
@@ -2100,7 +2112,7 @@
     const heroApartmentViews = {
       'with-balcony': {
         title: 'Unit with 3 rooms',
-        image: 'img/tourguiado/Serenas3rooms.svg',
+        image: 'img/tourguiado/TipoA/TipoABG.svg',
         interactive: true,
         step2Svg: 'img/tourguiado/masterplan3room.svg'
       },
@@ -2694,6 +2706,20 @@
             const loadingEl = document.getElementById('heroMapLoading');
             if (loadingEl) loadingEl.classList.add('hidden');
             initSvgApartmentClicks();
+
+            // Mapa visible → iniciar descarga de los SVGs de layout en background.
+            // requestIdleCallback garantiza que no compite con nada crítico.
+            const startBgPrefetch = () => {
+              Object.values(heroApartmentViews).forEach((v) => {
+                prefetchSvgBackground(v.image);
+                prefetchSvgBackground(v.step2Svg);
+              });
+            };
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(startBgPrefetch, { timeout: 3000 });
+            } else {
+              setTimeout(startBgPrefetch, 1500);
+            }
           })
           .catch(() => {
             svgContainer.dataset.loading = '';
