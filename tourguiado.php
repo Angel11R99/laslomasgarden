@@ -618,7 +618,7 @@
 
     /* Paso 1 — grande en el cielo */
     .hero-front-view.layout-selection-focus .hero-front-title {
-      top: 14%;
+      top: 5%;
       font-size: clamp(1.8rem, 4.5vw, 3.8rem);
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -626,15 +626,22 @@
       text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35);
     }
 
-    /* Paso 2 — pequeño en la zona de controles (abajo) */
+    /* Paso 2 — esquina inferior derecha, espejo del botón */
     .hero-front-view.step-2-focus .hero-front-title {
       bottom: clamp(24px, 4vw, 44px);
       top: auto;
-      transform: translateX(-50%);
-      font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+      left: auto;
+      right: max(1rem, env(safe-area-inset-right));
+      transform: none;
+      text-align: right;
+      font-size: 2.75rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .hero-front-view.step-2-focus .hero-front-controls {
+      justify-content: flex-start;
     }
 
     .hero-front-close {
@@ -1799,7 +1806,7 @@
         font-size: clamp(1.4rem, 6vw, 2.4rem);
         white-space: normal;
         width: 90%;
-        top: 10%;
+        top: 5%;
       }
 
       .feature {
@@ -2118,7 +2125,7 @@
       },
       'without-balcony': {
         title: 'Unit with 2 rooms',
-        image: 'img/tourguiado/Serenas2rooms.svg',
+        image: 'img/tourguiado/TipoB/Tipo Bg.svg',
         interactive: true,
         step2Svg: 'img/tourguiado/masterplan2room.svg'
       }
@@ -2144,15 +2151,17 @@
     };
 
     const APP_UNIT_LETTERS = {
-      // Formato Serenas2rooms.svg (App-1…App-10)
+      // Formato TipoB/Tipo Bg.svg - IDs directos (letra única A-K)
+      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E',
+      'F': 'F', 'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K',
+      // Formato TipoABG.svg (3 rooms) - IDs directos
+      // Mismo formato, mantener compatibilidad
+      // Formato legacy Serenas2rooms.svg (App-1…App-10)
       'App-1': 'G', 'App-2': 'H',
       'App-3': 'E', 'App-4': 'F',
       'App-5': 'C', 'App-6': 'D',
       'App-7': 'A', 'App-8': 'B',
-      'App-9': 'I', 'App-10': 'J',
-      // Formato Serenas3rooms.svg (la letra es el ID directamente)
-      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E',
-      'F': 'F', 'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J'
+      'App-9': 'I', 'App-10': 'J'
     };
 
     const masterplanSceneById = {
@@ -2339,8 +2348,8 @@
 
       let hotspots = inlineSvg.querySelectorAll('[data-front-nav], [id^="app"], [id^="APP"], [id^="App"]');
       if (!hotspots.length) {
-        // Formato nuevo: IDs de letra única A-J (Serenas3rooms.svg)
-        hotspots = Array.from(inlineSvg.querySelectorAll('[id]')).filter(n => /^[A-J]$/.test(n.id));
+        // Formato nuevo: IDs de letra única A-K (TipoB.svg y TipoABG.svg)
+        hotspots = Array.from(inlineSvg.querySelectorAll('[id]')).filter(n => /^[A-K]$/.test(n.id));
       }
 
       hotspots.forEach((node) => {
@@ -2373,7 +2382,7 @@
       if (!inlineSvg) return false;
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Select area to start 360 tour';
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Click on the area you want to see';
       if (heroFrontClose) heroFrontClose.textContent = 'Back to layout';
 
       const sceneNodes = inlineSvg.querySelectorAll('[id]');
