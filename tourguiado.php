@@ -2077,6 +2077,17 @@
     // ================================
     // Hero map click handling (inline SVG)
     // ================================
+
+    // Caché de SVGs en memoria — evita refetches repetidos sin penalizar conexiones lentas.
+    // Los SVGs se precargan al hacer hover sobre un edificio (mouseenter), no al cargar la página.
+    const _svgCache = new Map();
+    function fetchSvgCached(url) {
+      if (_svgCache.has(url)) return Promise.resolve(_svgCache.get(url));
+      return fetch(url)
+        .then((r) => r.text())
+        .then((text) => { _svgCache.set(url, text); return text; });
+    }
+
     const pageBody = document.body;
     const heroRoot = document.querySelector('.hero');
     const heroFrontView = document.getElementById('heroFrontView');
@@ -2121,11 +2132,15 @@
     };
 
     const APP_UNIT_LETTERS = {
+      // Formato Serenas2rooms.svg (App-1…App-10)
       'App-1': 'G', 'App-2': 'H',
       'App-3': 'E', 'App-4': 'F',
       'App-5': 'C', 'App-6': 'D',
       'App-7': 'A', 'App-8': 'B',
-      'App-9': 'I', 'App-10': 'J'
+      'App-9': 'I', 'App-10': 'J',
+      // Formato Serenas3rooms.svg (la letra es el ID directamente)
+      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E',
+      'F': 'F', 'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J'
     };
 
     const masterplanSceneById = {
@@ -2300,21 +2315,24 @@
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
       if (heroFrontTitle) heroFrontTitle.textContent = 'Select unit layout';
+      if (heroFrontClose) heroFrontClose.textContent = 'Return to site map';
 
       const currentViewKey = viewKey;
       const openStep2 = () => {
-        fetch(getStep2MasterplanSvg(currentViewKey))
-          .then((r) => r.text())
+        fetchSvgCached(getStep2MasterplanSvg(currentViewKey))
           .then((nextSvgText) => {
             setupMasterplan2RoomStep(nextSvgText, currentViewKey);
           });
       };
 
       let hotspots = inlineSvg.querySelectorAll('[data-front-nav], [id^="app"], [id^="APP"], [id^="App"]');
-      if (!hotspots.length) hotspots = inlineSvg.querySelectorAll('[id]');
+      if (!hotspots.length) {
+        // Formato nuevo: IDs de letra única A-J (Serenas3rooms.svg)
+        hotspots = Array.from(inlineSvg.querySelectorAll('[id]')).filter(n => /^[A-J]$/.test(n.id));
+      }
 
       hotspots.forEach((node) => {
-        if (node.id === 'Layer_1') return;
+        if (/^(Layer_1|Capa_1|Layer)$/i.test(node.id)) return;
         const interactiveNodes = createSvgInteractiveTarget(node);
         if (!interactiveNodes) return;
         const letter = APP_UNIT_LETTERS[node.id];
@@ -2342,12 +2360,13 @@
       const inlineSvg = heroFrontSvgStage.querySelector('svg');
       if (!inlineSvg) return false;
 
-inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontTitle) heroFrontTitle.textContent = 'Select area to start 360 tour';
+      if (heroFrontClose) heroFrontClose.textContent = 'Back to layout';
 
       const sceneNodes = inlineSvg.querySelectorAll('[id]');
       sceneNodes.forEach((node) => {
-        if (node.id === 'Layer_1' || node.id === 'Background') return;
+        if (/^(Layer_1|Capa_1|Layer|Background)$/i.test(node.id)) return;
         const sceneId = resolveTourSceneId(node.getAttribute('data-scene') || node.id || '');
         if (!sceneId) return;
 
@@ -2359,6 +2378,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           if (!heroFrontAreaTooltip) return;
           heroFrontAreaTooltip.classList.remove('visible');
           heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
+          heroFrontAreaTooltip.textContent = '';
         };
 
         const placeAreaHint = (x, y) => {
@@ -2404,8 +2424,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontTitle) heroFrontTitle.textContent = view.title;
 
       if (view.interactive && heroFrontSvgStage) {
-        fetch(view.image)
-          .then((r) => r.text())
+        fetchSvgCached(view.image)
           .then((svgText) => {
             const ok = setupInteractiveNoBalcony(svgText, viewKey);
             if (ok) {
@@ -2471,7 +2490,9 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontAreaTooltip) {
         heroFrontAreaTooltip.classList.remove('visible');
         heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
+        heroFrontAreaTooltip.textContent = '';
       }
+      if (heroFrontTitle) heroFrontTitle.textContent = '';
       heroFrontView.classList.remove('layout-selection-focus');
       heroFrontView.classList.remove('step-2-focus');
       if (heroFrontImage) heroFrontImage.style.display = '';
@@ -2599,6 +2620,14 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         }
 
         g.addEventListener('mouseenter', (e) => {
+          // Precarga en hover — da tiempo al fetch antes del clic sin desperdiciar ancho de banda
+          if (isApartmentUnit) {
+            const prefetchView = heroApartmentViews[viewKey];
+            if (prefetchView) {
+              fetchSvgCached(prefetchView.image);
+              fetchSvgCached(prefetchView.step2Svg);
+            }
+          }
           element.style.transform = 'scale(1.04)';
           element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
           if (!tooltip || !tooltipText) return;
@@ -3532,8 +3561,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       revealHeroFrontView();
 
       const step2Svg = getStep2MasterplanSvg(activePlanViewKey);
-      fetch(step2Svg)
-        .then((r) => r.text())
+      fetchSvgCached(step2Svg)
         .then((svgText) => {
           const ok = setupMasterplan2RoomStep(svgText, activePlanViewKey);
           if (!ok) hideHeroFrontView();
