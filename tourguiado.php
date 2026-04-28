@@ -350,7 +350,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: url('img/SERENAS SITE.avif') center/100% 100% no-repeat;
+      background: url('img/tourguiado/SERENAS SITE.avif') center/100% 100% no-repeat;
     }
 
     .hero.step-1 .hero-apartment-map {
@@ -547,6 +547,9 @@
     .hero-front-svg-stage #BedRoom2,
     .hero-front-svg-stage #BathRoom1,
     .hero-front-svg-stage #BathRoom2,
+    .hero-front-svg-stage #Bath1,
+    .hero-front-svg-stage #Bath2,
+    .hero-front-svg-stage #WC,
     .hero-front-svg-stage #Closet,
     .hero-front-svg-stage #Laundry {
       cursor: pointer;
@@ -616,25 +619,44 @@
       transition: top 0.4s ease, font-size 0.4s ease, font-weight 0.4s ease;
     }
 
-    /* Paso 1 — grande en el cielo */
+    /* Paso 1 — ayuda discreta sin tapar los edificios */
     .hero-front-view.layout-selection-focus .hero-front-title {
-      top: 14%;
-      font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+      top: max(1.25rem, env(safe-area-inset-top));
+      left: max(1.25rem, env(safe-area-inset-left));
+      transform: none;
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.35rem;
+      padding: 0 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 185, 139, 0.38);
+      background: rgba(5, 18, 14, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       white-space: nowrap;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+      text-shadow: none;
     }
 
-    /* Paso 2 — pequeño en la zona de controles (abajo) */
+    /* Paso 2 — esquina inferior derecha, espejo del botón */
     .hero-front-view.step-2-focus .hero-front-title {
       bottom: clamp(24px, 4vw, 44px);
       top: auto;
-      transform: translateX(-50%);
-      font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+      left: auto;
+      right: max(1rem, env(safe-area-inset-right));
+      transform: none;
+      text-align: right;
+      font-size: 2.75rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .hero-front-view.step-2-focus .hero-front-controls {
+      justify-content: flex-start;
     }
 
     .hero-front-close {
@@ -680,14 +702,14 @@
 
     #svgContainer image[id^="app"],
     #svgContainer image[id^="APP"] {
-      transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      transition: filter 200ms ease-out, transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
       transform-box: fill-box;
       transform-origin: 50% 50%;
     }
 
     @keyframes appAttentionPulse {
       0%, 100% { filter: none; }
-      50%       { filter: brightness(1.11) drop-shadow(0 0 10px rgba(210, 168, 24, 0.75)); }
+      50%       { filter: brightness(1.09) drop-shadow(0 0 10px rgba(19, 185, 139, 0.72)); }
     }
 
     #svgContainer image.app-intro-pulse {
@@ -700,7 +722,7 @@
       background: rgba(5, 18, 14, 0.93);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(210, 168, 24, 0.45);
+      border: 1px solid rgba(19, 185, 139, 0.45);
       color: #fff;
       padding: 7px 14px 8px;
       border-radius: 8px;
@@ -727,7 +749,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #d4a81c;
+      background: #13b98b;
       flex-shrink: 0;
     }
 
@@ -744,7 +766,7 @@
       background: rgba(5, 18, 14, 0.82);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(210, 168, 24, 0.38);
+      border: 1px solid rgba(19, 185, 139, 0.38);
       color: rgba(255, 255, 255, 0.92);
       font-size: 0.88rem;
       font-weight: 700;
@@ -763,7 +785,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #d4a81c;
+      background: #13b98b;
       animation: hintDotPulse 1.1s ease-in-out infinite;
     }
 
@@ -987,7 +1009,7 @@
     }
 
     .gallery-item:last-child {
-      background-image: url('./pool%20family.webp');
+      background-image: url('img/shared/pool-family.webp');
     }
 
     .cta {
@@ -1328,6 +1350,7 @@
     }
 
     .tour-hotspot-toggle.is-off {
+      display: none;
       background: rgba(45, 16, 16, 0.72);
       border-color: rgba(255, 255, 255, 0.16);
     }
@@ -1676,7 +1699,7 @@
       }
 
       .hero-apartment-map {
-        background-image: url('img/Master_Plan.webp');
+        background-image: url('img/shared/Master_Plan.webp');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -1796,10 +1819,13 @@
       }
 
       .hero-front-view.layout-selection-focus .hero-front-title {
-        font-size: clamp(1.4rem, 6vw, 2.4rem);
-        white-space: normal;
-        width: 90%;
-        top: 10%;
+        top: max(0.9rem, env(safe-area-inset-top));
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: calc(100vw - 2rem);
+        font-size: 0.68rem;
+        white-space: nowrap;
       }
 
       .feature {
@@ -2001,12 +2027,12 @@
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
           <!-- SVG is loaded dynamically from:                                  -->
-          <!-- img/SERENAS SITE LAND reduce.svg                                 -->
+          <!-- img/tourguiado/SERENAS SITE LAND reduce.svg                                 -->
         </div>
       </div>
 
       <div class="hero-front-view" id="heroFrontView" aria-hidden="true">
-        <img class="hero-front-image" id="heroFrontImage" src="img/Serenasconbalcon.svg" alt="Unit with 3 rooms">
+        <img class="hero-front-image" id="heroFrontImage" src="img/tourguiado/Serenasconbalcon.svg" alt="Unit with 3 rooms">
         <div class="hero-front-svg-stage" id="heroFrontSvgStage" aria-hidden="true"></div>
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
         <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
@@ -2049,31 +2075,16 @@
         <button class="tour-pos-copy" id="tourPosCopyBtn">Copiar</button>
       </div>
 
-      <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
       <div class="tour-stage">
         <div class="tour-loading active" id="tourLoading" aria-hidden="false">
           <span class="tour-loading-spinner" aria-hidden="true"></span>
           <span id="tourLoadingText">Loading 360...</span>
         </div>
-        <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" class="tour-scene" id="tourScene">
-          <a-assets>
-            <img id="tourAssetBalcon" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" alt="Balcón exterior">
-            <img id="tourAssetSala" src="img/Renders%20360/Interiores/Sala.webp" alt="Sala">
-            <img id="tourAssetComedor" src="img/Renders%20360/Interiores/Comedor.webp" alt="Comedor">
-            <img id="tourAssetCocina" src="img/Renders%20360/Interiores/Cocina.webp" alt="Cocina">
-            <img id="tourAssetPasillo" src="img/Renders%20360/Interiores/Pasillo.webp" alt="Pasillo">
-            <img id="tourAssetPasillo2" src="img/Renders%20360/Interiores/Pasillo2.webp" alt="Pasillo 2">
-            <img id="tourAssetDormPrincipal" src="img/Renders%20360/Interiores/Dormitorio%20principal.webp" alt="Dormitorio Principal">
-            <img id="tourAssetDormA" src="img/Renders%20360/Interiores/Dormitorio%20A.webp" alt="Dormitorio A">
-            <img id="tourAssetDormB" src="img/Renders%20360/Interiores/Dormitorio%20B.webp" alt="Dormitorio B">
-            <img id="tourAssetBano" src="img/Renders%20360/Interiores/Baño.webp" alt="Baño Principal">
-            <img id="tourAssetBano2" src="img/Renders%20360/Interiores/Baño%202.webp" alt="Baño 2">
-            <img id="tourAssetWC" src="img/Renders%20360/Interiores/WC.webp" alt="WC">
-          </a-assets>
+        <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" loading-screen="enabled: false" class="tour-scene" id="tourScene">
           <a-entity camera="fov: 80" look-controls="touchEnabled: false; mouseEnabled: true; magicWindowTrackingEnabled: false" wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="objects: .tour-hotspot"></a-entity>
           </a-entity>
-          <a-sky id="tourSky" src="img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp" rotation="0 -90 0" radius="30"></a-sky>
+          <a-sky id="tourSky" visible="false" rotation="0 -90 0" radius="30"></a-sky>
           <a-sky id="tourSkyBlend" visible="false" rotation="0 -90 0" radius="29.8"></a-sky>
           <a-entity id="tourHotspots"></a-entity>
 
@@ -2092,6 +2103,29 @@
     // ================================
     // Hero map click handling (inline SVG)
     // ================================
+
+    // Caché de SVGs en memoria.
+    // _svgFetching guarda el promise en vuelo para no lanzar fetches duplicados
+    // mientras el archivo aún está descargando.
+    const _svgCache = new Map();
+    const _svgFetching = new Map();
+    function fetchSvgCached(url) {
+      if (_svgCache.has(url)) return Promise.resolve(_svgCache.get(url));
+      if (_svgFetching.has(url)) return _svgFetching.get(url);
+      const promise = fetch(url)
+        .then((r) => r.text())
+        .then((text) => { _svgCache.set(url, text); _svgFetching.delete(url); return text; })
+        .catch((err) => { _svgFetching.delete(url); throw err; });
+      _svgFetching.set(url, promise);
+      return promise;
+    }
+
+    // Inicia precarga en background de un SVG sin bloquear nada.
+    function prefetchSvgBackground(url) {
+      if (_svgCache.has(url) || _svgFetching.has(url)) return;
+      fetchSvgCached(url);
+    }
+
     const pageBody = document.body;
     const heroRoot = document.querySelector('.hero');
     const heroFrontView = document.getElementById('heroFrontView');
@@ -2104,15 +2138,15 @@
     const heroApartmentViews = {
       'with-balcony': {
         title: 'Unit with 3 rooms',
-        image: 'img/Serenas3rooms.svg',
+        image: 'img/tourguiado/TipoA/TipoABG.svg',
         interactive: true,
-        step2Svg: 'img/masterplan3room.svg'
+        step2Svg: 'img/tourguiado/masterplan3room.svg'
       },
       'without-balcony': {
         title: 'Unit with 2 rooms',
-        image: 'img/Serenas2rooms.svg',
+        image: 'img/tourguiado/TipoB/Tipo Bg.svg',
         interactive: true,
-        step2Svg: 'img/masterplan2room.svg'
+        step2Svg: 'img/tourguiado/masterplan2room.svg'
       }
     };
 
@@ -2136,6 +2170,12 @@
     };
 
     const APP_UNIT_LETTERS = {
+      // Formato TipoB/Tipo Bg.svg - IDs directos (letra única A-K)
+      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E',
+      'F': 'F', 'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K',
+      // Formato TipoABG.svg (3 rooms) - IDs directos
+      // Mismo formato, mantener compatibilidad
+      // Formato legacy Serenas2rooms.svg (App-1…App-10)
       'App-1': 'G', 'App-2': 'H',
       'App-3': 'E', 'App-4': 'F',
       'App-5': 'C', 'App-6': 'D',
@@ -2155,6 +2195,8 @@
       bathroom1: 'bano-principal',
       bathroom2: 'bano-2',
       closet: 'wc',
+      wc: 'wc',
+      toilet: 'wc',
       laundry: 'pasillo-2',
       // masterplan3room (3 bedrooms) IDs from SVG: Balcon, Living, Dinning, Kitchen, BedRoom, BedRoom-2, BedRoom2, Bath1, Bath2, Closet, Laundry
       living: 'sala',
@@ -2166,12 +2208,14 @@
       bath1: 'bano-principal',
       bath2: 'bano-2',
       closet: 'wc',
+      wc: 'wc',
+      toilet: 'wc',
       laundry: 'pasillo-2'
     };
 
     function getStep2MasterplanSvg(viewKey) {
       const view = heroApartmentViews[viewKey];
-      return view && view.step2Svg ? view.step2Svg : 'img/masterplan2room.svg';
+      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/masterplan2room.svg';
     }
 
     function revealHeroFrontView() {
@@ -2244,7 +2288,7 @@
       const originalTransform = node.getAttribute('transform') || '';
       const existingWrapper = parentNode.tagName && String(parentNode.tagName).toLowerCase() === 'g' && parentNode.getAttribute('data-interactive-wrapper') === 'true';
 
-      node.style.transition = 'filter 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+      node.style.transition = 'filter 200ms ease-out, transform 200ms cubic-bezier(0.22, 1, 0.36, 1)';
       node.style.transformBox = 'fill-box';
       node.style.transformOrigin = '50% 50%';
 
@@ -2268,11 +2312,11 @@
       const tooltipText = document.getElementById('aptTooltipText');
       const disableScale = Boolean(options.disableScale);
       const hoverFilter = disableScale
-        ? 'brightness(1.08) drop-shadow(0 0 8px rgba(210,168,24,0.65))'
-        : 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+        ? 'brightness(1.06) drop-shadow(0 0 8px rgba(19,185,139,0.6))'
+        : 'brightness(1.1) drop-shadow(0 0 10px rgba(19,185,139,0.78)) drop-shadow(0 0 22px rgba(19,185,139,0.32))';
 
       const showHover = (e) => {
-        visualNode.style.transform = disableScale ? '' : 'scale(1.04)';
+        visualNode.style.transform = disableScale ? '' : 'scale(1.025)';
         visualNode.style.filter = hoverFilter;
         if (unitLabel && tooltip && tooltipText) {
           tooltipText.textContent = unitLabel;
@@ -2314,22 +2358,25 @@
       if (!inlineSvg) return false;
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Select unit layout';
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Select a unit layout';
+      if (heroFrontClose) heroFrontClose.textContent = 'Return to site map';
 
       const currentViewKey = viewKey;
       const openStep2 = () => {
-        fetch(getStep2MasterplanSvg(currentViewKey))
-          .then((r) => r.text())
+        fetchSvgCached(getStep2MasterplanSvg(currentViewKey))
           .then((nextSvgText) => {
             setupMasterplan2RoomStep(nextSvgText, currentViewKey);
           });
       };
 
       let hotspots = inlineSvg.querySelectorAll('[data-front-nav], [id^="app"], [id^="APP"], [id^="App"]');
-      if (!hotspots.length) hotspots = inlineSvg.querySelectorAll('[id]');
+      if (!hotspots.length) {
+        // Formato nuevo: IDs de letra única A-K (TipoB.svg y TipoABG.svg)
+        hotspots = Array.from(inlineSvg.querySelectorAll('[id]')).filter(n => /^[A-K]$/.test(n.id));
+      }
 
       hotspots.forEach((node) => {
-        if (node.id === 'Layer_1') return;
+        if (/^(Layer_1|Capa_1|Layer)$/i.test(node.id)) return;
         const interactiveNodes = createSvgInteractiveTarget(node);
         if (!interactiveNodes) return;
         const letter = APP_UNIT_LETTERS[node.id];
@@ -2357,12 +2404,13 @@
       const inlineSvg = heroFrontSvgStage.querySelector('svg');
       if (!inlineSvg) return false;
 
-inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Select area to start 360 tour';
+      inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Click on the area you want to see';
+      if (heroFrontClose) heroFrontClose.textContent = 'Back to layout';
 
       const sceneNodes = inlineSvg.querySelectorAll('[id]');
       sceneNodes.forEach((node) => {
-        if (node.id === 'Layer_1' || node.id === 'Background') return;
+        if (/^(Layer_1|Capa_1|Layer|Background)$/i.test(node.id)) return;
         const sceneId = resolveTourSceneId(node.getAttribute('data-scene') || node.id || '');
         if (!sceneId) return;
 
@@ -2374,6 +2422,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           if (!heroFrontAreaTooltip) return;
           heroFrontAreaTooltip.classList.remove('visible');
           heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
+          heroFrontAreaTooltip.textContent = '';
         };
 
         const placeAreaHint = (x, y) => {
@@ -2419,8 +2468,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontTitle) heroFrontTitle.textContent = view.title;
 
       if (view.interactive && heroFrontSvgStage) {
-        fetch(view.image)
-          .then((r) => r.text())
+        fetchSvgCached(view.image)
           .then((svgText) => {
             const ok = setupInteractiveNoBalcony(svgText, viewKey);
             if (ok) {
@@ -2486,7 +2534,9 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       if (heroFrontAreaTooltip) {
         heroFrontAreaTooltip.classList.remove('visible');
         heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
+        heroFrontAreaTooltip.textContent = '';
       }
+      if (heroFrontTitle) heroFrontTitle.textContent = '';
       heroFrontView.classList.remove('layout-selection-focus');
       heroFrontView.classList.remove('step-2-focus');
       if (heroFrontImage) heroFrontImage.style.display = '';
@@ -2614,8 +2664,16 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         }
 
         g.addEventListener('mouseenter', (e) => {
-          element.style.transform = 'scale(1.04)';
-          element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+          // Precarga en hover — da tiempo al fetch antes del clic sin desperdiciar ancho de banda
+          if (isApartmentUnit) {
+            const prefetchView = heroApartmentViews[viewKey];
+            if (prefetchView) {
+              fetchSvgCached(prefetchView.image);
+              fetchSvgCached(prefetchView.step2Svg);
+            }
+          }
+          element.style.transform = 'scale(1.025)';
+          element.style.filter = 'brightness(1.1) drop-shadow(0 0 10px rgba(19,185,139,0.78)) drop-shadow(0 0 22px rgba(19,185,139,0.32))';
           if (!tooltip || !tooltipText) return;
           tooltipText.textContent = isApartmentUnit
             ? ('Building ' + realNum + '  ·  ' + apartmentLabel + ' ')
@@ -2667,7 +2725,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         if (svgContainer.dataset.loaded === 'true' || svgContainer.dataset.loading === 'true') return;
         svgContainer.dataset.loading = 'true';
 
-        fetch('img/SERENAS%20SITE%20LAND%20reduce.svg')
+        fetch('img/tourguiado/SERENAS%20SITE%20LAND%20reduce.svg')
           .then(r => r.text())
           .then(svgText => {
             svgContainer.innerHTML = svgText;
@@ -2680,6 +2738,20 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             const loadingEl = document.getElementById('heroMapLoading');
             if (loadingEl) loadingEl.classList.add('hidden');
             initSvgApartmentClicks();
+
+            // Mapa visible → iniciar descarga de los SVGs de layout en background.
+            // requestIdleCallback garantiza que no compite con nada crítico.
+            const startBgPrefetch = () => {
+              Object.values(heroApartmentViews).forEach((v) => {
+                prefetchSvgBackground(v.image);
+                prefetchSvgBackground(v.step2Svg);
+              });
+            };
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(startBgPrefetch, { timeout: 3000 });
+            } else {
+              setTimeout(startBgPrefetch, 1500);
+            }
           })
           .catch(() => {
             svgContainer.dataset.loading = '';
@@ -2733,8 +2805,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'balcon-exterior',
         title: 'Balcony',
-        image: 'img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
-        mobileImage: 'img/Renders%20360/Exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
+        image: 'img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
+        mobileImage: 'img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
         rotation: '0 -90 0',
         hotspots: [
           { to: 'sala', label: 'Living Room', position: '0 0 4' }
@@ -2743,8 +2815,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'sala',
         title: 'Living Room',
-        image: 'img/Renders%20360/Interiores/Sala.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Sala.webp',
+        image: 'img/tourguiado/renders/interiores/Sala.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Sala.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Pasillo: arco/puerta visible en borde izquierdo (~3%) → casi al frente
@@ -2759,8 +2831,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'comedor',
         title: 'Dining Room',
-        image: 'img/Renders%20360/Interiores/Comedor.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Comedor.webp',
+        image: 'img/tourguiado/renders/interiores/Comedor.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Comedor.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Cocina: zona de cocina visible al (~8%) → adelante-izquierda
@@ -2772,8 +2844,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'cocina',
         title: 'Kitchen',
-        image: 'img/Renders%20360/Interiores/Cocina.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Cocina.webp',
+        image: 'img/tourguiado/renders/interiores/Cocina.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Cocina.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Comedor: arco/apertura hacia comedor visible al (~48%) → detrás
@@ -2783,8 +2855,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'pasillo',
         title: 'Door',
-        image: 'img/Renders%20360/Interiores/Pasillo.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Pasillo.webp',
+        image: 'img/tourguiado/renders/interiores/Pasillo.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Pasillo.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Dormitorio Principal: arco abierto grande (~3-5%) → casi al frente
@@ -2802,8 +2874,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'dormitorio-principal',
         title: 'Master Bedroom',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20principal.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20principal.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20principal.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20principal.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Pasillo: puerta de salida al pasillo (~5%) → casi al frente-izquierda
@@ -2816,8 +2888,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'bano-principal',
         title: 'Master Bathroom',
-        image: 'img/Renders%20360/Interiores/Baño.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Baño.webp',
+        image: 'img/tourguiado/renders/interiores/Baño.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Baño.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al dormitorio principal (~5%) → casi al frente
@@ -2827,8 +2899,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'dormitorio-a',
         title: 'Bedroom A',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20A.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20A.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20A.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20A.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta al pasillo 2 visible (~10%) → adelante-izquierda
@@ -2838,8 +2910,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'pasillo-2',
         title: 'Hallway 2',
-        image: 'img/Renders%20360/Interiores/Pasillo2.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Pasillo2.webp',
+        image: 'img/tourguiado/renders/interiores/Pasillo2.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Pasillo2.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Dormitorio B: puerta lateral izquierda (~3%) → casi al frente
@@ -2851,14 +2923,14 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           // Baño 2: puerta derecha (~72%) → derecha-detrás
           { to: 'bano-2', label: 'Bathroom 2', position: '-0.7 -2 4.3' },
           // WC: puerta extremo derecho (~88%) → derecha-adelante
-         
+          { to: 'wc', label: 'WC', position: '4.4 -1.5 1.5' }
         ]
       },
       {
         id: 'dormitorio-b',
         title: 'Bedroom B',
-        image: 'img/Renders%20360/Interiores/Dormitorio%20B.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Dormitorio%20B.webp',
+        image: 'img/tourguiado/renders/interiores/Dormitorio%20B.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Dormitorio%20B.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta al pasillo 2 (~17%) → izquierda-adelante
@@ -2868,8 +2940,8 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'bano-2',
         title: 'Bathroom 2',
-        image: 'img/Renders%20360/Interiores/Baño%202.webp',
-        mobileImage: 'img/Renders%20360/Interiores/Baño%202.webp',
+        image: 'img/tourguiado/renders/interiores/Baño%202.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Baño%202.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta abierta hacia pasillo 2 (~30%) → izquierda-detrás
@@ -2879,11 +2951,12 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       {
         id: 'wc',
         title: 'WC',
-        image: 'img/Renders%20360/Interiores/WC.webp',
-        mobileImage: 'img/Renders%20360/Interiores/WC.webp',
+        image: 'img/tourguiado/renders/interiores/WC.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/WC.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al pasillo 2 (~40%) → izquierda-detrás
+          { to: 'pasillo-2', label: 'Hallway 2', position: '1.4 -1.2 -4.4' },
           { to: 'dormitorio-principal', label: 'Room', position: '-1.2 -1.1 4.5' },
             { to: 'bano-principal', label: 'Bathroom', position: '-4.6 -1.3 0.4' }
         ]
@@ -2918,21 +2991,23 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
     let isTransitioning = false;
     const SCENE_BLEND_SWAP_DELAY = 120;
-    const SCENE_BLEND_TOTAL_DURATION = 900;
-    const SCENE_MOVE_SWAP_DELAY = 320;
-    const SCENE_MOVE_CAMERA_RESET_DELAY = 220;
-    const SCENE_MOVE_TOTAL_DURATION = 1180;
+    const SCENE_BLEND_TOTAL_DURATION = 800;
+    const SCENE_MOVE_SWAP_DELAY = 260;
+    const SCENE_MOVE_CAMERA_RESET_DELAY = 180;
+    const SCENE_MOVE_TOTAL_DURATION = 980;
     const DEFAULT_TOUR_FOV = 80;
     const MIN_TOUR_FOV = 45;
     const MAX_TOUR_FOV = 95;
-    const PINCH_ZOOM_STRENGTH = 0.78;
-    const TOUCH_LOOK_SENSITIVITY = 0.0032;
+    const PINCH_ZOOM_STRENGTH = 0.68;
+    const TOUCH_LOOK_SENSITIVITY = 0.0028;
     const MAX_TOUR_PITCH = (Math.PI / 2) - 0.08;
     let areTourHotspotsVisible = false;
     const TOUCH_HINT_STORAGE_KEY = 'tour-touch-hint-seen';
     let tourTouchHintTimeout = null;
     let tourTouchHintShowTimeout = null;
     let tourLoadingToken = 0;
+    let tourEngineLoadPromise = null;
+    let tourInteractionHandlersReady = false;
 
     const availableTourIndexes = tourScenes
       .map((scene, index) => scene.locked ? null : index)
@@ -2940,8 +3015,37 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
     let activeTourIndex = availableTourIndexes[0] || 0;
 
+    const tourSceneImagesByLayout = {
+      'with-balcony': {
+        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        cocina: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Cocina.webp',
+        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20principal.webp',
+        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o.webp',
+        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20A.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20B.webp',
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o%202.webp',
+        wc: 'img/tourguiado/renders/interiores/360%20Tipo%20A/WC.webp'
+      },
+      'without-balcony': {
+        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Sala.webp',
+        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Comedor.webp',
+        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
+        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%201.webp',
+        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%201.webp',
+        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
+        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%202.webp'
+      }
+    };
+
     function getSceneImage(scene) {
       if (!scene) return '';
+      const layoutImages = tourSceneImagesByLayout[activePlanViewKey] || null;
+      if (layoutImages && layoutImages[scene.id]) return layoutImages[scene.id];
       return isMobileViewport() ? (scene.mobileImage || scene.image) : scene.image;
     }
 
@@ -2958,6 +3062,49 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
     function getTourLookControls() {
       return tourCamera && tourCamera.components ? tourCamera.components['look-controls'] : null;
+    }
+
+    function ensureTourEngineLoaded() {
+      if (!tourScene) return Promise.reject(new Error('Tour scene not found'));
+
+      const waitForScene = () => new Promise((resolve) => {
+        const finish = () => {
+          if (!tourInteractionHandlersReady) {
+            setupClickPositionPicker();
+            setupTouchZoom();
+            tourInteractionHandlersReady = true;
+          }
+          resolve();
+        };
+
+        if (tourScene.hasLoaded) {
+          finish();
+          return;
+        }
+
+        tourScene.addEventListener('loaded', finish, { once: true });
+      });
+
+      if (window.AFRAME) return waitForScene();
+
+      if (!tourEngineLoadPromise) {
+        tourEngineLoadPromise = new Promise((resolve, reject) => {
+          const existingScript = document.querySelector('script[data-tour-aframe="true"]');
+          const script = existingScript || document.createElement('script');
+
+          script.addEventListener('load', () => waitForScene().then(resolve), { once: true });
+          script.addEventListener('error', reject, { once: true });
+
+          if (!existingScript) {
+            script.src = 'https://aframe.io/releases/1.6.0/aframe.min.js';
+            script.async = true;
+            script.dataset.tourAframe = 'true';
+            document.head.appendChild(script);
+          }
+        });
+      }
+
+      return tourEngineLoadPromise;
     }
 
     function syncTourCameraRotation() {
@@ -3403,7 +3550,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       window.setTimeout(() => {
         setTourScene(targetIndex, announce, {
           crossfadeSky: true,
-          skyFadeDuration: 760,
+          skyFadeDuration: 640,
           keepControlsDisabled: true
         });
       }, SCENE_BLEND_SWAP_DELAY);
@@ -3457,7 +3604,7 @@ inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         setTourScene(targetIndex, announce, {
           preserveCamera: true,
           crossfadeSky: true,
-          skyFadeDuration: 820,
+          skyFadeDuration: 680,
           keepControlsDisabled: true
         });
 
@@ -3502,8 +3649,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       revealHeroFrontView();
 
       const step2Svg = getStep2MasterplanSvg(activePlanViewKey);
-      fetch(step2Svg)
-        .then((r) => r.text())
+      fetchSvgCached(step2Svg)
         .then((svgText) => {
           const ok = setupMasterplan2RoomStep(svgText, activePlanViewKey);
           if (!ok) hideHeroFrontView();
@@ -3528,33 +3674,42 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         tourShell.classList.add('is-entering');
       }
 
-      if (tourScene && typeof tourScene.play === 'function') {
-        tourScene.play();
-      }
-      window.requestAnimationFrame(refreshSceneViewport);
-      resetTourZoom();
-      showTourTouchHint();
       beginTourLoading('Loading 360...');
 
-      if (tourTransitionOverlay) {
-        tourTransitionOverlay.classList.remove('fading', 'releasing');
-      }
-      if (tourSky) {
-        tourSky.removeAttribute('animation__skyfadein');
-        tourSky.removeAttribute('animation__skyfadeout');
-        tourSky.setAttribute('visible', 'true');
-        setSkyMaterial(tourSky, 1, false);
-      }
-      if (tourSkyBlend) {
-        tourSkyBlend.removeAttribute('animation__skyfadein');
-        tourSkyBlend.removeAttribute('animation__skyfadeout');
-        tourSkyBlend.setAttribute('visible', 'false');
-        setSkyMaterial(tourSkyBlend, 0, true);
-      }
-      isTransitioning = false;
-      updateHotspotToggleUi();
+      ensureTourEngineLoaded()
+        .then(() => {
+          if (!tourModal || !tourModal.classList.contains('active')) return;
 
-      setTourScene(activeTourIndex, true);
+          if (tourScene && typeof tourScene.play === 'function') {
+            tourScene.play();
+          }
+          window.requestAnimationFrame(refreshSceneViewport);
+          resetTourZoom();
+          showTourTouchHint();
+
+          if (tourTransitionOverlay) {
+            tourTransitionOverlay.classList.remove('fading', 'releasing');
+          }
+          if (tourSky) {
+            tourSky.removeAttribute('animation__skyfadein');
+            tourSky.removeAttribute('animation__skyfadeout');
+            tourSky.setAttribute('visible', 'true');
+            setSkyMaterial(tourSky, 1, false);
+          }
+          if (tourSkyBlend) {
+            tourSkyBlend.removeAttribute('animation__skyfadein');
+            tourSkyBlend.removeAttribute('animation__skyfadeout');
+            tourSkyBlend.setAttribute('visible', 'false');
+            setSkyMaterial(tourSkyBlend, 0, true);
+          }
+          isTransitioning = false;
+          updateHotspotToggleUi();
+
+          setTourScene(activeTourIndex, true);
+        })
+        .catch(() => {
+          if (tourLoadingText) tourLoadingText.textContent = 'Could not load 360 tour.';
+        });
     }
 
     function closeTour() {
@@ -3723,6 +3878,16 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
           setTourFov(pinchStartFov * Math.pow(zoomRatio, PINCH_ZOOM_STRENGTH));
         }, { passive: false });
 
+        canvas.addEventListener('wheel', (event) => {
+          if (!tourModal || !tourModal.classList.contains('active')) return;
+          event.preventDefault();
+          hideTourTouchHint();
+          const camera3D = getTourThreeCamera();
+          const currentFov = camera3D && Number.isFinite(camera3D.fov) ? camera3D.fov : DEFAULT_TOUR_FOV;
+          const wheelDelta = event.deltaY * (event.deltaMode === 1 ? 12 : 1);
+          setTourFov(currentFov + wheelDelta * 0.035);
+        }, { passive: false });
+
         const clearPinch = () => {
           pinchStartDistance = 0;
           touchLookActive = false;
@@ -3795,9 +3960,6 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         else { tourScene.addEventListener('loaded', trySetup); }
       }
     }
-
-    setupClickPositionPicker();
-    setupTouchZoom();
 
     if (tourPosToggle) {
       tourPosToggle.addEventListener('click', () => {

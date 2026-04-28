@@ -56,7 +56,7 @@ function e(string $value): string
 
 function brand_logo_url(): string
 {
-    return 'https://laslomasserenas.com/img/logo-fallback.png';
+    return 'https://laslomasserenas.com/img/shared/logo-fallback.png';
 }
 
 function save_contact_submission(array $payload): void

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Las Lomas Serenas | Home</title>
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="img/shared/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="img/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+  <link rel="preload" href="img/shared/wlogo.svg" as="image" type="image/svg+xml" fetchpriority="high">
   <style>
     :root {
       --lls-bg: #ffffff;
@@ -127,7 +127,7 @@
 
     .lls-hero-new__media {
       height: min(100vh, 1070px);
-      background: url("img/Master_Plan.webp") center / 100% 100% no-repeat;
+      background: url("img/shared/Master_Plan.webp") center / 100% 100% no-repeat;
       background-color: #f0f0f0;
     }
 
@@ -923,7 +923,7 @@
       <div class="lls-hero-new__overlay" aria-hidden="true">
         <div class="lls-hero-new__overlay-inner">
           <div class="lls-hero-new__tagline">
-            <img src="img/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
+            <img src="img/home/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
           </div>
         </div>
       </div>
@@ -970,7 +970,7 @@
           </ul>
         </div>
         <div class="lls-safety__media">
-          <img src="img/front-green.webp" alt="Primary entrance of Las Lomas Serenas" loading="lazy">
+          <img src="img/home/front-green.webp" alt="Primary entrance of Las Lomas Serenas" loading="lazy">
         </div>
       </div>
     </section>
@@ -988,13 +988,13 @@
     <section class="lls-typologies" id="layouts">
       <div class="lls-shell">
         <div class="lls-branding">
-          <img src="img/wlogo.svg" alt="Las Lomas Serenas Brand Mark" loading="lazy">
+          <img src="img/shared/wlogo.svg" alt="Las Lomas Serenas Brand Mark" loading="lazy">
         </div>
         <div class="lls-typologies__grid">
           <article class="lls-type-card">
             <div class="lls-type-card__tag">3 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy"
+              <img src="img/home/3habitaciones.webp" alt="3 Bedroom Apartment Render" loading="lazy"
                 class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
@@ -1011,7 +1011,7 @@
           <article class="lls-type-card">
             <div class="lls-type-card__tag">2 Bedrooms</div>
             <div class="lls-type-card__media">
-              <img src="img/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy"
+              <img src="img/home/2habitaciones.webp" alt="2 Bedroom Apartment Render" loading="lazy"
                 class="lls-type-card__img--sm">
             </div>
             <div class="lls-type-card__body">
@@ -1049,7 +1049,7 @@
           rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
       </div>
       <div class="">
-        <img src="img/sport_home.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+        <img src="img/home/sport_home.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
 
       </div>
     </section>
@@ -1061,7 +1061,7 @@
           and peace we all seek.</p>
       </div>
       <div class="">
-        <img src="img/pool-family.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
+        <img src="img/shared/pool-family.webp" class="image_full" alt="Project amenities sports court" loading="lazy">
 
       </div>
     </section>

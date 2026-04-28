@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Las Lomas Serenas | About Us</title>
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -260,11 +260,11 @@
       <div class="">
         <div class="about-grid" style="height: 90%;">
           <figure class="about-card">
-            <img src="img/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy"
+            <img src="img/about-us/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy"
               decoding="async">
           </figure>
           <figure class="about-card">
-            <img src="img/mapa_recurso.webp" alt="Map of the Caribbean showing the Dominican Republic location"
+            <img src="img/about-us/mapa_recurso.webp" alt="Map of the Caribbean showing the Dominican Republic location"
               loading="lazy" decoding="async">
           </figure>
         </div>
@@ -283,7 +283,7 @@
       <div class="about-shell">
         <div class="about-company-layout">
           <div class="about-company-copy">
-            <img class="about-company-logo" src="img/MaireniLogo.webp" alt="Maireni Bournigal & Co logo" loading="lazy"
+            <img class="about-company-logo" src="img/about-us/MaireniLogo.webp" alt="Maireni Bournigal & Co logo" loading="lazy"
               decoding="async">
             <div class="about-company-text" id="about-company-title">
               <p class="about-copy">Since 1985, Bournigal Construction has delivered premium residential developments,
@@ -297,7 +297,7 @@
           </div>
 
           <figure class="about-company-image">
-            <img src="img/MaireniRecurso.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
+            <img src="img/about-us/MaireniRecurso.webp" alt="Construction team working on-site" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Las Lomas Serenas | Amenities</title>
-    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/logo-fallback.png">
+  <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -378,7 +378,7 @@
         <!-- 3. Basketball Court -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
+                <img src="img/amenities/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>Basketball Court</h2>
@@ -393,7 +393,7 @@
         <!-- 4. Padel Court -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
+                <img src="img/amenities/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>Padel Court</h2>
@@ -408,7 +408,7 @@
         <!-- 5. A Space to Connect -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/pool-family.webp" alt="Social gathering space at Las Lomas Serenas" loading="lazy">
+                <img src="img/shared/pool-family.webp" alt="Social gathering space at Las Lomas Serenas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>A Space to Connect</h2>

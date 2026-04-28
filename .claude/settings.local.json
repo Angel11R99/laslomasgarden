@@ -1,10 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node /tmp/fix2.js)",
-      "Bash(node /tmp/fix_scale2.js)",
-      "Bash(du -h \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Exteriores/\"* \"/Users/arkangeluz/Proyectos/laslomasgarden/img/Renders 360/Interiores/\"*)",
-      "Bash(awk NR==1226{print length}:*)"
+      "Bash(magick --version)",
+      "Bash(cwebp -version)",
+      "Bash(ffmpeg -version)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(npm *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "Bash(identify C:/laslomasgarden/img/tourguiado/TipoB/*.png)",
+      "Bash(where cwebp *)",
+      "Bash(where ffmpeg *)",
+      "Bash(where magick *)",
+      "Bash(where convert *)",
+      "PowerShell(python -c \"from PIL import Image; print\\('PIL disponible'\\)\" 2>&1)",
+      "PowerShell(python C:/laslomasgarden/convert_tipob.py)"
     ]
   }
 }

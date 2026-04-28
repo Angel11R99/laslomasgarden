@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 8192 3441">
+  <defs>
+    <style>
+      .cls-1 {
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <image class="cls-1" width="8201" height="3441" transform="translate(0 1.9)" xlink:href="img/tourguiado/TipoA/Tipo A-1.webp"/>
+  <image id="G" class="cls-1" width="2107" height="834" transform="translate(1868.9467 522.3164)" xlink:href="img/tourguiado/TipoA/Tipo A-2.webp"/>
+  <image id="H" class="cls-1" width="2108" height="834" transform="translate(3972.6355 522.3164)" xlink:href="img/tourguiado/TipoA/Tipo A-3.webp"/>
+  <image id="E" class="cls-1" width="2107" height="628" transform="translate(1868.9467 1354.4022)" xlink:href="img/tourguiado/TipoA/Tipo A-4.webp"/>
+  <image id="F" class="cls-1" width="2108" height="628" transform="translate(3972.6355 1354.4022)" xlink:href="img/tourguiado/TipoA/Tipo A-5.webp"/>
+  <image id="C" class="cls-1" width="2107" height="628" transform="translate(1868.9467 1980.7141)" xlink:href="img/tourguiado/TipoA/Tipo A-6.webp"/>
+  <image id="D" class="cls-1" width="2108" height="628" transform="translate(3972.6355 1980.7141)" xlink:href="img/tourguiado/TipoA/Tipo A-7.webp"/>
+  <image id="A" class="cls-1" width="2107" height="564" transform="translate(1868.9467 2607.026)" xlink:href="img/tourguiado/TipoA/Tipo A-8.webp"/>
+  <image id="B" class="cls-1" width="2108" height="564" transform="translate(3972.6355 2607.026)" xlink:href="img/tourguiado/TipoA/Tipo A-9.webp"/>
+  <image id="I" class="cls-1" width="908" height="150" transform="translate(3051.6472 368.4854)" xlink:href="img/tourguiado/TipoA/Tipo A-10.webp"/>
+  <image id="J" class="cls-1" width="907" height="150" transform="translate(3994.6113 368.4854)" xlink:href="img/tourguiado/TipoA/Tipo A-11.webp"/>
+</svg>
