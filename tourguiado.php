@@ -547,6 +547,9 @@
     .hero-front-svg-stage #BedRoom2,
     .hero-front-svg-stage #BathRoom1,
     .hero-front-svg-stage #BathRoom2,
+    .hero-front-svg-stage #Bath1,
+    .hero-front-svg-stage #Bath2,
+    .hero-front-svg-stage #WC,
     .hero-front-svg-stage #Closet,
     .hero-front-svg-stage #Laundry {
       cursor: pointer;
@@ -616,14 +619,26 @@
       transition: top 0.4s ease, font-size 0.4s ease, font-weight 0.4s ease;
     }
 
-    /* Paso 1 — grande en el cielo */
+    /* Paso 1 — ayuda discreta sin tapar los edificios */
     .hero-front-view.layout-selection-focus .hero-front-title {
-      top: 5%;
-      font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+      top: max(1.25rem, env(safe-area-inset-top));
+      left: max(1.25rem, env(safe-area-inset-left));
+      transform: none;
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.35rem;
+      padding: 0 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 185, 139, 0.38);
+      background: rgba(5, 18, 14, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       white-space: nowrap;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+      text-shadow: none;
     }
 
     /* Paso 2 — esquina inferior derecha, espejo del botón */
@@ -687,14 +702,14 @@
 
     #svgContainer image[id^="app"],
     #svgContainer image[id^="APP"] {
-      transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      transition: filter 200ms ease-out, transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
       transform-box: fill-box;
       transform-origin: 50% 50%;
     }
 
     @keyframes appAttentionPulse {
       0%, 100% { filter: none; }
-      50%       { filter: brightness(1.11) drop-shadow(0 0 10px rgba(210, 168, 24, 0.75)); }
+      50%       { filter: brightness(1.09) drop-shadow(0 0 10px rgba(19, 185, 139, 0.72)); }
     }
 
     #svgContainer image.app-intro-pulse {
@@ -707,7 +722,7 @@
       background: rgba(5, 18, 14, 0.93);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(210, 168, 24, 0.45);
+      border: 1px solid rgba(19, 185, 139, 0.45);
       color: #fff;
       padding: 7px 14px 8px;
       border-radius: 8px;
@@ -734,7 +749,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #d4a81c;
+      background: #13b98b;
       flex-shrink: 0;
     }
 
@@ -751,7 +766,7 @@
       background: rgba(5, 18, 14, 0.82);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(210, 168, 24, 0.38);
+      border: 1px solid rgba(19, 185, 139, 0.38);
       color: rgba(255, 255, 255, 0.92);
       font-size: 0.88rem;
       font-weight: 700;
@@ -770,7 +785,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #d4a81c;
+      background: #13b98b;
       animation: hintDotPulse 1.1s ease-in-out infinite;
     }
 
@@ -1335,6 +1350,7 @@
     }
 
     .tour-hotspot-toggle.is-off {
+      display: none;
       background: rgba(45, 16, 16, 0.72);
       border-color: rgba(255, 255, 255, 0.16);
     }
@@ -1803,10 +1819,13 @@
       }
 
       .hero-front-view.layout-selection-focus .hero-front-title {
-        font-size: clamp(1.4rem, 6vw, 2.4rem);
-        white-space: normal;
-        width: 90%;
-        top: 5%;
+        top: max(0.9rem, env(safe-area-inset-top));
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: calc(100vw - 2rem);
+        font-size: 0.68rem;
+        white-space: nowrap;
       }
 
       .feature {
@@ -2176,6 +2195,8 @@
       bathroom1: 'bano-principal',
       bathroom2: 'bano-2',
       closet: 'wc',
+      wc: 'wc',
+      toilet: 'wc',
       laundry: 'pasillo-2',
       // masterplan3room (3 bedrooms) IDs from SVG: Balcon, Living, Dinning, Kitchen, BedRoom, BedRoom-2, BedRoom2, Bath1, Bath2, Closet, Laundry
       living: 'sala',
@@ -2187,6 +2208,8 @@
       bath1: 'bano-principal',
       bath2: 'bano-2',
       closet: 'wc',
+      wc: 'wc',
+      toilet: 'wc',
       laundry: 'pasillo-2'
     };
 
@@ -2265,7 +2288,7 @@
       const originalTransform = node.getAttribute('transform') || '';
       const existingWrapper = parentNode.tagName && String(parentNode.tagName).toLowerCase() === 'g' && parentNode.getAttribute('data-interactive-wrapper') === 'true';
 
-      node.style.transition = 'filter 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+      node.style.transition = 'filter 200ms ease-out, transform 200ms cubic-bezier(0.22, 1, 0.36, 1)';
       node.style.transformBox = 'fill-box';
       node.style.transformOrigin = '50% 50%';
 
@@ -2289,11 +2312,11 @@
       const tooltipText = document.getElementById('aptTooltipText');
       const disableScale = Boolean(options.disableScale);
       const hoverFilter = disableScale
-        ? 'brightness(1.08) drop-shadow(0 0 8px rgba(210,168,24,0.65))'
-        : 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+        ? 'brightness(1.06) drop-shadow(0 0 8px rgba(19,185,139,0.6))'
+        : 'brightness(1.1) drop-shadow(0 0 10px rgba(19,185,139,0.78)) drop-shadow(0 0 22px rgba(19,185,139,0.32))';
 
       const showHover = (e) => {
-        visualNode.style.transform = disableScale ? '' : 'scale(1.04)';
+        visualNode.style.transform = disableScale ? '' : 'scale(1.025)';
         visualNode.style.filter = hoverFilter;
         if (unitLabel && tooltip && tooltipText) {
           tooltipText.textContent = unitLabel;
@@ -2335,7 +2358,7 @@
       if (!inlineSvg) return false;
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Select unit layout';
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Select a unit layout';
       if (heroFrontClose) heroFrontClose.textContent = 'Return to site map';
 
       const currentViewKey = viewKey;
@@ -2649,8 +2672,8 @@
               fetchSvgCached(prefetchView.step2Svg);
             }
           }
-          element.style.transform = 'scale(1.04)';
-          element.style.filter = 'brightness(1.13) drop-shadow(0 0 12px rgba(210,168,24,0.85)) drop-shadow(0 0 28px rgba(210,168,24,0.38))';
+          element.style.transform = 'scale(1.025)';
+          element.style.filter = 'brightness(1.1) drop-shadow(0 0 10px rgba(19,185,139,0.78)) drop-shadow(0 0 22px rgba(19,185,139,0.32))';
           if (!tooltip || !tooltipText) return;
           tooltipText.textContent = isApartmentUnit
             ? ('Building ' + realNum + '  ·  ' + apartmentLabel + ' ')
@@ -2900,7 +2923,7 @@
           // Baño 2: puerta derecha (~72%) → derecha-detrás
           { to: 'bano-2', label: 'Bathroom 2', position: '-0.7 -2 4.3' },
           // WC: puerta extremo derecho (~88%) → derecha-adelante
-         
+          { to: 'wc', label: 'WC', position: '4.4 -1.5 1.5' }
         ]
       },
       {
@@ -2933,6 +2956,7 @@
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al pasillo 2 (~40%) → izquierda-detrás
+          { to: 'pasillo-2', label: 'Hallway 2', position: '1.4 -1.2 -4.4' },
           { to: 'dormitorio-principal', label: 'Room', position: '-1.2 -1.1 4.5' },
             { to: 'bano-principal', label: 'Bathroom', position: '-4.6 -1.3 0.4' }
         ]
@@ -2967,15 +2991,15 @@
     const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
     let isTransitioning = false;
     const SCENE_BLEND_SWAP_DELAY = 120;
-    const SCENE_BLEND_TOTAL_DURATION = 900;
-    const SCENE_MOVE_SWAP_DELAY = 320;
-    const SCENE_MOVE_CAMERA_RESET_DELAY = 220;
-    const SCENE_MOVE_TOTAL_DURATION = 1180;
+    const SCENE_BLEND_TOTAL_DURATION = 800;
+    const SCENE_MOVE_SWAP_DELAY = 260;
+    const SCENE_MOVE_CAMERA_RESET_DELAY = 180;
+    const SCENE_MOVE_TOTAL_DURATION = 980;
     const DEFAULT_TOUR_FOV = 80;
     const MIN_TOUR_FOV = 45;
     const MAX_TOUR_FOV = 95;
-    const PINCH_ZOOM_STRENGTH = 0.78;
-    const TOUCH_LOOK_SENSITIVITY = 0.0032;
+    const PINCH_ZOOM_STRENGTH = 0.68;
+    const TOUCH_LOOK_SENSITIVITY = 0.0028;
     const MAX_TOUR_PITCH = (Math.PI / 2) - 0.08;
     let areTourHotspotsVisible = false;
     const TOUCH_HINT_STORAGE_KEY = 'tour-touch-hint-seen';
@@ -2991,8 +3015,37 @@
 
     let activeTourIndex = availableTourIndexes[0] || 0;
 
+    const tourSceneImagesByLayout = {
+      'with-balcony': {
+        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        cocina: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Cocina.webp',
+        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20principal.webp',
+        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o.webp',
+        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20A.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20B.webp',
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o%202.webp',
+        wc: 'img/tourguiado/renders/interiores/360%20Tipo%20A/WC.webp'
+      },
+      'without-balcony': {
+        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Sala.webp',
+        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Comedor.webp',
+        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
+        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%201.webp',
+        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%201.webp',
+        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
+        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%202.webp'
+      }
+    };
+
     function getSceneImage(scene) {
       if (!scene) return '';
+      const layoutImages = tourSceneImagesByLayout[activePlanViewKey] || null;
+      if (layoutImages && layoutImages[scene.id]) return layoutImages[scene.id];
       return isMobileViewport() ? (scene.mobileImage || scene.image) : scene.image;
     }
 
@@ -3497,7 +3550,7 @@
       window.setTimeout(() => {
         setTourScene(targetIndex, announce, {
           crossfadeSky: true,
-          skyFadeDuration: 760,
+          skyFadeDuration: 640,
           keepControlsDisabled: true
         });
       }, SCENE_BLEND_SWAP_DELAY);
@@ -3551,7 +3604,7 @@
         setTourScene(targetIndex, announce, {
           preserveCamera: true,
           crossfadeSky: true,
-          skyFadeDuration: 820,
+          skyFadeDuration: 680,
           keepControlsDisabled: true
         });
 
@@ -3823,6 +3876,16 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
           if (!currentDistance) return;
           const zoomRatio = pinchStartDistance / currentDistance;
           setTourFov(pinchStartFov * Math.pow(zoomRatio, PINCH_ZOOM_STRENGTH));
+        }, { passive: false });
+
+        canvas.addEventListener('wheel', (event) => {
+          if (!tourModal || !tourModal.classList.contains('active')) return;
+          event.preventDefault();
+          hideTourTouchHint();
+          const camera3D = getTourThreeCamera();
+          const currentFov = camera3D && Number.isFinite(camera3D.fov) ? camera3D.fov : DEFAULT_TOUR_FOV;
+          const wheelDelta = event.deltaY * (event.deltaMode === 1 ? 12 : 1);
+          setTourFov(currentFov + wheelDelta * 0.035);
         }, { passive: false });
 
         const clearPinch = () => {
