@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Calculator | Las Lomas Serenas</title>
+  <title>Loan Calculator | Vista Lomas</title>
   <link rel="icon" href="img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest-loan.json">
   <link rel="apple-touch-icon" href="img/shared/logo-fallback.png">
@@ -177,7 +177,7 @@
 
   <div class="calc-page-banner">
     <h1>Loan Calculator</h1>
-    <p>Estimate your monthly mortgage payment — Las Lomas Serenas</p>
+    <p>Estimate your monthly mortgage payment — Vista Lomas</p>
   </div>
 
   <section class="lls-calc-section">

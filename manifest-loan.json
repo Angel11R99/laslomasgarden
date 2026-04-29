@@ -1,6 +1,6 @@
 {
   "id": "/loan-calculator",
-  "name": "Loan Calculator — Las Lomas Serenas",
+  "name": "Loan Calculator — Vista Lomas",
   "short_name": "Loan Calc",
   "start_url": "/loan-calculator.php",
   "display": "standalone",

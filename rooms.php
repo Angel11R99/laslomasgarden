@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Las Lomas Serenas | Rooms</title>
+  <title>Vista Lomas | Rooms</title>
   <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
@@ -214,7 +214,7 @@
   <?php include __DIR__ . '/components/header.php'; ?>
 
   <main class="rooms-page">
-    <section class="rooms-hero" aria-label="Las Lomas Serenas building"></section>
+    <section class="rooms-hero" aria-label="Vista Lomas building"></section>
 
     <section class="rooms-intro" aria-labelledby="rooms-intro-title">
       <div class="rooms-shell">
@@ -230,7 +230,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Warm and Relaxing Living Spaces</h2>
-          <p>The living areas at Las Lomas Serenas offer a more spacious and inviting environment, designed for enhanced comfort and everyday living. The open layout is complemented by abundant natural light, creating a bright, airy, and welcoming atmosphere.</p>
+          <p>The living areas at Vista Lomas offer a more spacious and inviting environment, designed for enhanced comfort and everyday living. The open layout is complemented by abundant natural light, creating a bright, airy, and welcoming atmosphere.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>
@@ -244,7 +244,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Contemporary Kitchens Designed for Everyday Living</h2>
-          <p>The kitchens in Las Lomas Serenas Type C executive apartments are designed to combine functionality with elevated design and high-quality materials. Thoughtfully planned layouts and refined finishes make preparing and serving meals both effortless and enjoyable.</p>
+          <p>The kitchens in Vista Lomas Type C executive apartments are designed to combine functionality with elevated design and high-quality materials. Thoughtfully planned layouts and refined finishes make preparing and serving meals both effortless and enjoyable.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>
@@ -258,7 +258,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Comfortable &amp; Modern Bedrooms</h2>
-          <p>The bedrooms in Las Lomas Serenas Type C executive apartments are designed to provide an elevated atmosphere of relaxation and comfort. Each space features clean lines, premium finishes, and carefully selected high-quality materials that enhance both elegance and tranquility.</p>
+          <p>The bedrooms in Vista Lomas Type C executive apartments are designed to provide an elevated atmosphere of relaxation and comfort. Each space features clean lines, premium finishes, and carefully selected high-quality materials that enhance both elegance and tranquility.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>
@@ -272,7 +272,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Clean Design Practical Comfort</h2>
-          <p>The bathrooms in Las Lomas Serenas reflect a balance of sophistication, functionality, and modern design. Crafted with premium materials and refined finishes, these spaces offer an elevated level of comfort while maintaining practical ease of use.</p>
+          <p>The bathrooms in Vista Lomas reflect a balance of sophistication, functionality, and modern design. Crafted with premium materials and refined finishes, these spaces offer an elevated level of comfort while maintaining practical ease of use.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>
@@ -286,7 +286,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Comfortable &amp; Modern Closet</h2>
-          <p>The bedrooms at Las Lomas Serenas are designed to provide a more spacious and serene atmosphere, focused on comfort and relaxation. With increased space and abundant natural light, the smart layout allows for greater comfort and flexibility in everyday use.</p>
+          <p>The bedrooms at Vista Lomas are designed to provide a more spacious and serene atmosphere, focused on comfort and relaxation. With increased space and abundant natural light, the smart layout allows for greater comfort and flexibility in everyday use.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>
@@ -300,7 +300,7 @@
         </figure>
         <div class="rooms-section-copy">
           <h2>Every Detail Has a Reason</h2>
-          <p>At Las Lomas Serenas, every space is designed with purpose. Our laundry areas combine clean design, efficiency, and modern comfort to support everyday living. Thoughtfully planned layouts and quality finishes create a practical, organized environment that is easy to maintain and comfortable to use.</p>
+          <p>At Vista Lomas, every space is designed with purpose. Our laundry areas combine clean design, efficiency, and modern comfort to support everyday living. Thoughtfully planned layouts and quality finishes create a practical, organized environment that is easy to maintain and comfortable to use.</p>
           <div class="rooms-actions">
             <a class="rooms-button is-solid" href="/contact-us">Request Information</a>
             <a class="rooms-button is-outline" href="/contact-us">Contact US</a>

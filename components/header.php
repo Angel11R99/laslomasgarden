@@ -688,8 +688,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 <header class="lls-header <?php echo $is_home ? 'is-home' : ''; ?>" id="site-header">
   <div class="lls-header-inner">
     <div class="lls-header-left">
-      <a class="lls-header-logo" href="/" aria-label="Las Lomas Serenas Home">
-        <img src="/img/shared/wlogo.svg" alt="Las Lomas Serenas logo" width="527" height="170" decoding="async"
+      <a class="lls-header-logo" href="/" aria-label="Vista Lomas Home">
+        <img src="/img/shared/wlogo.svg" alt="Vista Lomas logo" width="527" height="170" decoding="async"
           fetchpriority="high" onerror="this.onerror=null;this.src='/img/shared/logo-fallback.png';">
       </a>
     </div>

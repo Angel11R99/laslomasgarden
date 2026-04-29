@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Las Lomas Serenas | Amenities</title>
+    <title>Vista Lomas | Amenities</title>
     <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
@@ -359,7 +359,7 @@
                 </div>
             </div>
             <div class="amenities-hero__media">
-                <img src="Amenities2.webp" alt="General view of Las Lomas Serenas amenities" loading="lazy">
+                <img src="Amenities2.webp" alt="General view of Vista Lomas amenities" loading="lazy">
             </div>
         </section>
 
@@ -378,7 +378,7 @@
         <!-- 3. Basketball Court -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/amenities/Basketball.webp" alt="Basketball Court at Las Lomas Serenas" loading="lazy">
+                <img src="img/amenities/Basketball.webp" alt="Basketball Court at Vista Lomas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>Basketball Court</h2>
@@ -393,7 +393,7 @@
         <!-- 4. Padel Court -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/amenities/padel.webp" alt="Padel Court at Las Lomas Serenas" loading="lazy">
+                <img src="img/amenities/padel.webp" alt="Padel Court at Vista Lomas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>Padel Court</h2>
@@ -408,7 +408,7 @@
         <!-- 5. A Space to Connect -->
         <div class="room-card">
             <figure class="room-card-media">
-                <img src="img/shared/pool-family.webp" alt="Social gathering space at Las Lomas Serenas" loading="lazy">
+                <img src="img/shared/pool-family.webp" alt="Social gathering space at Vista Lomas" loading="lazy">
             </figure>
             <div class="room-card-copy">
                 <h2>A Space to Connect</h2>

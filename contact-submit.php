@@ -103,7 +103,7 @@ function build_email_html(array $data): string
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 48px rgba(12,54,38,0.08);">
           <tr>
             <td align="center" style="background:#ffffff;padding:28px 36px 22px;border-bottom:1px solid #e4ece8;">
-              <img src="' . e($logoUrl) . '" alt="Las Lomas Serenas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
+              <img src="' . e($logoUrl) . '" alt="Vista Lomas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
             </td>
           </tr>
           <tr>
@@ -188,7 +188,7 @@ function build_confirmation_email_html(array $data): string
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 48px rgba(12,54,38,0.08);">
           <tr>
             <td align="center" style="background:#ffffff;padding:28px 36px 22px;border-bottom:1px solid #e4ece8;">
-              <img src="' . e($logoUrl) . '" alt="Las Lomas Serenas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
+              <img src="' . e($logoUrl) . '" alt="Vista Lomas" width="220" style="display:block;width:220px;max-width:100%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
             </td>
           </tr>
           <tr>
@@ -310,7 +310,7 @@ try {
 
 $apiKey = env_value('BREVO_API_KEY');
 $senderEmail = env_value('BREVO_SENDER_EMAIL');
-$senderName = env_value('BREVO_SENDER_NAME', 'Las Lomas Serenas');
+$senderName = env_value('BREVO_SENDER_NAME', 'Vista Lomas');
 $recipientEmail = env_value('CONTACT_RECIPIENT_EMAIL');
 
 $curlAvailable = function_exists('curl_init');
@@ -355,7 +355,7 @@ $internalPayload = [
     ],
     'to' => [[
         'email' => $recipientEmail,
-        'name' => 'Las Lomas Serenas',
+        'name' => 'Vista Lomas',
     ]],
     'replyTo' => [
         'email' => $email,
@@ -385,13 +385,13 @@ $confirmationPayload = [
         'email' => $email,
         'name' => trim($firstName . ' ' . $lastName),
     ]],
-    'subject' => 'We received your message | Las Lomas Serenas',
+    'subject' => 'We received your message | Vista Lomas',
     'htmlContent' => build_confirmation_email_html($submission),
     'textContent' => implode("\n", [
         'We received your message',
         '',
         'Hello ' . trim($firstName . ' ' . $lastName) . ',',
-        'Thank you for contacting Las Lomas Serenas.',
+        'Thank you for contacting Vista Lomas.',
         'We received your inquiry regarding ' . ($interestOptions[$interest] ?? 'General Inquiry') . '.',
         'Our team will get back to you shortly.',
         '',

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Investment Calculator | Las Lomas Serenas</title>
+  <title>Investment Calculator | Vista Lomas</title>
   <link rel="icon" href="img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest-investment.json">
   <link rel="apple-touch-icon" href="img/shared/logo-fallback.png">
@@ -216,7 +216,7 @@
 
   <div class="calc-page-banner">
     <h1>Investment Calculator</h1>
-    <p>Rental Income Estimator — Las Lomas Serenas</p>
+    <p>Rental Income Estimator — Vista Lomas</p>
   </div>
 
   <section class="lls-calc-section">

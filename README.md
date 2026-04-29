@@ -60,7 +60,7 @@ Ejemplo recomendado en cPanel:
 ```env
 BREVO_API_KEY=tu_api_key
 BREVO_SENDER_EMAIL=no-reply@laslomasserenas.com
-BREVO_SENDER_NAME=Las Lomas Serenas
+BREVO_SENDER_NAME=Vista Lomas
 CONTACT_RECIPIENT_EMAIL=info@laslomasserenas.com
 ```
 

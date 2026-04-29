@@ -10,7 +10,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Las Lomas Serenas | Contact Us</title>
+  <title>Vista Lomas | Contact Us</title>
   <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
@@ -323,7 +323,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
     <!-- Hero -->
     <section class="contact-hero">
       <h1>Contact Us</h1>
-      <p>Our team is ready to help you find your ideal home at Las Lomas Serenas. Reach out and we'll get back to you shortly.</p>
+      <p>Our team is ready to help you find your ideal home at Vista Lomas. Reach out and we'll get back to you shortly.</p>
     </section>
 
     <!-- Form + Info -->
@@ -342,7 +342,7 @@ $contactSubmitEndpoint = ($basePath !== '' ? $basePath : '') . '/contact-submit'
               </div>
               <div>
                 <div class="contact-info__label">Location</div>
-                <div class="contact-info__value">Las Lomas Serenas, North Coast, Dominican Republic</div>
+                <div class="contact-info__value">Vista Lomas, North Coast, Dominican Republic</div>
               </div>
             </div>
 

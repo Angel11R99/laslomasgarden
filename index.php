@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Las Lomas Serenas | Home</title>
+  <title>Vista Lomas | Home</title>
   <link rel="icon" href="img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="img/shared/logo-fallback.png">
@@ -986,7 +986,7 @@
   <main class="lls-page">
     <!-- 1. Hero Content -->
     <section class="lls-hero-new">
-      <div class="lls-hero-new__media" aria-label="Aerial view of Las Lomas Serenas project"></div>
+      <div class="lls-hero-new__media" aria-label="Aerial view of Vista Lomas project"></div>
       <div class="lls-hero-new__overlay" aria-hidden="true">
         <div class="lls-hero-new__overlay-inner">
           <div class="lls-hero-new__tagline">
@@ -997,7 +997,7 @@
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
-          <p>Las Lomas Serenas is a condominium development in Sosua, Puerto Plata, created for people who want more
+          <p>Vista Lomas is a condominium development in Sosua, Puerto Plata, created for people who want more
             than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm
             of life on the North Coast of the Dominican Republic.</p>
           <a href="tourguiado" class="lls-button lls-button--white">3D TOUR</a>
@@ -1012,7 +1012,7 @@
       </div>
 
       <div class="lls-safety__media">
-        <img src="img/home/front-green.webp" alt="Primary entrance of Las Lomas Serenas" loading="lazy">
+        <img src="img/home/front-green.webp" alt="Primary entrance of Vista Lomas" loading="lazy">
       </div>
 
     </section>
@@ -1071,7 +1071,7 @@
     <section class="lls-lifestyle-new" id="lifestyle">
       <div class="lls-lifestyle-new__text">
         <h2>An active, social lifestyle designed around recreation, ease, and community.</h2>
-        <p>Las Lomas Serenas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
+        <p>Vista Lomas is more than a place to own property. It is a place to move, connect, relax, and enjoy the
           rhythm of the North Coast from sports and wellness to family time and beautiful everyday moments.</p>
           <a style="margin-top: 24px;" href="amenities" class="lls-button">See More</a>
       </div>

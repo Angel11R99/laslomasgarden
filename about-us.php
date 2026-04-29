@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Las Lomas Serenas | About Us</title>
+  <title>Vista Lomas | About Us</title>
   <link rel="icon" href="/img/shared/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/img/shared/logo-fallback.png">
@@ -260,7 +260,7 @@
       <div class="">
         <div class="about-grid" style="height: 90%;">
           <figure class="about-card">
-            <img src="img/about-us/ron_jan_ham.webp" alt="Residents enjoying time together at Las Lomas Serenas" loading="lazy"
+            <img src="img/about-us/ron_jan_ham.webp" alt="Residents enjoying time together at Vista Lomas" loading="lazy"
               decoding="async">
           </figure>
           <figure class="about-card">
@@ -273,7 +273,7 @@
 
     <section class="about-hero" aria-labelledby="about-hero-text">
       <div class="about-shell">
-        <p class="about-copy" id="about-hero-text">Las Lomas Serenas is a condominium development owned and operated by
+        <p class="about-copy" id="about-hero-text">Vista Lomas is a condominium development owned and operated by
           U.S. investors and entrepreneurs. It is located on the beautiful North Coast of the Dominican Republic, in the
           Province of Puerto Plata, in the vibrant seaside town of Sosúa.</p>
       </div>
@@ -291,7 +291,7 @@
               <p class="about-copy">What sets us apart and has made us the number one construction company on the North
                 Coast of the Dominican Republic for the last 40 years is our commitment to quality and client
                 satisfaction.</p>
-              <p class="about-copy">We are proud to be partnering with Las Lomas Serenas and we are committed to making
+              <p class="about-copy">We are proud to be partnering with Vista Lomas and we are committed to making
                 this an exceptional facility for all its residents.</p>
             </div>
           </div>
