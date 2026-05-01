@@ -1997,6 +1997,290 @@
       }
     }
 
+    /* ═══════════════════════════════════════════════
+       MODO CINE — Cinematic Overlay System
+       ═══════════════════════════════════════════════ */
+
+    /* Letterbox bars — 8% top + 8% bottom = 2.39:1 ratio */
+    .cine-letterbox {
+      position: absolute;
+      left: 0; right: 0;
+      height: 8%;
+      background: #000;
+      z-index: 50;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+      opacity: 0;
+    }
+    .cine-letterbox-top    { top: 0; }
+    .cine-letterbox-bottom { bottom: 0; }
+
+    .tour-shell.cine-active .cine-letterbox { opacity: 1; }
+
+    /* Story segments bar — thin line at very top */
+    .cine-story-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      z-index: 51;
+      display: flex;
+      gap: 2px;
+      padding: 0 4px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .tour-shell.cine-active .cine-story-bar { opacity: 1; }
+
+    .cine-story-seg {
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.28);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cine-story-seg-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0%;
+      background: #fff;
+      border-radius: 2px;
+      transition: none;
+    }
+    .cine-story-seg.done .cine-story-seg-fill   { width: 100%; }
+    .cine-story-seg.active .cine-story-seg-fill { width: var(--seg-pct, 0%); }
+
+    /* Cinema controls bar — bottom overlay */
+    .cine-controls-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 52;
+      padding: 0 16px max(16px, env(safe-area-inset-bottom)) 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .cine-controls-bar.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .tour-shell:not(.cine-active) .cine-controls-bar { display: none; }
+
+    /* Progress / scrubber row */
+    .cine-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+    .cine-scrubber-wrap {
+      flex: 1;
+      position: relative;
+      height: 4px;
+      background: rgba(255,255,255,0.28);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cine-scrubber-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: #fff;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .cine-chapter-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.65);
+      border: 1.5px solid rgba(255,255,255,0.9);
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .cine-chapter-marker:hover {
+      transform: translate(-50%, -50%) scale(1.6);
+      background: #fff;
+    }
+    .cine-chapter-tooltip {
+      position: absolute;
+      bottom: 16px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      backdrop-filter: blur(4px);
+    }
+    .cine-chapter-marker:hover .cine-chapter-tooltip { opacity: 1; }
+
+    .cine-time-display {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    /* Buttons row */
+    .cine-btn-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cine-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.15s ease, transform 0.1s ease;
+      flex-shrink: 0;
+    }
+    .cine-btn:hover { background: rgba(255,255,255,0.15); }
+    .cine-btn:active { transform: scale(0.92); }
+    .cine-btn:disabled { opacity: 0.38; pointer-events: none; }
+    .cine-btn-mute { margin-left: auto; }
+    .cine-btn-fs   { }
+
+    /* Lower-third scene title card */
+    .cine-title-card {
+      position: absolute;
+      left: 24px;
+      bottom: calc(8% + 70px);
+      z-index: 53;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .cine-title-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cine-title-card-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 3px;
+    }
+    .cine-title-card-name {
+      font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+      letter-spacing: 0.04em;
+    }
+    .cine-title-card-bar {
+      width: 36px; height: 2px;
+      background: var(--green-light, #13b98b);
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+
+    /* Full-overlay intro card — first scene only */
+    .cine-intro-card {
+      position: absolute;
+      inset: 0;
+      z-index: 54;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+      background: rgba(0,0,0,0.48);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .cine-intro-card.show { opacity: 1; }
+
+    .cine-intro-title {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+      margin-bottom: 10px;
+    }
+    .cine-intro-subtitle {
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* Hero cinema CTA button */
+    .cine-hero-play-btn {
+      position: absolute;
+      bottom: clamp(40px, 8vw, 80px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      background: rgba(5, 14, 11, 0.82);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.38);
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      white-space: nowrap;
+    }
+    .cine-hero-play-btn:hover {
+      background: rgba(7,138,99,0.75);
+      transform: translateX(-50%) translateY(-3px);
+      box-shadow: 0 22px 48px rgba(0,0,0,0.48);
+    }
+    .cine-hero-play-btn-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* Hide room label in cinema mode */
+    .tour-shell.cine-active .tour-room-label { display: none; }
 
   </style>
 </head>
@@ -2040,6 +2324,12 @@
           <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
         </div>
       </div>
+
+      <!-- Cinema CTA — opens tour directly in auto-play mode -->
+      <button type="button" class="cine-hero-play-btn" id="cineHeroPlayBtn">
+        <span class="cine-hero-play-btn-icon">▶</span>
+        <span>Iniciar Tour</span>
+      </button>
     </div>
 
   <div class="apt-tooltip" id="aptTooltip" aria-hidden="true"><span class="apt-tooltip-dot"></span><span id="aptTooltipText"></span></div>
@@ -2094,6 +2384,51 @@
               animation="property: scale; dir: alternate; dur: 900; easing: easeInOutSine; loop: true; to: 1.45 1.45 1.45"></a-sphere>
           </a-entity>
         </a-scene>
+      </div>
+
+      <!-- ── MODO CINE overlays ── -->
+
+      <!-- Story bar (12 segments) -->
+      <div class="cine-story-bar" id="cineStoryBar" aria-hidden="true">
+        <!-- 12 segments injected by JS -->
+      </div>
+
+      <!-- Letterbox bars -->
+      <div class="cine-letterbox cine-letterbox-top"    aria-hidden="true"></div>
+      <div class="cine-letterbox cine-letterbox-bottom" aria-hidden="true"></div>
+
+      <!-- Intro title card (first scene only) -->
+      <div class="cine-intro-card" id="cineIntroCard" aria-hidden="true">
+        <div class="cine-intro-title">Vista Lomas</div>
+        <div class="cine-intro-subtitle">Tour Virtual — Residencias Serenáis</div>
+      </div>
+
+      <!-- Lower-third scene title card -->
+      <div class="cine-title-card" id="cineTitleCard" aria-hidden="true">
+        <div class="cine-title-card-label">Vista Lomas — Tour Virtual</div>
+        <div class="cine-title-card-name" id="cineTitleCardName">Balcony</div>
+        <div class="cine-title-card-bar"></div>
+      </div>
+
+      <!-- Video-style controls bar -->
+      <div class="cine-controls-bar" id="cineControlsBar" aria-label="Cinema controls">
+        <!-- Scrubber row -->
+        <div class="cine-progress-row">
+          <div class="cine-scrubber-wrap" id="cineScrubberWrap" role="slider"
+               aria-label="Scene progress" aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
+            <div class="cine-scrubber-fill" id="cineScrubberFill"></div>
+            <!-- Chapter markers injected by JS -->
+          </div>
+          <div class="cine-time-display" id="cineTimeDisplay">0:00 / 1:00</div>
+        </div>
+        <!-- Button row -->
+        <div class="cine-btn-row">
+          <button class="cine-btn" id="cineSkipBackBtn"  type="button" aria-label="Previous scene">&#9198;</button>
+          <button class="cine-btn" id="cinePlayPauseBtn" type="button" aria-label="Pause">&#9646;&#9646;</button>
+          <button class="cine-btn" id="cineSkipFwdBtn"   type="button" aria-label="Next scene">&#9197;</button>
+          <button class="cine-btn cine-btn-mute" id="cineMuteBtn" type="button" aria-label="Mute (no audio)" disabled>&#128266;</button>
+          <button class="cine-btn cine-btn-fs"   id="cineFsBtn"   type="button" aria-label="Fullscreen">&#x26F6;</button>
+        </div>
       </div>
     </div>
   </div>
@@ -4041,6 +4376,351 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         label.style.transform = `translateX(-50%) perspective(${PERSPECTIVE}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
       });
     })();
+
+    // ════════════════════════════════════════════════════════════
+    //  MODO CINE — Cinema Mode Engine
+    // ════════════════════════════════════════════════════════════
+
+    const CINE_SCENE_DURATION   = 5000;
+    const CINE_ROTATION_SPEED   = 0.006;
+    const CINE_CONTROLS_TIMEOUT = 3000;
+    const CINE_TITLE_SHOW_MS    = 2500;
+    const CINE_TITLE_FADE_MS    = 500;
+    const CINE_INTRO_SHOW_MS    = 2800;
+    const CINE_TOTAL_SCENES     = 12;
+
+    let cinemaModeActive    = false;
+    let cinemaPaused        = false;
+    let cineSceneTimer      = null;
+    let cineRAFHandle       = null;
+    let cineLastRAFTime     = 0;
+    let cineElapsedMs       = 0;
+    let cineTitleTimeout    = null;
+    let cineControlsTimeout = null;
+    let cineUserInteracting = false;
+
+    const cineStoryBar     = document.getElementById('cineStoryBar');
+    const cineIntroCard    = document.getElementById('cineIntroCard');
+    const cineTitleCard    = document.getElementById('cineTitleCard');
+    const cineTitleCardName= document.getElementById('cineTitleCardName');
+    const cineControlsBar  = document.getElementById('cineControlsBar');
+    const cineScrubberWrap = document.getElementById('cineScrubberWrap');
+    const cineScrubberFill = document.getElementById('cineScrubberFill');
+    const cineTimeDisplay  = document.getElementById('cineTimeDisplay');
+    const cinePlayPauseBtn = document.getElementById('cinePlayPauseBtn');
+    const cineSkipBackBtn  = document.getElementById('cineSkipBackBtn');
+    const cineSkipFwdBtn   = document.getElementById('cineSkipFwdBtn');
+    const cineMuteBtn      = document.getElementById('cineMuteBtn');
+    const cineFsBtn        = document.getElementById('cineFsBtn');
+    const cineHeroPlayBtn  = document.getElementById('cineHeroPlayBtn');
+    const tourShellEl      = document.querySelector('.tour-shell');
+
+    function cineInitStoryBar() {
+      if (!cineStoryBar) return;
+      cineStoryBar.innerHTML = '';
+      tourScenes.forEach((scene, i) => {
+        const seg = document.createElement('div');
+        seg.className = 'cine-story-seg';
+        seg.id = 'cineSeg' + i;
+        const fill = document.createElement('div');
+        fill.className = 'cine-story-seg-fill';
+        seg.appendChild(fill);
+        cineStoryBar.appendChild(seg);
+      });
+    }
+
+    function cineInitChapterMarkers() {
+      if (!cineScrubberWrap) return;
+      cineScrubberWrap.querySelectorAll('.cine-chapter-marker').forEach(el => el.remove());
+      tourScenes.forEach((scene, i) => {
+        const pct = (i / (tourScenes.length - 1)) * 100;
+        const marker = document.createElement('div');
+        marker.className = 'cine-chapter-marker';
+        marker.style.left = pct + '%';
+        const tooltip = document.createElement('div');
+        tooltip.className = 'cine-chapter-tooltip';
+        tooltip.textContent = scene.title;
+        marker.appendChild(tooltip);
+        marker.addEventListener('click', (e) => {
+          e.stopPropagation();
+          cineJumpToScene(i);
+        });
+        cineScrubberWrap.appendChild(marker);
+      });
+    }
+
+    function cineUpdateStoryBar(sceneIdx, pct) {
+      tourScenes.forEach((_, i) => {
+        const seg = document.getElementById('cineSeg' + i);
+        if (!seg) return;
+        const fill = seg.querySelector('.cine-story-seg-fill');
+        seg.classList.remove('done', 'active');
+        if (i < sceneIdx) {
+          seg.classList.add('done');
+        } else if (i === sceneIdx) {
+          seg.classList.add('active');
+          seg.style.setProperty('--seg-pct', pct + '%');
+          if (fill) fill.style.width = pct + '%';
+        } else {
+          if (fill) fill.style.width = '0%';
+        }
+      });
+    }
+
+    function cineUpdateScrubber(sceneIdx, pct) {
+      const totalProgress = ((sceneIdx + pct / 100) / tourScenes.length) * 100;
+      if (cineScrubberFill) cineScrubberFill.style.width = totalProgress + '%';
+
+      const totalSeconds = Math.floor((totalProgress / 100) * 60);
+      const mm = Math.floor(totalSeconds / 60);
+      const ss = String(totalSeconds % 60).padStart(2, '0');
+      if (cineTimeDisplay) cineTimeDisplay.textContent = mm + ':' + ss + ' / 1:00';
+
+      if (cineScrubberWrap) cineScrubberWrap.setAttribute('aria-valuenow', sceneIdx);
+    }
+
+    function cineRotationTick(timestamp) {
+      if (!cinemaModeActive || cinemaPaused || cineUserInteracting) {
+        cineLastRAFTime = 0;
+        cineRAFHandle = window.requestAnimationFrame(cineRotationTick);
+        return;
+      }
+
+      if (cineLastRAFTime === 0) cineLastRAFTime = timestamp;
+      const delta = timestamp - cineLastRAFTime;
+      cineLastRAFTime = timestamp;
+
+      cineElapsedMs += delta;
+
+      const lookControls = getTourLookControls();
+      if (lookControls && lookControls.yawObject) {
+        lookControls.yawObject.rotation.y -= CINE_ROTATION_SPEED * delta * (Math.PI / 180);
+        syncTourCameraRotation();
+      }
+
+      const pct = Math.min((cineElapsedMs / CINE_SCENE_DURATION) * 100, 100);
+      cineUpdateStoryBar(activeTourIndex, pct);
+      cineUpdateScrubber(activeTourIndex, pct);
+
+      cineRAFHandle = window.requestAnimationFrame(cineRotationTick);
+    }
+
+    function startCinemaMode() {
+      if (!tourModal || !tourModal.classList.contains('active')) return;
+      cinemaModeActive = true;
+      cinemaPaused = false;
+      cineElapsedMs = 0;
+
+      if (tourShellEl) tourShellEl.classList.add('cine-active');
+
+      cineInitStoryBar();
+      cineInitChapterMarkers();
+      cineUpdatePlayPauseBtn();
+
+      if (tourBackPlanBtn) tourBackPlanBtn.style.opacity = '0';
+      if (tourHotspotToggle) tourHotspotToggle.style.opacity = '0';
+
+      cineShowControls();
+
+      if (activeTourIndex === 0) {
+        cineShowIntroCard();
+      }
+
+      cineShowTitleCard(tourScenes[activeTourIndex]);
+
+      cineScheduleNextScene();
+
+      cineLastRAFTime = 0;
+      if (cineRAFHandle) window.cancelAnimationFrame(cineRAFHandle);
+      cineRAFHandle = window.requestAnimationFrame(cineRotationTick);
+    }
+
+    function stopCinemaMode() {
+      cinemaModeActive = false;
+      cinemaPaused = false;
+      cineElapsedMs = 0;
+
+      if (cineSceneTimer)    { window.clearTimeout(cineSceneTimer); cineSceneTimer = null; }
+      if (cineRAFHandle)     { window.cancelAnimationFrame(cineRAFHandle); cineRAFHandle = null; }
+      if (cineTitleTimeout)  { window.clearTimeout(cineTitleTimeout); cineTitleTimeout = null; }
+      if (cineControlsTimeout) { window.clearTimeout(cineControlsTimeout); cineControlsTimeout = null; }
+
+      if (tourShellEl) tourShellEl.classList.remove('cine-active');
+      if (cineTitleCard) cineTitleCard.classList.remove('show');
+      if (cineIntroCard) cineIntroCard.classList.remove('show');
+      if (cineControlsBar) cineControlsBar.classList.remove('visible');
+
+      if (tourBackPlanBtn) tourBackPlanBtn.style.opacity = '';
+      if (tourHotspotToggle) tourHotspotToggle.style.opacity = '';
+    }
+
+    function pauseCinemaMode() {
+      if (!cinemaModeActive || cinemaPaused) return;
+      cinemaPaused = true;
+      if (cineSceneTimer) { window.clearTimeout(cineSceneTimer); cineSceneTimer = null; }
+      cineUpdatePlayPauseBtn();
+      cineShowControls();
+    }
+
+    function resumeCinemaMode() {
+      if (!cinemaModeActive || !cinemaPaused) return;
+      cinemaPaused = false;
+      cineLastRAFTime = 0;
+      const remaining = Math.max(0, CINE_SCENE_DURATION - cineElapsedMs);
+      cineSceneTimer = window.setTimeout(cineAdvanceScene, remaining);
+      cineUpdatePlayPauseBtn();
+    }
+
+    function cineJumpToScene(idx) {
+      if (idx < 0 || idx >= tourScenes.length) return;
+      if (cineSceneTimer) { window.clearTimeout(cineSceneTimer); cineSceneTimer = null; }
+      cineElapsedMs = 0;
+      cineLastRAFTime = 0;
+      runSceneBlendTransition(idx, false);
+      cineUpdateStoryBar(idx, 0);
+      cineUpdateScrubber(idx, 0);
+      if (!cinemaPaused) cineScheduleNextScene();
+      window.setTimeout(() => cineShowTitleCard(tourScenes[idx]), 500);
+    }
+
+    function cineAdvanceScene() {
+      const nextIdx = (activeTourIndex + 1) % tourScenes.length;
+      cineElapsedMs = 0;
+      cineLastRAFTime = 0;
+      runSceneBlendTransition(nextIdx, false);
+      window.setTimeout(() => cineShowTitleCard(tourScenes[nextIdx]), 500);
+      if (!cinemaPaused) cineScheduleNextScene();
+    }
+
+    function cineScheduleNextScene() {
+      if (cineSceneTimer) window.clearTimeout(cineSceneTimer);
+      cineSceneTimer = window.setTimeout(cineAdvanceScene, CINE_SCENE_DURATION);
+    }
+
+    function cineShowTitleCard(scene) {
+      if (!cineTitleCard || !cineTitleCardName) return;
+      if (cineTitleTimeout) { window.clearTimeout(cineTitleTimeout); cineTitleTimeout = null; }
+      cineTitleCardName.textContent = scene ? scene.title : '';
+      cineTitleCard.classList.add('show');
+      cineTitleTimeout = window.setTimeout(() => {
+        cineTitleCard.classList.remove('show');
+      }, CINE_TITLE_SHOW_MS);
+    }
+
+    function cineShowIntroCard() {
+      if (!cineIntroCard) return;
+      cineIntroCard.classList.add('show');
+      window.setTimeout(() => {
+        cineIntroCard.classList.remove('show');
+      }, CINE_INTRO_SHOW_MS);
+    }
+
+    function cineShowControls() {
+      if (!cineControlsBar) return;
+      cineControlsBar.classList.add('visible');
+      if (cineControlsTimeout) window.clearTimeout(cineControlsTimeout);
+      cineControlsTimeout = window.setTimeout(() => {
+        if (!cinemaPaused) cineControlsBar.classList.remove('visible');
+      }, CINE_CONTROLS_TIMEOUT);
+    }
+
+    function cineUpdatePlayPauseBtn() {
+      if (!cinePlayPauseBtn) return;
+      cinePlayPauseBtn.innerHTML    = cinemaPaused ? '&#9654;' : '&#9646;&#9646;';
+      cinePlayPauseBtn.setAttribute('aria-label', cinemaPaused ? 'Play' : 'Pause');
+    }
+
+    if (cinePlayPauseBtn) {
+      cinePlayPauseBtn.addEventListener('click', () => {
+        if (cinemaPaused) resumeCinemaMode();
+        else pauseCinemaMode();
+      });
+    }
+
+    if (cineSkipBackBtn) {
+      cineSkipBackBtn.addEventListener('click', () => {
+        const prevIdx = ((activeTourIndex - 1) + tourScenes.length) % tourScenes.length;
+        cineJumpToScene(prevIdx);
+      });
+    }
+
+    if (cineSkipFwdBtn) {
+      cineSkipFwdBtn.addEventListener('click', () => {
+        const nextIdx = (activeTourIndex + 1) % tourScenes.length;
+        cineJumpToScene(nextIdx);
+      });
+    }
+
+    if (cineScrubberWrap) {
+      cineScrubberWrap.addEventListener('click', (e) => {
+        const rect = cineScrubberWrap.getBoundingClientRect();
+        const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const totalScenes = tourScenes.length;
+        const sceneIdx = Math.min(totalScenes - 1, Math.floor(pct * totalScenes));
+        cineJumpToScene(sceneIdx);
+      });
+    }
+
+    if (cineFsBtn) {
+      cineFsBtn.addEventListener('click', () => {
+        const el = tourShellEl || document.documentElement;
+        if (!document.fullscreenElement) {
+          el.requestFullscreen && el.requestFullscreen();
+        } else {
+          document.exitFullscreen && document.exitFullscreen();
+        }
+      });
+    }
+
+    if (tourShellEl) {
+      const onInteractionStart = () => {
+        if (!cinemaModeActive) return;
+        cineUserInteracting = true;
+        if (cineSceneTimer) { window.clearTimeout(cineSceneTimer); cineSceneTimer = null; }
+        cineShowControls();
+      };
+      const onInteractionEnd = () => {
+        if (!cinemaModeActive) return;
+        cineUserInteracting = false;
+        if (!cinemaPaused) cineScheduleNextScene();
+      };
+      const onMouseMove = () => {
+        if (!cinemaModeActive) return;
+        cineShowControls();
+      };
+
+      tourShellEl.addEventListener('mousedown',   onInteractionStart,  { passive: true });
+      tourShellEl.addEventListener('touchstart',  onInteractionStart,  { passive: true });
+      tourShellEl.addEventListener('mouseup',     onInteractionEnd,    { passive: true });
+      tourShellEl.addEventListener('touchend',    onInteractionEnd,    { passive: true });
+      tourShellEl.addEventListener('mousemove',   onMouseMove,         { passive: true });
+    }
+
+    if (cineHeroPlayBtn) {
+      cineHeroPlayBtn.addEventListener('click', () => {
+        activeTourIndex = 0;
+        openTour();
+        ensureTourEngineLoaded().then(() => {
+          window.setTimeout(() => {
+            startCinemaMode();
+          }, 900);
+        });
+      });
+    }
+
+    if (tourCloseBtn) {
+      tourCloseBtn.addEventListener('click', () => {
+        stopCinemaMode();
+      });
+    }
+
+    if (tourModal) {
+      tourModal.addEventListener('click', (e) => {
+        if (e.target === tourModal) {
+          stopCinemaMode();
+        }
+      });
+    }
   </script>
 
 </body>
