@@ -2677,7 +2677,7 @@
         title: 'Unit with 2 rooms',
         image: 'img/tourguiado/TipoB/Tipo Bg.svg',
         interactive: true,
-        step2Svg: 'img/tourguiado/masterplan2room.svg'
+        step2Svg: 'img/tourguiado/floorplan-b/masterplan.svg'
       }
     };
 
@@ -2746,7 +2746,7 @@
 
     function getStep2MasterplanSvg(viewKey) {
       const view = heroApartmentViews[viewKey];
-      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/masterplan2room.svg';
+      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/floorplan-b/masterplan.svg';
     }
 
     function revealHeroFrontView() {
