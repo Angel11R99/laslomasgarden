@@ -756,25 +756,25 @@
     .hero-map-hint {
       display: flex;
       position: absolute;
-      top: max(1.8rem, env(safe-area-inset-top));
-      left: max(1.8rem, env(safe-area-inset-left));
+      bottom: max(2.4rem, env(safe-area-inset-bottom));
+      left: max(2.4rem, env(safe-area-inset-left));
       z-index: 10;
       align-items: center;
-      gap: 10px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      background: rgba(5, 18, 14, 0.82);
+      gap: 12px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      background: rgba(7, 138, 99, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(19, 185, 139, 0.38);
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 0.88rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       pointer-events: none;
       white-space: nowrap;
-      animation: hintFadeOut 1.2s ease 5.5s forwards;
+      box-shadow: 0 10px 32px rgba(7, 138, 99, 0.35);
     }
 
     @keyframes hintFadeOut {
@@ -2477,7 +2477,7 @@
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
         <div class="hero-map-base" aria-hidden="true"></div>
-        <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>Select a unit</div>
+        <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>TAP TO EXPLORE</div>
 
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
@@ -2497,10 +2497,10 @@
       </div>
 
       <!-- Cinema CTA — opens tour directly in auto-play mode -->
-      <button type="button" class="cine-hero-play-btn" id="cineHeroPlayBtn">
+      <!-- <button type="button" class="cine-hero-play-btn" id="cineHeroPlayBtn">
         <span class="cine-hero-play-btn-icon">▶</span>
         <span>Iniciar Tour</span>
-      </button>
+      </button> -->
     </div>
 
   <div class="apt-tooltip" id="aptTooltip" aria-hidden="true"><span class="apt-tooltip-dot"></span><span id="aptTooltipText"></span></div>
@@ -2596,7 +2596,7 @@
       <!-- Intro title card (first scene only) -->
       <div class="cine-intro-card" id="cineIntroCard" aria-hidden="true">
         <div class="cine-intro-title">Vista Lomas</div>
-        <div class="cine-intro-subtitle">Tour Virtual — Residencias Serenáis</div>
+        <div class="cine-intro-subtitle">Tour Virtual —</div>
       </div>
 
       <!-- Lower-third scene title card -->
@@ -4606,10 +4606,6 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
     if (tourCtaExploreBtn) {
       tourCtaExploreBtn.addEventListener('click', () => {
         closeCtaModal();
-        window.setTimeout(() => {
-          activeTourIndex = 0;
-          openTour();
-        }, 300);
       });
     }
 
