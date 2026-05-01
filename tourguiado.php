@@ -1356,7 +1356,7 @@
     }
 
     .tour-touch-hint {
-      position: absolute;
+      position: fixed;
       top: calc(max(1rem, env(safe-area-inset-top)) + 3.4rem);
       left: 50%;
       z-index: 23;
@@ -1593,7 +1593,7 @@
     }
 
     .tour-loading.active {
-      display: flex;
+      display: none !important;
     }
 
     .tour-loading-spinner {
@@ -2366,7 +2366,7 @@
       </div>
 
       <div class="tour-stage">
-        <div class="tour-loading active" id="tourLoading" aria-hidden="false">
+        <div class="tour-loading" id="tourLoading" aria-hidden="true">
           <span class="tour-loading-spinner" aria-hidden="true"></span>
           <span id="tourLoadingText">Loading 360...</span>
         </div>
@@ -3858,7 +3858,7 @@
       });
       resetTourZoom();
       if (tourCamera && !preserveCamera) {
-        setTourRotation(0, 0);
+        setTourRotation(-30, 0);
       }
       // Esconder pin de posición al cambiar escena
       const clickPin = document.getElementById('tourClickPin');
