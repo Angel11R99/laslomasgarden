@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="FloorPlans-Type-B" xmlns="http://www.w3.org/2000/svg" width="4800" height="3606.9" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 4800 3606.9">
+  <image id="FloorPlans-Type-B-2" data-name="FloorPlans-Type-B" width="4800" height="3580" xlink:href="img\tourguiado\floorplan-b\FloorPlans-Type-B.webp"/>
+  <image id="balcon-B" width="1415" height="994" transform="translate(748 2611.1)" xlink:href="img\tourguiado\floorplan-b\balcon-B.webp"/>
+  <image id="living-B" width="1415" height="994" transform="translate(756 1707.5)" xlink:href="img\tourguiado\floorplan-b\living-B.webp"/>
+  <image id="kitchen-B" width="1188" height="1010" transform="translate(899.6 125.6)" xlink:href="img\tourguiado\floorplan-b\kitchen-B.webp"/>
+  <image id="dinning" width="784" height="720" transform="translate(1168 1122.1)" xlink:href="img\tourguiado\floorplan-b\dinning.webp"/>
+  <image id="closet-B" width="586" height="594" transform="translate(2190.7 1614.3) scale(1)" xlink:href="img\tourguiado\floorplan-b\closet-B.webp"/>
+  <image id="bed2-B" width="1454" height="1384" transform="translate(2724 1532.3) scale(1)" xlink:href="img\tourguiado\floorplan-b\bed2-B.webp"/>
+  <image id="bed1-B" width="1454" height="1279" transform="translate(2496 57)" xlink:href="img\tourguiado\floorplan-b\bed1-B.webp"/>
+  <image id="bath1-B" width="1086" height="550" transform="translate(3139.4 996) scale(1.1)" xlink:href="img\tourguiado\floorplan-b\bath1-B.webp"/>
+  <image id="bath2-B" width="569" height="1165" transform="translate(2205.1 2128.7) scale(1)" xlink:href="img\tourguiado\floorplan-b\bath2-B.webp"/>
+</svg>

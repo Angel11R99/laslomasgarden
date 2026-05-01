@@ -2677,7 +2677,7 @@
         title: 'Unit with 2 rooms',
         image: 'img/tourguiado/TipoB/Tipo Bg.svg',
         interactive: true,
-        step2Svg: 'img/tourguiado/floorplan-b/masterplan.svg'
+        step2Svg: 'img/tourguiado/floorplan-b/FloorPlans-Type-B.svg'
       }
     };
 
@@ -2731,22 +2731,25 @@
       laundry: 'pasillo-2',
       // masterplan3room (3 bedrooms) IDs from SVG: Balcon, Living, Dinning, Kitchen, BedRoom, BedRoom-2, BedRoom2, Bath1, Bath2, Closet, Laundry
       living: 'sala',
-      dinning: 'comedor',
       kitchen: 'cocina',
       bedroom: 'dormitorio-principal',
-      bedroom2: 'dormitorio-a',
       'bedroom-2': 'dormitorio-b',
       bath1: 'bano-principal',
       bath2: 'bano-2',
-      closet: 'wc',
-      wc: 'wc',
-      toilet: 'wc',
-      laundry: 'pasillo-2'
+      // FloorPlans-Type-B IDs
+      'balcon-b': 'balcon-exterior',
+      'living-b': 'sala',
+      'kitchen-b': 'cocina',
+      'bed1-b': 'dormitorio-principal',
+      'bed2-b': 'dormitorio-a',
+      'bath1-b': 'bano-principal',
+      'bath2-b': 'bano-2',
+      'closet-b': 'wc',
     };
 
     function getStep2MasterplanSvg(viewKey) {
       const view = heroApartmentViews[viewKey];
-      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/floorplan-b/masterplan.svg';
+      return view && view.step2Svg ? view.step2Svg : 'img/tourguiado/floorplan-b/FloorPlans-Type-B.svg';
     }
 
     function revealHeroFrontView() {
@@ -2939,21 +2942,44 @@
       if (heroFrontTitle) heroFrontTitle.textContent = 'Click on the area you want to see';
       if (heroFrontClose) heroFrontClose.textContent = 'Back to layout';
 
+      // Inject SVG defs for glow filter (once per SVG)
+      const existingDefs = inlineSvg.querySelector('defs');
+      const defsEl = existingDefs || document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defsEl.innerHTML = `
+        <filter id="fp-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="18" result="blur"/>
+          <feFlood flood-color="#13b98b" flood-opacity="0.55" result="color"/>
+          <feComposite in="color" in2="blur" operator="in" result="glow"/>
+          <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="fp-glow-pulse" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="28" result="blur"/>
+          <feFlood flood-color="#10ba88" flood-opacity="0.7" result="color"/>
+          <feComposite in="color" in2="blur" operator="in" result="glow"/>
+          <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      `;
+      if (!existingDefs) inlineSvg.insertBefore(defsEl, inlineSvg.firstChild);
+
       const sceneNodes = inlineSvg.querySelectorAll('[id]');
       sceneNodes.forEach((node) => {
-        if (/^(Layer_1|Capa_1|Layer|Background)$/i.test(node.id)) return;
+        if (/^(Layer_1|Capa_1|Layer|Background|FloorPlans-Type-B-2|FloorPlans-Type-B)$/i.test(node.id)) return;
         const sceneId = resolveTourSceneId(node.getAttribute('data-scene') || node.id || '');
         if (!sceneId) return;
 
         const targetScene = getSceneById(sceneId);
         const areaLabel = targetScene ? targetScene.title : sceneId;
         node.setAttribute('aria-label', areaLabel);
+        node.style.cursor = 'pointer';
+        node.style.transition = 'filter 0.25s ease, opacity 0.25s ease';
 
         const hideAreaHint = () => {
           if (!heroFrontAreaTooltip) return;
           heroFrontAreaTooltip.classList.remove('visible');
           heroFrontAreaTooltip.setAttribute('aria-hidden', 'true');
           heroFrontAreaTooltip.textContent = '';
+          node.style.filter = '';
+          node.style.opacity = '1';
         };
 
         const placeAreaHint = (x, y) => {
@@ -2966,6 +2992,8 @@
         };
 
         node.addEventListener('mouseenter', (e) => {
+          node.style.filter = 'url(#fp-glow) brightness(1.15) saturate(1.3)';
+          node.style.opacity = '0.92';
           placeAreaHint(e.clientX, e.clientY);
         });
 
@@ -2976,6 +3004,7 @@
         node.addEventListener('mouseleave', hideAreaHint);
 
         node.addEventListener('focus', () => {
+          node.style.filter = 'url(#fp-glow) brightness(1.15)';
           const rect = node.getBoundingClientRect();
           placeAreaHint(rect.left + rect.width / 2, rect.top + rect.height / 2);
         });
@@ -2983,8 +3012,11 @@
         node.addEventListener('blur', hideAreaHint);
 
         makeSvgElementButton(node, () => {
-          hideHeroFrontView();
-          window.setTimeout(() => openTourAtScene(sceneId), 120);
+          node.style.filter = 'url(#fp-glow-pulse) brightness(1.25)';
+          window.setTimeout(() => {
+            hideHeroFrontView();
+            window.setTimeout(() => openTourAtScene(sceneId), 120);
+          }, 180);
         });
       });
 
