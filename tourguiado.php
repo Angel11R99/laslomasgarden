@@ -763,12 +763,12 @@
       gap: 12px;
       padding: 16px 32px;
       border-radius: 12px;
-      background: rgba(7, 138, 99, 0.95);
+      background: rgba(7, 138, 99, 0.527);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #ffffff;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -2477,7 +2477,7 @@
       <!-- SVG Container – replace the example SVG with your actual apartment map SVG -->
       <div class="hero-apartment-map" aria-label="Mapa interactivo de apartamentos">
         <div class="hero-map-base" aria-hidden="true"></div>
-        <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>TAP TO EXPLORE</div>
+        <div class="hero-map-hint" aria-hidden="true"><span class="hero-map-hint-dot"></span>TAP THE APARTMENT YOU WANT TO EXPLORE</div>
 
         <div id="svgContainer">
           <div class="hero-map-loading" id="heroMapLoading">Loading units...</div>
