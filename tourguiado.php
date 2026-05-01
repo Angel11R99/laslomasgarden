@@ -1237,7 +1237,7 @@
       height: 100%;
       max-height: none;
       border-radius: 0;
-      overflow: hidden;
+      overflow: visible;
       background:
         radial-gradient(ellipse at 30% 70%, rgba(7, 138, 99, 0.07) 0%, transparent 60%),
         radial-gradient(ellipse at 70% 30%, rgba(4, 104, 75, 0.05) 0%, transparent 50%),
@@ -1248,8 +1248,8 @@
     }
 
     .tour-room-label {
-      position: absolute;
-      bottom: max(1.6rem, env(safe-area-inset-bottom));
+      position: fixed;
+      bottom: max(1.6rem, env(safe-area-inset-bottom, 1.6rem));
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
@@ -1997,6 +1997,177 @@
       }
     }
 
+    /* Ocultar botón A-Frame VR (inútil, confunde) */
+    .a-enter-vr-button {
+      display: none !important;
+    }
+
+    /* ═══════════════════════════════════════════════
+       TOUR CTA MODAL — Initial Choice
+       ═══════════════════════════════════════════════ */
+
+    .tour-cta-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .tour-cta-modal[aria-hidden="true"] {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .tour-cta-backdrop {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(7,138,99,0.35) 0%, rgba(4,104,75,0.25) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .tour-cta-content {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, #fff 0%, #f8faf9 100%);
+      border-radius: 24px;
+      padding: clamp(32px, 5vw, 60px);
+      max-width: min(92vw, 720px);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: ctaSlideIn 0.5s ease;
+    }
+
+    @keyframes ctaSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .tour-cta-title {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: #17483b;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .tour-cta-subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: #5b6f69;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .tour-cta-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 3vw, 24px);
+      margin-bottom: 24px;
+    }
+
+    .tour-cta-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: clamp(20px, 4vw, 32px);
+      border: 2px solid #e0e5e2;
+      border-radius: 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .tour-cta-btn:hover {
+      border-color: var(--green-light);
+      background: linear-gradient(135deg, #f0fdf8 0%, #f8fdf9 100%);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(7,138,99,0.15);
+    }
+
+    .tour-cta-btn:active {
+      transform: translateY(-2px);
+    }
+
+    .tour-cta-btn-guide {
+      border-color: var(--green);
+    }
+
+    .tour-cta-btn-guide:hover {
+      border-color: var(--green-light);
+      background: linear-gradient(135deg, #e8fdf5 0%, #f0fdf8 100%);
+    }
+
+    .tour-cta-btn-explore:hover {
+      border-color: var(--green);
+    }
+
+    .tour-cta-btn-icon {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tour-cta-btn-title {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      font-weight: 700;
+      color: #17483b;
+      display: block;
+    }
+
+    .tour-cta-btn-desc {
+      font-size: 0.8rem;
+      color: #5b6f69;
+      font-weight: 400;
+      display: block;
+    }
+
+    .tour-cta-close {
+      position: absolute;
+      top: clamp(16px, 3vw, 24px);
+      right: clamp(16px, 3vw, 24px);
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: transparent;
+      color: #5b6f69;
+      font-size: 1.6rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tour-cta-close:hover {
+      background: rgba(7,138,99,0.1);
+      color: #17483b;
+    }
+
+    @media (max-width: 640px) {
+      .tour-cta-buttons {
+        grid-template-columns: 1fr;
+      }
+      .tour-cta-content {
+        padding: 24px;
+      }
+    }
+
     /* ═══════════════════════════════════════════════
        MODO CINE — Cinematic Overlay System
        ═══════════════════════════════════════════════ */
@@ -2053,10 +2224,10 @@
 
     /* Cinema controls bar — bottom overlay */
     .cine-controls-bar {
-      position: absolute;
+      position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 52;
-      padding: 0 16px max(16px, env(safe-area-inset-bottom)) 16px;
+      padding: 0 16px max(16px, env(safe-area-inset-bottom, 16px)) 16px;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
       display: flex;
       flex-direction: column;
@@ -2334,6 +2505,31 @@
 
   <div class="apt-tooltip" id="aptTooltip" aria-hidden="true"><span class="apt-tooltip-dot"></span><span id="aptTooltipText"></span></div>
   </header>
+
+  <!-- Tour CTA Modal — Initial choice -->
+  <div class="tour-cta-modal" id="tourCtaModal" aria-hidden="false">
+    <div class="tour-cta-backdrop" id="tourCtaBackdrop"></div>
+    <div class="tour-cta-content">
+      <h1 class="tour-cta-title">¿Qué deseas hacer?</h1>
+      <p class="tour-cta-subtitle">Explora Vista Lomas de tu forma preferida</p>
+
+      <div class="tour-cta-buttons">
+        <button type="button" class="tour-cta-btn tour-cta-btn-guide" id="tourCtaGuideBtn">
+          <span class="tour-cta-btn-icon">▶</span>
+          <span class="tour-cta-btn-title">Ver Recorrido Guiado</span>
+          <span class="tour-cta-btn-desc">Experiencia cinematográfica de 1 minuto</span>
+        </button>
+
+        <button type="button" class="tour-cta-btn tour-cta-btn-explore" id="tourCtaExploreBtn">
+          <span class="tour-cta-btn-icon">🔍</span>
+          <span class="tour-cta-btn-title">Explorar por tu cuenta</span>
+          <span class="tour-cta-btn-desc">Navega libremente a tu ritmo</span>
+        </button>
+      </div>
+
+      <button type="button" class="tour-cta-close" id="tourCtaCloseBtn" aria-label="Cerrar">✕</button>
+    </div>
+  </div>
 
   <!-- The rest of your sections remain exactly the same -->
   <div class="tour-modal" id="tourModal" aria-hidden="true">
@@ -4378,6 +4574,50 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
     })();
 
     // ════════════════════════════════════════════════════════════
+    //  TOUR CTA MODAL — Initial Choice Handler
+    // ════════════════════════════════════════════════════════════
+
+    const tourCtaModal = document.getElementById('tourCtaModal');
+    const tourCtaGuideBtn = document.getElementById('tourCtaGuideBtn');
+    const tourCtaExploreBtn = document.getElementById('tourCtaExploreBtn');
+    const tourCtaCloseBtn = document.getElementById('tourCtaCloseBtn');
+
+    function closeCtaModal() {
+      if (tourCtaModal) {
+        tourCtaModal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (tourCtaGuideBtn) {
+      tourCtaGuideBtn.addEventListener('click', () => {
+        closeCtaModal();
+        window.setTimeout(() => {
+          activeTourIndex = 0;
+          openTour();
+          ensureTourEngineLoaded().then(() => {
+            window.setTimeout(() => {
+              startCinemaMode();
+            }, 900);
+          });
+        }, 300);
+      });
+    }
+
+    if (tourCtaExploreBtn) {
+      tourCtaExploreBtn.addEventListener('click', () => {
+        closeCtaModal();
+        window.setTimeout(() => {
+          activeTourIndex = 0;
+          openTour();
+        }, 300);
+      });
+    }
+
+    if (tourCtaCloseBtn) {
+      tourCtaCloseBtn.addEventListener('click', closeCtaModal);
+    }
+
+    // ════════════════════════════════════════════════════════════
     //  MODO CINE — Cinema Mode Engine
     // ════════════════════════════════════════════════════════════
 
@@ -4663,9 +4903,8 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
 
     if (cineFsBtn) {
       cineFsBtn.addEventListener('click', () => {
-        const el = tourShellEl || document.documentElement;
         if (!document.fullscreenElement) {
-          el.requestFullscreen && el.requestFullscreen();
+          document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
         } else {
           document.exitFullscreen && document.exitFullscreen();
         }
