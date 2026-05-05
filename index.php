@@ -277,6 +277,18 @@
       border-radius: 0;
     }
 
+    .lls-safety__badge {
+      position: absolute;
+      top: clamp(1.5rem, 4vw, 3rem);
+      right: clamp(1.5rem, 4vw, 3rem);
+      color: var(--lls-white);
+      font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+      pointer-events: none;
+    }
+
     .welcome_container {
       width: 100%;
       height: 350px;
@@ -1012,6 +1024,7 @@
       </div>
 
       <div class="lls-safety__media">
+        <div class="lls-safety__badge">Security 24/7</div>
         <img src="img/home/front-green.webp" alt="Primary entrance of Vista Lomas" loading="lazy">
       </div>
 

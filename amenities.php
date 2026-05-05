@@ -405,7 +405,7 @@
             </div>
         </div>
 
-        <!-- 5. A Space to Connect -->
+        <!-- 5. A Space to Connect
         <div class="room-card">
             <figure class="room-card-media">
                 <img src="img/shared/pool-family.webp" alt="Social gathering space at Vista Lomas" loading="lazy">
@@ -413,6 +413,37 @@
             <div class="room-card-copy">
                 <h2>A Space to Connect</h2>
                 <p>Our community spaces are designed for relaxation and connection. A comfortable gazebo and lounge area offer the perfect spot to sit back, relax, and share moments with loved ones, all while enjoying the beautiful tropical surroundings of the project.</p>
+                <div class="room-card-actions">
+                    <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
+                    <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <!-- 6. Pool Area -->
+        <div class="room-card">
+            <figure class="room-card-media">
+                <img src="img/amenities/pool_area.webp" alt="Swimming Pool Area at Vista Lomas" loading="lazy">
+            </figure>
+            <div class="room-card-copy">
+                <h2>Pool Area</h2>
+                <p>Dive into relaxation in our stunning swimming pool area. Designed for both recreation and tranquility, the pool is surrounded by lush landscaping and comfortable seating, making it the heart of our community's leisure time.</p>
+                <div class="room-card-actions">
+                    <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
+                    <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Social Area -->
+        <div class="room-card">
+            <figure class="room-card-media">
+                <img src="img/amenities/social_area.jpg" alt="Social Area at Vista Lomas" loading="lazy">
+            </figure>
+            <div class="room-card-copy">
+                <h2>Social Area</h2>
+                <p>Our dedicated social areas provide the perfect backdrop for community gatherings and private celebrations. With modern amenities and spacious layouts, these areas are designed to bring neighbors together and create lasting memories.</p>
                 <div class="room-card-actions">
                     <a href="/contact-us" class="room-card-btn is-solid">Request Information</a>
                     <a href="/contact-us" class="room-card-btn is-outline">Contact US</a>
