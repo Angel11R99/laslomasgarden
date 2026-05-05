@@ -110,6 +110,7 @@
       border-radius: var(--lls-card-radius);
       overflow: hidden;
       background: transparent;
+      width: 100%;
     }
 
     /* Keep spacing for the map card (second child) */
