@@ -626,16 +626,16 @@
       transform: none;
       display: inline-flex;
       align-items: center;
-      min-height: 2.35rem;
-      padding: 0 1rem;
+      min-height: 2.9rem;
+      padding: 0 1.25rem;
       border-radius: 999px;
       border: 1px solid rgba(19, 185, 139, 0.38);
       background: rgba(5, 18, 14, 0.72);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: clamp(0.9rem, 1.9vw, 1.1rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
       white-space: nowrap;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
       text-shadow: none;
@@ -649,7 +649,7 @@
       right: max(1rem, env(safe-area-inset-right));
       transform: none;
       text-align: right;
-      font-size: 2.75rem;
+      font-size: clamp(2.9rem, 5.1vw, 4rem);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
@@ -667,11 +667,12 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      font-weight: 800;
+      letter-spacing: 0.055em;
       text-transform: uppercase;
-      padding: 10px 22px;
+      min-height: 3.15rem;
+      padding: 0.72rem 1.55rem;
       cursor: pointer;
       transition: background-color 0.22s ease, transform 0.22s ease;
       text-align: center;
@@ -1152,15 +1153,15 @@
       top: max(1rem, env(safe-area-inset-top));
       left: max(1rem, env(safe-area-inset-left));
       z-index: 21;
-      min-height: 2.8rem;
-      padding: 0 1rem;
+      min-height: 3.35rem;
+      padding: 0 1.35rem;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.24);
       background: rgba(15, 27, 22, 0.72);
       color: #fff;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-size: clamp(0.86rem, 1.7vw, 1rem);
+      font-weight: 800;
+      letter-spacing: 0.055em;
       text-transform: uppercase;
       cursor: pointer;
       backdrop-filter: blur(10px);
@@ -2159,6 +2160,40 @@
       color: #17483b;
     }
 
+    .tour-cta-reopen {
+      position: fixed;
+      top: max(1rem, env(safe-area-inset-top));
+      right: max(1rem, env(safe-area-inset-right));
+      z-index: 120;
+      min-height: 3rem;
+      padding: 0.65rem 1rem;
+      border: 1px solid rgba(19, 185, 139, 0.55);
+      border-radius: 999px;
+      background: rgba(7, 21, 16, 0.82);
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: background-color 0.22s ease, transform 0.2s ease;
+    }
+
+    .tour-cta-reopen:hover,
+    .tour-cta-reopen:focus-visible {
+      background: rgba(7, 138, 99, 0.74);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .tour-cta-reopen[aria-hidden="true"] {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     @media (max-width: 640px) {
       .tour-cta-buttons {
         grid-template-columns: 1fr;
@@ -2492,7 +2527,7 @@
         <div class="hero-front-area-tooltip" id="heroFrontAreaTooltip" aria-hidden="true"></div>
         <span class="hero-front-title" id="heroFrontTitle">Unit with 3 rooms</span>
         <div class="hero-front-controls">
-          <button class="hero-front-close" id="heroFrontClose" type="button">Return to the master plan</button>
+          <button class="hero-front-close" id="heroFrontClose" type="button">Return to Site Map</button>
         </div>
       </div>
 
@@ -2510,31 +2545,33 @@
   <div class="tour-cta-modal" id="tourCtaModal" aria-hidden="false">
     <div class="tour-cta-backdrop" id="tourCtaBackdrop"></div>
     <div class="tour-cta-content">
-      <h1 class="tour-cta-title">¿Qué deseas hacer?</h1>
-      <p class="tour-cta-subtitle">Explora Vista Lomas de tu forma preferida</p>
+      <h1 class="tour-cta-title">How would you like to explore?</h1>
+      <p class="tour-cta-subtitle">Choose one mode below. You can switch anytime with "Change Experience".</p>
 
       <div class="tour-cta-buttons">
         <button type="button" class="tour-cta-btn tour-cta-btn-guide" id="tourCtaGuideBtn">
           <span class="tour-cta-btn-icon">▶</span>
-          <span class="tour-cta-btn-title">Ver Recorrido Guiado</span>
-          <span class="tour-cta-btn-desc">Experiencia cinematográfica de 1 minuto</span>
+          <span class="tour-cta-btn-title">Start Guided Tour</span>
+          <span class="tour-cta-btn-desc">A cinematic 1-minute walkthrough</span>
         </button>
 
         <button type="button" class="tour-cta-btn tour-cta-btn-explore" id="tourCtaExploreBtn">
           <span class="tour-cta-btn-icon">🔍</span>
-          <span class="tour-cta-btn-title">Explorar por tu cuenta</span>
-          <span class="tour-cta-btn-desc">Navega libremente a tu ritmo</span>
+          <span class="tour-cta-btn-title">Explore Freely</span>
+          <span class="tour-cta-btn-desc">Move at your own pace</span>
         </button>
       </div>
 
-      <button type="button" class="tour-cta-close" id="tourCtaCloseBtn" aria-label="Cerrar">✕</button>
+      <button type="button" class="tour-cta-close" id="tourCtaCloseBtn" aria-label="Close">✕</button>
     </div>
   </div>
+
+  <button type="button" class="tour-cta-reopen" id="tourCtaReopenBtn" aria-hidden="true">Change Experience</button>
 
   <!-- The rest of your sections remain exactly the same -->
   <div class="tour-modal" id="tourModal" aria-hidden="true">
     <div class="tour-shell" role="dialog" aria-modal="true" aria-labelledby="tourSceneTitle">
-      <button class="tour-back-plan" id="tourBackPlanBtn" type="button">Back to plan</button>
+      <button class="tour-back-plan" id="tourBackPlanBtn" type="button">Go Back to Floor Plan</button>
       <button class="tour-close" id="tourCloseBtn" type="button" aria-label="Close 360 tour">&times;</button>
       <button class="tour-hotspot-toggle" id="tourHotspotToggle" type="button" aria-pressed="true">Hide hotspots</button>
       <div class="tour-room-label">
@@ -2893,8 +2930,8 @@
       if (!inlineSvg) return false;
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Select a unit layout';
-      if (heroFrontClose) heroFrontClose.textContent = 'Return to site map';
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Step 1: Select Your Unit Layout';
+      if (heroFrontClose) heroFrontClose.textContent = 'Return to Site Map';
 
       const currentViewKey = viewKey;
       const openStep2 = () => {
@@ -2924,7 +2961,7 @@
           if (rooftopMatch && selectedBuildingNum) {
             selectedRooftopSuffix = String(node.id || '').toUpperCase();
             hideHeroFrontView();
-            window.setTimeout(() => openTourAtScene('balcon-exterior'), 120);
+            window.setTimeout(() => openTourAtScene('rooftop'), 120);
             return;
           }
           selectedRooftopSuffix = '';
@@ -2950,8 +2987,8 @@
       if (!inlineSvg) return false;
 
       inlineSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      if (heroFrontTitle) heroFrontTitle.textContent = 'Click on the area you want to see';
-      if (heroFrontClose) heroFrontClose.textContent = 'Back to layout';
+      if (heroFrontTitle) heroFrontTitle.textContent = 'Step 2: Click a Room to Enter the 360 Tour';
+      if (heroFrontClose) heroFrontClose.textContent = 'Go Back to Floor Plan';
 
       // Inject SVG defs for glow filter (once per SVG)
       const existingDefs = inlineSvg.querySelector('defs');
@@ -3379,6 +3416,16 @@
     // ─────────────────────────────────────────────────────────────────
     const tourScenes = [
       {
+        id: 'rooftop',
+        title: 'Rooftop',
+        image: 'img/ROOFTOP%20360/SERENAS_ROOFTOP%20360%20-%2033I.webp',
+        mobileImage: 'img/ROOFTOP%20360/SERENAS_ROOFTOP%20360%20-%2033I.webp',
+        rotation: '0 -120 0',
+        hotspots: [
+          { to: 'sala', label: 'Living Room', position: '0 0 4' }
+        ]
+      },
+      {
         id: 'balcon-exterior',
         title: 'Balcony',
         image: 'img/tourguiado/renders/exteriores/SERENAS_BALCONY%20360%20-%2033B.webp',
@@ -3566,12 +3613,12 @@
     const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
     const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
     let isTransitioning = false;
-    const SCENE_BLEND_SWAP_DELAY = 120;
-    const SCENE_BLEND_TOTAL_DURATION = 800;
+    const SCENE_BLEND_SWAP_DELAY = 90;
+    const SCENE_BLEND_TOTAL_DURATION = 560;
     const SCENE_MOVE_SWAP_DELAY = 260;
     const SCENE_MOVE_CAMERA_RESET_DELAY = 180;
     const SCENE_MOVE_TOTAL_DURATION = 980;
-    const DEFAULT_TOUR_FOV = 80;
+    const DEFAULT_TOUR_FOV = 95;
     const MIN_TOUR_FOV = 45;
     const MAX_TOUR_FOV = 95;
     const PINCH_ZOOM_STRENGTH = 0.68;
@@ -3584,6 +3631,7 @@
     let tourLoadingToken = 0;
     let tourEngineLoadPromise = null;
     let tourInteractionHandlersReady = false;
+    let currentTourSkySource = '';
 
     const availableTourIndexes = tourScenes
       .map((scene, index) => scene.locked ? null : index)
@@ -3606,23 +3654,27 @@
         wc: 'img/tourguiado/renders/interiores/360%20Tipo%20A/WC.webp'
       },
       'without-balcony': {
-        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Sala.webp',
-        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Comedor.webp',
-        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
-        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%201.webp',
-        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%201.webp',
-        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
-        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Laundry.webp',
-        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
-        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%202.webp',
-        wc: 'img/tourguiado/renders/interiores/360%20Tipo%20B/WC.webp'
+        sala: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        comedor: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Sala-Comedor.webp',
+        cocina: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Cocina.webp',
+        pasillo: 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20principal.webp',
+        'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o.webp',
+        'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20A.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Laundry.webp',
+        'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20B.webp',
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o%202.webp',
+        wc: 'img/tourguiado/renders/interiores/360%20Tipo%20A/WC.webp'
       }
     };
 
     function getSceneImage(scene) {
       if (!scene) return '';
-      if (scene.id === 'balcon-exterior' && selectedBuildingNum && selectedRooftopSuffix) {
-        return `img/ROOFTOP%20360/SERENAS_ROOFTOP%20360%20-%20${selectedBuildingNum}${selectedRooftopSuffix}.webp`;
+      if (/^(balcon-exterior|rooftop)$/.test(scene.id) && selectedBuildingNum) {
+        const rooftopSuffix = scene.id === 'rooftop' ? (selectedRooftopSuffix || 'I') : selectedRooftopSuffix;
+        if (rooftopSuffix) {
+          return `img/ROOFTOP%20360/SERENAS_ROOFTOP%20360%20-%20${selectedBuildingNum}${rooftopSuffix}.webp`;
+        }
       }
       const layoutImages = tourSceneImagesByLayout[activePlanViewKey] || null;
       if (layoutImages && layoutImages[scene.id]) return layoutImages[scene.id];
@@ -4097,13 +4149,21 @@
       if (!keepControlsDisabled) {
         setControlsDisabled(false);
       }
-      replaceSkyTexture(getSceneImage(scene), scene.rotation || '0 -90 0', {
-        crossfade: crossfadeSky,
-        fadeDuration: skyFadeDuration
-      });
+      const nextSkySource = getSceneImage(scene);
+      const nextRotation = scene.rotation || '0 -90 0';
+      if (nextSkySource && nextSkySource === currentTourSkySource) {
+        if (tourSky) tourSky.setAttribute('rotation', nextRotation);
+        if (tourSkyBlend) tourSkyBlend.setAttribute('rotation', nextRotation);
+      } else {
+        replaceSkyTexture(nextSkySource, nextRotation, {
+          crossfade: crossfadeSky,
+          fadeDuration: skyFadeDuration
+        });
+        currentTourSkySource = nextSkySource;
+      }
       resetTourZoom();
       if (tourCamera && !preserveCamera) {
-        setTourRotation(-30, 0);
+        setTourRotation(-18, 0);
       }
       // Esconder pin de posición al cambiar escena
       const clickPin = document.getElementById('tourClickPin');
@@ -4130,7 +4190,7 @@
       window.setTimeout(() => {
         setTourScene(targetIndex, announce, {
           crossfadeSky: true,
-          skyFadeDuration: 640,
+          skyFadeDuration: 380,
           keepControlsDisabled: true
         });
       }, SCENE_BLEND_SWAP_DELAY);
@@ -4208,7 +4268,7 @@
 
     // Cambio entre escenas con movimiento corto + dissolve real entre panoramas.
     function walkToScene(targetIndex, hotspotPosition) {
-      runSceneMoveAndBlendTransition(targetIndex, hotspotPosition, false);
+      runSceneBlendTransition(targetIndex, false);
     }
 
     function openTourAtScene(sceneId) {
@@ -4630,11 +4690,29 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
     const tourCtaGuideBtn = document.getElementById('tourCtaGuideBtn');
     const tourCtaExploreBtn = document.getElementById('tourCtaExploreBtn');
     const tourCtaCloseBtn = document.getElementById('tourCtaCloseBtn');
+    const tourCtaReopenBtn = document.getElementById('tourCtaReopenBtn');
+
+    function showCtaReopenButton() {
+      if (!tourCtaReopenBtn) return;
+      tourCtaReopenBtn.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideCtaReopenButton() {
+      if (!tourCtaReopenBtn) return;
+      tourCtaReopenBtn.setAttribute('aria-hidden', 'true');
+    }
+
+    function openCtaModal() {
+      if (!tourCtaModal) return;
+      tourCtaModal.setAttribute('aria-hidden', 'false');
+      hideCtaReopenButton();
+    }
 
     function closeCtaModal() {
       if (tourCtaModal) {
         tourCtaModal.setAttribute('aria-hidden', 'true');
       }
+      showCtaReopenButton();
     }
 
     if (tourCtaGuideBtn) {
@@ -4662,12 +4740,16 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       tourCtaCloseBtn.addEventListener('click', closeCtaModal);
     }
 
+    if (tourCtaReopenBtn) {
+      tourCtaReopenBtn.addEventListener('click', openCtaModal);
+    }
+
     // ════════════════════════════════════════════════════════════
     //  MODO CINE — Cinema Mode Engine
     // ════════════════════════════════════════════════════════════
 
-    const CINE_SCENE_DURATION   = 5000;
-    const CINE_ROTATION_SPEED   = 0.006;
+    const CINE_SCENE_DURATION   = 3600;
+    const CINE_ROTATION_SPEED   = 0.0024;
     const CINE_CONTROLS_TIMEOUT = 3000;
     const CINE_TITLE_SHOW_MS    = 2500;
     const CINE_TITLE_FADE_MS    = 500;
@@ -4680,6 +4762,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
     let cineRAFHandle       = null;
     let cineLastRAFTime     = 0;
     let cineElapsedMs       = 0;
+    let cineRotationDirection = Math.random() < 0.5 ? -1 : 1;
     let cineTitleTimeout    = null;
     let cineControlsTimeout = null;
     let cineUserInteracting = false;
@@ -4779,7 +4862,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
 
       const lookControls = getTourLookControls();
       if (lookControls && lookControls.yawObject) {
-        lookControls.yawObject.rotation.y -= CINE_ROTATION_SPEED * delta * (Math.PI / 180);
+        lookControls.yawObject.rotation.y += (CINE_ROTATION_SPEED * cineRotationDirection) * delta * (Math.PI / 180);
         syncTourCameraRotation();
       }
 
@@ -4795,6 +4878,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       cinemaModeActive = true;
       cinemaPaused = false;
       cineElapsedMs = 0;
+      cineRotationDirection = Math.random() < 0.5 ? -1 : 1;
 
       if (tourShellEl) tourShellEl.classList.add('cine-active');
 
@@ -4861,6 +4945,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       if (cineSceneTimer) { window.clearTimeout(cineSceneTimer); cineSceneTimer = null; }
       cineElapsedMs = 0;
       cineLastRAFTime = 0;
+      cineRotationDirection = Math.random() < 0.5 ? -1 : 1;
       runSceneBlendTransition(idx, false);
       cineUpdateStoryBar(idx, 0);
       cineUpdateScrubber(idx, 0);
@@ -4872,6 +4957,7 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
       const nextIdx = (activeTourIndex + 1) % tourScenes.length;
       cineElapsedMs = 0;
       cineLastRAFTime = 0;
+      cineRotationDirection = Math.random() < 0.5 ? -1 : 1;
       runSceneBlendTransition(nextIdx, false);
       window.setTimeout(() => cineShowTitleCard(tourScenes[nextIdx]), 500);
       if (!cinemaPaused) cineScheduleNextScene();
