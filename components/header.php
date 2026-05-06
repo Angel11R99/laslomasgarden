@@ -482,13 +482,17 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       padding-top: 6px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 0.7rem;
     }
 
     .lls-header-right {
+      display: flex;
       width: auto;
       flex: 0 1 auto;
       justify-content: flex-end;
+      align-items: center;
+      height: 100%;
       padding-top: 0;
       gap: 14px;
       text-align: right;
@@ -546,7 +550,18 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
 
     .lls-header-left {
       min-width: 0;
+      transform: translateX(09%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-right: 0;
+    }
+
+    .lls-header.is-scrolled .lls-header-left,
+    .lls-header.is-compact .lls-header-left {
       transform: none;
+      justify-content: flex-start;
     }
 
     .lls-header-logo {
@@ -562,10 +577,12 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
     }
 
     .lls-header-right {
+      display: flex;
       flex: 0 0 auto;
       width: auto;
       min-width: 48px;
       min-height: 48px;
+      height: 100%;
       padding: 0;
       justify-content: flex-end;
       align-items: center;
@@ -582,6 +599,8 @@ $is_home = ($current_page == 'index.php' || $current_page == '' || $current_page
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      align-self: center;
+      margin: auto 0;
       width: 46px;
       height: 46px;
       border: 1px solid rgba(255, 255, 255, 0.8);
