@@ -1594,7 +1594,7 @@
     }
 
     .tour-loading.active {
-      display: none !important;
+      display: flex;
     }
 
     .tour-loading-spinner {
@@ -2603,7 +2603,7 @@
           <span class="tour-loading-spinner" aria-hidden="true"></span>
           <span id="tourLoadingText">Loading 360...</span>
         </div>
-        <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" loading-screen="enabled: false" class="tour-scene" id="tourScene">
+        <a-scene embedded background="color: #000" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true; antialias: true; precision: high" loading-screen="enabled: false" class="tour-scene" id="tourScene">
           <a-entity camera="fov: 80" look-controls="touchEnabled: false; mouseEnabled: true; magicWindowTrackingEnabled: false" wasd-controls="enabled: false; acceleration: 180" position="0 1.6 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="objects: .tour-hotspot"></a-entity>
           </a-entity>
@@ -3613,8 +3613,8 @@
     const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
     const isTouchViewport = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
     let isTransitioning = false;
-    const SCENE_BLEND_SWAP_DELAY = 90;
-    const SCENE_BLEND_TOTAL_DURATION = 560;
+    const SCENE_BLEND_SWAP_DELAY = 0;
+    const SCENE_BLEND_TOTAL_DURATION = 460;
     const SCENE_MOVE_SWAP_DELAY = 260;
     const SCENE_MOVE_CAMERA_RESET_DELAY = 180;
     const SCENE_MOVE_TOTAL_DURATION = 980;
@@ -4015,19 +4015,12 @@
     }
 
     function beginTourLoading(message = 'Loading 360...') {
-      if (!tourLoadingOverlay) return 0;
       tourLoadingToken += 1;
-      if (tourLoadingText) tourLoadingText.textContent = message;
-      tourLoadingOverlay.classList.add('active');
-      tourLoadingOverlay.setAttribute('aria-hidden', 'false');
       return tourLoadingToken;
     }
 
     function endTourLoading(token) {
-      if (!tourLoadingOverlay) return;
       if (token && token !== tourLoadingToken) return;
-      tourLoadingOverlay.classList.remove('active');
-      tourLoadingOverlay.setAttribute('aria-hidden', 'true');
     }
 
     function replaceSkyTexture(source, rotation, options = {}) {
@@ -4057,26 +4050,9 @@
         };
 
         if (crossfade) {
-          incomingSky.setAttribute('visible', 'true');
-          incomingSky.setAttribute('rotation', rotation || '0 -90 0');
-          incomingSky.setAttribute('src', source);
-          incomingSky.removeAttribute('animation__skyfadein');
-          incomingSky.removeAttribute('animation__skyfadeout');
-          activeSky.removeAttribute('animation__skyfadein');
-          activeSky.removeAttribute('animation__skyfadeout');
-          setSkyMaterial(incomingSky, 0, true);
-          setSkyMaterial(activeSky, 1, true);
-          incomingSky.addEventListener('materialtextureloaded', applyTextureSettings(incomingSky), { once: true });
-          incomingSky.setAttribute(
-            'animation__skyfadein',
-            'property: material.opacity; from: 0; to: 1; dur: ' + fadeDuration + '; easing: linear'
-          );
-          activeSky.setAttribute(
-            'animation__skyfadeout',
-            'property: material.opacity; from: 1; to: 0; dur: ' + fadeDuration + '; easing: linear'
-          );
-
-          window.setTimeout(() => {
+          let crossfadeStarted = false;
+          const finishCrossfade = () => {
+            incomingSky.removeEventListener('materialtextureloaded', onIncomingTextureLoaded);
             activeSky.removeAttribute('animation__skyfadein');
             activeSky.removeAttribute('animation__skyfadeout');
             incomingSky.removeAttribute('animation__skyfadein');
@@ -4087,7 +4063,39 @@
             tourSky = incomingSky;
             tourSkyBlend = activeSky;
             endTourLoading(loadingToken);
-          }, fadeDuration + 40);
+          };
+
+          const onIncomingTextureLoaded = (event) => {
+            if (crossfadeStarted) return;
+            crossfadeStarted = true;
+            applyTextureSettings(incomingSky)(event);
+            incomingSky.setAttribute(
+              'animation__skyfadein',
+              'property: material.opacity; from: 0; to: 1; dur: ' + fadeDuration + '; easing: easeInOutSine'
+            );
+            activeSky.setAttribute(
+              'animation__skyfadeout',
+              'property: material.opacity; from: 1; to: 0; dur: ' + fadeDuration + '; easing: easeInOutSine'
+            );
+            window.setTimeout(finishCrossfade, fadeDuration + 40);
+          };
+
+          incomingSky.removeEventListener('materialtextureloaded', onIncomingTextureLoaded);
+          incomingSky.removeAttribute('animation__skyfadein');
+          incomingSky.removeAttribute('animation__skyfadeout');
+          activeSky.removeAttribute('animation__skyfadein');
+          activeSky.removeAttribute('animation__skyfadeout');
+          setSkyMaterial(incomingSky, 0, true);
+          setSkyMaterial(activeSky, 1, true);
+          incomingSky.setAttribute('visible', 'true');
+          incomingSky.setAttribute('rotation', rotation || '0 -90 0');
+          incomingSky.addEventListener('materialtextureloaded', onIncomingTextureLoaded, { once: true });
+          incomingSky.setAttribute('src', source);
+
+          // Fallback: some browsers/driver combos skip materialtextureloaded when texture is cached.
+          window.setTimeout(() => {
+            if (!crossfadeStarted) onIncomingTextureLoaded();
+          }, 420);
         } else {
           activeSky.setAttribute('visible', 'true');
           activeSky.setAttribute('rotation', rotation || '0 -90 0');
@@ -4189,8 +4197,9 @@
 
       window.setTimeout(() => {
         setTourScene(targetIndex, announce, {
+          preserveCamera: true,
           crossfadeSky: true,
-          skyFadeDuration: 380,
+          skyFadeDuration: 340,
           keepControlsDisabled: true
         });
       }, SCENE_BLEND_SWAP_DELAY);
@@ -4314,8 +4323,6 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
         tourShell.classList.add('is-entering');
       }
 
-      beginTourLoading('Loading 360...');
-
       ensureTourEngineLoaded()
         .then(() => {
           if (!tourModal || !tourModal.classList.contains('active')) return;
@@ -4354,6 +4361,8 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
 
     function closeTour() {
       if (!tourModal) return;
+
+      stopCinemaMode();
 
       hideTourTouchHint();
       tourModal.classList.remove('active');
@@ -4732,6 +4741,9 @@ heroFrontSvgStage.setAttribute('aria-hidden', 'false');
 
     if (tourCtaExploreBtn) {
       tourCtaExploreBtn.addEventListener('click', () => {
+        stopCinemaMode();
+        cinemaPaused = false;
+        cineUserInteracting = false;
         closeCtaModal();
       });
     }
