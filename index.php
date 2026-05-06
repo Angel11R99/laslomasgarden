@@ -157,6 +157,15 @@
       }
     }
 
+    @media (max-width: 960px) {
+      .lls-hero-new__overlay {
+        display: none;
+      }
+      .lls-hero-new__phone-tagline {
+        display: block !important;
+      }
+    }
+
     .lls-hero-new__overlay-inner {
       display: flex;
       justify-content: flex-end;
@@ -179,6 +188,21 @@
       text-align: center;
       padding: clamp(3rem, 5vw, 4.5rem) 0;
       width: 100%;
+    }
+
+    .lls-hero-new__phone-tagline {
+      display: none;
+      max-width: 320px;
+      margin: 0 auto 2.7rem;
+      width: 100%;
+    }
+
+    .lls-hero-new__phone-tagline img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      display: block;
+      object-fit: contain;
     }
 
     .lls-hero-new__bar h1 {
@@ -1023,6 +1047,9 @@
       </div>
       <div class="lls-hero-new__bar">
         <div class="lls-shell">
+          <div class="lls-hero-new__phone-tagline">
+            <img src="img/home/Invest_in_Paradise.svg" alt="Invest in Paradise" loading="eager" decoding="async">
+          </div>
           <h1>A private residential destination shaped by climate, calm, and everyday beauty.</h1>
           <p>Vista Lomas is a condominium development in Sosua, Puerto Plata, created for people who want more
             than a property. It is a place designed around warmth, ease, scenery, security, and a more generous rhythm
