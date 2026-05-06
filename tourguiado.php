@@ -2683,6 +2683,7 @@
 
     let activePlanViewKey = 'without-balcony';
     let selectedBuildingNum = '';
+    let selectedRooftopSuffix = '';
 
     const THREE_ROOM_BUILDINGS = new Set([
       '1','2','3','4','11','12','13','15','17','19','21','23','26','29','31'
@@ -2918,7 +2919,17 @@
         bindStep1LikeHover(interactiveNodes.targetNode, interactiveNodes.visualNode, unitLabel, {
           disableScale: viewKey === 'without-balcony'
         });
-        makeSvgElementButton(interactiveNodes.targetNode, openStep2);
+        makeSvgElementButton(interactiveNodes.targetNode, () => {
+          const rooftopMatch = /^[IJ]$/i.test(node.id || '');
+          if (rooftopMatch && selectedBuildingNum) {
+            selectedRooftopSuffix = String(node.id || '').toUpperCase();
+            hideHeroFrontView();
+            window.setTimeout(() => openTourAtScene('balcon-exterior'), 120);
+            return;
+          }
+          selectedRooftopSuffix = '';
+          openStep2();
+        });
       });
 
       return true;
@@ -3012,6 +3023,7 @@
         node.addEventListener('blur', hideAreaHint);
 
         makeSvgElementButton(node, () => {
+          selectedRooftopSuffix = '';
           node.style.filter = 'url(#fp-glow-pulse) brightness(1.25)';
           window.setTimeout(() => {
             hideHeroFrontView();
@@ -3260,6 +3272,7 @@
         const openUnit = () => {
           if (isApartmentUnit) {
             selectedBuildingNum = realNum;
+            selectedRooftopSuffix = '';
             showHeroFrontView(viewKey);
             return;
           }
@@ -3472,9 +3485,9 @@
       },
       {
         id: 'pasillo-2',
-        title: 'Hallway 2',
-        image: 'img/tourguiado/renders/interiores/Pasillo2.webp',
-        mobileImage: 'img/tourguiado/renders/interiores/Pasillo2.webp',
+        title: 'Laundry',
+        image: 'img/tourguiado/renders/interiores/Laundry.webp',
+        mobileImage: 'img/tourguiado/renders/interiores/Laundry.webp',
         rotation: '0 -90 0',
         hotspots: [
           // Dormitorio B: puerta lateral izquierda (~3%) → casi al frente
@@ -3497,7 +3510,7 @@
         rotation: '0 -90 0',
         hotspots: [
           // Puerta al pasillo 2 (~17%) → izquierda-adelante
-          { to: 'pasillo-2', label: 'Hallway 2', position: '-4.4 0 -2.4' }
+          { to: 'pasillo-2', label: 'Laundry', position: '-4.4 0 -2.4' }
         ]
       },
       {
@@ -3508,7 +3521,7 @@
         rotation: '0 -90 0',
         hotspots: [
           // Puerta abierta hacia pasillo 2 (~30%) → izquierda-detrás
-          { to: 'pasillo-2', label: 'Hallway 2', position: '-1 -1.4 -4.5' }
+          { to: 'pasillo-2', label: 'Laundry', position: '-1 -1.4 -4.5' }
         ]
       },
       {
@@ -3519,7 +3532,7 @@
         rotation: '0 -90 0',
         hotspots: [
           // Puerta de regreso al pasillo 2 (~40%) → izquierda-detrás
-          { to: 'pasillo-2', label: 'Hallway 2', position: '1.4 -1.2 -4.4' },
+          { to: 'pasillo-2', label: 'Laundry', position: '1.4 -1.2 -4.4' },
           { to: 'dormitorio-principal', label: 'Room', position: '-1.2 -1.1 4.5' },
             { to: 'bano-principal', label: 'Bathroom', position: '-4.6 -1.3 0.4' }
         ]
@@ -3587,7 +3600,7 @@
         'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20principal.webp',
         'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o.webp',
         'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20A.webp',
-        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Pasillo.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Laundry.webp',
         'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Dormitorio%20B.webp',
         'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20A/Ba%C3%B1o%202.webp',
         wc: 'img/tourguiado/renders/interiores/360%20Tipo%20A/WC.webp'
@@ -3599,14 +3612,18 @@
         'dormitorio-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%201.webp',
         'bano-principal': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%201.webp',
         'dormitorio-a': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
-        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Pasillo.webp',
+        'pasillo-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Laundry.webp',
         'dormitorio-b': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Dormitorio%202.webp',
-        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%202.webp'
+        'bano-2': 'img/tourguiado/renders/interiores/360%20Tipo%20B/Ba%C3%B1o%202.webp',
+        wc: 'img/tourguiado/renders/interiores/360%20Tipo%20B/WC.webp'
       }
     };
 
     function getSceneImage(scene) {
       if (!scene) return '';
+      if (scene.id === 'balcon-exterior' && selectedBuildingNum && selectedRooftopSuffix) {
+        return `img/ROOFTOP%20360/SERENAS_ROOFTOP%20360%20-%20${selectedBuildingNum}${selectedRooftopSuffix}.webp`;
+      }
       const layoutImages = tourSceneImagesByLayout[activePlanViewKey] || null;
       if (layoutImages && layoutImages[scene.id]) return layoutImages[scene.id];
       return isMobileViewport() ? (scene.mobileImage || scene.image) : scene.image;
