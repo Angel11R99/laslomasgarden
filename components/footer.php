@@ -247,7 +247,7 @@
   <div class="lls-footer-inner">
     <div>
       <h2 class="lls-footer-logo">
-        <img src="/img/shared/wlogo.svg" alt="Vista Lomas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/img/shared/logo-fallback.png';">
+        <img src="img/shared/wlogo.svg" alt="Vista Lomas logo" width="527" height="170" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/shared/logo-fallback.png';">
       </h2>
     </div>
 
@@ -281,16 +281,16 @@
         <h3 class="lls-footer-title">Follow Us</h3>
         <div class="lls-social-row">
           <a class="lls-social-link" href="https://wa.me/" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-            <img src="/img/shared/whatsapp-svgrepo-com.svg" alt="WhatsApp" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
+            <img src="img/shared/whatsapp-svgrepo-com.svg" alt="WhatsApp" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
           <a class="lls-social-link" href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
           </a>
           <a class="lls-social-link" href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <img src="/img/shared/facebook-svgrepo-com.svg" alt="Facebook" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
+            <img src="img/shared/facebook-svgrepo-com.svg" alt="Facebook" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
           <a class="lls-social-link" href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
-            <img src="/img/shared/x-social-media-logo-icon.svg" alt="X" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
+            <img src="img/shared/x-social-media-logo-icon.svg" alt="X" style="width:1.7rem;height:1.7rem;filter:brightness(0) invert(1);">
           </a>
         </div>
       </section>

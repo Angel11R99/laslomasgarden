@@ -126,9 +126,19 @@
     }
 
     .lls-hero-new__media {
+      position: relative;
       height: min(100vh, 1070px);
-      background: url("img/shared/Master_Plan.webp") center / 100% 100% no-repeat;
+      overflow: hidden;
       background-color: #f0f0f0;
+    }
+
+    .lls-hero-new__media video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .lls-hero-new__overlay {
@@ -495,11 +505,13 @@
       position: relative;
     }
 
-    .lls-promo__media img {
+    .lls-promo__media img,
+    .lls-promo__media video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 0;
+      display: block;
     }
 
 
@@ -796,7 +808,6 @@
     @media (max-width: 960px) {
       .lls-hero-new__media {
         height: 50vh;
-        background-size: cover;
       }
 
       .lls-hero-new__overlay-inner {
@@ -998,7 +1009,11 @@
   <main class="lls-page">
     <!-- 1. Hero Content -->
     <section class="lls-hero-new">
-      <div class="lls-hero-new__media" aria-label="Aerial view of Vista Lomas project"></div>
+      <div class="lls-hero-new__media" aria-label="Aerial view of Vista Lomas project">
+        <video autoplay muted loop playsinline>
+          <source src="img/videos/home-video.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="lls-hero-new__overlay" aria-hidden="true">
         <div class="lls-hero-new__overlay-inner">
           <div class="lls-hero-new__tagline">
@@ -1075,7 +1090,9 @@
           <a href="/contact-us" class="lls-button lls-button--outline">Request Information</a>
         </div>
         <div class="lls-promo__media">
-          <img src="bbq_home.webp" alt="Family sharing a moment on the terrace" loading="lazy">
+          <video autoplay muted loop playsinline>
+            <source src="img/videos/bbq-video.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
